@@ -27,4 +27,14 @@ export const SidebarData: SidebarItem[] = [
     path: "/configurations",
     icon: <FaCog/>,
   },
+  {
+    title: "Créer une activité",
+    path: "/create-activity",
+    icon: <FaCog/>,
+  },
+  {
+    title: "Choisir un contrat",
+    path: "/choose-contract",
+    icon: <FaCog/>,
+  },
 ];
