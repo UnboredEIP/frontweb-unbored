@@ -2,13 +2,6 @@ import React from "react";
 import styles from "../../styles/components/Nav.module.css";
 import * as data from "./links.json";
 import logo from "../../unboredlogo.png";
-import { ChakraProvider, MenuIcon } from "@chakra-ui/react";
-import { IconButton } from "@chakra-ui/react";
-import { AddIcon, SearchIcon } from "@chakra-ui/icons";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
-import { Heading } from "@chakra-ui/react";
 import Sidebar from "../sidebar/Sidebar";
 import { Link, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
@@ -24,7 +17,7 @@ type Link = {
 
 const Nav: React.FC<{}> = () => {
   return (
-    <nav className={styles.navbar}>
+    <nav className={styles["navbar"]}>
       <Sidebar />
       <div className={styles["logo-container"]}>
         <span>
@@ -49,10 +42,10 @@ const Nav: React.FC<{}> = () => {
       </h1>
       <h2>Tu t'ennuie ? Arrête </h2>
       <Routes>
-        <Route path="/" element={<LinkRedirection/>}></Route>
-        <Route path="/login" element={<LinkRedirection/>}></Route>
-        <Route path="/register" element={<LinkRedirection/>}></Route>
-        <Route path="/overview" element={<LinkRedirection/>}></Route>
+        <Route path="/" element={<LinkRedirection />}></Route>
+        <Route path="/login" element={<LinkRedirection />}></Route>
+        <Route path="/register" element={<LinkRedirection />}></Route>
+        <Route path="/overview" element={<LinkRedirection />}></Route>
       </Routes>
     </nav>
   );

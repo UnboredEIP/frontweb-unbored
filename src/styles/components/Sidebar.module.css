@@ -2,11 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 .Nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    background-color: red;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 3rem;
+  width: 250px;
+  background-color: var(--mainColor);
+}
+
+.container {
+  margin-top: 10000px;
 }
 
 .sidebar {
@@ -24,7 +29,7 @@
     /* width: 100%; */
     height: auto;
     border-radius: 7ex;
-    background: aliceblue;
+    background: blue;
     border-bottom: #555;
     display: flex;
     align-items: center;
@@ -33,6 +38,33 @@
 
 .sidebar-text{
     color: aliceblue;
+    /* display: flex; */
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+}
+
+.sidebar-icon{
+  font-size: 25px;
+}
+
+.sidebar-subtext{
+  color: aliceblue;
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px;
+}
+
+.sidebar-subicon{
+  font-size: 25px;
+}
+
+.sidebar-subnav{
+  font-size: 20px;
+  margin-left: 20px;
 }
 
 .logo-container{
@@ -68,7 +100,7 @@
 }
   
 
-.sidebar h1{
+.sidebar div{
     font-weight:bolder;
     color: aliceblue;
     cursor: pointer;
@@ -79,6 +111,8 @@
     animation: infinite;
     display: flex;
 }
+
+
 
 .links-container {
     margin-right: 40px;
