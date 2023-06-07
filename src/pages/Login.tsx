@@ -27,7 +27,7 @@ const LoginHeader: React.FC<{}> = () => {
         textShadow="lg"
         padding={7}
       >
-        <Heading> Connectes toi !</Heading>
+        <Heading color="whitesmoke"> Connectes toi !</Heading>
         <Text fontSize={20}>
           Ou <Link href="/register">crées ton compte </Link>
           si tu n'en a pas encore
@@ -99,11 +99,11 @@ const LoginForm: React.FC<{}> = () => {
           </Link>
         </Link>
         <Stack isInline justifyContent="space-between" my={4}>
-          <Button borderRadius={12} boxShadow="lg">
+          <Button borderRadius={12} boxShadow="lg" color={"black"}>
             <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
             Continuer avec Google
           </Button>
-          <Button borderRadius={12} boxShadow="lg">
+          <Button borderRadius={12} boxShadow="lg" color={"black"}>
             <img src={logoFacebook} alt="Logo" className={styles["logo"]} />
             Continuer avec Facebook
           </Button>

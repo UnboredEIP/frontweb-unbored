@@ -29,10 +29,10 @@ const RegisterHeader: React.FC<{}> = () => {
           padding={7}
         >
           Crées ton compte !
-      <Text fontSize={20}>
-        Ou <Link href="/login">connectes-toi </Link>
-        si tu en as déjà un
-      </Text>
+          <Text fontSize={20}>
+            Ou <Link href="/login">connectes-toi </Link>
+            si tu en as déjà un
+          </Text>
         </Box>
       </Heading>
     </Box>
@@ -149,11 +149,11 @@ const RegisterForm: React.FC<{}> = () => {
           </Button>
         </Link>
         <Stack isInline justifyContent="space-between" my={4}>
-          <Button borderRadius={12} boxShadow="lg">
+          <Button borderRadius={12} boxShadow="lg" color={"black"}>
             <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
             Continuer avec Google
           </Button>
-          <Button borderRadius={12} boxShadow="lg">
+          <Button borderRadius={12} boxShadow="lg" color={"black"}>
             <img src={logoFacebook} alt="Logo" className={styles["logo"]} />
             Continuer avec Facebook
           </Button>
