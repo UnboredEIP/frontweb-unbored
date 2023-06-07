@@ -1,5 +1,4 @@
-import React from "react";
-import Nav from "../components/Nav/Nav";
+import React, { useState } from "react";
 import {
   Box,
   Heading,
@@ -13,21 +12,45 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-// import { Link } from "react-router-dom";
+import styles from "../styles/pages/Register.module.css";
+import logoGoogle from "../google.png";
+import logoFacebook from "../facebook.png";
 
 const LoginHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
-      <Heading> Connectes toi !</Heading>
-      <Text>
-        Ou <Link href="/register">crées ton compte </Link>
-        si tu n'en a pas encore
-      </Text>
+      <Box
+        borderRadius={40}
+        backgroundColor="#E1604D"
+        color="whitesmoke"
+        boxShadow="lg"
+        textShadow="lg"
+        padding={7}
+      >
+        <Heading> Connectes toi !</Heading>
+        <Text fontSize={20}>
+          Ou <Link href="/register">crées ton compte </Link>
+          si tu n'en a pas encore
+        </Text>
+      </Box>
     </Box>
   );
 };
 
 const LoginForm: React.FC<{}> = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isFormValid = email !== "" && password !== "";
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
   return (
     <Box textAlign="center">
       <form>
@@ -37,12 +60,20 @@ const LoginForm: React.FC<{}> = () => {
             type="email"
             placeholder="Entres ton addresse mail"
             textAlign="center"
+            borderRadius={50}
+            borderWidth={2}
+            borderColor="#E1604D"
+            onChange={handleEmailChange}
           ></Input>
           <FormLabel textAlign="left">Mot de passe</FormLabel>
           <Input
             type="password"
             placeholder="Entres ton mot de passe"
             textAlign="center"
+            borderRadius={50}
+            borderWidth={2}
+            borderColor="#E1604D"
+            onChange={handlePasswordChange}
           ></Input>
         </FormControl>
         <Stack isInline justifyContent="space-between">
@@ -52,15 +83,28 @@ const LoginForm: React.FC<{}> = () => {
           <Box>*Mot de passe oublié ?</Box>
         </Stack>
         <Link href="/home">
-          <Button mt={4} my={4} borderRadius={50} boxShadow="lg">
-            Se connecter
-          </Button>
+          <Link href="/home">
+            <Button
+              // type="submit"
+              mt={4}
+              my={4}
+              borderRadius={50}
+              boxShadow="lg"
+              backgroundColor="#E1604D"
+              color="whitesmoke"
+              isDisabled={!isFormValid}
+            >
+              Se connecter
+            </Button>
+          </Link>
         </Link>
         <Stack isInline justifyContent="space-between" my={4}>
-          <Button borderRadius={50} boxShadow="lg">
+          <Button borderRadius={12} boxShadow="lg">
+            <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
             Continuer avec Google
           </Button>
-          <Button borderRadius={50} boxShadow="lg">
+          <Button borderRadius={12} boxShadow="lg">
+            <img src={logoFacebook} alt="Logo" className={styles["logo"]} />
             Continuer avec Facebook
           </Button>
         </Stack>
@@ -72,7 +116,13 @@ const LoginForm: React.FC<{}> = () => {
 const LoginPage: React.FC<{}> = () => {
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
-      <Box borderWidth={5} px={4} borderRadius={40}>
+      <Box borderColor="#E1604D"
+        borderWidth={0}
+        px={7}
+        py={7}
+        borderRadius={40}
+        backgroundColor="white"
+        boxShadow="md">
         <LoginHeader />
         <LoginForm />
       </Box>

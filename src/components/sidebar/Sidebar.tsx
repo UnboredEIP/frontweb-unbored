@@ -19,13 +19,24 @@ const Nav = styled.div`
 `;
 
 const SidebarNav = styled.div<{ sidebar: boolean }>`
-  background-color: var(--mainColor);
+  // background-color: var(--mainColor);
   width: 250px;
   height: 100vh;
   position: fixed;
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
+  background-color: rgba(225, 96, 77, ${({ sidebar }) => (sidebar ? "0.8" : "0")});
   transition: 400ms;
+`;
+
+const BackgroundCover = styled.div<{ sidebar: boolean }>`
+  position: fixed;
+  top: 0;
+  left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, ${({ sidebar }) => (sidebar ? "0.5" : "0")});
+  z-index: 999;
 `;
 
 const NavIcon = styled(Link)`
@@ -56,18 +67,20 @@ const Sidebar: React.FC<{}> = () => {
           <HiMenu />
         </NavIcon>
       </Nav>
-      <SidebarNav sidebar={sidebar}>
-        <SidebarWrap>
-          <NavIcon to="#" onClick={showSidebar}>
-            <IoCloseSharp />
-          </NavIcon>
-          {/* <div className={styles["sidebar-text"]}> */}
-          {SidebarData.map((item, index) => {
-            return <Submenu item={item} key={index} />;
-          })}
-          {/* </div> */}
-        </SidebarWrap>
-      </SidebarNav>
+      <BackgroundCover sidebar={sidebar}>
+        <SidebarNav sidebar={sidebar}>
+          <SidebarWrap>
+            <NavIcon to="#" onClick={showSidebar}>
+              <IoCloseSharp />
+            </NavIcon>
+            {/* <div className={styles["sidebar-text"]}> */}
+            {SidebarData.map((item, index) => {
+              return <Submenu item={item} key={index} />;
+            })}
+            {/* </div> */}
+          </SidebarWrap>
+        </SidebarNav>
+      </BackgroundCover>
     </IconContext.Provider>
   );
 };

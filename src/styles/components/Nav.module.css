@@ -6,8 +6,9 @@
     background: var(--mainColor);
     border-bottom: #555;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding-right: 10rem;
 }
 
 .bubble {
@@ -68,6 +69,8 @@
     /* width: 0px; */
     animation: infinite;
     display: flex;
+    justify-content: center;
+    
 }
 
 .links-container {
