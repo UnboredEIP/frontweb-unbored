@@ -3,7 +3,7 @@ import styles from "../../styles/components/Nav.module.css";
 import * as data from "./links.json";
 import logo from "../../unboredlogo.png";
 import Sidebar from "../sidebar/Sidebar";
-import { Link, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Link, Text } from "@chakra-ui/react";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -38,9 +38,10 @@ const Nav: React.FC<{}> = () => {
       {/* <Heading>I'm a Heading</Heading> */}
 
       <h1>
-        <Link href="/">UnBored</Link>
+        <Link href="/">
+          <Text textShadow="lg">UnBored</Text>
+        </Link>
       </h1>
-      <h2>Tu t'ennuie ? Arrête </h2>
       <Routes>
         <Route path="/" element={<LinkRedirection />}></Route>
         <Route path="/login" element={<LinkRedirection />}></Route>

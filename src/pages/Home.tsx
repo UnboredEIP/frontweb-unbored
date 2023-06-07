@@ -16,30 +16,62 @@ import {
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
 
-const RegisterHeader: React.FC<{}> = () => {
+const HomeHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
-      <Heading>
-        <Box
-          borderRadius={40}
-          backgroundColor="#E1604D"
-          color="whitesmoke"
-          boxShadow="lg"
-          textShadow="lg"
-          padding={7}
-        >
-          Crées ton compte !
-      <Text fontSize={20}>
-        Ou <Link href="/login">connectes-toi </Link>
-        si tu en as déjà un
-      </Text>
-        </Box>
-      </Heading>
+      <Link href="/create-schedule">
+        <Heading>
+          <Box
+            borderRadius={40}
+            backgroundColor="#E1604D"
+            color="whitesmoke"
+            boxShadow="lg"
+            textShadow="lg"
+            padding={7}
+          >
+            <Text>Crées ton Emploi du temps !</Text>
+
+            <Text fontSize={20}>Laisse nous plannifier ta journée Drisskow !</Text>
+          </Box>
+        </Heading>
+      </Link>
+      <Link href="/invit-friends">
+        <Heading mt={5}>
+          <Box
+            borderRadius={40}
+            backgroundColor="#E1604D"
+            color="whitesmoke"
+            boxShadow="lg"
+            textShadow="lg"
+            padding={7}
+          >
+            <Text>Invite tes amis</Text>
+
+            <Text fontSize={20}>Plus on est, mieux on dahek</Text>
+          </Box>
+        </Heading>
+      </Link>
+      <Link href="/create-avatar">
+        <Heading mt={5}>
+          <Box
+            borderRadius={40}
+            backgroundColor="#E1604D"
+            color="whitesmoke"
+            boxShadow="lg"
+            textShadow="lg"
+            padding={7}
+          >
+            <Text>Crées ton avatar</Text>
+
+            <Text fontSize={20}>C'est important de flex sur ses amis</Text>
+          </Box>
+        </Heading>
+      </Link>
     </Box>
   );
 };
 
-const RegisterForm: React.FC<{}> = () => {
+const HomeForm: React.FC<{}> = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -163,7 +195,7 @@ const RegisterForm: React.FC<{}> = () => {
   );
 };
 
-const RegisterPage: React.FC<{}> = () => {
+const HomePage: React.FC<{}> = () => {
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
       <Box
@@ -175,11 +207,10 @@ const RegisterPage: React.FC<{}> = () => {
         backgroundColor="white"
         boxShadow="md"
       >
-        <RegisterHeader />
-        <RegisterForm />
+        <HomeHeader />
       </Box>
     </Flex>
   );
 };
 
-export default RegisterPage;
+export default HomePage;

@@ -6,7 +6,15 @@
     align-items: center;
     justify-content: center;
   }
-  
+  .text-button {
+    text-decoration: none;
+    
+  }
+  .logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+  }
   .App-logo {
     height: 40vmin;
     pointer-events: none;
