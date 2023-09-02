@@ -52,3 +52,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+
+1. Create a TXT record in your DNS configuration for the following hostname: _github-pages-challenge-UnboredEIP.unbored.com
+2. Use this code for the value of the TXT record: 93beb62d1b91d0848e78d8ca43d761
+3. Wait until your DNS configuration changes. This could take up to 24 hours to propagate.
+  

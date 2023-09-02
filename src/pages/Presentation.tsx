@@ -56,7 +56,7 @@ const PresentationPage: React.FC<{}> = () => {
         <PresentationHeader />
         <Box padding={150}></Box>
         <Link href="https://www.instagram.com/unbored_paris/">
-          <Button borderRadius={12} boxShadow="lg">
+          <Button borderRadius={12} boxShadow="lg" color={"black"}>
             <img src={logoInstagram} alt="Logo" className={styles["logo"]} />
             Rejoins nous sur Instagram
           </Button>

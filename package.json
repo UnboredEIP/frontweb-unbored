@@ -48,12 +48,14 @@
     ]
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
     "cross-env": "^7.0.3",
+    "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.11.0",
+    "react-router-dom": "^6.14.1",
     "styled-components": "^5.3.10"
   }
 }

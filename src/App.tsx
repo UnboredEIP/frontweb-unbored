@@ -8,10 +8,16 @@ import RegisterPage from "./pages/Register";
 import HomePage from "./pages/Home";
 import PresentationPage from "./pages/Presentation";
 import ParticleBackground from "./components/ParticleBackground";
-import CreateActivityPage from './pages/CreateActivityPage';
-import ChooseContractPage from './pages/ChooseContractPage';
+import CreateActivityPage from "./pages/CreateActivityPage";
+import ChooseContractPage from "./pages/ChooseContractPage";
+import { useNavigate } from "react-router-dom";
+import UpdateProfilePage from "./pages/UpdateProfile";
 
 function App() {
+  const HandleLoginSuccess = () => {
+    const navigaion = useNavigate();
+    navigaion("/home");
+  };
   return (
     <>
       <ParticleBackground />
@@ -20,10 +26,20 @@ function App() {
         <Routes>
           <Route path="/" element={<PresentationPage />}></Route>
           <Route path="/home" element={<HomePage />}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
+          <Route
+            path="/login"
+            element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
+          ></Route>
           <Route path="/register" element={<RegisterPage />}></Route>
-          <Route path="/create-activity" element={<CreateActivityPage />}></Route>
-          <Route path="/choose-contract" element={<ChooseContractPage />}></Route>
+          <Route path="/update-profile" element={<UpdateProfilePage />}></Route>
+          <Route
+            path="/create-activity"
+            element={<CreateActivityPage />}
+          ></Route>
+          <Route
+            path="/choose-contract"
+            element={<ChooseContractPage />}
+          ></Route>
         </Routes>
       </Router>
       <header className={styles["App-header"]}></header>
