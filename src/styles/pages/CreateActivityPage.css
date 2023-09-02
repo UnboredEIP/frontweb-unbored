@@ -1,0 +1,123 @@
+.form-container {
+  width: 60%;
+  margin: 0 auto;
+  background-color: lightgray;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-title {
+  text-align: center;
+  background-color: red;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: white;
+}
+
+label {
+  color: orange;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  border: 2px solid orange;
+  border-radius: 20px;
+  padding: 8px;
+  width: 100%;
+}
+
+.text-orange {
+  border: 2px solid orange;
+  border-radius: 20px;
+  padding: 8px;
+  width: 100%;
+}
+
+.label-orange {
+  color: orange;
+  margin-right: 50px;
+}
+
+textarea {
+  height: 150px;
+}
+
+
+button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  margin-right: 50px;
+  width: 100%;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+}
+
+.separator {
+  border-bottom: 2px solid gray;
+  margin: 20px 0;
+}
+
+.image-upload {
+  display: flex;
+  align-items: center;
+}
+
+.image-upload input[type="file"] {
+  display: none;
+}
+
+.image-upload label {
+  background-color: orange;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.column_10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.column_15 {
+  color: orange;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+
+.column_20 {
+  color: orange;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+.column_25 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.column_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.column_75 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
