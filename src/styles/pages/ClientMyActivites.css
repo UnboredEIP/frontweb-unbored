@@ -1,0 +1,149 @@
+/* ../styles/pages/ClientProfile.MyActivities-css */
+
+.MyActivities-button-box {
+  background-color: #E3C8C4;
+  padding: 20px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MyActivities-banner {
+  background-color: #E1604D;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  max-width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyActivities-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.MyActivities-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 15px;
+  margin: 15px;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+.MyActivities-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.label-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 5px;
+  width: 50px;
+}
+
+.MyActivities-input-column {
+  flex: 2;
+  margin-right: 100px;
+}
+
+.MyActivities-input-wrapper label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.MyActivities-input-wrapper input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.MyActivities-edit-button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.MyActivities-edit-button:hover {
+  background-color: #D15040;
+}
+
+.MyActivities-edit-all-button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyActivities-edit-all-button:hover {
+  background-color: #D15040;
+}
+
+.MyActivities-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.MyActivities-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyActivities-back-button button:hover {
+  background-color: #D15040;
+}
+
+.MyActivities-image-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  margin-bottom: 5px;
+}
+
+.MyActivities-button-label {
+  font-weight: bold;
+  margin-top: 5px;
+}

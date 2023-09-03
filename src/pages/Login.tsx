@@ -15,7 +15,7 @@ import {
 import styles from "../styles/pages/Register.module.css";
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
-import { ContextLogin, LoginData } from "../contexts/LoginContext";
+// import { ContextLogin, LoginData } from "../contexts/LoginContext";
 import { useToast } from "@chakra-ui/react";
 import HomePage from "./Home";
 
@@ -191,7 +191,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
         boxShadow="md"
       >
         <LoginHeader />
-        <LoginForm onLoginSuccess={handleLoginSuccess} />
+        <LoginForm onLoginSuccess={HandleLoginSuccess} />
       </Box>
     </Flex>
   );

@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-body {
+.ChooseContract-body {
   font-family: 'Poppins', sans-serif;
   background-color: #f5f5f5;
   font-size: 16px;
 }
 
-.form-container {
+.ChooseContract-form-container {
   width: 60%;
   margin: 0 auto;
   background-color: lightgray;
@@ -15,7 +15,7 @@ body {
   border-radius: 10px;
 }
 
-.form-title {
+.ChooseContract-form-title {
   text-align: center;
   background-color: red;
   padding: 10px;
@@ -24,26 +24,26 @@ body {
   color: white;
 }
 
-.container {
+.ChooseContract-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-h2 {
+.ChooseContract-h2 {
   font-size: 24px;
   color: #ff5722;
   margin-bottom: 20px;
 }
 
-label {
+.ChooseContract-label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
   color: #333;
 }
 
-button {
+.ChooseContract-button {
   background-color: #ff5722;
   color: #fff;
   padding: 10px 20px;
@@ -54,47 +54,63 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.ChooseContract-button:hover {
   background-color: #f44336;
 }
 
-.form-container p {
+.ChooseContract-center-button .ChooseContract-button[type="submit"] {
+  background-color: orange;
+  /* Autres styles optionnels */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  /* ... */
+}
+
+.ChooseContract-form-container p {
   margin-bottom: 10px;
 }
 
-.column_10 {
+.ChooseContract-column_5 {
+  flex: 0 0 5%;
+  max-width: 5%;
+}
+
+.ChooseContract-column_10 {
   flex: 0 0 10%;
   max-width: 10%;
 }
 
-.column_15 {
+.ChooseContract-column_15 {
   color: orange;
   flex: 0 0 15%;
   max-width: 15%;
 }
 
-.column_20 {
+.ChooseContract-column_20 {
   color: orange;
   flex: 0 0 20%;
   max-width: 20%;
 }
 
-.column_25 {
+.ChooseContract-column_25 {
   flex: 0 0 25%;
   max-width: 25%;
 }
 
-.column_30 {
+.ChooseContract-column_30 {
+  color: orange;
   flex: 0 0 30%;
   max-width: 30%;
 }
 
-.column_75 {
+.ChooseContract-column_75 {
   flex: 0 0 75%;
   max-width: 75%;
 }
 
-.text-orange {
+.ChooseContract-text-orange {
   border: 2px solid orange;
   border-radius: 20px;
   padding: 8px;

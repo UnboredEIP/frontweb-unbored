@@ -48,4 +48,19 @@ export const SidebarData: SidebarItem[] = [
     path: "/choose-contract",
     icon: <FaCog/>,
   },
+  {
+    title: "Login Client",
+    path: "/client-login",
+    icon: <AiOutlineUser/>,
+  },
+  {
+    title: "Profile Client",
+    path: "/client-profile",
+    icon: <AiOutlineUser/>,
+  },
+  {
+    title: "Info Activité",
+    path: "/client-activityInfo",
+    icon: <AiOutlineUser/>,
+  },
 ];
