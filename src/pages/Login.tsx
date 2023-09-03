@@ -171,9 +171,6 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
 
 const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const handleLoginSuccess = () => {
-  //   setIsLoggedIn(true);
-  // };
 
   const navigate = useNavigate();
   const HandleLoginSuccess = () => {
@@ -181,7 +178,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   };
 
   if (isLoggedIn === true) {
-    navigate("/");
+    navigate("/home");
   }
 
   return (

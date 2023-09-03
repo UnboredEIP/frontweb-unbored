@@ -12,15 +12,15 @@ import CreateActivityPage from "./pages/CreateActivityPage";
 import ChooseContractPage from "./pages/ChooseContractPage";
 import { useNavigate } from "react-router-dom";
 import UpdateProfilePage from "./pages/UpdateProfile";
-import ClientLoginPage from './pages/ClientLogin';
-import ClientRegisterPage from './pages/ClientRegister';
-import ClientForgetPwd from './pages/ClientForgetPwd';
-import ClientProfile from './pages/ClientProfile';
-import ClientMyAccount from './pages/ClientMyAccount';
-import ClientMyActivities from './pages/ClientMyActivites';
-import ClientActivityInfo from './pages/ClientActivityInfo';
-import ClientMyContract from './pages/ClientMyContract';
-import ClientModifyActivity from './pages/ClientModifyActivity';
+import ClientLoginPage from "./pages/ClientLogin";
+import ClientRegisterPage from "./pages/ClientRegister";
+import ClientForgetPwd from "./pages/ClientForgetPwd";
+import ClientProfile from "./pages/ClientProfile";
+import ClientMyAccount from "./pages/ClientMyAccount";
+import ClientMyActivities from "./pages/ClientMyActivites";
+import ClientActivityInfo from "./pages/ClientActivityInfo";
+import ClientMyContract from "./pages/ClientMyContract";
+import ClientModifyActivity from "./pages/ClientModifyActivity";
 
 function App() {
   const HandleLoginSuccess = () => {
@@ -39,7 +39,10 @@ function App() {
             path="/login"
             element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
           ></Route>
-          <Route path="/register" element={<RegisterPage />}></Route>
+          <Route
+            path="/register"
+            element={<RegisterPage onRegisterSuccess={HandleLoginSuccess} />}
+          ></Route>
           <Route path="/update-profile" element={<UpdateProfilePage />}></Route>
           <Route
             path="/create-activity"
@@ -49,15 +52,30 @@ function App() {
             path="/choose-contract"
             element={<ChooseContractPage />}
           ></Route>
-      <Route path="/client-login" element={<ClientLoginPage />}></Route>
-      <Route path="/client-register" element={<ClientRegisterPage />}></Route>
-      <Route path="/client-forgetpwd" element={<ClientForgetPwd />}></Route>
-      <Route path="/client-profile" element={<ClientProfile />}></Route>
-      <Route path="/client-myAccount" element={<ClientMyAccount />}></Route>
-      <Route path="/client-myActivites" element={<ClientMyActivities />}></Route>
-      <Route path="/client-activityInfo" element={<ClientActivityInfo />}></Route>
-      <Route path="/client-modifyActivity" element={<ClientModifyActivity />}></Route>
-      <Route path="/client-myContract" element={<ClientMyContract />}></Route>
+          <Route path="/client-login" element={<ClientLoginPage />}></Route>
+          <Route
+            path="/client-register"
+            element={<ClientRegisterPage />}
+          ></Route>
+          <Route path="/client-forgetpwd" element={<ClientForgetPwd />}></Route>
+          <Route path="/client-profile" element={<ClientProfile />}></Route>
+          <Route path="/client-myAccount" element={<ClientMyAccount />}></Route>
+          <Route
+            path="/client-myActivites"
+            element={<ClientMyActivities />}
+          ></Route>
+          <Route
+            path="/client-activityInfo"
+            element={<ClientActivityInfo />}
+          ></Route>
+          <Route
+            path="/client-modifyActivity"
+            element={<ClientModifyActivity />}
+          ></Route>
+          <Route
+            path="/client-myContract"
+            element={<ClientMyContract />}
+          ></Route>
         </Routes>
       </Router>
       <header className={styles["App-header"]}></header>
