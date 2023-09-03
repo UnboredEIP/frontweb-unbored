@@ -15,9 +15,9 @@ import {
 import styles from "../styles/pages/Register.module.css";
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
-// import { ContextLogin, LoginData } from "../contexts/LoginContext";
+import { ContextLogin, LoginData } from "../contexts/LoginContext";
 import { useToast } from "@chakra-ui/react";
-import HomePage from "./Home";
+import { useNavigate } from "react-router-dom";
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -171,12 +171,17 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
 
 const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleLoginSuccess = () => {
+  // const handleLoginSuccess = () => {
+  //   setIsLoggedIn(true);
+  // };
+
+  const navigate = useNavigate();
+  const HandleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
-  if (isLoggedIn == true) {
-    return <HomePage></HomePage>;
+  if (isLoggedIn === true) {
+    navigate("/");
   }
 
   return (

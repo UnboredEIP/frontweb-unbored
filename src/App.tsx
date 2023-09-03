@@ -49,8 +49,7 @@ function App() {
             path="/choose-contract"
             element={<ChooseContractPage />}
           ></Route>
-        </Routes>
-      </Router><Route path="/client-login" element={<ClientLoginPage />}></Route>
+      <Route path="/client-login" element={<ClientLoginPage />}></Route>
       <Route path="/client-register" element={<ClientRegisterPage />}></Route>
       <Route path="/client-forgetpwd" element={<ClientForgetPwd />}></Route>
       <Route path="/client-profile" element={<ClientProfile />}></Route>
@@ -59,6 +58,8 @@ function App() {
       <Route path="/client-activityInfo" element={<ClientActivityInfo />}></Route>
       <Route path="/client-modifyActivity" element={<ClientModifyActivity />}></Route>
       <Route path="/client-myContract" element={<ClientMyContract />}></Route>
+        </Routes>
+      </Router>
       <header className={styles["App-header"]}></header>
     </>
   );
