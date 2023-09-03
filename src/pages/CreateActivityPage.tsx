@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { Component, ChangeEvent, FormEvent } from 'react';
 import '../styles/pages/CreateActivityPage.css';
 
-class CreateActivityPage extends React.Component {
-  constructor(props) {
+interface State {
+  type: string;
+  nom: string;
+  horaires: string;
+  date: string;
+  lieuVille: string;
+  lieuRue: string;
+  lieuNumero: string;
+  description: string;
+  age: string;
+  payante: boolean;
+  prix: string;
+  email: string;
+  telephone: string;
+}
+
+class CreateActivityPage extends Component<{}, State> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       type: '',
@@ -21,32 +37,37 @@ class CreateActivityPage extends React.Component {
     };
   }
 
-  handleInputChange = (event) => {
+  handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-
+  
+    let value: string | boolean = target.value;
+  
+    if (target.type === 'checkbox') {
+      value = (target as HTMLInputElement).checked;
+    }
+  
     this.setState({
       [name]: value
-    });
-  }
+    } as Pick<State, keyof State>);
+  }  
 
-  handleSubmit = (event) => {
+  handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    // Ajoutez ici le code pour traiter les données du formulaire
-    console.log(this.state); // Affiche les valeurs du formulaire dans la console
+
+    console.log(this.state);
   }
 
   render() {
     return (
-      <div className="form-container">
-        <h2 className="form-title">Créer une activité</h2>
+      <div className="CreateActivity-form-container">
+        <h2 className="CreateActivity-form-title">Créer une activité</h2>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Type d'activité:
             </label>
-            <label className="column_75">
+            <label className="CreateActivity-column_75">
               <select
                 name="type"
                 value={this.state.type}
@@ -67,11 +88,11 @@ class CreateActivityPage extends React.Component {
             </label>
           </div>
           <br />
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Nom de l'activité:
             </label>
-            <label className="column_75">
+            <label className="CreateActivity-column_75">
               <input
                 className='text-orange'
                 name="nom"
@@ -81,11 +102,11 @@ class CreateActivityPage extends React.Component {
             </label>
           </div>
           <br />
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Horaires:
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 className='text-orange'
                 name="horaires"
@@ -93,11 +114,11 @@ class CreateActivityPage extends React.Component {
                 onChange={this.handleInputChange}
               />
             </label>
-            <label className="column_10"></label>
-            <label className="column_15">
+            <label className="CreateActivity-column_10"></label>
+            <label className="CreateActivity-column_15">
               Date:
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 className='text-orange'
                 name="date"
@@ -106,26 +127,31 @@ class CreateActivityPage extends React.Component {
               />
             </label>
           </div>
-          <div className="separator"></div>
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-separator"></div>
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Lieu (Ville):
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 className='text-orange'
                 name="lieuVille"
                 value={this.state.lieuVille}
                 onChange={this.handleInputChange}
               />
+
+            </label>
+            <label className="CreateActivity-column_20"></label>
+            <label className="CreateActivity-column_20">
+              Photo du lieu:
             </label>
 
           </div>
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Lieu (Rue):
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 className='text-orange'
                 name="lieuRue"
@@ -133,17 +159,17 @@ class CreateActivityPage extends React.Component {
                 onChange={this.handleInputChange}
               />
             </label>
-            <label className="column_20"></label>
-            <div className="image-upload">
+            <label className="CreateActivity-column_20"></label>
+            <div className="CreateActivity-image-upload">
               <input type="file" name="image" />
-              <label className="label-orange">Uploader une image</label>
+              <label className="CreateActivity-label-orange">Uploader une image</label>
             </div>
           </div>
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Lieu (Numéro):
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 className='text-orange'
                 name="lieuNumero"
@@ -152,12 +178,12 @@ class CreateActivityPage extends React.Component {
               />
             </label>
           </div>
-          <div className="separator"></div>
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-separator"></div>
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Age conseillé:
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 className='text-orange'
                 name="age"
@@ -166,11 +192,11 @@ class CreateActivityPage extends React.Component {
               />
             </label>
           </div>
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Activité payante:
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 type="checkbox"
                 name="payante"
@@ -178,14 +204,14 @@ class CreateActivityPage extends React.Component {
                 onChange={this.handleInputChange}
               />
             </label>
-            <label className="column_10"></label>
+            <label className="CreateActivity-column_10"></label>
             {this.state.payante && (
-              <><label className="column_15">
+              <><label className="CreateActivity-column_15">
                 Prix:
               </label>
-                <label className="column_25">
+                <label className="CreateActivity-column_25">
                   <input
-                    className="text-orange"
+                    className="CreateActivity-text-orange"
                     id="prix"
                     name="prix"
                     value={this.state.prix}
@@ -194,11 +220,11 @@ class CreateActivityPage extends React.Component {
             )}
 
           </div>
-          <div className="form-row">
-            <label className="column_20">
+          <div className="CreateActivity-form-row">
+            <label className="CreateActivity-column_20">
               Adresse e-mail:
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 type="email"
                 name="email"
@@ -206,11 +232,11 @@ class CreateActivityPage extends React.Component {
                 onChange={this.handleInputChange}
               />
             </label>
-            <label className="column_10"></label>
-            <label className="column_15">
+            <label className="CreateActivity-column_10"></label>
+            <label className="CreateActivity-column_15">
               Tél.:
             </label>
-            <label className="column_25">
+            <label className="CreateActivity-column_25">
               <input
                 type="tel"
                 name="telephone"
@@ -219,8 +245,8 @@ class CreateActivityPage extends React.Component {
               />
             </label>
           </div>
-          <div className="separator"></div>
-          <label className="label-orange">
+          <div className="CreateActivity-separator"></div>
+          <label className="CreateActivity-label-orange">
             Description de l'activité:
             <textarea
               name="description"
@@ -228,10 +254,9 @@ class CreateActivityPage extends React.Component {
               onChange={this.handleInputChange}
             ></textarea>
           </label>
-          <div className="center-button">
+          <div className="CreateActivity-center-button">
             <button type="submit">Créer</button>
           </div>
-
         </form>
       </div>
     );

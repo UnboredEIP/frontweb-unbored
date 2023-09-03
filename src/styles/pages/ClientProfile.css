@@ -1,0 +1,156 @@
+/* ../styles/pages/ClientProfile.css */
+
+.button-box {
+  background-color: #E3C8C4;
+  padding: 20px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.banner {
+  background-color: #E1604D;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  max-width: 30%; /* Réduisez davantage la largeur */
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); /* Ajoutez ici l'ombre */
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  margin: 15px;
+  color: #E1604D;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ###################################################### */
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.label-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 5px;
+  width: 50px;
+}
+
+.input-column {
+  flex: 2;
+  margin-right: 100px; /* Ajouter de l'espace à droite */
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.input-wrapper input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* ############################################## */
+
+.edit-button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #D15040;
+}
+
+.edit-all-button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); /* Ajoutez ici l'ombre */
+}
+
+.edit-all-button:hover {
+  background-color: #D15040;
+}
+
+.editable-field {
+  border: 1px solid blue; /* Modifier le style de contour comme vous le souhaitez */
+  /* Autres styles que vous souhaitez appliquer en mode édition */
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Assurez-vous que le conteneur prend toute la largeur disponible */
+}
+
+.back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-button button:hover {
+  background-color: #D15040;
+}

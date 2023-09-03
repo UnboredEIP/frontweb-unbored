@@ -1,0 +1,118 @@
+/* ../styles/pages/ClientProfile.css */
+
+.MyAccount-button-box {
+  background-color: #E3C8C4;
+  padding: 20px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MyAccount-banner {
+  background-color: #E1604D;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  max-width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyAccount-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.MyAccount-input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.MyAccount-label-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 5px;
+  width: 50px;
+  color: #E1604D;
+  font-weight: bold;
+}
+
+.MyAccount-input-column {
+  flex: 2;
+  margin-right: 100px;
+}
+
+.MyAccount-input-wrapper label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.MyAccount-input-wrapper input {
+  padding: 10px;
+  border: 2px solid orange;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.MyAccount-edit-all-button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyAccount-edit-all-button:hover {
+  background-color: #D15040;
+}
+
+.MyAccount-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.MyAccount-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyAccount-back-button button:hover {
+  background-color: #D15040;
+}
+
+.MyAccount-rounded-orange-border {
+  padding: 10px;
+  border: 2px solid orange;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.MyAccount-editable-field {
+  padding: 10px;
+  border: 2px solid blue;
+  border-radius: 20px;
+  width: 100%;
+}
