@@ -11,7 +11,7 @@ import ParticleBackground from "./components/ParticleBackground";
 import CreateActivityPage from "./pages/CreateActivityPage";
 import ChooseContractPage from "./pages/ChooseContractPage";
 import { useNavigate } from "react-router-dom";
-import UpdateProfilePage from "./pages/UpdateProfile";
+import UpdateProfilePage from "./pages/profile/UpdateProfile";
 import ClientLoginPage from "./pages/ClientLogin";
 import ClientRegisterPage from "./pages/ClientRegister";
 import ClientForgetPwd from "./pages/ClientForgetPwd";
@@ -21,6 +21,8 @@ import ClientMyActivities from "./pages/ClientMyActivites";
 import ClientActivityInfo from "./pages/ClientActivityInfo";
 import ClientMyContract from "./pages/ClientMyContract";
 import ClientModifyActivity from "./pages/ClientModifyActivity";
+import UpdateEmailPage from "./pages/profile/UpdateEmail";
+import UpdatePasswordPage from "./pages/profile/UpdatePassword";
 
 function App() {
   const HandleLoginSuccess = () => {
@@ -43,7 +45,20 @@ function App() {
             path="/register"
             element={<RegisterPage onRegisterSuccess={HandleLoginSuccess} />}
           ></Route>
-          <Route path="/update-profile" element={<UpdateProfilePage />}></Route>
+          <Route
+            path="/update-profile"
+            element={<UpdateProfilePage onUpdateSuccess={HandleLoginSuccess} />}
+          ></Route>
+          <Route
+            path="/update-email"
+            element={<UpdateEmailPage onUpdateSuccess={HandleLoginSuccess} />}
+          ></Route>
+          <Route
+            path="/update-password"
+            element={
+              <UpdatePasswordPage onUpdateSuccess={HandleLoginSuccess} />
+            }
+          ></Route>
           <Route
             path="/create-activity"
             element={<CreateActivityPage />}
