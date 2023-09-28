@@ -13,8 +13,6 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import logoGoogle from "../google.png";
-import logoFacebook from "../facebook.png";
 
 const HomeHeader: React.FC<{}> = () => {
   return (
@@ -68,6 +66,38 @@ const HomeHeader: React.FC<{}> = () => {
             <Text fontSize={20}>
               Qui es-tu ? D'où viens tu ? Quelle a été ton parcours scolaire
             </Text>
+          </Box>
+        </Heading>
+      </Link>
+      <Link href="/update-email">
+        <Heading mt={5}>
+          <Box
+            borderRadius={40}
+            backgroundColor="#E1604D"
+            color="whitesmoke"
+            boxShadow="lg"
+            textShadow="lg"
+            padding={7}
+          >
+            <Text>Mets à jour ton adresse mail</Text>
+
+            <Text fontSize={20}>C'est quoi ton mail ?</Text>
+          </Box>
+        </Heading>
+      </Link>
+      <Link href="/update-password">
+        <Heading mt={5}>
+          <Box
+            borderRadius={40}
+            backgroundColor="#E1604D"
+            color="whitesmoke"
+            boxShadow="lg"
+            textShadow="lg"
+            padding={7}
+          >
+            <Text>Mets à jour ton mot de passe</Text>
+
+            <Text fontSize={20}>(Et donne le moi)</Text>
           </Box>
         </Heading>
       </Link>
