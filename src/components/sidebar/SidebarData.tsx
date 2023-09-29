@@ -3,27 +3,39 @@ import {
   AiFillCaretDown,
   AiFillCaretUp,
   AiOutlineUser,
+  AiOutlineMail,
+  AiOutlineLock,
 } from "react-icons/ai";
 import { FaCog } from "react-icons/fa";
 import { SidebarItem } from "../../models/Sidebaritem";
 
 export const SidebarData: SidebarItem[] = [
   {
-    title: "Overview",
+    title: "Home",
+    path: "/home",
+    icon: <AiOutlineHome />,
+  },
+  {
+    title: "Profile",
     path: "#",
     icon: <AiOutlineHome />,
     iconClosed: <AiFillCaretDown />,
     iconOpened: <AiFillCaretUp />,
     subnav: [
       {
-        title: "Register",
-        path: "/register",
+        title: "Màj profile",
+        path: "/update-profile",
         icon: <AiOutlineUser />,
       },
       {
-        title: "Login",
-        path: "/login",
-        icon: <AiOutlineUser />,
+        title: "Màj email",
+        path: "/update-email",
+        icon: <AiOutlineMail />,
+      },
+      {
+        title: "Màj mot de passe",
+        path: "/update-password",
+        icon: <AiOutlineLock />,
       },
     ],
   },
@@ -41,26 +53,26 @@ export const SidebarData: SidebarItem[] = [
   {
     title: "Créer une activité",
     path: "/create-activity",
-    icon: <FaCog/>,
+    icon: <FaCog />,
   },
   {
     title: "Choisir un contrat",
     path: "/choose-contract",
-    icon: <FaCog/>,
+    icon: <FaCog />,
   },
   {
     title: "Login Client",
     path: "/client-login",
-    icon: <AiOutlineUser/>,
+    icon: <AiOutlineUser />,
   },
   {
     title: "Profile Client",
     path: "/client-profile",
-    icon: <AiOutlineUser/>,
+    icon: <AiOutlineUser />,
   },
   {
     title: "Info Activité",
     path: "/client-activityInfo",
-    icon: <AiOutlineUser/>,
+    icon: <AiOutlineUser />,
   },
 ];

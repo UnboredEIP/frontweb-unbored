@@ -76,7 +76,7 @@ const UpdateEmailHeader: React.FC<{}> = () => {
           textShadow="lg"
           padding={7}
         >
-          Mets à jour ton profile !
+          Mets à jour ton adresse mail !
         </Box>
       </Heading>
     </Box>
