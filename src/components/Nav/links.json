@@ -1,5 +1,5 @@
 {
-    "links": [
+    "navbar_links_not_connected": [
         {
             "label": "S'inscrire",
             "href": "/register"
@@ -11,6 +11,12 @@
         {
             "label": "Overview",
             "href": "/overview"
+        }
+    ],
+    "navbar_links_connected": [
+        {
+            "label": "Se déconnecter",
+            "href": "/"
         }
     ]
 }
