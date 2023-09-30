@@ -31,7 +31,6 @@ import {
   CalendarValues,
   CalendarDate,
 } from "@uselessdev/datepicker";
-import { DateTimePicker } from "smart-webcomponents-react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { ContextUpdatePassword } from "../../contexts/UpdatePasswordContext";

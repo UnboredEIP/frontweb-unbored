@@ -1,8 +1,9 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 import '../styles/pages/CreateActivityPage.css';
+import axios from "axios";
 
 interface State {
-  type: string;
+  type: string[];
   nom: string;
   horaires: string;
   date: string;
@@ -21,7 +22,7 @@ class CreateActivityPage extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      type: '',
+      type: [], // Initialisez avec un tableau vide
       nom: '',
       horaires: '',
       date: '',
@@ -40,23 +41,56 @@ class CreateActivityPage extends Component<{}, State> {
   handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const target = event.target;
     const name = target.name;
-  
     let value: string | boolean = target.value;
   
     if (target.type === 'checkbox') {
       value = (target as HTMLInputElement).checked;
     }
   
-    this.setState({
+    // Créez un objet temporaire pour mettre à jour l'état
+    const updatedState = {
+      ...this.state,
       [name]: value
-    } as Pick<State, keyof State>);
-  }  
-
-  handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
-    console.log(this.state);
+    };
+  
+    // Mettez à jour l'état avec l'objet temporaire
+    this.setState(updatedState);
   }
+  
+  handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const options = event.target.options;
+    const selectedOptions: string[] = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        selectedOptions.push(options[i].value);
+      }
+    }
+    this.setState({
+      type: selectedOptions,
+    });
+  }
+
+
+  handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
+    try {
+      const lieu = `${this.state.lieuRue} ${this.state.lieuNumero} ${this.state.lieuVille}`;
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      const response = await axios.post("http://localhost:3000/event/createevent", {
+        name: this.state.nom,
+        address: lieu,
+        categories: this.state.type,
+      }, config);
+      console.log(response.status);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   render() {
     return (
@@ -71,8 +105,10 @@ class CreateActivityPage extends Component<{}, State> {
               <select
                 name="type"
                 value={this.state.type}
-                onChange={this.handleInputChange}
+                onChange={this.handleSelectChange}
                 className='text-orange'
+                multiple
+                size={5}
               >
                 <option value="">Sélectionnez un secteur d'activité</option>
                 <option value="sport">Sport</option>

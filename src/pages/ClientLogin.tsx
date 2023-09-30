@@ -61,12 +61,19 @@ const ClientLoginForm: React.FC<{}> = () => {
           email,
           password,
         });
-        console.log(response.data);
+  
+        if (response.status === 201) {
+          localStorage.setItem('token', response.data.token);
+  
+          console.log("User connected");
+          window.location.href = 'http://localhost:3001/';
+        }
       } catch (error) {
         console.error(error);
       }
     }
   };
+  
 
   return (
     <Box textAlign="center">

@@ -40,6 +40,7 @@ const RegisterHeader: React.FC<{}> = () => {
 };
 
 const RegisterForm: React.FC<{}> = () => {
+  const [number, setNumber] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,11 +53,19 @@ const RegisterForm: React.FC<{}> = () => {
   }, [confirmPassword, password]);
 
   const isFormValid =
+    number !== "" &&
     username !== "" &&
     email !== "" &&
     password !== "" &&
     confirmPassword !== "" &&
     passwordsMatch;
+
+  const handleNumberChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNumber(event.target.value);
+    console.log("setNumber:", number);
+  };
 
   const handleUsernameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -91,12 +100,20 @@ const RegisterForm: React.FC<{}> = () => {
     event.preventDefault();
     if (isFormValid) {
       try {
-        const response = await axios.post("http://192.168.43.91:3000/client-register", {
+        const response = await axios.post("http://localhost:3000/auth/register", {
           username,
           email,
           password,
+          "gender": "Homme",
+          number,
+          "birthdate": "2002-01-01",
+          "preferences": ["basket", "foot"]
         });
-        console.log(response.data);
+        console.log(response.status);
+        if (response.status === 201) {
+          console.log("User created");
+          window.location.href = 'http://localhost:3001/'
+        }
       } catch (error) {
         console.error(error);
       }
@@ -138,6 +155,18 @@ const RegisterForm: React.FC<{}> = () => {
             value={email}
             bg="white"
             onChange={handleEmailChange}
+          ></Input>
+          <FormLabel textAlign="left" mt={4}></FormLabel>
+          <Input
+            type="number"
+            placeholder="Entrez votre numéro de téléphone"
+            textAlign="center"
+            borderRadius={50}
+            borderWidth={2}
+            borderColor="#E1604D"
+            value={number}
+            bg="white"
+            onChange={handleNumberChange}
           ></Input>
           <FormLabel textAlign="left" mt={4}></FormLabel>
           <InputGroup>

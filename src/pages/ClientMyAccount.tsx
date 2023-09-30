@@ -10,6 +10,7 @@ interface Field {
 const myAccountFields: Field[] = [
     { label: 'Nom', value: 'Doe' },
     { label: 'Prénom', value: 'John' },
+    { label: 'Entreprise', value: 'toto&co' },
     { label: 'Date de naissance', value: '01/01/1990' },
     { label: 'Adresse', value: '123 Rue Example' },
     { label: 'Code postale', value: '12345' },

@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 
 interface State {
-  id_exemple: number;
-  type: string;
+  id_exemple: string;
+  type: string[];
   nom: string;
   horaires: string;
   date: string;
@@ -25,8 +25,8 @@ class ActivityDetailsPage extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      id_exemple: 1,
-      type: 'sport',
+      id_exemple: '65182516d9b04cc2095252e2',
+      type: ['sport'],
       nom: 'Activité de sport',
       horaires: '10h00 - 12h00',
       date: '2023-09-01',
@@ -42,47 +42,64 @@ class ActivityDetailsPage extends Component<{}, State> {
     };
   }
 
+  handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    // Récupérez toutes les options sélectionnées
+    const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
+
+    this.setState({
+      type: selectedOptions
+    });
+  }
+
   ModifyActivity = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
       const {
-        id_exemple,
+        // id_exemple,
         type,
         nom,
-        horaires,
-        date,
-        lieuVille,
-        lieuRue,
-        lieuNumero,
-        description,
-        age,
-        payante,
-        prix,
-        email,
-        telephone,
+        // horaires,
+        // date,
+        // lieuVille,
+        // lieuRue,
+        // lieuNumero,
+        // description,
+        // age,
+        // payante,
+        // prix,
+        // email,
+        // telephone,
       } = this.state;
 
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        id_exemple,
-        type,
-        nom,
-        horaires,
-        date,
-        lieuVille,
-        lieuRue,
-        lieuNumero,
-        description,
-        age,
-        payante,
-        prix,
-        email,
-        telephone,
-      });
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      const response = await axios.put(`http://localhost:3000/event/editevent?id=${this.state.id_exemple}`, {
+        // id_exemple,
+        categories: type,
+        name: nom,
+        // horaires,
+        // date,
+        // lieuVille,
+        // lieuRue,
+        // lieuNumero,
+        // description,
+        // age,
+        // payante,
+        // prix,
+        // email,
+        // telephone,
+      }, config);
 
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
+
   };
 
   render() {
@@ -103,15 +120,41 @@ class ActivityDetailsPage extends Component<{}, State> {
         <h2 className="ModifyActivity-form-title">Détails de l'activité</h2>
         <div className="ModifyActivity-form-row">
           <label className="ModifyActivity-column_20">
-            Type d'activité:
+            id:
           </label>
           <label className="ModifyActivity-column_75">
             <input
               className="ModifyActivity-input"
               type="text"
-              value={this.state.type}
-              onChange={(e) => this.setState({ type: e.target.value })}
+              value={this.state.id_exemple}
+              onChange={(e) => this.setState({ id_exemple: e.target.value })}
             />
+          </label>
+        </div>
+        <br />
+        <div className="ModifyActivity-form-row">
+          <label className="ModifyActivity-column_20">
+            Type d'activité:
+          </label>
+          <label className="ModifyActivity-column_75">
+            <select
+              className="ModifyActivity-input"
+              name="type"
+              multiple // Activez la sélection multiple
+              value={this.state.type}
+              onChange={this.handleSelectChange}
+            >
+              <option value="">Sélectionnez un secteur d'activité</option>
+              <option value="sport">Sport</option>
+              <option value="theatre">Théâtre</option>
+              <option value="musique">Musique</option>
+              <option value="art">Art</option>
+              <option value="danse">Danse</option>
+              <option value="cuisine">Cuisine</option>
+              <option value="jeux">Jeux</option>
+              <option value="nature">Nature</option>
+              <option value="technologie">Technologie</option>
+            </select>
           </label>
         </div>
         <br />

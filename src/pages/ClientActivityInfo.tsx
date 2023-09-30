@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 
 interface State {
-  id_exemple: number;
+  id_exemple: string;
   type: string;
   nom: string;
   horaires: string;
@@ -25,7 +25,7 @@ class ActivityDetailsPage extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      id_exemple: 1,
+      id_exemple: '65182516d9b04cc2095252e2',
       type: 'sport',
       nom: 'Activité de sport',
       horaires: '10h00 - 12h00',
@@ -45,9 +45,14 @@ class ActivityDetailsPage extends Component<{}, State> {
   DeleteActivity = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/event/deleteActivity", {
-        id_exemple: this.state.id_exemple, // Utilisez this.state.id_exemple
-      });
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }; 
+      const url = `http://localhost:3000/event/deleteevent?id=${this.state.id_exemple}`;
+      const response = await axios.delete(url, config);
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -73,6 +78,20 @@ class ActivityDetailsPage extends Component<{}, State> {
           <img src={activityImage} alt="Activité" />
         </div>
         <h2 className="ActivityInfo-form-title">Détails de l'activité</h2>
+        <div className="ModifyActivity-form-row">
+          <label className="ModifyActivity-column_20">
+            id:
+          </label>
+          <label className="ModifyActivity-column_75">
+            <input
+              className="ModifyActivity-input"
+              type="text"
+              value={this.state.id_exemple}
+              onChange={(e) => this.setState({ id_exemple: e.target.value })}
+            />
+          </label>
+        </div>
+        <br />
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
             Type d'activité:

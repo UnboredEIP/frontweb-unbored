@@ -31,7 +31,6 @@ import {
   CalendarValues,
   CalendarDate,
 } from "@uselessdev/datepicker";
-import { DateTimePicker } from "smart-webcomponents-react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { ContextUpdateProfile } from "../../contexts/UpdateProfileContext";
@@ -207,36 +206,6 @@ const UpdateProfileForm: React.FC<{ onUpdateSuccess: () => void }> = ({
               borderColor="#E1604D"
               onChange={handleGenderChange}
             ></Input>
-
-            {/* <FormLabel textAlign="left" mt={4}>
-            Date d'anniversaire
-          </FormLabel>
-
-          <ChakraProvider theme={CalendarDefaultTheme}>
-            <Calendar value={birthday} setBirthday={handleSelectDate}>
-              <CalendarControls>
-                <CalendarPrevButton />
-                <CalendarNextButton />
-              </CalendarControls>
-
-              <CalendarMonths>
-                <CalendarMonth>
-                  <CalendarMonthName />
-                  <CalendarWeek />
-                  <CalendarDays />
-                </CalendarMonth>
-              </CalendarMonths>
-            </Calendar>
-          </ChakraProvider> */}
-            {/* <Input
-            type="birthday"
-            placeholder={usernamePlaceholder}
-            textAlign="center"
-            borderRadius={50}
-            borderWidth={2}
-            borderColor="#E1604D"
-            value={confirmPassword}
-          ></Input> */}
 
             {!passwordsMatch && (
               <Text color="red">Mot de pass non identique !</Text>
