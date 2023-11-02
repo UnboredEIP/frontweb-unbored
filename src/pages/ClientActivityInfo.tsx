@@ -51,7 +51,7 @@ class ActivityDetailsPage extends Component<{}, State> {
           Authorization: `Bearer ${token}`
         }
       }; 
-      const url = `http://localhost:3000/event/deleteevent?id=${this.state.id_exemple}`;
+      const url = `http://20.216.143.86/event/deleteevent?id=${this.state.id_exemple}`;
       const response = await axios.delete(url, config);
       console.log(response.data);
     } catch (error) {

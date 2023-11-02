@@ -42,7 +42,7 @@ interface UpdatePasswordPageProps {
 
 async function makeUpdatePasswordRequest(password: string) {
   try {
-    const response = await fetch("http://localhost:8080/profile/update", {
+    const response = await fetch("http://20.216.143.86/profile/update", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

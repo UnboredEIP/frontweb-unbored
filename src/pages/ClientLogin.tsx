@@ -57,7 +57,7 @@ const ClientLoginForm: React.FC<{}> = () => {
     event.preventDefault();
     if (isFormValid) {
       try {
-        const response = await axios.post("http://localhost:3000/auth/login", {
+        const response = await axios.post("http://20.216.143.86/auth/login", {
           email,
           password,
         });
@@ -66,7 +66,7 @@ const ClientLoginForm: React.FC<{}> = () => {
           localStorage.setItem('token', response.data.token);
   
           console.log("User connected");
-          window.location.href = 'http://localhost:3001/';
+          window.location.href = 'http://20.216.143.86/';
         }
       } catch (error) {
         console.error(error);

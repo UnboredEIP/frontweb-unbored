@@ -42,7 +42,7 @@ interface UpdateProfilePageProps {
 
 async function makeUpdateProfileRequest(username: string, gender: string) {
   try {
-    const response = await fetch("http://localhost:8080/profile/update", {
+    const response = await fetch("http://l/profile/update", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

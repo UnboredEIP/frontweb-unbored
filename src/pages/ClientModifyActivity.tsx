@@ -78,7 +78,7 @@ class ActivityDetailsPage extends Component<{}, State> {
         }
       };
 
-      const response = await axios.put(`http://localhost:3000/event/editevent?id=${this.state.id_exemple}`, {
+      const response = await axios.put(`http://20.216.143.86/event/editevent?id=${this.state.id_exemple}`, {
         // id_exemple,
         categories: type,
         name: nom,

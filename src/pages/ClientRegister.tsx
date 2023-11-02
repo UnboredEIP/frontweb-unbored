@@ -100,7 +100,7 @@ const RegisterForm: React.FC<{}> = () => {
     event.preventDefault();
     if (isFormValid) {
       try {
-        const response = await axios.post("http://localhost:3000/auth/register", {
+        const response = await axios.post("http://20.216.143.86/auth/register", {
           username,
           email,
           password,
@@ -112,7 +112,7 @@ const RegisterForm: React.FC<{}> = () => {
         console.log(response.status);
         if (response.status === 201) {
           console.log("User created");
-          window.location.href = 'http://localhost:3001/'
+          window.location.href = 'http://20.216.143.86/'
         }
       } catch (error) {
         console.error(error);

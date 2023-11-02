@@ -81,7 +81,7 @@ class CreateActivityPage extends Component<{}, State> {
           Authorization: `Bearer ${token}`
         }
       };
-      const response = await axios.post("http://localhost:3000/event/createevent", {
+      const response = await axios.post("http://20.216.143.86/event/createevent", {
         name: this.state.nom,
         address: lieu,
         categories: this.state.type,
