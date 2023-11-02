@@ -19,6 +19,8 @@ import { ContextLogin, LoginData } from "../contexts/LoginContext";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+
 interface LoginPageProps {
   onLoginSuccess: () => void;
 }
@@ -67,6 +69,8 @@ const LoginHeader: React.FC<{}> = () => {
     </Box>
   );
 };
+
+
 
 const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
   onLoginSuccess,
