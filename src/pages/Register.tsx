@@ -11,12 +11,15 @@ import {
   Checkbox,
   Button,
   Flex,
-} from "@chakra-ui/react";
+} 
+
+from "@chakra-ui/react";
 import styles from "../styles/pages/Register.module.css";
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
 import { ContextRegister, RegisterData } from "../contexts/RegisterContext";
 import { useToast } from "@chakra-ui/react";
+import { Select, RadioGroup, Radio} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 interface RegisterPageProps {
@@ -26,21 +29,34 @@ interface RegisterPageProps {
 async function makeRegisterRequest(
   email: string,
   password: string,
-  username: string
+  username: string,
+  number: string,
+  birthdate: string,
+  gender: string,
 ) {
   try {
-    const response = await fetch("http://localhost:8080/auth/register", {
+    const response = await fetch("http://20.216.143.86/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password, username }),
+      body: JSON.stringify({ username,
+        email,
+        password,
+        "gender": "Homme",
+        number,
+        "birthdate": "2002-01-01",
+        "preferences": ["basket", "foot"]
+      }),
+      
     });
     if (response.status === 201) {
       console.log("User created");
       return true;
     } else {
-      console.error("Register Error");
+      const data = await response.json();
+      console.error("Register Error ca:", data.error);
+      //console.error("Register Error");
       return false;
     }
   } catch (error) {
@@ -76,11 +92,20 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const isFormValid = email !== "" && password !== "" && username !== "";
+  const [number, setNumber] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [gender, setGender] = useState("Homme");
+
+
+  
+  const isFormValid = email !== "" && password !== "" && username !== "" && number !== "";
   const contextData = {
     email: email,
     password: password,
     username: username,
+    number: number,
+    birthdate: birthdate,
+    gender: gender,
   };
   const toast = useToast();
 
@@ -104,8 +129,21 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
+
+  const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNumber(event.target.value);
+  };
+  
+  const handleBirthdateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBirthdate(event.target.value);
+  };
+
+  const handleGenderChange = (value: string) => {
+    setGender(value);
+  };
+
   const handleSubmit = async () => {
-    const success = await makeRegisterRequest(email, password, username);
+    const success = await makeRegisterRequest(email, password, username,number,birthdate,gender);
     if (success) {
       console.log("Login success");
       onRegisterSuccess();
@@ -150,7 +188,37 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
               borderColor="#E1604D"
               onChange={handlePasswordChange}
             ></Input>
+            <FormLabel textAlign="left">Numéro de téléphone</FormLabel>
+            <Input
+              //type="tel"
+              placeholder="Entres ton numéro de téléphone"
+              textAlign="center"
+              borderRadius={50}
+              borderWidth={2}
+              borderColor="#E1604D"
+              onChange={handleNumberChange}
+            ></Input>
+            <FormLabel textAlign="left">Date de naissance</FormLabel>
+            <Input
+              type="date"
+              placeholder="Entrez votre date de naissance"
+              textAlign="center"
+              borderRadius={50}
+              borderWidth={2}
+              borderColor="#E1604D"
+              onChange={handleBirthdateChange}
+            ></Input>
           </FormControl>
+          <FormLabel textAlign="left">Sexe</FormLabel>
+          <RadioGroup onChange={handleGenderChange} value={gender}>
+            <Stack direction="row">
+              <Radio value="Homme">Homme</Radio>
+              <Radio value="Femme">Femme</Radio>
+              <Radio value="Autre">Autre</Radio>
+            </Stack>
+          </RadioGroup>
+          <br></br>
+          <br></br>
           <Stack isInline justifyContent="space-between">
             <Box>
               <Checkbox>Se souvenir de moi</Checkbox>

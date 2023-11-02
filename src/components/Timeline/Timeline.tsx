@@ -18,16 +18,16 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
   return (
     <div>
       <Box
-        borderColor="#E1604D"
+        //borderColor="white"
         borderWidth={10}
         px={7}
         py={7}
         borderRadius={40}
-        backgroundColor="#E1604D"
+        //backgroundColor="#E1604D"
         boxShadow="md"
         textAlign={"center"}
         mb={"20px"}
-        textColor={"white"}
+        textColor={"E1604D"}
       >
         {items.map((item) => (
           <li key={item.id}>
@@ -54,8 +54,8 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/EPITECH_Paris_Campus.jpg/1280px-EPITECH_Paris_Campus.jpg";
                 }}
                 style={{
-                  maxWidth: "500px",
-                  maxHeight: "500px",
+                  maxWidth: "600px",
+                  maxHeight: "600px",
                   marginBottom: "25px",
                   marginTop: "25px",
                 }}
@@ -65,9 +65,14 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   fontSize: "30px",
                 }}
               >
-                <strong>{item.date}: </strong>
-                <strong>{item.hour}:</strong> {item.title}
-              </div>
+            <h3><strong>{item.title}</strong></h3>
+            <p>
+              {item.date}
+              <br />
+              {item.hour}
+              <br />
+            </p>
+            </div>
             </div>
           </li>
         ))}

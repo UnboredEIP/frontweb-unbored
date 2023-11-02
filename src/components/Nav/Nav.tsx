@@ -57,15 +57,9 @@ const Nav: React.FC<{}> = () => {
   return (
     <nav className={styles["navbar"]}>
       <Sidebar />
-      <div className={styles["logo-container"]}>
-        <span>
-          <img src={logo} className={styles["nav-logo"]} alt="logo" />
-        </span>
-      </div>
-
       <h1>
         <Link href="/">
-          <Text textShadow="lg">UnBored</Text>
+        <Text textShadow="lg" style={{ marginLeft: "360px" }}>UnBored</Text>
         </Link>
       </h1>
       <Routes>
