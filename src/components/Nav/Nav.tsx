@@ -59,7 +59,7 @@ const Nav: React.FC<{}> = () => {
       <Sidebar />
       <h1>
         <Link href="/">
-        <Text textShadow="lg" style={{ marginLeft: "360px" }}>UnBored</Text>
+        <Text textShadow="lg" style={{ marginLeft: "-200px" }}>UnBored</Text>
         </Link>
       </h1>
       <Routes>

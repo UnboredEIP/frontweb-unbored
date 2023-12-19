@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import styles from "./styles/App.module.css";
 import Nav from "./components/Nav/Nav";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -23,74 +24,101 @@ import ClientMyContract from "./pages/ClientMyContract";
 import ClientModifyActivity from "./pages/ClientModifyActivity";
 import UpdateEmailPage from "./pages/profile/UpdateEmail";
 import UpdatePasswordPage from "./pages/profile/UpdatePassword";
+import ProfilePage from "./pages/Profile";
 
 function App() {
-  const HandleLoginSuccess = () => {
-    const navigaion = useNavigate();
-    navigaion("/home");
+  const [jsonData, setJsonData] = useState<any>(null);
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedJsonData = localStorage.getItem("myJsonData");
+    if (storedJsonData) {
+      setJsonData(JSON.parse(storedJsonData));
+    }
+
+    const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+    if (storedIsLoggedIn) {
+      setIsLoggedIn(JSON.parse(storedIsLoggedIn));
+    }
+  }, []);
+
+  const updateJsonData = (newData: any) => {
+    setJsonData(newData);
+    localStorage.setItem("myJsonData", JSON.stringify(newData));
   };
+
+  const updateLoginStatus = (status: boolean) => {
+    setIsLoggedIn(status);
+    localStorage.setItem("isLoggedIn", JSON.stringify(status));
+  };
+
+  const HandleLoginSuccess = () => {
+    const navigation = useNavigate();
+    navigation("/home");
+  };
+
   return (
     <>
       <ParticleBackground />
       <Router>
         <Nav />
         <Routes>
-          <Route path="/" element={<PresentationPage />}></Route>
-          <Route path="/home" element={<HomePage />}></Route>
+          <Route path="/" element={<PresentationPage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route
             path="/login"
             element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
-          ></Route>
+          />
           <Route
             path="/register"
             element={<RegisterPage onRegisterSuccess={HandleLoginSuccess} />}
-          ></Route>
+          />
           <Route
             path="/update-profile"
             element={<UpdateProfilePage onUpdateSuccess={HandleLoginSuccess} />}
-          ></Route>
+          />
           <Route
             path="/update-email"
             element={<UpdateEmailPage onUpdateSuccess={HandleLoginSuccess} />}
-          ></Route>
+          />
           <Route
             path="/update-password"
-            element={
-              <UpdatePasswordPage onUpdateSuccess={HandleLoginSuccess} />
-            }
-          ></Route>
-          <Route
-            path="/create-activity"
-            element={<CreateActivityPage />}
-          ></Route>
+            element={<UpdatePasswordPage onUpdateSuccess={HandleLoginSuccess} />}
+          />
+          <Route path="/create-activity" element={<CreateActivityPage />} />
           <Route
             path="/choose-contract"
             element={<ChooseContractPage />}
-          ></Route>
-          <Route path="/client-login" element={<ClientLoginPage />}></Route>
+          />
+          <Route path="/client-login" element={<ClientLoginPage />} />
           <Route
             path="/client-register"
             element={<ClientRegisterPage />}
-          ></Route>
-          <Route path="/client-forgetpwd" element={<ClientForgetPwd />}></Route>
-          <Route path="/client-profile" element={<ClientProfile />}></Route>
-          <Route path="/client-myAccount" element={<ClientMyAccount />}></Route>
+          />
+          <Route path="/client-forgetpwd" element={<ClientForgetPwd />} />
+          <Route path="/client-profile" element={<ClientProfile />} />
+          <Route
+            path="/client-myAccount"
+            element={<ClientMyAccount />}
+          />
           <Route
             path="/client-myActivites"
             element={<ClientMyActivities />}
-          ></Route>
+          />
           <Route
             path="/client-activityInfo"
             element={<ClientActivityInfo />}
-          ></Route>
+          />
           <Route
             path="/client-modifyActivity"
             element={<ClientModifyActivity />}
-          ></Route>
+          />
           <Route
             path="/client-myContract"
             element={<ClientMyContract />}
-          ></Route>
+          />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
       <header className={styles["App-header"]}></header>

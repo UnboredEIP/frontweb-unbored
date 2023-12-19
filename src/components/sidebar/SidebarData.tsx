@@ -46,8 +46,8 @@ export const SidebarData: SidebarItem[] = [
   },
 
   {
-    title: "Users",
-    path: "/overview/users",
+    title: "Profile Info",
+    path: "/profile",
     icon: <AiOutlineUser />,
   },
   {

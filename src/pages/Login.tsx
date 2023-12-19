@@ -34,7 +34,7 @@ async function makeLoginRequest(email: string, password: string) {
       },
       body: JSON.stringify({ email, password }),
     });
-    if (response.status === 201) {
+    if (response.status === 202) {
       const data = await response.json();
       console.log(data);
       localStorage.setItem("token", data["refresh"]);
@@ -108,7 +108,7 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
       onLoginSuccess();
     } else {
       showToast();
-      console.log("error");
+      console.log("error " , success);
     }
   };
 
