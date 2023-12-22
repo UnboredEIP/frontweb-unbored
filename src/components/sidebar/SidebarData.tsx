@@ -75,4 +75,9 @@ export const SidebarData: SidebarItem[] = [
     path: "/client-activityInfo",
     icon: <AiOutlineUser />,
   },
+  {
+    title: "Avis Activité",
+    path: "/client-myAvis",
+    icon: <AiOutlineUser />,
+  },
 ];

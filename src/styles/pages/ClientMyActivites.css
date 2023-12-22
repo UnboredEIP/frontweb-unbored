@@ -1,7 +1,7 @@
 /* ../styles/pages/ClientProfile.MyActivities-css */
 
 .MyActivities-button-box {
-  background-color: #E3C8C4;
+  background-color: white;
   padding: 20px;
   width: 70%;
   margin: 0 auto;
@@ -17,15 +17,18 @@
   color: white;
   text-align: center;
   padding: 15px;
-  border-radius: 15px;
-  margin-bottom: 20px;
+  border-radius: 25px;
   max-width: 30%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 250px;
+  height: 50px;
   font-size: 24px;
   font-weight: bold;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-}
+  display: flex; /* Add this line */
+  justify-content: center; /* Add this line */
+  align-items: center; /* Add this line */
+ }
+ 
 
 .MyActivities-button-container {
   display: flex;
@@ -39,8 +42,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   background-size: cover;
   background-position: center;
   border: none;
@@ -146,4 +149,55 @@
 .MyActivities-button-label {
   font-weight: bold;
   margin-top: 5px;
-}
+  background-color: red;
+  color: white;
+  border-radius: 20px;
+  width: 100px;
+  height: 50px;
+  display: flex; /* Add this line */
+  justify-content: center; /* Add this line */
+  align-items: center; /* Add this line */
+  text-align: center; /* Add this line */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add this line */
+ }
+ 
+
+
+
+
+
+ /* TESTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
+ .MyActivities-button-container {
+  position: relative; /* Add this line */
+ }
+ 
+ .MyActivities-button-container::before,
+ .MyActivities-button-container::after {
+  content: ''; /* Add this line */
+  position: absolute; /* Add this line */
+  width: 0; /* Add this line */
+  height: 0; /* Add this line */
+  border-style: solid; /* Add this line */
+  border-width: 60px 60px 60px 0; /* Reduce the width of the arrows */
+ }
+ 
+ .MyActivities-button-container::before {
+  top: 50%; /* Center the arrow vertically relative to the button container */
+  left: -60px; /* Add this line */
+  transform: translateY(-50%); /* Center the arrow vertically relative to the button container */
+  border-color: transparent #E1604D transparent transparent; /* Add this line */
+ }
+ 
+ .MyActivities-button-container::after {
+  top: 50%; /* Center the arrow vertically relative to the button container */
+  right: -60px; /* Add this line */
+  transform: translateY(-50%); /* Center the arrow vertically relative to the button container */
+  border-width: 60px 0 60px 60px; /* Reduce the width of the arrows */
+  border-color: transparent transparent transparent #E1604D; /* Add this line */
+ }
+ 
+ 
+ 
+ 
+ 

@@ -25,6 +25,7 @@ import ClientModifyActivity from "./pages/ClientModifyActivity";
 import UpdateEmailPage from "./pages/profile/UpdateEmail";
 import UpdatePasswordPage from "./pages/profile/UpdatePassword";
 import ProfilePage from "./pages/Profile";
+import AvisActivityPage from "./pages/ClientAvisActivity";
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -114,6 +115,10 @@ function App() {
             path="/client-modifyActivity"
             element={<ClientModifyActivity />}
           />
+          <Route
+            path="/client-myAvis"
+            element={<AvisActivityPage />}
+          ></Route>
           <Route
             path="/client-myContract"
             element={<ClientMyContract />}

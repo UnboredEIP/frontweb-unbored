@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Box,
   Heading,
+  Image,
   Text,
   Link,
   FormControl,
@@ -11,37 +12,39 @@ import {
   Checkbox,
   Button,
   Flex,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import styles from "../styles/pages/Register.module.css";
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
+import logoUnbored from "../Logo_UNBORED.png"
 import axios from "axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ClientLoginHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
-      <Box
-        borderRadius={40}
-        backgroundColor="#E1604D"
-        color="whitesmoke"
-        boxShadow="lg"
-        textShadow="lg"
-        padding={7}
-      >
-        <Heading color="whitesmoke">Unbored-PRO </Heading>
-        <Text fontSize={20}>
-          Connexion
-        </Text>
-      </Box>
+        <Image
+          src={logoUnbored}
+          alt="Unbored-PRO Logo"
+          boxSize="200px"
+          objectFit="cover"
+          borderRadius="full"
+          mx="auto"
+        />
+        <Text fontSize={20} fontWeight="bold">Se Connecter</Text>
     </Box>
   );
 };
 
 
 
+
 const ClientLoginForm: React.FC<{}> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const isFormValid = email !== "" && password !== "";
 
@@ -74,6 +77,9 @@ const ClientLoginForm: React.FC<{}> = () => {
     }
   };
   
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <Box textAlign="center">
@@ -91,8 +97,9 @@ const ClientLoginForm: React.FC<{}> = () => {
             onChange={handleEmailChange}
           ></Input>
           <FormLabel textAlign="left">Mot de passe</FormLabel>
+          <InputGroup>
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Entrez votre mot de passe"
             textAlign="center"
             borderRadius={50}
@@ -101,6 +108,14 @@ const ClientLoginForm: React.FC<{}> = () => {
             bg="white"
             onChange={handlePasswordChange}
           ></Input>
+                      <InputRightElement>
+              {showPassword ? (
+                <FaEyeSlash onClick={toggleShowPassword} />
+              ) : (
+                <FaEye onClick={toggleShowPassword} />
+              )}
+            </InputRightElement>
+          </InputGroup>
         </FormControl>
         <Stack isInline justifyContent="space-between">
           <Box>
@@ -108,8 +123,8 @@ const ClientLoginForm: React.FC<{}> = () => {
           </Box>
           <Box><Link href="/client-forgetpwd">Mot de passe oublié ?</Link></Box>
         </Stack>
-        <Text fontSize={20} textAlign="center" color="white">
-          Ou <Link href="/client-register">créez votre compte</Link>
+        <Text fontSize={15} textAlign="center" color="gray">
+          Je n'ai pas de compte <Link color="orange" href="/client-register">s'inscrire</Link>
         </Text>
         <Link href="/home">
           <Link href="/home">
@@ -123,6 +138,9 @@ const ClientLoginForm: React.FC<{}> = () => {
               color="whitesmoke"
               isDisabled={!isFormValid}
               onClick={handleSubmit}
+              textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)" // Ombre sur le texte
+              width="200px" // Ajuster la largeur du bouton
+              height="50px" // Ajuster la hauteur du bouton
             >
               Se connecter
             </Button>
@@ -151,7 +169,7 @@ const ClientLoginPage: React.FC<{}> = () => {
         px={7}
         py={7}
         borderRadius={40}
-        backgroundColor="lightgray"
+        backgroundColor="white"
         boxShadow="md">
         <ClientLoginHeader />
         <ClientLoginForm />

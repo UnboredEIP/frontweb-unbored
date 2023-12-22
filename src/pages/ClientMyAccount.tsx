@@ -41,62 +41,111 @@ function ClientMyAccount() {
 
     return (
         <div className="MyAccount-button-box">
+
             <div className="MyAccount-back-button">
                 <Link to="/client-profile">
                     <button>Retour</button>
                 </Link>
             </div>
             <div className="MyAccount-banner">Mon Compte</div>
-            <div className="MyAccount-input-container">
-                {fields.map((field, index) => {
-                    if (index % 2 === 0) {
-                        const nextField = fields[index + 1];
-                        return (
-                            <div className="MyAccount-input-group" key={index}>
-                                <div className="MyAccount-label-column">
-                                    <label>{field.label}</label>
-                                </div>
-                                <div className="MyAccount-input-column">
-                                    <input
-                                        type="text"
-                                        value={field.value}
-                                        readOnly={!isEditing}
-                                        className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                        onChange={(e) => handleFieldChange(index, e.target.value)}
-                                    />
-                                </div>
-                                {nextField && (
+            <div className="MyAccount-row">
+                <div className="MyAccount-boxshadow-left-side ">
+                    <div className="MyAccount-banner">Infos Personnelles</div>
+                    {fields.map((field, index) => {
+                        if (index % 2 === 0) {
+                            const nextField = fields[index + 1];
+                            return (
+
+                                <div className="MyAccount-input-group" key={index}>
                                     <div className="MyAccount-label-column">
-                                        <label>{nextField.label}</label>
+                                        <label>{field.label}</label>
                                     </div>
-                                )}
-                                {nextField && (
                                     <div className="MyAccount-input-column">
                                         <input
                                             type="text"
-                                            value={nextField.value}
+                                            value={field.value}
                                             readOnly={!isEditing}
                                             className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                            onChange={(e) => handleFieldChange(index + 1, e.target.value)}
+                                            onChange={(e) => handleFieldChange(index, e.target.value)}
                                         />
                                     </div>
-                                )}
-                            </div>
-                        );
-                    }
-                    return null;
-                })}
-                <div className="MyAccount-input-group center-content">
-                    {isEditing ? (
-                        <button className="MyAccount-edit-all-button" onClick={handleSaveClick}>
-                            Sauvegarder
-                        </button>
-                    ) : (
-                        <button className="MyAccount-edit-all-button" onClick={handleEditClick}>
-                            Modifier Les Informations
-                        </button>
-                    )}
+                                    {nextField && (
+                                        <div className="MyAccount-label-column">
+                                            <label>{nextField.label}</label>
+                                        </div>
+                                    )}
+                                    {nextField && (
+                                        <div className="MyAccount-input-column">
+                                            <input
+                                                type="text"
+                                                value={nextField.value}
+                                                readOnly={!isEditing}
+                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
+                                                onChange={(e) => handleFieldChange(index + 1, e.target.value)}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        }
+                        return null;
+                    })}
+
                 </div>
+                <div className="MyAccount-boxshadow-right-side ">
+                    <div className="MyAccount-banner">Infos Entreprise</div>
+                    {fields.map((field, index) => {
+                        if (index % 2 === 0) {
+                            const nextField = fields[index + 1];
+                            return (
+                                <div className="MyAccount-input-group" key={index}>
+                                    <div className="MyAccount-label-column">
+                                        <label>{field.label}</label>
+                                    </div>
+                                    <div className="MyAccount-input-column">
+                                        <input
+                                            type="text"
+                                            value={field.value}
+                                            readOnly={!isEditing}
+                                            className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
+                                            onChange={(e) => handleFieldChange(index, e.target.value)}
+                                        />
+                                    </div>
+                                    {nextField && (
+                                        <div className="MyAccount-label-column">
+                                            <label>{nextField.label}</label>
+                                        </div>
+                                    )}
+                                    {nextField && (
+                                        <div className="MyAccount-input-column">
+                                            <input
+                                                type="text"
+                                                value={nextField.value}
+                                                readOnly={!isEditing}
+                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
+                                                onChange={(e) => handleFieldChange(index + 1, e.target.value)}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        }
+                        return null;
+                    })}
+
+                </div>
+
+            </div>
+            <div className="MyAccount-input-group center-content">
+                {isEditing ? (
+                    <button className="MyAccount-edit-all-button" onClick={handleSaveClick}>
+                        Sauvegarder
+                    </button>
+                ) : (
+                    <button className="MyAccount-edit-all-button" onClick={handleEditClick}>
+                        Modifier Les Informations
+                    </button>
+                )}
             </div>
         </div>
     );

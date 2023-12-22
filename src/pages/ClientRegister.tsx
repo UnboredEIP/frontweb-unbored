@@ -13,9 +13,11 @@ import {
   Flex,
   InputGroup,
   InputRightElement,
+  Image,
 } from "@chakra-ui/react";
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
+import logoUnbored from "../Logo_UNBORED.png"
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -23,17 +25,15 @@ const RegisterHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
       <Heading>
-        <Box
-          borderRadius={40}
-          backgroundColor="#E1604D"
-          color="whitesmoke"
-          boxShadow="lg"
-          textShadow="lg"
-          padding={7}
-        >
-          Unbored-PRO
-          <Text fontSize={20}>Création de compte</Text>
-        </Box>
+        <Image
+          src={logoUnbored}
+          alt="Unbored-PRO Logo"
+          boxSize="200px"
+          objectFit="cover"
+          borderRadius="full"
+          mx="auto"
+        />
+        <Text fontSize={20}>S'inscrire gratuitement</Text>
       </Heading>
     </Box>
   );
@@ -132,7 +132,7 @@ const RegisterForm: React.FC<{}> = () => {
     <Box textAlign="center">
       <form>
         <FormControl mt={10} textAlign="left">
-          <FormLabel textAlign="left" mt={4}></FormLabel>
+          <FormLabel textAlign="left" mt={4}>Nom d'utilisateur</FormLabel>
           <Input
             type="username"
             placeholder="Entrez votre nom d'utilisateur"
@@ -144,7 +144,7 @@ const RegisterForm: React.FC<{}> = () => {
             bg="white"
             onChange={handleUsernameChange}
           ></Input>
-          <FormLabel textAlign="left" mt={4}></FormLabel>
+          <FormLabel textAlign="left" mt={4}>Adresse mail</FormLabel>
           <Input
             type="email"
             placeholder="Entrez votre adresse mail"
@@ -156,7 +156,7 @@ const RegisterForm: React.FC<{}> = () => {
             bg="white"
             onChange={handleEmailChange}
           ></Input>
-          <FormLabel textAlign="left" mt={4}></FormLabel>
+          <FormLabel textAlign="left" mt={4}>Téléphone</FormLabel>
           <Input
             type="number"
             placeholder="Entrez votre numéro de téléphone"
@@ -168,7 +168,7 @@ const RegisterForm: React.FC<{}> = () => {
             bg="white"
             onChange={handleNumberChange}
           ></Input>
-          <FormLabel textAlign="left" mt={4}></FormLabel>
+          <FormLabel textAlign="left" mt={4}>Mot de passe</FormLabel>
           <InputGroup>
             <Input
               type={showPassword ? "text" : "password"}
@@ -189,7 +189,7 @@ const RegisterForm: React.FC<{}> = () => {
               )}
             </InputRightElement>
           </InputGroup>
-          <FormLabel textAlign="left" mt={4}></FormLabel>
+          <FormLabel textAlign="left" mt={4}>Confirmer mot de passe</FormLabel>
           <InputGroup>
             <Input
               type={showConfirmPassword ? "text" : "password"}
@@ -214,8 +214,8 @@ const RegisterForm: React.FC<{}> = () => {
             <Text color="red">Les mots de passe ne correspondent pas !</Text>
           )}
         </FormControl>
-        <Text fontSize={20} textAlign="center" color="white">
-          Ou <Link href="/client-login">Connectez-vous</Link>
+        <Text fontSize={15} textAlign="center" color="gray">
+          J'ai déjà un compte, <Link color="orange" href="/client-login">se connecter</Link>
         </Text>
         {/* <Link href="/home"> */}
         <Button
@@ -228,6 +228,9 @@ const RegisterForm: React.FC<{}> = () => {
           color="whitesmoke"
           isDisabled={!isFormValid}
           onClick={handleSubmit}
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)" // Ombre sur le texte
+          width="200px" // Ajuster la largeur du bouton
+          height="50px" // Ajuster la hauteur du bouton
         >
           S'inscrire
         </Button>
@@ -257,7 +260,7 @@ const ClientRegisterPage: React.FC<{}> = () => {
         px={7}
         py={7}
         borderRadius={40}
-        backgroundColor="lightgray"
+        backgroundColor="white"
         boxShadow="md"
       >
         <RegisterHeader />

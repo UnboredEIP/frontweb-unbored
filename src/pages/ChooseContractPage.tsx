@@ -63,13 +63,15 @@ class ChooseContractPage extends Component<{}, State> {
 
     return (
       <div className="ChooseContract-form-container">
-        <h2 className="ChooseContract-form-title">Choisir un contrat</h2>
-        <div className="ChooseContract-form-row">
-          <label className="ChooseContract-column_20">
+        <div className="ChooseContract-centered-row">
+          <h2 className="ChooseContract-form-title">Choisir un contrat</h2>
+        </div>
+        <div className="ChooseContract-row">
+          <label className="ChooseContract-label-column_20">
             Activité concernée:
           </label>
           <label className="ChooseContract-column_75">
-            <select value={selectedActivity} onChange={this.handleActivityChange} className='ChooseContract-text-orange'>
+            <select value={selectedActivity} onChange={this.handleActivityChange} className='ChooseContract-text-red'>
               <option value="">Sélectionnez une activité</option>
               {activities.map((activity) => (
                 <option key={activity.id} value={activity.name}>
@@ -80,12 +82,12 @@ class ChooseContractPage extends Component<{}, State> {
           </label>
         </div>
         {selectedActivity && (
-          <div className="ChooseContract-form-row">
-            <label className="ChooseContract-column_20">
+          <div className="ChooseContract-row">
+            <label className="ChooseContract-label-column_20">
               Type de contrat:
             </label>
             <label className="ChooseContract-column_30">
-              <select value={selectedContractType} onChange={this.handleContractTypeChange} className='ChooseContract-text-orange'>
+              <select value={selectedContractType} onChange={this.handleContractTypeChange} className='ChooseContract-text-red'>
                 <option value="">Sélectionnez un type de contrat</option>
                 {contractTypes.map((contractType) => (
                   <option key={contractType.id} value={contractType.name}>
@@ -97,65 +99,73 @@ class ChooseContractPage extends Component<{}, State> {
           </div>
         )}
         {selectedContractType && (
+
           <div>
-            <div className="ChooseContract-form-row">
-              <label className="ChooseContract-column_20">Description du contrat :</label>
+            <div className="ChooseContract-separator"></div>
+            <div className="ChooseContract-row">
+              <label className="ChooseContract-label-column_20">Description du contrat :</label>
               <label className="ChooseContract-column_75">{contractTypes.find((c) => c.name === selectedContractType)?.description}</label>
             </div>
             <div className="ChooseContract-separator"></div>
             <form>
-              <div className="ChooseContract-form-row">
-                <label className="ChooseContract-column_20">
-                  Nom du possesseur de la carte de crédit:
+              <div className="ChooseContract-row">
+                <label className="ChooseContract-label-column_20">
+                  Nom du Detenteur:
                 </label>
                 <label className="ChooseContract-column_75">
-                  <input type="text" name="cardHolderName" className='ChooseContract-text-orange' />
+                  <input type="text" name="cardHolderName" className='ChooseContract-text-red' />
                 </label>
               </div>
               <br />
-              <div className="ChooseContract-form-row">
-                <label className="ChooseContract-column_20">
+              <div className="ChooseContract-row">
+                <label className="ChooseContract-label-column_20">
                   Numéro de la carte de crédit:
                 </label>
                 <label className="ChooseContract-column_75">
-                  <input type="text" name="cardNumber" className='ChooseContract-text-orange' />
+                  <input type="text" name="cardNumber" className='ChooseContract-text-red' />
                 </label>
               </div>
               <br />
-              <div className="ChooseContract-form-row">
-                <label className="ChooseContract-column_20">
-                  Date d'expiration:
-                </label>
-                <label className="ChooseContract-column_25">
-                  <input type="text" name="expirationDate" className='ChooseContract-text-orange' />
-                </label>
-                <label className="ChooseContract-column_10"></label>
-                <label className="ChooseContract-column_15">
-                  CVV:
-                </label>
-                <label className="ChooseContract-column_25">
-                  <input type="text" name="cvv" className='ChooseContract-text-orange' />
-                </label>
+              <div className="ChooseContract-row">
+                <div className="ChooseContract-row">
+                  <label className="ChooseContract-label-column_40">
+                    Date d'expiration:
+                  </label>
+                  <label className="ChooseContract-column_50">
+                    <input type="text" name="expirationDate" className='ChooseContract-text-red' />
+                  </label>
+                </div>
+                <div className="ChooseContract-row">
+                  <label className="ChooseContract-label-right-column_40">
+                    CVV:
+                  </label>
+                  <label className="ChooseContract-column_50">
+                    <input type="text" name="cvv" className='ChooseContract-text-red' />
+                  </label>
+                </div>
               </div>
-              <div className="ChooseContract-form-row">
-                <label className="ChooseContract-column_20"></label>
-                <label className="ChooseContract-column_25"></label>
-                <label className="ChooseContract-column_10"></label>
-                <label className="ChooseContract-column_5">
-                  <input
-                    type="checkbox"
-                    name="accepte_contrat"
-                    checked={this.state.payante}
-                    onChange={this.handleInputChange}
-                  />
+              <div className="ChooseContract-row">
+                <div className="ChooseContract-row"></div>
+                <div className="ChooseContract-row">
+                  <label className="ChooseContract-label-right-column_40"></label>
+                  {/* checkBox termes */}
+                  <label className="ChooseContract-column_5">
+                    <input
+                      type="checkbox"
+                      name="accepte_contrat"
+                      checked={this.state.payante}
+                      onChange={this.handleInputChange}
+                    />
 
-                </label>
-                <label className="ChooseContract-column_30">
-                  J'accepte les termes du contrat
-                </label>
+                  </label>
+                  {/* checkBox termes */}
+                  <label className="ChooseContract-label-column_50">
+                    J'accepte les termes du contrat
+                  </label>
+                </div>
               </div>
               <br />
-              <div className="ChooseContract-center-button">
+              <div className="ChooseContract-centered-row">
                 <button type="submit">Valider</button>
               </div>
             </form>

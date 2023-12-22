@@ -32,7 +32,7 @@ function ClientProfile() {
 
   return (
     <div className="button-box">
-      <div className="banner">Profile Client</div>
+      <div className="banner">Profil</div>
       <div className="button-container">
         {topButtonLabels.map((label, index) => (
           <Button key={index} text={label} />

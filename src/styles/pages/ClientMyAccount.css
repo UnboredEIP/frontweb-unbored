@@ -1,7 +1,7 @@
 /* ../styles/pages/ClientProfile.css */
 
 .MyAccount-button-box {
-  background-color: #E3C8C4;
+  background-color: white;
   padding: 20px;
   width: 70%;
   margin: 0 auto;
@@ -32,12 +32,17 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 20px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .MyAccount-input-group {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin: 1% 1% 1% 1%
 }
 
 .MyAccount-label-column {
@@ -115,4 +120,51 @@
   border: 2px solid blue;
   border-radius: 20px;
   width: 100%;
+}
+
+.MyAccount-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  /* Align items at the top */
+}
+
+.MyAccount-boxshadow-left-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-right: 1%;
+  padding: 1% 1% 1% 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.MyAccount-boxshadow-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-left: 1%;
+  padding: 1% 1% 1% 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.MyAccount-left-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1% 1% 1% 1%;
+}
+
+.MyAccount-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1% 1% 1% 1%;
 }
