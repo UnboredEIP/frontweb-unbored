@@ -26,6 +26,7 @@ import UpdateEmailPage from "./pages/profile/UpdateEmail";
 import UpdatePasswordPage from "./pages/profile/UpdatePassword";
 import ProfilePage from "./pages/Profile";
 import AvisActivityPage from "./pages/ClientAvisActivity";
+import ForgotpasswordPage from "./pages/profile/ForgotPassword";
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -86,6 +87,10 @@ function App() {
           <Route
             path="/update-password"
             element={<UpdatePasswordPage onUpdateSuccess={HandleLoginSuccess} />}
+          />
+          <Route
+            path="/forgot-password"
+            element={<ForgotpasswordPage onUpdateSuccess={HandleLoginSuccess} />}
           />
           <Route path="/create-activity" element={<CreateActivityPage />} />
           <Route
