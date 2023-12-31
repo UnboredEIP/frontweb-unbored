@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 import { FaCog } from "react-icons/fa";
 import { SidebarItem } from "../../models/Sidebaritem";
+import { AiOutlineCalendar } from 'react-icons/ai';
 
 export const SidebarData: SidebarItem[] = [
   {
@@ -79,5 +80,11 @@ export const SidebarData: SidebarItem[] = [
     title: "Avis Activité",
     path: "/client-myAvis",
     icon: <AiOutlineUser />,
+  },
+
+  {
+    title: "Calendrier",
+    path: "/calendar",
+    icon: <AiOutlineCalendar />,
   },
 ];

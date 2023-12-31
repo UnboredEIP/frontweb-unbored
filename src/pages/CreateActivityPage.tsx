@@ -9,7 +9,9 @@ import {
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import '../styles/pages/CreateActivityPage.css';
 import axios from "axios";
+
 import Select, { ActionMeta, MultiValue } from 'react-select';
+
 import { Center } from 'chakra-ui';
 
 interface State {

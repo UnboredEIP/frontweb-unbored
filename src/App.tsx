@@ -27,6 +27,8 @@ import UpdatePasswordPage from "./pages/profile/UpdatePassword";
 import ProfilePage from "./pages/Profile";
 import AvisActivityPage from "./pages/ClientAvisActivity";
 import ForgotpasswordPage from "./pages/profile/ForgotPassword";
+import CalendarComponent from './pages/CalendarComponent';
+import timelineData from "./components/Timeline/timeline.json";
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -127,6 +129,10 @@ function App() {
           <Route
             path="/client-myContract"
             element={<ClientMyContract />}
+          />
+          <Route
+            path="/calendar"
+            element={<CalendarComponent events={timelineData.events} />}
           />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>

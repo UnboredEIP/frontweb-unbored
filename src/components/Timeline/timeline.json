@@ -1,37 +1,45 @@
 {
     "events": [
-        {
-            "id": 1,
-            "title": "Match urban soccer Ivry",
-            "date": "Lundi 28 Janvier 2002",
-            "hour": "10:00 AM",
-            "imageUrl": "https://www.urbansoccer.fr/wp-content/uploads/2020/04/logo-urbansoccer.jpg",
-            "catégorie": "Sport"
-        },
-        {
-            "id": 2,
-            "title": "Visite musée du louvre",
-            "date": "Vendredi 29 Septembre 2023",
-            "hour": "10:00 AM",
-            "imageUrl": "https://api-www.louvre.fr/sites/default/files/2021-01/cour-napoleon-et-pyramide_1.jpg",
-            "catégorie": "Culture"
-        },
-        {
-            "id": 3,
-            "title": "Tournoi League of Legends",
-            "date": "Lundi 25 Septembre 2023",
-            "hour": "10:00 AM",
-            "imageUrl": "https://images.frandroid.com/wp-content/uploads/2020/12/wr_keyart.jpg",
-            "catégorie": "Loisir"
-        },
-        {
-            "id": 4,
-            "title": "Tournoi Clash Royal",
-            "date": "Lundi 25 Septembre 2029",
-            "hour": "2:00 AM",
-            "imageUrl": "https://assets-prd.ignimgs.com/2022/05/27/clashroyale-1653673820137.jpg?width=300&crop=1%3A1%2Csmart&auto=webp&dpr=2",
-            "catégorie": "Loisir"
-        }
-
+      {
+        "id": 1,
+        "title": "Match urban soccer Ivry",
+        "date": "Lundi 30 Janvier 2002",
+        "hour": "10:00 AM",
+        "imageUrl": "https://www.urbansoccer.fr/wp-content/uploads/2020/04/logo-urbansoccer.jpg",
+        "catégorie": "Sport",
+        "start": "2023-12-30T10:00:00",
+        "end": "2023-12-30T12:00:00"
+      },
+      {
+        "id": 2,
+        "title": "Visite musée du louvre",
+        "date": "Vendredi 31 Septembre 2023",
+        "hour": "10:00 AM",
+        "imageUrl": "https://api-www.louvre.fr/sites/default/files/2021-01/cour-napoleon-et-pyramide_1.jpg",
+        "catégorie": "Culture",
+        "start": "2023-12-31T10:00:00",
+        "end": "2023-12-31T12:00:00"
+      },
+      {
+        "id": 3,
+        "title": "Tournoi League of Legends",
+        "date": "Lundi 1 Septembre 2023",
+        "hour": "10:00 AM",
+        "imageUrl": "https://images.frandroid.com/wp-content/uploads/2020/12/wr_keyart.jpg",
+        "catégorie": "Loisir",
+        "start": "2024-01-01T10:00:00",
+        "end": "2024-01-01T12:00:00"
+      },
+      {
+        "id": 4,
+        "title": "Tournoi Clash Royal",
+        "date": "Lundi 2 Septembre 2029",
+        "hour": "2:00 AM",
+        "imageUrl": "https://assets-prd.ignimgs.com/2022/05/27/clashroyale-1653673820137.jpg?width=300&crop=1%3A1%2Csmart&auto=webp&dpr=2",
+        "catégorie": "Loisir",
+        "start": "2024-01-02T10:00:00",
+        "end": "2024-01-02T12:00:00"
+      }
     ]
-}
+  }
+  
