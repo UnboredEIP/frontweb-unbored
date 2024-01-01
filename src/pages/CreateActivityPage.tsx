@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent } from 'react';
+import React, { Component, useState } from 'react';
 import {
   Input,
   InputGroup,
@@ -28,10 +28,13 @@ interface State {
   prix: string;
   email: string;
   telephone: string;
-  selectedOption: { value: string; label: string } | null;
+  selectedFile: File | null; // Allow selectedFile to be null
+  selectedOption: string[];
 }
 
 class CreateActivityPage extends Component<{}, State> {
+  fileInputRef: React.RefObject<HTMLInputElement>;
+  imagePreviewRef: React.RefObject<HTMLImageElement>;
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -48,11 +51,13 @@ class CreateActivityPage extends Component<{}, State> {
       prix: '',
       email: '',
       telephone: '',
-      selectedOption: null,
+      selectedOption: [],
+      selectedFile: null,
     };
     this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.fileInputRef = React.createRef<HTMLInputElement>();
+    this.imagePreviewRef = React.createRef<HTMLImageElement>();
   }
-
 
   options: readonly any[] = [
     { value: 'sport', label: 'Sport' },
@@ -65,6 +70,27 @@ class CreateActivityPage extends Component<{}, State> {
     { value: 'nature', label: 'Nature' },
     { value: 'technologie', label: 'Technologie' },
   ];
+
+  handleFileSelect = () => {
+    const fileInput = this.fileInputRef.current;
+    const imagePreview = this.imagePreviewRef.current;
+
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      this.setState({ selectedFile });
+
+      console.log(selectedFile)
+
+      // Mettez à jour l'attribut src de l'élément img avec l'URL de l'image sélectionnée
+      if (imagePreview) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          imagePreview.src = reader.result as string;
+        };
+        reader.readAsDataURL(selectedFile);
+      }
+    }
+  };
 
   handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const target = event.target;
@@ -85,13 +111,10 @@ class CreateActivityPage extends Component<{}, State> {
     this.setState(updatedState);
   }
 
-  handleSelectChange = (newValue: any, actionMeta: any) => {
-    // console.log(this.options)
-    console.log(newValue);
-    // console.log(newValue);
-    // const value = actionMeta.option
-    // this.setState( { value } )
-    // this.setState( );
+  handleSelectChange = (selectedOptions: any, actionMeta: any) => {
+    const selectedValues = selectedOptions.map((option: any) => option.value);
+    this.setState({ selectedOption: selectedValues });
+    console.log(this.state.selectedOption);
   }
 
   handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
@@ -107,9 +130,24 @@ class CreateActivityPage extends Component<{}, State> {
       const response = await axios.post("http://20.216.143.86/event/createevent", {
         name: this.state.nom,
         address: lieu,
-        categories: this.state.type,
+        categories: this.state.selectedOption,
       }, config);
-      console.log(response.status);
+
+      const eventId = response.data.event._id;
+      const pictureURl = "http://20.216.143.86/event/upload?id=" + eventId
+
+      if (this.state.selectedFile) {
+
+        const formData = new FormData();
+        formData.append('file', this.state.selectedFile);
+
+        const picture = await axios.post(pictureURl, formData, config);
+
+        console.log(picture.status);
+      } else {
+        // Gérez le cas où aucun fichier n'est sélectionné
+        console.error('Aucun fichier sélectionné.');
+      }
     } catch (error) {
       console.error(error);
     }
@@ -119,7 +157,7 @@ class CreateActivityPage extends Component<{}, State> {
     return (
       <div className="CreateActivity-form-container">
         <div className="CreateActivity-container">
-        <h2 className="CreateActivity-form-title">Créer une activité</h2>
+          <h2 className="CreateActivity-form-title">Créer une activité</h2>
         </div>
         <form onSubmit={this.handleSubmit}>
 
@@ -130,7 +168,7 @@ class CreateActivityPage extends Component<{}, State> {
           <div className="CreateActivity-row">
 
             {/* GAUCHE 1*/}
-            <div className="CreateActivity-left-side" style={{borderRight: '2px solid gray', marginRight: '5px'}}>
+            <div className="CreateActivity-left-side" style={{ borderRight: '2px solid gray', marginRight: '5px' }}>
               {/* Type activité */}
               <div className="CreateActivity-form-row">
                 <label className="CreateActivity-label-column_100">
@@ -275,7 +313,7 @@ class CreateActivityPage extends Component<{}, State> {
               {/* Row 1 */}
               <div className="CreateActivity-row">
                 {/* gauche 1.1 */}
-                <div className="CreateActivity-left-side" style={{marginLeft: '10%'}}>
+                <div className="CreateActivity-left-side" style={{ marginLeft: '10%' }}>
                   {/* Horaire */}
                   <div className="CreateActivity-form-row">
                     <label className="CreateActivity-label-column_100">
@@ -373,10 +411,20 @@ class CreateActivityPage extends Component<{}, State> {
                 <label className="CreateActivity-column_20">
                   Photo du lieu:
                 </label>
-                <div className="CreateActivity-image-upload">
-                  <input type="file" name="image" />
-                  <label className="CreateActivity-label-orange">Uploader une image</label>
+                <div>
+                  <input
+                    type="file"
+                    name="image"
+                    ref={this.fileInputRef}
+                    onChange={this.handleFileSelect}
+                  />
                 </div>
+
+                <img
+                  ref={this.imagePreviewRef}
+                  alt="Image Preview"
+                  style={{ maxWidth: '100%', maxHeight: '200px', marginTop: '10px' }}
+                />
               </div>
             </div>
           </div>

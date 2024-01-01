@@ -52,39 +52,19 @@ export const SidebarData: SidebarItem[] = [
     icon: <AiOutlineUser />,
   },
   {
-    title: "Créer une activité",
-    path: "/create-activity",
-    icon: <FaCog />,
-  },
-  {
-    title: "Choisir un contrat",
-    path: "/choose-contract",
-    icon: <FaCog />,
-  },
-  {
     title: "Login Client",
     path: "/client-login",
     icon: <AiOutlineUser />,
   },
   {
-    title: "Profile Client",
-    path: "/client-profile",
+    title: "Menu Client",
+    path: "/client-menu",
     icon: <AiOutlineUser />,
   },
-  {
-    title: "Info Activité",
-    path: "/client-activityInfo",
-    icon: <AiOutlineUser />,
-  },
-  {
-    title: "Avis Activité",
-    path: "/client-myAvis",
-    icon: <AiOutlineUser />,
-  },
-
   {
     title: "Calendrier",
     path: "/calendar",
     icon: <AiOutlineCalendar />,
   },
+  
 ];

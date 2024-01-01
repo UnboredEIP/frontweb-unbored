@@ -29,6 +29,7 @@ import AvisActivityPage from "./pages/ClientAvisActivity";
 import ForgotpasswordPage from "./pages/profile/ForgotPassword";
 import CalendarComponent from './pages/CalendarComponent';
 import timelineData from "./components/Timeline/timeline.json";
+import ClientMenuPage from "./pages/ClientMenu";
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -115,7 +116,7 @@ function App() {
             element={<ClientMyActivities />}
           />
           <Route
-            path="/client-activityInfo"
+            path="/client-activityInfo/:id"
             element={<ClientActivityInfo />}
           />
           <Route
@@ -129,6 +130,10 @@ function App() {
           <Route
             path="/client-myContract"
             element={<ClientMyContract />}
+          />
+          <Route
+            path="/client-menu"
+            element={<ClientMenuPage />}
           />
           <Route
             path="/calendar"

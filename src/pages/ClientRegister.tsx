@@ -20,6 +20,7 @@ import logoFacebook from "../facebook.png";
 import logoUnbored from "../Logo_UNBORED.png"
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const RegisterHeader: React.FC<{}> = () => {
   return (
@@ -40,6 +41,9 @@ const RegisterHeader: React.FC<{}> = () => {
 };
 
 const RegisterForm: React.FC<{}> = () => {
+
+  const navigate = useNavigate();
+
   const [number, setNumber] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -112,7 +116,7 @@ const RegisterForm: React.FC<{}> = () => {
         console.log(response.status);
         if (response.status === 201) {
           console.log("User created");
-          window.location.href = 'http://20.216.143.86/'
+          navigate('/client-menu');
         }
       } catch (error) {
         console.error(error);
