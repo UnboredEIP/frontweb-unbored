@@ -21,6 +21,7 @@ import logoFacebook from "../facebook.png";
 import logoUnbored from "../Logo_UNBORED.png"
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const ClientLoginHeader: React.FC<{}> = () => {
   return (
@@ -38,10 +39,10 @@ const ClientLoginHeader: React.FC<{}> = () => {
   );
 };
 
-
-
-
 const ClientLoginForm: React.FC<{}> = () => {
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -65,11 +66,11 @@ const ClientLoginForm: React.FC<{}> = () => {
           password,
         });
   
-        if (response.status === 201) {
+        if (response.status === 202) {
           localStorage.setItem('token', response.data.token);
   
           console.log("User connected");
-          window.location.href = 'http://20.216.143.86/';
+          navigate('/client-menu');
         }
       } catch (error) {
         console.error(error);

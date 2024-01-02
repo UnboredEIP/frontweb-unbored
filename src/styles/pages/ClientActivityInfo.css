@@ -177,8 +177,18 @@
 }
 
 .ActivityInfo-image {
-  width: 100%;
-  margin-top: 20px;
+  display: flex;
+  width: 25%;
+  margin: 1%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ajoute une ombre avec une légère transparence */
+}
+
+
+.ActivityInfo-image-conteneur {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ActivityInfo-image img {
