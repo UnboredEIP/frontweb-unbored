@@ -4,8 +4,7 @@ import * as data from "./links.json";
 import logo from "../../unboredlogo.png";
 import Sidebar from "../sidebar/Sidebar";
 import { Link, Text, Button } from "@chakra-ui/react";
-
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
 
 const linkString = JSON.stringify(data);
 
@@ -34,7 +33,7 @@ const LinkRedirection: React.FC<{}> = () => {
             mr={4}
             boxShadow="lg"
             onClick={async () => {
-              if (link.label === "Se déconnecter")
+              if (link.label === "Se dÃ©connecter")
                 localStorage.removeItem("token");
             }}
           >
@@ -54,6 +53,13 @@ const LinkRedirection: React.FC<{}> = () => {
 };
 
 const Nav: React.FC<{}> = () => {
+  const navigate = useNavigate();
+  const isExcludedPage = window.location.pathname === "/forgot-password";
+
+  if (isExcludedPage) {
+    return null;
+  }
+
   return (
     <nav className={styles["navbar"]}>
       <Sidebar />
