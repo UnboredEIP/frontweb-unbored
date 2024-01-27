@@ -7,6 +7,9 @@
   margin: 0 auto;
   border-radius: 15px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.centered-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,6 +52,27 @@
   cursor: pointer;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
+
+.Profile-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.Profile-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.Profile-back-button button:hover {
+  background-color: #D15040;
+}
+
 
 /* ###################################################### */
 

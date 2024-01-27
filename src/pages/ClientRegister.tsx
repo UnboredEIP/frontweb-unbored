@@ -21,6 +21,7 @@ import logoUnbored from "../Logo_UNBORED.png"
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useToast } from "@chakra-ui/react";
 
 const RegisterHeader: React.FC<{}> = () => {
   return (
@@ -44,7 +45,6 @@ const RegisterForm: React.FC<{}> = () => {
 
   const navigate = useNavigate();
 
-  const [number, setNumber] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,19 +57,11 @@ const RegisterForm: React.FC<{}> = () => {
   }, [confirmPassword, password]);
 
   const isFormValid =
-    number !== "" &&
     username !== "" &&
     email !== "" &&
     password !== "" &&
     confirmPassword !== "" &&
     passwordsMatch;
-
-  const handleNumberChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNumber(event.target.value);
-    console.log("setNumber:", number);
-  };
 
   const handleUsernameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -100,6 +92,8 @@ const RegisterForm: React.FC<{}> = () => {
     validatePasswordsMatch();
   }, [confirmPassword, validatePasswordsMatch]);
 
+  const toast = useToast();
+
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.preventDefault();
     if (isFormValid) {
@@ -109,7 +103,6 @@ const RegisterForm: React.FC<{}> = () => {
           email,
           password,
           "gender": "Homme",
-          number,
           "birthdate": "2002-01-01",
           "preferences": ["basket", "foot"]
         });
@@ -118,7 +111,23 @@ const RegisterForm: React.FC<{}> = () => {
           console.log("User created");
           navigate('/client-menu');
         }
+        if (response.status === 409) {
+          toast({
+            title: "Erreur",
+            description: "Cette adresse mail est déjà utilisée",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+        }
       } catch (error) {
+        toast({
+          title: "Erreur",
+          description: "Erreur lors de la création de l'utilisateur",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
         console.error(error);
       }
     }
@@ -159,18 +168,6 @@ const RegisterForm: React.FC<{}> = () => {
             value={email}
             bg="white"
             onChange={handleEmailChange}
-          ></Input>
-          <FormLabel textAlign="left" mt={4}>Téléphone</FormLabel>
-          <Input
-            type="number"
-            placeholder="Entrez votre numéro de téléphone"
-            textAlign="center"
-            borderRadius={50}
-            borderWidth={2}
-            borderColor="#E1604D"
-            value={number}
-            bg="white"
-            onChange={handleNumberChange}
           ></Input>
           <FormLabel textAlign="left" mt={4}>Mot de passe</FormLabel>
           <InputGroup>

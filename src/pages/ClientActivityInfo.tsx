@@ -1,8 +1,9 @@
 import React, { Component, ChangeEvent, useState, useEffect } from 'react';
 import '../styles/pages/ClientActivityInfo.css';
-import activityImage from "../google.png";
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { useToast } from "@chakra-ui/react";
 
 interface State {
   id_exemple: string;
@@ -86,6 +87,8 @@ const ActivityDetailsPage: React.FC = () => {
     getActivity();
   }, [id]); // Include 'id' as a dependency so useEffect re-runs when 'id' changes
 
+  const toast = useToast();
+
   const deleteActivity = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
@@ -98,29 +101,43 @@ const ActivityDetailsPage: React.FC = () => {
       const url = `http://20.216.143.86/event/deleteevent?id=${state.id_exemple}`;
       const response = await axios.delete(url, config);
       console.log(response.data);
+      toast({
+        title: "Succès !",
+        description: "Votre activité à correctement été supprimée",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Un problème est survenu dans la suppression de votre activité",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
       console.error(error);
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="ActivityInfo-form-container">
       <div className="ActivityInfo-container">
         <div className="ActivityInfo-header">
-          <Link to="/client-profile">
-            <button>Retour</button>
-          </Link>
+          <button onClick={() => navigate(-1)}>Retour</button>
           <Link to="/client-myAvis">
             <button>Avis</button>
           </Link>
           <div className="ActivityInfo-buttons">
-            <Link to="/client-modifyActivity">
+            <Link to={`/client-modifyActivity/${id}`}>
               <button>Modifier</button>
             </Link>
             <button onClick={deleteActivity}>Supprimer</button>
           </div>
         </div>
-        <h2 className="ActivityInfo-form-title">Bowling super cool</h2>
+        <h2 className="ActivityInfo-form-title">{state.nom}</h2>
         <div className='ActivityInfo-image-conteneur'>
           <div className="ActivityInfo-image">
             {responseImage && <img src={responseImage} />}

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import '../styles/pages/ClientMyActivites.css';
-import logoGoogle from "../google.png";
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface ButtonProps {
   text: string;
@@ -27,7 +27,7 @@ function Button({ text, activity }: ButtonProps) {
 
         const response = await axios.get(urlImage, { responseType: "blob", ...config });
         const imageUrl = URL.createObjectURL(response.data);
-        
+
         setImageBlob(imageUrl);
       } catch (error) {
         console.error('Erreur lors du chargement de l\'image :', error);
@@ -74,19 +74,19 @@ function ClientMyActivities() {
     fetchData();
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <div className="MyActivities-button-box">
       <div className="MyActivities-back-button">
-        <Link to="/client-profile">
-          <button>Retour</button>
-        </Link>
+        <button onClick={() => navigate(-1)}>Retour</button>
       </div>
       <div className="MyActivities-banner">Mes Activités</div>
       <div className="MyActivities-scroll-box">
         <div className="MyActivities-button-container">
-        {events.map((activity, index) => (
-          <Button key={index} text={activity.name} activity={activity} images={activity.pictures.map(pic => pic.id)} />
-        ))}
+          {events.map((activity, index) => (
+            <Button key={index} text={activity.name} activity={activity} images={activity.pictures.map(pic => pic.id)} />
+          ))}
 
         </div>
       </div>

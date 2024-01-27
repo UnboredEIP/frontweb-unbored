@@ -120,7 +120,7 @@ function App() {
             element={<ClientActivityInfo />}
           />
           <Route
-            path="/client-modifyActivity"
+            path="/client-modifyActivity/:id"
             element={<ClientModifyActivity />}
           />
           <Route

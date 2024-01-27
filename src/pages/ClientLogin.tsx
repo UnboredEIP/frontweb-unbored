@@ -22,19 +22,20 @@ import logoUnbored from "../Logo_UNBORED.png"
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useToast } from "@chakra-ui/react";
 
 const ClientLoginHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
-        <Image
-          src={logoUnbored}
-          alt="Unbored-PRO Logo"
-          boxSize="200px"
-          objectFit="cover"
-          borderRadius="full"
-          mx="auto"
-        />
-        <Text fontSize={20} fontWeight="bold">Se Connecter</Text>
+      <Image
+        src={logoUnbored}
+        alt="Unbored-PRO Logo"
+        boxSize="200px"
+        objectFit="cover"
+        borderRadius="full"
+        mx="auto"
+      />
+      <Text fontSize={20} fontWeight="bold">Se Connecter</Text>
     </Box>
   );
 };
@@ -57,6 +58,8 @@ const ClientLoginForm: React.FC<{}> = () => {
     setPassword(event.target.value);
   };
 
+  const toast = useToast();
+
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.preventDefault();
     if (isFormValid) {
@@ -65,19 +68,26 @@ const ClientLoginForm: React.FC<{}> = () => {
           email,
           password,
         });
-  
+
         if (response.status === 202) {
           localStorage.setItem('token', response.data.token);
-  
+
           console.log("User connected");
           navigate('/client-menu');
         }
       } catch (error) {
+        toast({
+          title: "Erreur",
+          description: "Adress mail ou mot de passe incorrect",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
         console.error(error);
       }
     }
   };
-  
+
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -99,17 +109,17 @@ const ClientLoginForm: React.FC<{}> = () => {
           ></Input>
           <FormLabel textAlign="left">Mot de passe</FormLabel>
           <InputGroup>
-          <Input
-            type={showPassword ? "text" : "password"}
-            placeholder="Entrez votre mot de passe"
-            textAlign="center"
-            borderRadius={50}
-            borderWidth={2}
-            borderColor="#E1604D"
-            bg="white"
-            onChange={handlePasswordChange}
-          ></Input>
-                      <InputRightElement>
+            <Input
+              type={showPassword ? "text" : "password"}
+              placeholder="Entrez votre mot de passe"
+              textAlign="center"
+              borderRadius={50}
+              borderWidth={2}
+              borderColor="#E1604D"
+              bg="white"
+              onChange={handlePasswordChange}
+            ></Input>
+            <InputRightElement>
               {showPassword ? (
                 <FaEyeSlash onClick={toggleShowPassword} />
               ) : (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/pages/ClientMyAccount.css'; // Utilisez les mêmes styles que ClientProfile
+import { useNavigate } from 'react-router-dom';
 
 interface Field {
     label: string;
@@ -39,13 +39,13 @@ function ClientMyAccount() {
         setFields(updatedFields);
     };
 
+    const navigate = useNavigate();
+
     return (
         <div className="MyAccount-button-box">
 
             <div className="MyAccount-back-button">
-                <Link to="/client-profile">
-                    <button>Retour</button>
-                </Link>
+            <button onClick={() => navigate(-1)}>Retour</button>
             </div>
             <div className="MyAccount-banner">Mon Compte</div>
             <div className="MyAccount-row">

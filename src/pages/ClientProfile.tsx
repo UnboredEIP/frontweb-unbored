@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/pages/ClientProfile.css';
 
 interface ButtonProps {
@@ -29,19 +30,27 @@ function Button({ text }: ButtonProps) {
 function ClientProfile() {
   const topButtonLabels = ['Mon compte', 'Entreprise', 'Activité', 'Contrat', 'Historique'];
   const botButtonLabels = ['Transactions', 'Parametre', 'Outil', 'Aide', 'Déconnexion'];
+  const navigate = useNavigate();
 
   return (
     <div className="button-box">
-      <div className="banner">Profil</div>
-      <div className="button-container">
-        {topButtonLabels.map((label, index) => (
-          <Button key={index} text={label} />
-        ))}
+      <div className="Profile-back-button">
+      <Link to="/client-menu">
+          <button>Retour</button>
+        </Link>
       </div>
-      <div className="button-container">
-        {botButtonLabels.map((label, index) => (
-          <Button key={index} text={label} />
-        ))}
+      <div className="centered-box">
+        <div className="banner">Profil</div>
+        <div className="button-container">
+          {topButtonLabels.map((label, index) => (
+            <Button key={index} text={label} />
+          ))}
+        </div>
+        <div className="button-container">
+          {botButtonLabels.map((label, index) => (
+            <Button key={index} text={label} />
+          ))}
+        </div>
       </div>
     </div>
   );
