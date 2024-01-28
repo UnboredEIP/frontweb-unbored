@@ -35,7 +35,7 @@ function ClientProfile() {
   return (
     <div className="button-box">
       <div className="Profile-back-button">
-      <Link to="/client-menu">
+        <Link to="/client-menu">
           <button>Retour</button>
         </Link>
       </div>

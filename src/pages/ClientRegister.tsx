@@ -109,7 +109,7 @@ const RegisterForm: React.FC<{}> = () => {
         console.log(response.status);
         if (response.status === 201) {
           console.log("User created");
-          navigate('/client-menu');
+          navigate('/client-login');
         }
         if (response.status === 409) {
           toast({

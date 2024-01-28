@@ -50,15 +50,15 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 5px;
-  width: 50px;
   color: #E1604D;
   font-weight: bold;
 }
 
 .MyAccount-input-column {
   flex: 2;
-  margin-right: 100px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .MyAccount-input-wrapper label {
@@ -113,6 +113,9 @@
   border: 2px solid orange;
   border-radius: 20px;
   width: 100%;
+  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+  margin: 0 auto;
+  text-align: center;
 }
 
 .MyAccount-editable-field {
@@ -120,6 +123,7 @@
   border: 2px solid blue;
   border-radius: 20px;
   width: 100%;
+  text-align: center;
 }
 
 .MyAccount-row {

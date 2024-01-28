@@ -10,9 +10,9 @@ const AvisActivityPage: React.FC = () => {
 
     return (
         <div className="ClientAvisActivity-form-container">
-            
+
             <div className="ClientAvisActivity-back-button">
-            <button onClick={() => navigate(-1)}>Retour</button>
+                <button onClick={() => navigate(-1)}>Retour</button>
             </div>
             <div className="ClientAvisActivity-row">
                 {/* GAUCHE*/}

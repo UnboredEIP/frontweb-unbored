@@ -1,37 +1,34 @@
-import React, { useState } from 'react';
+
 import '../styles/pages/ClientMyAccount.css'; // Utilisez les mêmes styles que ClientProfile
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import React, { Component, ChangeEvent, useState, useEffect } from 'react';
+import { useToast } from "@chakra-ui/react";
 
 interface Field {
     label: string;
     value: string;
 }
 
-const myAccountFields: Field[] = [
-    { label: 'Nom', value: 'Doe' },
-    { label: 'Prénom', value: 'John' },
-    { label: 'Entreprise', value: 'toto&co' },
-    { label: 'Date de naissance', value: '01/01/1990' },
-    { label: 'Adresse', value: '123 Rue Example' },
-    { label: 'Code postale', value: '12345' },
-    { label: 'Ville', value: 'Ville Example' },
-    { label: 'Pays', value: 'Pays Example' },
-    { label: 'E-mail', value: 'john@example.com' },
-    { label: 'Numéro de téléphone', value: '123-456-7890' },
-];
-
-
 function ClientMyAccount() {
-    const [fields, setFields] = useState(myAccountFields);
+    const [fields, setFields] = useState<Field[]>([
+        { label: 'Nom', value: '' },
+        { label: 'Mail', value: '' },
+        { label: 'Sexe', value: '' },
+        { label: 'Date de naissance', value: '' },
+    ]);
+
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
-    const handleSaveClick = () => {
+    const handleSaveClick = async () => {
         setIsEditing(false);
-    };
+
+        await updateProfile();
+      };
 
     const handleFieldChange = (index: number, newValue: string) => {
         const updatedFields = [...fields];
@@ -41,16 +38,81 @@ function ClientMyAccount() {
 
     const navigate = useNavigate();
 
+    const getProfile = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const url = `http://20.216.143.86/profile`;
+            const response = await axios.get(url, config);
+            const profileDetails = response.data.user;
+
+            setFields([
+                { label: 'Nom', value: profileDetails.username },
+                { label: 'Mail', value: profileDetails.email },
+                { label: 'Sexe', value: profileDetails.gender },
+                { label: 'Date de naissance', value: profileDetails.birthdate },
+            ]);
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const toast = useToast();
+
+    const updateProfile = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            const response = await axios.put('http://20.216.143.86/profile/update', {
+                username: fields.find(field => field.label === 'Nom')?.value,
+                email: fields.find(field => field.label === 'Mail')?.value,
+                gender: fields.find(field => field.label === 'Sexe')?.value,
+                birthdate: fields.find(field => field.label === 'Date de naissance')?.value,
+            }, config);
+
+            toast({
+                title: "Succès !",
+                description: "Votre compte à bien été mis à jour ! ",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+              });
+
+        } catch (error) {
+            toast({
+                title: "Erreur",
+                description: "Une erreur est survenue dans la mise à jour de votre compte",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+              });
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        getProfile();
+    }, []);
+
     return (
         <div className="MyAccount-button-box">
-
             <div className="MyAccount-back-button">
-            <button onClick={() => navigate(-1)}>Retour</button>
+                <button onClick={() => navigate(-1)}>Retour</button>
             </div>
             <div className="MyAccount-banner">Mon Compte</div>
             <div className="MyAccount-row">
                 <div className="MyAccount-boxshadow-left-side ">
-                    <div className="MyAccount-banner">Infos Personnelles</div>
+                    <div className="MyAccount-banner">Infos Utilisateur</div>
                     {fields.map((field, index) => {
                         if (index % 2 === 0) {
                             const nextField = fields[index + 1];
