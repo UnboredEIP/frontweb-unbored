@@ -30,6 +30,8 @@ import ForgotpasswordPage from "./pages/profile/ForgotPassword";
 import CalendarComponent from './pages/CalendarComponent';
 import timelineData from "./components/Timeline/timeline.json";
 import ClientMenuPage from "./pages/ClientMenu";
+import ForgetPass from "./pages/profile/ForgotPass"
+
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -92,7 +94,16 @@ function App() {
             element={<UpdatePasswordPage onUpdateSuccess={HandleLoginSuccess} />}
           />
           <Route
+            path="/forgetpass"
+            element={<ForgetPass onUpdateSuccess={HandleLoginSuccess} />}
+          />
+          
+          <Route
             path="/forgot-password"
+            element={<ForgotpasswordPage onUpdateSuccess={HandleLoginSuccess} />}
+          />
+          <Route
+            path="/forgot-pass"
             element={<ForgotpasswordPage onUpdateSuccess={HandleLoginSuccess} />}
           />
           <Route path="/create-activity" element={<CreateActivityPage />} />

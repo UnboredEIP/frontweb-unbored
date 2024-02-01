@@ -44,7 +44,6 @@ async function makeRegisterRequest(
         email,
         password,
         "gender": "Homme",
-        number,
         "birthdate": "2002-01-01",
         "preferences": ["basket", "foot"]
       }),
