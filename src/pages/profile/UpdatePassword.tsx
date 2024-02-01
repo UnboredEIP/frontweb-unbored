@@ -46,7 +46,6 @@ async function makeUpdatePasswordRequest(email: string) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email }),
     });
@@ -54,7 +53,7 @@ async function makeUpdatePasswordRequest(email: string) {
       console.log("USER UPDATED");
       return true;
     } else {
-      console.error("UPDATE ERROR");
+      console.error("UPDATE ERROR " ,  await response.text());
       return false;
     }
   } catch (error) {
