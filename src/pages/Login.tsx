@@ -142,7 +142,7 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
             <Box>
               <Checkbox>Se souvenir de moi</Checkbox>
             </Box>
-            <Box>*Mot de passe oublié ?</Box>
+            <Box><a href="/update-password">Mot de passe oublié ?</a></Box>
           </Stack>
           <Button
             // type="submit"

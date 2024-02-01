@@ -40,15 +40,15 @@ interface UpdatePasswordPageProps {
   onUpdateSuccess: () => void;
 }
 
-async function makeUpdatePasswordRequest(password: string) {
+async function makeUpdatePasswordRequest(email: string) {
   try {
-    const response = await fetch("http://20.216.143.86/profile/update", {
-      method: "PUT",
+    const response = await fetch("http://20.216.143.86/auth/askreset", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")?.toString()}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ email }),
     });
     if (response.status === 200) {
       console.log("USER UPDATED");
@@ -75,7 +75,7 @@ const UpdatePasswordHeader: React.FC<{}> = () => {
           textShadow="lg"
           padding={7}
         >
-          Mets à jour ton mot de passe !
+          Ecrit ton email
         </Box>
       </Heading>
     </Box>
@@ -162,7 +162,7 @@ const UpdatePasswordForm: React.FC<{ onUpdateSuccess: () => void }> = ({
         <form>
           <FormControl mt={10} textAlign="left">
             <FormLabel textAlign="left" mt={4}>
-              Mot de passe
+              email
             </FormLabel>
             <Input
               type="password"
@@ -208,10 +208,6 @@ const UpdatePasswordForm: React.FC<{ onUpdateSuccess: () => void }> = ({
             )}
           </FormControl>
           <Stack isInline justifyContent="space-between">
-            <Box>
-              <Checkbox>Se souvenir de moi</Checkbox>
-            </Box>
-            <Box>*Mot de passe oublié ?</Box>
           </Stack>
           <Button
             // type="submit"

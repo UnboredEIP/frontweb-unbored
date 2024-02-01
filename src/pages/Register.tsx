@@ -223,7 +223,6 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
             <Box>
               <Checkbox>Se souvenir de moi</Checkbox>
             </Box>
-            <Box>*Mot de passe oublié ?</Box>
           </Stack>
           <Button
             // type="submit"
