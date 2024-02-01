@@ -103,7 +103,7 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
     email: email,
     password: password,
     username: username,
-    number: number,
+    //number: number,
     birthdate: birthdate,
     gender: gender,
   };
