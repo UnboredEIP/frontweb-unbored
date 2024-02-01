@@ -22,13 +22,13 @@ async function makePasswordResetRequest(email: string) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ "s.sangokuhomer100@gmail.com" }),
+      body: JSON.stringify({ email }),
     });
     if (response.status === 200) {
       console.log("EMAIL SENT");
       return true;
     } else {
-      console.error("EMAIL SEND ERROR");
+      console.error("EMAIL SEND ERROR:", await response.text());
       return false;
     }
   } catch (error) {
