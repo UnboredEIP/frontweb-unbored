@@ -34,6 +34,9 @@ const ProfilePage = () => {
           interests: profileDetails.interests, // Update with the correct field from the backend
         });
       } catch (error) {
+        const token = localStorage.getItem('token');
+        console.error("Token value: ");
+        console.error(token);
         console.error(error);
       }
     };
