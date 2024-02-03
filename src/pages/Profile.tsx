@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Heading, Avatar, Text, Stack } from '@chakra-ui/react';
+import axios from "axios";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
@@ -7,16 +8,30 @@ const ProfilePage = () => {
     // Fetch data when the component mounts
     const fetchData = async () => {
       try {
-        const response = await fetch('/profile'); // Replace with your actual API endpoint
-        const data = await response.json();
-
-        // Update the state with the fetched data
-        setUserData(data);
-        console.log('userData:', data);
+        const token = localStorage.getItem('token');
+          const config = {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          };
+          const url = `http://20.216.143.86/profile`;
+          const response = await axios.get(url, config);
+          const profileDetails = response.data.user;
+          console.log('userData:', profileDetails);
 
       } catch (error) {
         console.error('Error fetching profile data:', error);
       }
+    };
+
+    const userData = {
+      name: 'Nom de l\'utilisateur pour test',
+      profilePicture: 'lien_vers_la_photo.jpg',
+      followers: 1000,
+      following: 500,
+      events: 10,
+      description: 'Je ne sais pas quoi dire',
+      interests: ['Intérêt 1', 'Intérêt 2', 'Intérêt 3'],
     };
 
     fetchData();
