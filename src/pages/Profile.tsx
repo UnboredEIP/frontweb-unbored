@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Heading, Avatar, Text, Stack } from '@chakra-ui/react';
-import axios from 'axios';
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState({
@@ -22,8 +21,14 @@ const ProfilePage = () => {
           },
         };
         const url = 'http://20.216.143.86/profile';
-        const response = await axios.get(url, config);
-        const profileDetails = response.data.user;
+
+        const response = await fetch(url, config);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const profileDetails = data.user;
 
         setUserData({
           name: profileDetails.username,
@@ -43,7 +48,7 @@ const ProfilePage = () => {
 
     getProfileInfo();
   }, []);
-
+  
   return (
     <Box p={4} textAlign="center">
       <Heading mb={4} fontSize="2xl">
