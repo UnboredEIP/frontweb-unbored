@@ -37,7 +37,8 @@ async function makeLoginRequest(email: string, password: string) {
     if (response.status === 202) {
       const data = await response.json();
       console.log(data);
-      localStorage.setItem("token", data["refresh"]);
+      localStorage.setItem("token", data["token"]);
+      //localStorage.setItem('token', response.data.token);
       return true;
     } else {
       console.error("Login error");
