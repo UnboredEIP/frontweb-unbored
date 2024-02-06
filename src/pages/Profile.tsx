@@ -88,6 +88,7 @@ const ProfilePage = () => {
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
         console.log("Profile Picture ID: ")
+        console.log(profileDetails)
         console.log(profileDetails.profilPhoto)
         let firstPictureId = "";
         let PicUrl = "";
