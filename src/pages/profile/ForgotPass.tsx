@@ -8,6 +8,7 @@ import {
   Input,
   Button,
   Flex,
+  Link,  // Add Link component
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -63,6 +64,11 @@ const ForgetPass: React.FC<ForgetPassProps> = ({ onUpdateSuccess }) => {
     }
   };
 
+  const handleHomeClick = () => {
+    // Redirect to "/home" when the "Home" link is clicked
+    navigate("/home");
+  };
+  
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
       <Box
@@ -74,6 +80,9 @@ const ForgetPass: React.FC<ForgetPassProps> = ({ onUpdateSuccess }) => {
         backgroundColor="white"
         boxShadow="md"
       >
+        <Link to="/home" onClick={handleHomeClick}>
+          Home
+        </Link>
         <Heading textAlign="center" mb={4}>
           Reset ton mot de passe !
         </Heading>
