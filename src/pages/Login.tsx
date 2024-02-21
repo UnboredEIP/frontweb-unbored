@@ -155,6 +155,7 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
             color="whitesmoke"
             isDisabled={!isFormValid}
             onClick={handleSubmit}
+            
           >
             Se connecter
           </Button>
@@ -162,10 +163,6 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
             <Button borderRadius={12} boxShadow="lg" color={"black"}>
               <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
               Continuer avec Google
-            </Button>
-            <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              <img src={logoFacebook} alt="Logo" className={styles["logo"]} />
-              Continuer avec Facebook
             </Button>
           </Stack>
         </form>
@@ -184,6 +181,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
 
   if (isLoggedIn === true) {
     navigate("/home");
+    window.location.reload();
   }
 
   return (

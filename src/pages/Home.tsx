@@ -3,6 +3,7 @@ import styles from "../styles/pages/Register.module.css";
 import { Box, Flex, Button,Input } from "@chakra-ui/react";
 import * as data from "../components/Timeline/timeline.json";
 import Timeline from "../components/Timeline/Timeline";
+import { useNavigate } from "react-router-dom";
 
 const timelineString = JSON.stringify(data);
 const timelineItems = JSON.parse(timelineString).events;
@@ -22,6 +23,9 @@ const HomeHeader: React.FC<{}> = () => {
   const [eventToDisplay, setEventToDisplay] = useState("Sport");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllEvents, setShowAllEvents] = useState(true); // State to control displaying all events
+
+  const navigate = useNavigate();
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   const previousEvent = () => {
     if (currentEventIndex > 0) {
@@ -63,6 +67,12 @@ const HomeHeader: React.FC<{}> = () => {
   const showAllEventsHandler = () => {
     setShowAllEvents(true); // Show all events when the button is clicked
   };
+
+  if (!isLoggedIn) {
+    console.log("toto est pas connecté");
+    //navigate('/');
+    //return null; // You can return null or any other placeholder while redirecting
+  }
 
   return (
     <Flex direction="column">
@@ -117,11 +127,28 @@ const HomeHeader: React.FC<{}> = () => {
 
 
 const HomePage: React.FC<{}> = () => {
+
+  const navigate = useNavigate();
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  // // Check if the user is not logged in, then redirect to "/"
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
       <HomeHeader />
+      {/* Add other content of your page here */}
     </Flex>
   );
+
+  // if (!isLoggedIn) {
+  //   console.log("toto est pas connecté");
+  //   //navigate('/');
+  //   //return null; // You can return null or any other placeholder while redirecting
+  // }
+  
+  // else {
+  //   console.log("toto est connecté");
+  // }
+  
 };
 
 export default HomePage;

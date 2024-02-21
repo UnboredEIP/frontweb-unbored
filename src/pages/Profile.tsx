@@ -27,8 +27,8 @@ const ProfilePage = () => {
         const url = 'http://20.216.143.86/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
-        console.log("caca")
-        console.log(profileDetails.profilPhoto)
+        console.log("Information db ID: ")
+        console.log(profileDetails)
         // Check if the user has a profile picture
         if (profileDetails.profilPhoto) {
           const firstPictureId = profileDetails.profilPhoto;
@@ -87,9 +87,8 @@ const ProfilePage = () => {
     const url = 'http://20.216.143.86/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
-        console.log("Profile Picture ID: ")
+        console.log("Information db ID: ")
         console.log(profileDetails)
-        console.log(profileDetails.profilPhoto)
         let firstPictureId = "";
         let PicUrl = "";
         // Check if the user has a profile picture

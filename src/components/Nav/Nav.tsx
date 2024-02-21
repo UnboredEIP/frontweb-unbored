@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/components/Nav.module.css";
 import * as data from "./links.json";
 import logo from "../../unboredlogo.png";
 import Sidebar from "../sidebar/Sidebar";
-import { Link, Text, Button } from "@chakra-ui/react";
-import { BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
+import { Link as RouterLink, Routes, Route, useNavigate } from "react-router-dom";
+import { Text, Button } from "@chakra-ui/react";
 
 const linkString = JSON.stringify(data);
 
@@ -15,46 +15,60 @@ type Link = {
 
 const removeToken = async () => {
   localStorage.removeItem("token");
+  setIsLoggedIn(false); // Update state to trigger re-render
 };
 
-const LinkRedirection: React.FC<{}> = () => {
+
+const LinkRedirection: React.FC<{ isLoggedIn: boolean; setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>> }> = ({ isLoggedIn, setIsLoggedIn }) => {
   var links;
 
-  if (localStorage.getItem("token") === null) {
+  if (!isLoggedIn) {
     links = JSON.parse(linkString).navbar_links_not_connected;
-  } else links = JSON.parse(linkString).navbar_links_connected;
+  } else {
+    links = JSON.parse(linkString).navbar_links_connected;
+  }
+
+  const removeToken = async () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
 
   return (
     <div className={styles["links-container"]}>
-      {links.map((link: Link) => {
-        return (
-          <Button
-            borderRadius={50}
-            mr={4}
-            boxShadow="lg"
-            onClick={async () => {
-              if (link.label === "Se dÃ©connecter")
-                localStorage.removeItem("token");
-            }}
-          >
-            <div key={link.href} className={styles["link"]}>
-              <a href={link.href}>{link.label}</a>
-            </div>
-            {/* <nav className={styles.bubble}>
-            <div key={link.href} className={styles["link"]}>
-              <a href={link.href}>{link.label}</a>
-            </div>
-          </nav> */}
-          </Button>
-        );
-      })}
+      {links.map((link: Link) => (
+        <Button
+          key={link.href}
+          borderRadius={50}
+          mr={4}
+          boxShadow="lg"
+          onClick={async () => {
+            if (link.label === "Se déconnecter") {
+              removeToken();
+              <RouterLink to="\">
+              <Text>{link.label}</Text>
+            </RouterLink>
+            }
+          }}
+        >
+          <div className={styles["link"]}>
+            <RouterLink to={link.href}>
+              <Text>{link.label}</Text>
+            </RouterLink>
+          </div>
+        </Button>
+      ))}
     </div>
   );
 };
 
 const Nav: React.FC<{}> = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const isExcludedPage = window.location.pathname === "/forgot-password";
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, []); // Run on mount to initialize login status
 
   if (isExcludedPage) {
     return null;
@@ -62,17 +76,21 @@ const Nav: React.FC<{}> = () => {
 
   return (
     <nav className={styles["navbar"]}>
-      <Sidebar />
+      {isLoggedIn && <Sidebar />} {/* Render Sidebar only if user is logged in */}
       <h1>
-        <Link href="/">
-        <Text textShadow="lg" style={{ marginLeft: "-200px" }}>UnBored</Text>
-        </Link>
+        <RouterLink to="/">
+          <Text textShadow="lg" style={{ marginLeft: "-200px" }}>UnBored</Text>
+        </RouterLink>
       </h1>
       <Routes>
-        <Route path="/*" element={<LinkRedirection />}></Route>
+        <Route
+          path="/*"
+          element={<LinkRedirection isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+        />
       </Routes>
     </nav>
   );
 };
 
 export default Nav;
+

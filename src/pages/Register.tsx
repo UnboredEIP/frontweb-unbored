@@ -241,10 +241,6 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
               <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
               Continuer avec Google
             </Button>
-            <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              <img src={logoFacebook} alt="Logo" className={styles["logo"]} />
-              Continuer avec Facebook
-            </Button>
           </Stack>
         </form>
       </ContextRegister.Provider>

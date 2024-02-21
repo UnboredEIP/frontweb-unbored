@@ -70,7 +70,7 @@ const ActivityDetailsPage: React.FC = () => {
         email: activityDetails.email,
         telephone: activityDetails.telephone,
       });
-
+      
       const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
       const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
 

@@ -42,7 +42,6 @@ const RegisterHeader: React.FC<{}> = () => {
 };
 
 const RegisterForm: React.FC<{}> = () => {
-
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -67,14 +66,12 @@ const RegisterForm: React.FC<{}> = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setUsername(event.target.value);
-    console.log("setUsername:", username);
   };
 
   const handleEmailChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setEmail(event.target.value);
-    console.log("setEmail:", email);
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +82,6 @@ const RegisterForm: React.FC<{}> = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setConfirmPassword(event.target.value);
-
   };
 
   useEffect(() => {
@@ -141,113 +137,115 @@ const RegisterForm: React.FC<{}> = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  const isLoggedIn = localStorage.getItem("token") !== null;
+
   return (
     <Box textAlign="center">
-      <form>
-        <FormControl mt={10} textAlign="left">
-          <FormLabel textAlign="left" mt={4}>Nom d'utilisateur</FormLabel>
-          <Input
-            type="username"
-            placeholder="Entrez votre nom d'utilisateur"
-            textAlign="center"
-            borderRadius={50}
-            borderWidth={2}
-            borderColor="#E1604D"
-            value={username}
-            bg="white"
-            onChange={handleUsernameChange}
-          ></Input>
-          <FormLabel textAlign="left" mt={4}>Adresse mail</FormLabel>
-          <Input
-            type="email"
-            placeholder="Entrez votre adresse mail"
-            textAlign="center"
-            borderRadius={50}
-            borderWidth={2}
-            borderColor="#E1604D"
-            value={email}
-            bg="white"
-            onChange={handleEmailChange}
-          ></Input>
-          <FormLabel textAlign="left" mt={4}>Mot de passe</FormLabel>
-          <InputGroup>
-            <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Entrez votre mot de passe"
-              textAlign="center"
-              borderRadius={50}
-              borderWidth={2}
-              borderColor="#E1604D"
-              value={password}
-              bg="white"
-              onChange={handlePasswordChange}
-            />
-            <InputRightElement>
-              {showPassword ? (
-                <FaEyeSlash onClick={toggleShowPassword} />
-              ) : (
-                <FaEye onClick={toggleShowPassword} />
-              )}
-            </InputRightElement>
-          </InputGroup>
-          <FormLabel textAlign="left" mt={4}>Confirmer mot de passe</FormLabel>
-          <InputGroup>
-            <Input
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirmez votre mot de passe"
-              textAlign="center"
-              borderRadius={50}
-              borderWidth={2}
-              borderColor="#E1604D"
-              value={confirmPassword}
-              bg="white"
-              onChange={handleConfirmPasswordChange}
-            ></Input>
-            <InputRightElement>
-              {showConfirmPassword ? (
-                <FaEyeSlash onClick={toggleShowConfirmPassword} />
-              ) : (
-                <FaEye onClick={toggleShowConfirmPassword} />
-              )}
-            </InputRightElement>
-          </InputGroup>
-          {!passwordsMatch && (
-            <Text color="red">Les mots de passe ne correspondent pas !</Text>
-          )}
-        </FormControl>
+      {isLoggedIn ? (
         <Text fontSize={15} textAlign="center" color="gray">
-          J'ai déjà un compte, <Link color="orange" href="/client-login">se connecter</Link>
+          Vous êtes déjà connecté. <Link color="orange" href="/dashboard">Accéder au tableau de bord</Link>
         </Text>
-        {/* <Link href="/home"> */}
-        <Button
-          type="submit"
-          mt={4}
-          my={4}
-          borderRadius={50}
-          boxShadow="lg"
-          backgroundColor="#E1604D"
-          color="whitesmoke"
-          isDisabled={!isFormValid}
-          onClick={handleSubmit}
-          textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)" // Ombre sur le texte
-          width="200px" // Ajuster la largeur du bouton
-          height="50px" // Ajuster la hauteur du bouton
-        >
-          S'inscrire
-        </Button>
+      ) : (
+        <form>
+          <FormControl mt={10} textAlign="left">
+            <FormLabel textAlign="left" mt={4}>Nom d'utilisateur</FormLabel>
+            <Input
+              type="username"
+              placeholder="Entrez votre nom d'utilisateur"
+              textAlign="center"
+              borderRadius={50}
+              borderWidth={2}
+              borderColor="#E1604D"
+              value={username}
+              bg="white"
+              onChange={handleUsernameChange}
+            ></Input>
+            <FormLabel textAlign="left" mt={4}>Adresse mail</FormLabel>
+            <Input
+              type="email"
+              placeholder="Entrez votre adresse mail"
+              textAlign="center"
+              borderRadius={50}
+              borderWidth={2}
+              borderColor="#E1604D"
+              value={email}
+              bg="white"
+              onChange={handleEmailChange}
+            ></Input>
+            <FormLabel textAlign="left" mt={4}>Mot de passe</FormLabel>
+            <InputGroup>
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="Entrez votre mot de passe"
+                textAlign="center"
+                borderRadius={50}
+                borderWidth={2}
+                borderColor="#E1604D"
+                value={password}
+                bg="white"
+                onChange={handlePasswordChange}
+              />
+              <InputRightElement>
+                {showPassword ? (
+                  <FaEyeSlash onClick={toggleShowPassword} />
+                ) : (
+                  <FaEye onClick={toggleShowPassword} />
+                )}
+              </InputRightElement>
+            </InputGroup>
+            <FormLabel textAlign="left" mt={4}>Confirmer mot de passe</FormLabel>
+            <InputGroup>
+              <Input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirmez votre mot de passe"
+                textAlign="center"
+                borderRadius={50}
+                borderWidth={2}
+                borderColor="#E1604D"
+                value={confirmPassword}
+                bg="white"
+                onChange={handleConfirmPasswordChange}
+              ></Input>
+              <InputRightElement>
+                {showConfirmPassword ? (
+                  <FaEyeSlash onClick={toggleShowConfirmPassword} />
+                ) : (
+                  <FaEye onClick={toggleShowConfirmPassword} />
+                )}
+              </InputRightElement>
+            </InputGroup>
+            {!passwordsMatch && (
+              <Text color="red">Les mots de passe ne correspondent pas !</Text>
+            )}
+          </FormControl>
+          <Text fontSize={15} textAlign="center" color="gray">
+            J'ai déjà un compte, <Link color="orange" href="/client-login">se connecter</Link>
+          </Text>
+          <Button
+            type="submit"
+            mt={4}
+            my={4}
+            borderRadius={50}
+            boxShadow="lg"
+            backgroundColor="#E1604D"
+            color="whitesmoke"
+            isDisabled={!isFormValid}
+            onClick={handleSubmit}
+            textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
+            width="200px"
+            height="50px"
+          >
+            S'inscrire
+          </Button>
 
-        {/* </Link> */}
-        <Stack isInline justifyContent="space-between" my={4}>
-          <Button borderRadius={12} boxShadow="lg" color={"black"}>
-            <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
-            Continuer avec Google
-          </Button>
-          <Button borderRadius={12} boxShadow="lg" color={"black"}>
-            <img src={logoFacebook} alt="Logo" className={styles["logo"]} />
-            Continuer avec Facebook
-          </Button>
-        </Stack>
-      </form>
+          <Stack isInline justifyContent="space-between" my={4}>
+            <Button borderRadius={12} boxShadow="lg" color={"black"}>
+              <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
+              Continuer avec Google
+            </Button>
+          </Stack>
+        </form>
+      )}
     </Box>
   );
 };
