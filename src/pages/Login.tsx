@@ -60,7 +60,7 @@ const LoginHeader: React.FC<{}> = () => {
       >
         <Heading color="whitesmoke"> Connectes toi !</Heading>
         <Text fontSize={20}>
-          Ou <Link href="/register">crées ton compte </Link>
+          Ou <Link href="/register">crée ton compte </Link>
           si tu n'en as pas encore
         </Text>
       </Box>

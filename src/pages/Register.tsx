@@ -75,10 +75,9 @@ const RegisterHeader: React.FC<{}> = () => {
         textShadow="lg"
         padding={7}
       >
-        <Heading color="whitesmoke"> Crées ton compte !</Heading>
+        <Heading color="whitesmoke"> Crée ton compte !</Heading>
         <Text fontSize={20}>
-          Ou <Link href="/login">connectes-toi si tu en a déjà un</Link>
-          si tu n'en a pas encore
+          Ou <Link href="/login">connecte-toi si tu en a déjà un</Link>
         </Text>
       </Box>
     </Box>
@@ -160,7 +159,7 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
             <FormLabel textAlign="left">Nom d'utilisateur</FormLabel>
             <Input
               type="username"
-              placeholder="Entres ton nom d'utilisateur"
+              placeholder="Entre ton nom d'utilisateur"
               textAlign="center"
               borderRadius={50}
               borderWidth={2}
@@ -170,7 +169,7 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
             <FormLabel textAlign="left">Email</FormLabel>
             <Input
               type="email"
-              placeholder="Entres ton addresse mail"
+              placeholder="Entre ton addresse mail"
               textAlign="center"
               borderRadius={50}
               borderWidth={2}
@@ -180,7 +179,7 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
             <FormLabel textAlign="left">Mot de passe</FormLabel>
             <Input
               type="password"
-              placeholder="Entres ton mot de passe"
+              placeholder="Entre ton mot de passe"
               textAlign="center"
               borderRadius={50}
               borderWidth={2}
@@ -190,7 +189,7 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
             <FormLabel textAlign="left">Numéro de téléphone</FormLabel>
             <Input
               //type="tel"
-              placeholder="Entres ton numéro de téléphone"
+              placeholder="Entre ton numéro de téléphone"
               textAlign="center"
               borderRadius={50}
               borderWidth={2}
@@ -209,13 +208,19 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
             ></Input>
           </FormControl>
           <FormLabel textAlign="left">Sexe</FormLabel>
-          <RadioGroup onChange={handleGenderChange} value={gender}>
-            <Stack direction="row">
-              <Radio value="Homme">Homme</Radio>
-              <Radio value="Femme">Femme</Radio>
-              <Radio value="Autre">Autre</Radio>
-            </Stack>
-          </RadioGroup>
+          <Select
+            placeholder="Sélectionner le sexe"
+            value={gender}
+            onChange={(e) => handleGenderChange(e.target.value)}
+            borderRadius={50}
+            borderWidth={2}
+            borderColor="#E1604D"
+          >
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+            <option value="Autre">Autre</option>
+            <option value="Ne pas dire">Ne préfère pas dire</option>
+          </Select>
           <br></br>
           <br></br>
           <Stack isInline justifyContent="space-between">

@@ -7,10 +7,6 @@
         {
             "label": "Se connecter",
             "href": "/login"
-        },
-        {
-            "label": "Overview",
-            "href": "/overview"
         }
     ],
     "navbar_links_connected": [

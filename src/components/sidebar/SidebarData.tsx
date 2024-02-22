@@ -41,12 +41,6 @@ export const SidebarData: SidebarItem[] = [
     ],
   },
   {
-    title: "Configurations",
-    path: "/configurations",
-    icon: <FaCog />,
-  },
-
-  {
     title: "Profile Info",
     path: "/profile",
     icon: <AiOutlineUser />,

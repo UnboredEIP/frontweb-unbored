@@ -97,7 +97,7 @@ const HomeHeader: React.FC<{}> = () => {
           color="white"
           mr={2} // Add right margin to separate it from category buttons
         >
-          *
+          Tout les thémes
         </Button>
 
         <Box style={{ margin: "30px 0" }} />
