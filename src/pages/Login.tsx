@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Heading,
@@ -15,11 +15,9 @@ import {
 import styles from "../styles/pages/Register.module.css";
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
-import { ContextLogin, LoginData } from "../contexts/LoginContext";
+import { ContextLogin } from "../contexts/LoginContext";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -38,7 +36,6 @@ async function makeLoginRequest(email: string, password: string) {
       const data = await response.json();
       console.log(data);
       localStorage.setItem("token", data["token"]);
-      //localStorage.setItem('token', response.data.token);
       return true;
     } else {
       console.error("Login error");
@@ -64,20 +61,19 @@ const LoginHeader: React.FC<{}> = () => {
         <Heading color="whitesmoke"> Connectes toi !</Heading>
         <Text fontSize={20}>
           Ou <Link href="/register">crées ton compte </Link>
-          si tu n'en a pas encore
+          si tu n'en as pas encore
         </Text>
       </Box>
     </Box>
   );
 };
 
-
-
 const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
   onLoginSuccess,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const isFormValid = email !== "" && password !== "";
   const contextData = {
     email: email,
@@ -102,16 +98,43 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
+
+  const handleRememberMeChange = () => {
+    setRememberMe(!rememberMe);
+  };
+
   const handleSubmit = async () => {
     const success = await makeLoginRequest(email, password);
+
     if (success) {
-      console.log("Login success");
+      if (rememberMe) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+        localStorage.setItem("rememberMe", "true");
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+        localStorage.removeItem("rememberMe");
+      }
+
       onLoginSuccess();
     } else {
       showToast();
-      console.log("error " , success);
+      console.log("error ", success);
     }
   };
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+    const storedRememberMe = localStorage.getItem("rememberMe");
+
+    if (storedEmail && storedPassword && storedRememberMe === "true") {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, []);
 
   return (
     <Box textAlign="center">
@@ -127,7 +150,8 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
               borderWidth={2}
               borderColor="#E1604D"
               onChange={handleEmailChange}
-            ></Input>
+              value={email}
+            />
             <FormLabel textAlign="left">Mot de passe</FormLabel>
             <Input
               type="password"
@@ -137,16 +161,23 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
               borderWidth={2}
               borderColor="#E1604D"
               onChange={handlePasswordChange}
-            ></Input>
+              value={password}
+            />
           </FormControl>
           <Stack isInline justifyContent="space-between">
             <Box>
-              <Checkbox>Se souvenir de moi</Checkbox>
+              <Checkbox
+                isChecked={rememberMe}
+                onChange={handleRememberMeChange}
+              >
+                Se souvenir de moi
+              </Checkbox>
             </Box>
-            <Box><a href="/forgetpass">Mot de passe oublié ?</a></Box>
+            <Box>
+              <a href="/forgetpass">Mot de passe oublié ?</a>
+            </Box>
           </Stack>
           <Button
-            // type="submit"
             mt={4}
             my={4}
             borderRadius={50}
@@ -155,13 +186,11 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
             color="whitesmoke"
             isDisabled={!isFormValid}
             onClick={handleSubmit}
-            
           >
             Se connecter
           </Button>
           <Stack isInline justifyContent="space-between" my={4}>
             <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
               Continuer avec Google
             </Button>
           </Stack>
@@ -175,14 +204,17 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
-  const HandleLoginSuccess = () => {
+
+  const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
-  if (isLoggedIn === true) {
-    navigate("/home");
-    window.location.reload();
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home");
+      window.location.reload();
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <Flex minHeight="80vh" align="center" width="full" justifyContent="center">
@@ -196,7 +228,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
         boxShadow="md"
       >
         <LoginHeader />
-        <LoginForm onLoginSuccess={HandleLoginSuccess} />
+        <LoginForm onLoginSuccess={handleLoginSuccess} />
       </Box>
     </Flex>
   );
