@@ -15,16 +15,16 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import styles from "../styles/pages/Register.module.css";
-import logoGoogle from "../google.png";
+import styles from "../styles/ProLoginRegister.css";
+import logoGoogle from "../../google.png";
 import logoFacebook from "../facebook.png";
-import logoUnbored from "../Logo_UNBORED.png"
+import logoUnbored from "../../Logo_UNBORED.png"
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
 
-const ClientLoginHeader: React.FC<{}> = () => {
+const ProLoginHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
       <Image
@@ -35,12 +35,12 @@ const ClientLoginHeader: React.FC<{}> = () => {
         borderRadius="full"
         mx="auto"
       />
-      <Text fontSize={20} fontWeight="bold">Se Connecter</Text>
+       <Text fontSize={20} fontWeight="bold">Pro</Text>
     </Box>
   );
 };
 
-const ClientLoginForm: React.FC<{}> = () => {
+const ProLoginForm: React.FC<{}> = () => {
 
   const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ const ClientLoginForm: React.FC<{}> = () => {
           localStorage.setItem('token', response.data.token);
 
           console.log("User connected");
-          navigate('/client-menu');
+          navigate('/Pro-menu');
         }
       } catch (error) {
         toast({
@@ -93,7 +93,7 @@ const ClientLoginForm: React.FC<{}> = () => {
   };
 
   return (
-    <Box textAlign="center">
+    <Box textAlign="center" width="500px">
       <form>
         <FormControl mt={10} textAlign="left">
           <FormLabel textAlign="left">Email</FormLabel>
@@ -132,10 +132,10 @@ const ClientLoginForm: React.FC<{}> = () => {
           <Box>
             <Checkbox>Se souvenir de moi</Checkbox>
           </Box>
-          <Box><Link href="/client-forgetpwd">Mot de passe oublié ?</Link></Box>
+          <Box><Link href="/Pro-forgetpwd">Mot de passe oublié ?</Link></Box>
         </Stack>
         <Text fontSize={15} textAlign="center" color="gray">
-          Je n'ai pas de compte <Link color="orange" href="/client-register">s'inscrire</Link>
+          Je n'ai pas de compte <Link color="orange" href="/Pro-register">s'inscrire</Link>
         </Text>
         <Link href="/home">
           <Link href="/home">
@@ -159,7 +159,7 @@ const ClientLoginForm: React.FC<{}> = () => {
         </Link>
         <Stack isInline justifyContent="space-between" my={4}>
           <Button borderRadius={12} boxShadow="lg" color={"black"}>
-            <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
+          <img src={logoGoogle} alt="Logo" className={styles["logo"]} width="20" height="20" />
             Continuer avec Google
           </Button>
         </Stack>
@@ -168,7 +168,7 @@ const ClientLoginForm: React.FC<{}> = () => {
   );
 };
 
-const ClientLoginPage: React.FC<{}> = () => {
+const ProLoginPage: React.FC<{}> = () => {
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
       <Box borderColor="#E1604D"
@@ -178,11 +178,11 @@ const ClientLoginPage: React.FC<{}> = () => {
         borderRadius={40}
         backgroundColor="white"
         boxShadow="md">
-        <ClientLoginHeader />
-        <ClientLoginForm />
+        <ProLoginHeader />
+        <ProLoginForm />
       </Box>
     </Flex>
   );
 };
 
-export default ClientLoginPage;
+export default ProLoginPage;

@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from 'react';
-import '../styles/pages/ChooseContractPage.css';
+import '../styles/ProChooseContractPage.css';
 
 interface Activity {
   id: number;
@@ -56,7 +56,7 @@ class ChooseContractPage extends Component<{}, State> {
 
     const contractTypes: ContractType[] = [
       { id: 1, name: 'Mise en avant', description: 'Description de la mise en avant' },
-      { id: 2, name: 'Paiement par Clients', description: 'Description du paiement par clients' },
+      { id: 2, name: 'Paiement par Pros', description: 'Description du paiement par Pros' },
     ];
 
     const { selectedActivity, selectedContractType } = this.state;

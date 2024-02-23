@@ -1,5 +1,5 @@
 
-import '../styles/pages/ClientMyAccount.css'; // Utilisez les mêmes styles que ClientProfile
+import '../styles/ProMyAccount.css'; // Utilisez les mêmes styles que ProProfile
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import React, { Component, ChangeEvent, useState, useEffect } from 'react';
@@ -10,7 +10,7 @@ interface Field {
     value: string;
 }
 
-function ClientMyAccount() {
+function ProMyAccount() {
     const [fields, setFields] = useState<Field[]>([
         { label: 'Nom', value: '' },
         { label: 'Mail', value: '' },
@@ -213,4 +213,4 @@ function ClientMyAccount() {
     );
 }
 
-export default ClientMyAccount;
+export default ProMyAccount;

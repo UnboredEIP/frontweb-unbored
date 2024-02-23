@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
-import '../styles/pages/ClientModifyActivity.css';
+import '../styles/ProModifyActivity.css';
 import activityImage from "../google.png";
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -8,7 +8,7 @@ import { useToast } from "@chakra-ui/react";
 
 interface State {
   id_exemple: string;
-  type: string;
+  type: string[];
   nom: string;
   horaires: string;
   date: string;
@@ -25,7 +25,7 @@ interface State {
 const ActivityDetailsPage: React.FC = () => {
   const [state, setState] = useState<State>({
     id_exemple: '',
-    type: '',
+    type: [],
     nom: '',
     horaires: '',
     date: '',
@@ -41,18 +41,19 @@ const ActivityDetailsPage: React.FC = () => {
 
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
-
+  
     setState({
       ...state,
+      type: selectedOptions  // Mettre à jour l'état avec les options sélectionnées
     });
   }
-
+  
   const toast = useToast();
 
   const ModifyActivity = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      const { type, nom } = state;
+      const { type, nom, adresse } = state;
 
       const token = localStorage.getItem('token');
       const config = {
@@ -64,6 +65,7 @@ const ActivityDetailsPage: React.FC = () => {
       const response = await axios.put(`http://20.216.143.86/event/editevent?id=${id}`, {
         categories: type,
         name: nom,
+        address: adresse,
       }, config);
 
       const pictureURl = `http://20.216.143.86/event/upload?id=${id}`

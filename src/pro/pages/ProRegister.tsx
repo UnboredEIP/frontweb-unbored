@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import styles from "../styles/pages/Register.module.css";
+import styles from "../styles/ProLoginRegister.css";
 import {
   Box,
   Heading,
@@ -15,9 +15,9 @@ import {
   InputRightElement,
   Image,
 } from "@chakra-ui/react";
-import logoGoogle from "../google.png";
+import logoGoogle from "../../google.png";
 import logoFacebook from "../facebook.png";
-import logoUnbored from "../Logo_UNBORED.png"
+import logoUnbored from "../../Logo_UNBORED.png"
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ const RegisterHeader: React.FC<{}> = () => {
           borderRadius="full"
           mx="auto"
         />
-        <Text fontSize={20}>S'inscrire gratuitement</Text>
+        <Text fontSize={20}>Pro</Text>
       </Heading>
     </Box>
   );
@@ -105,7 +105,7 @@ const RegisterForm: React.FC<{}> = () => {
         console.log(response.status);
         if (response.status === 201) {
           console.log("User created");
-          navigate('/client-login');
+          navigate('/Pro-login');
         }
         if (response.status === 409) {
           toast({
@@ -140,12 +140,12 @@ const RegisterForm: React.FC<{}> = () => {
   const isLoggedIn = localStorage.getItem("token") !== null;
 
   return (
-    <Box textAlign="center">
-      {isLoggedIn ? (
+    <Box textAlign="center" width="500px">
+      {/* {isLoggedIn ? (
         <Text fontSize={15} textAlign="center" color="gray">
           Vous êtes déjà connecté. <Link color="orange" href="/dashboard">Accéder au tableau de bord</Link>
         </Text>
-      ) : (
+      ) : ( */}
         <form>
           <FormControl mt={10} textAlign="left">
             <FormLabel textAlign="left" mt={4}>Nom d'utilisateur</FormLabel>
@@ -219,7 +219,7 @@ const RegisterForm: React.FC<{}> = () => {
             )}
           </FormControl>
           <Text fontSize={15} textAlign="center" color="gray">
-            J'ai déjà un compte, <Link color="orange" href="/client-login">se connecter</Link>
+            J'ai déjà un compte, <Link color="orange" href="/Pro-login">se connecter</Link>
           </Text>
           <Button
             type="submit"
@@ -240,17 +240,17 @@ const RegisterForm: React.FC<{}> = () => {
 
           <Stack isInline justifyContent="space-between" my={4}>
             <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
+            <img src={logoGoogle} alt="Logo" className={styles["logo"]} width="20" height="20" />
               Continuer avec Google
             </Button>
           </Stack>
         </form>
-      )}
+      {/* )} */}
     </Box>
   );
 };
 
-const ClientRegisterPage: React.FC<{}> = () => {
+const ProRegisterPage: React.FC<{}> = () => {
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
       <Box
@@ -269,4 +269,4 @@ const ClientRegisterPage: React.FC<{}> = () => {
   );
 };
 
-export default ClientRegisterPage;
+export default ProRegisterPage;

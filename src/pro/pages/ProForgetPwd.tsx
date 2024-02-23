@@ -12,8 +12,10 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { useToast } from "@chakra-ui/react";
+import { useNavigate } from 'react-router-dom';
 
-const ClientLoginHeader: React.FC<{}> = () => {
+const ProLoginHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
       <Box
@@ -31,7 +33,7 @@ const ClientLoginHeader: React.FC<{}> = () => {
   );
 };
 
-const ClientLoginForm: React.FC<{}> = () => {
+const ProLoginForm: React.FC<{}> = () => {
   const [email, setEmail] = useState("");
   const [isCodeVisible, setIsCodeVisible] = useState(false);
   const [code, setCode] = useState("");
@@ -46,6 +48,28 @@ const ClientLoginForm: React.FC<{}> = () => {
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
+
+  async function makePasswordResetRequest(email: string) {
+    try {
+      const response = await fetch("http://20.216.143.86/auth/askreset", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      if (response.status === 202) {
+        console.log("EMAIL SENT");
+        return true;
+      } else {
+        console.error("EMAIL SEND ERROR:", await response.text());
+        return false;
+      }
+    } catch (error) {
+      console.error("Request error: ", error);
+      return false;
+    }
+  } 
 
   const handleCodeChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     // try {
@@ -88,6 +112,34 @@ const ClientLoginForm: React.FC<{}> = () => {
     // }
   };
 
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  const handleSendEmail = async () => {
+    const isEmailSent = await makePasswordResetRequest(email);
+    if (isEmailSent) {
+      toast({
+        title: "Succès",
+        description: "Un mail vous a été envoyé",
+        status: "success",
+        duration: 3000, // Durée d'affichage du toast en millisecondes
+        isClosable: true
+      });
+      
+      setTimeout(() => {
+        navigate('/Pro-login');
+      }, 3000);   
+    } else {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envois du mail",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
   const handleChangePassword = async () => {
     if (newPassword === confirmNewPassword) {
       try {
@@ -95,7 +147,7 @@ const ClientLoginForm: React.FC<{}> = () => {
           newPassword,
         });
         if (response.status === 200) {
-          return <Link to="/client-login" />;
+          return <Link to="/Pro-login" />;
         } else {
           console.error('Request failed');
         }
@@ -119,7 +171,7 @@ const ClientLoginForm: React.FC<{}> = () => {
     event.preventDefault();
     if (isFormValid) {
       try {
-        const response = await axios.post("http://192.168.43.91:3000/client-forgetpwd", {
+        const response = await axios.post("http://192.168.43.91:3000/Pro-forgetpwd", {
           email,
         });
         console.log(response.data);
@@ -150,7 +202,7 @@ const ClientLoginForm: React.FC<{}> = () => {
         {!isCodeVisible && isEmailVisible && (
           <>
             <Text fontSize={16} color="white">
-              Un mail de confirmation de mot de passe oublié va être envoyé à votre compte avec un mot de passe à 6 chiffres
+              Un mail avec un lien pour réinitialiser votre mot de passe vous sera envoyé
             </Text>
             <Button
               mt={4}
@@ -160,7 +212,7 @@ const ClientLoginForm: React.FC<{}> = () => {
               backgroundColor="#E1604D"
               color="whitesmoke"
               isDisabled={!isFormValid}
-              onClick={handleSendCode}
+              onClick={handleSendEmail}
             >
               Envoyer
             </Button>
@@ -223,7 +275,7 @@ const ClientLoginForm: React.FC<{}> = () => {
                 onChange={handleConfirmNewPasswordChange}
               ></Input>
             </FormControl>
-            {/* <Link to="/client-login"> */}
+            {/* <Link to="/Pro-login"> */}
             <Button
               as={ChakraLink}
               mt={4}
@@ -245,7 +297,7 @@ const ClientLoginForm: React.FC<{}> = () => {
   );
 };
 
-const ClientForgetPwd: React.FC<{}> = () => {
+const ProForgetPwd: React.FC<{}> = () => {
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
       <Box
@@ -254,14 +306,14 @@ const ClientForgetPwd: React.FC<{}> = () => {
         px={7}
         py={7}
         borderRadius={40}
-        backgroundColor="lightgray"
+        backgroundColor="white"
         boxShadow="md"
       >
-        <ClientLoginHeader />
-        <ClientLoginForm />
+        <ProLoginHeader />
+        <ProLoginForm />
       </Box>
     </Flex>
   );
 };
 
-export default ClientForgetPwd;
+export default ProForgetPwd;

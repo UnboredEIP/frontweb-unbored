@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/pages/ClientMyContract.css';
+import '../styles/ProMyContract.css';
 
 interface Activity {
     id: number;
@@ -13,7 +13,7 @@ interface ContractType {
     description: string;
 }
 
-const ClientMyContract: React.FC = () => {
+const ProMyContract: React.FC = () => {
     const navigate = useNavigate();
     const [selectedActivity, setSelectedActivity] = useState('Activité 1');
     const [selectedContractType, setSelectedContractType] = useState('Mise en avant');
@@ -26,7 +26,7 @@ const ClientMyContract: React.FC = () => {
 
     const contractTypes: ContractType[] = [
         { id: 1, name: 'Mise en avant', description: 'Description de la mise en avant' },
-        { id: 2, name: 'Paiement par Clients', description: 'Description du paiement par clients' },
+        { id: 2, name: 'Paiement par Pros', description: 'Description du paiement par Pros' },
     ];
 
     return (
@@ -92,4 +92,4 @@ const ClientMyContract: React.FC = () => {
     );
 }
 
-export default ClientMyContract;
+export default ProMyContract;

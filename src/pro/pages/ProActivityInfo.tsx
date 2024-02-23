@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent, useState, useEffect } from 'react';
-import '../styles/pages/ClientActivityInfo.css';
+import '../styles/ProActivityInfo.css';
 import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -127,11 +127,11 @@ const ActivityDetailsPage: React.FC = () => {
       <div className="ActivityInfo-container">
         <div className="ActivityInfo-header">
           <button onClick={() => navigate(-1)}>Retour</button>
-          <Link to="/client-myAvis">
+          <Link to="/Pro-myAvis">
             <button>Avis</button>
           </Link>
           <div className="ActivityInfo-buttons">
-            <Link to={`/client-modifyActivity/${id}`}>
+            <Link to={`/Pro-modifyActivity/${id}`}>
               <button>Modifier</button>
             </Link>
             <button onClick={deleteActivity}>Supprimer</button>
