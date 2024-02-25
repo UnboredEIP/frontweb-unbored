@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import '../styles/pages/ClientProfile.css';
+import '../styles/ProProfile.css';
 
 interface ButtonProps {
   text: string;
@@ -10,12 +10,12 @@ interface ButtonProps {
 function Button({ text }: ButtonProps) {
   let toPath = '/';
   if (text === 'Mon compte') {
-    toPath = '/client-myAccount';
+    toPath = '/Pro-myAccount';
   } else if (text === 'Activité') {
-    toPath = '/client-myActivites';
+    toPath = '/Pro-myActivites';
   }
   else if (text === 'Contrat') {
-    toPath = '/client-myContract';
+    toPath = '/Pro-myContract';
   }
 
   return (
@@ -27,7 +27,7 @@ function Button({ text }: ButtonProps) {
   );
 }
 
-function ClientProfile() {
+function ProProfile() {
   const topButtonLabels = ['Mon compte', 'Entreprise', 'Activité', 'Contrat', 'Historique'];
   const botButtonLabels = ['Transactions', 'Parametre', 'Outil', 'Aide', 'Déconnexion'];
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function ClientProfile() {
   return (
     <div className="button-box">
       <div className="Profile-back-button">
-        <Link to="/client-menu">
+        <Link to="/Pro-menu">
           <button>Retour</button>
         </Link>
       </div>
@@ -56,4 +56,4 @@ function ClientProfile() {
   );
 }
 
-export default ClientProfile;
+export default ProProfile;

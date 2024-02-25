@@ -7,6 +7,10 @@
         {
             "label": "Se connecter",
             "href": "/login"
+        },
+        {
+            "label": "Unbored Pro",
+            "href": "/Pro-login"
         }
     ],
     "navbar_links_connected": [

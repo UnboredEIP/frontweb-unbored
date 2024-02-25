@@ -12,6 +12,7 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, useLocation  } from "react-router-dom";
 import { ContextUpdatePassword } from "../../contexts/UpdatePasswordContext";
+import { useToast } from "@chakra-ui/react";
 
 interface ForgotPasswordPageProps {
   onUpdateSuccess: () => void;
@@ -51,7 +52,7 @@ const UpdatePasswordHeader: React.FC<{}> = () => {
           textShadow="lg"
           padding={7}
         >
-          Mot de passe oulbié ? Change le !
+          Mot de passe oublié ? Change le !
         </Box>
       </Heading>
     </Box>
@@ -80,12 +81,32 @@ const UpdatePasswordForm: React.FC<{ onUpdateSuccess: () => void }> = ({
     setPassword(event.target.value);
   };
 
+  const toast = useToast();
+  const navigate = useNavigate();
+
   const handleSubmit = async () => {
     const success = await makeUpdatePasswordRequest(id, password);
     if (success) {
       console.log("Update success");
-      onUpdateSuccess();
+      // onUpdateSuccess();
+      toast({
+        title: "Succès",
+        description: "Votre mot de passe a bien été mis à jour",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);  
     } else {
+      toast({
+        title: "Erreur",
+        description: "Adress mail ou mot de passe incorrect",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
       console.log("error");
     }
   };

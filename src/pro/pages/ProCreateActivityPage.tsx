@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import '../styles/pages/CreateActivityPage.css';
+import '../styles/ProCreateActivityPage.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';

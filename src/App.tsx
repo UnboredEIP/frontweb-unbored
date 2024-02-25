@@ -9,28 +9,29 @@ import RegisterPage from "./pages/Register";
 import HomePage from "./pages/Home";
 import PresentationPage from "./pages/Presentation";
 import ParticleBackground from "./components/ParticleBackground";
-import CreateActivityPage from "./pages/CreateActivityPage";
-import ChooseContractPage from "./pages/ChooseContractPage";
+import CreateActivityPage from "./pro/pages/ProCreateActivityPage";
+import ChooseContractPage from "./pro/pages/ProChooseContractPage";
 import { useNavigate } from "react-router-dom";
 import UpdateProfilePage from "./pages/profile/UpdateProfile";
-import ClientLoginPage from "./pages/ClientLogin";
-import ClientRegisterPage from "./pages/ClientRegister";
-import ClientForgetPwd from "./pages/ClientForgetPwd";
-import ClientProfile from "./pages/ClientProfile";
-import ClientMyAccount from "./pages/ClientMyAccount";
-import ClientMyActivities from "./pages/ClientMyActivites";
-import ClientActivityInfo from "./pages/ClientActivityInfo";
-import ClientMyContract from "./pages/ClientMyContract";
-import ClientModifyActivity from "./pages/ClientModifyActivity";
+import ProLoginPage from "./pro/pages/ProLogin";
+import ProRegisterPage from "./pro/pages/ProRegister";
+import ProForgetPwd from "./pro/pages/ProForgetPwd";
+import ProProfile from "./pro/pages/ProProfile";
+import ProMyAccount from "./pro/pages/ProMyAccount";
+import ProMyActivities from "./pro/pages/ProMyActivites";
+import ProActivityInfo from "./pro/pages/ProActivityInfo";
+import ProMyContract from "./pro/pages/ProMyContract";
+import ProModifyActivity from "./pro/pages/ProModifyActivity";
 import UpdateEmailPage from "./pages/profile/UpdateEmail";
 import UpdatePasswordPage from "./pages/profile/UpdatePassword";
 import ProfilePage from "./pages/Profile";
-import AvisActivityPage from "./pages/ClientAvisActivity";
+import AvisActivityPage from "./pro/pages/ProAvisActivity";
 import ForgotpasswordPage from "./pages/profile/ForgotPassword";
 import CalendarComponent from './pages/CalendarComponent';
 import timelineData from "./components/Timeline/timeline.json";
-import ClientMenuPage from "./pages/ClientMenu";
+import ProMenuPage from "./pro/pages/ProMenu";
 import ForgetPass from "./pages/profile/ForgotPass"
+
 
 
 function App() {
@@ -111,40 +112,40 @@ function App() {
             path="/choose-contract"
             element={<ChooseContractPage />}
           />
-          <Route path="/client-login" element={<ClientLoginPage />} />
+          <Route path="/Pro-login" element={<ProLoginPage />} />
           <Route
-            path="/client-register"
-            element={<ClientRegisterPage />}
+            path="/Pro-register"
+            element={<ProRegisterPage />}
           />
-          <Route path="/client-forgetpwd" element={<ClientForgetPwd />} />
-          <Route path="/client-profile" element={<ClientProfile />} />
+          <Route path="/Pro-forgetpwd" element={<ProForgetPwd />} />
+          <Route path="/Pro-profile" element={<ProProfile />} />
           <Route
-            path="/client-myAccount"
-            element={<ClientMyAccount />}
-          />
-          <Route
-            path="/client-myActivites"
-            element={<ClientMyActivities />}
+            path="/Pro-myAccount"
+            element={<ProMyAccount />}
           />
           <Route
-            path="/client-activityInfo/:id"
-            element={<ClientActivityInfo />}
+            path="/Pro-myActivites"
+            element={<ProMyActivities />}
           />
           <Route
-            path="/client-modifyActivity/:id"
-            element={<ClientModifyActivity />}
+            path="/Pro-activityInfo/:id"
+            element={<ProActivityInfo />}
           />
           <Route
-            path="/client-myAvis"
+            path="/Pro-modifyActivity/:id"
+            element={<ProModifyActivity />}
+          />
+          <Route
+            path="/Pro-myAvis"
             element={<AvisActivityPage />}
           ></Route>
           <Route
-            path="/client-myContract"
-            element={<ClientMyContract />}
+            path="/Pro-myContract"
+            element={<ProMyContract />}
           />
           <Route
-            path="/client-menu"
-            element={<ClientMenuPage />}
+            path="/Pro-menu"
+            element={<ProMenuPage />}
           />
           <Route
             path="/calendar"

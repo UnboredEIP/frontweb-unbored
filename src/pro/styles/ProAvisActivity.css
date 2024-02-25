@@ -1,4 +1,4 @@
-.ClientAvisActivity-form-container {
+.ProAvisActivity-form-container {
   width: 60%;
   margin: 0 auto;
   background-color: white;
@@ -7,12 +7,12 @@
   border-radius: 10px;
 }
 
-.ClientAvisActivity-back-button {
+.ProAvisActivity-back-button {
   align-self: flex-start;
   margin: 10px;
 }
 
-.ClientAvisActivity-back-button button {
+.ProAvisActivity-back-button button {
   padding: 5px 10px;
   background-color: #E1604D;
   color: white;
@@ -23,11 +23,11 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.ClientAvisActivity-back-button button:hover {
+.ProAvisActivity-back-button button:hover {
   background-color: #D15040;
 }
 
-.ClientAvisActivity-form-title {
+.ProAvisActivity-form-title {
   text-align: center;
   justify-content: center;
   background-color: red;
@@ -48,7 +48,7 @@
   /* Add shadow to text */
 }
 
-.ClientAvisActivity-form-nobox-title {
+.ProAvisActivity-form-nobox-title {
   text-align: left;
   justify-content: center;
   padding: 10px;
@@ -63,7 +63,7 @@
   /* Add shadow to text */
 }
 
-.ClientAvisActivity-redbar {
+.ProAvisActivity-redbar {
   border-bottom: 5px solid red;
   /* Add this line */
   width: 100%;
@@ -71,7 +71,7 @@
   margin-bottom: auto;
 }
 
-.ClientAvisActivity-note {
+.ProAvisActivity-note {
   text-align: center;
   justify-content: center;
   padding: 10px;
@@ -85,7 +85,7 @@
   margin: auto auto auto auto;
 }
 
-.ClientAvisActivity-note-globale {
+.ProAvisActivity-note-globale {
   text-align: center;
   justify-content: center;
   padding: 10px;
@@ -101,17 +101,17 @@
 }
 
 
-.ClientAvisActivity-container {
+.ProAvisActivity-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ClientAvisActivity-label {
+.ProAvisActivity-label {
   color: var(--mainColor);
 }
 
-.ClientAvisActivity-editable-field {
+.ProAvisActivity-editable-field {
   border-radius: 15px;
   padding: 10px;
   max-width: 80%;
@@ -122,7 +122,7 @@
   font-size: 16px;
 }
 
-.ClientAvisActivity-editable-field:focus {
+.ProAvisActivity-editable-field:focus {
   border-color: blue;
   /* Style pour l'édition */
 }
@@ -135,7 +135,7 @@
   justify-content: center;
 }
 
-.ClientAvisActivity-input {
+.ProAvisActivity-input {
   border: 2px solid var(--mainColor);
   border-radius: 20px;
   padding: 6px;
@@ -164,23 +164,23 @@
   border-width: 2px !important;
 }
 
-.ClientAvisActivity-text-orange {
+.ProAvisActivity-text-orange {
   border: 2px solid var(--mainColor);
   border-radius: 20px;
   padding: 8px;
   width: 100%;
 }
 
-.ClientAvisActivity-label-orange {
+.ProAvisActivity-label-orange {
   color: var(--mainColor);
 }
 
-.ClientAvisActivity-form-container textarea {
+.ProAvisActivity-form-container textarea {
   height: 150px;
 }
 
 
-.ClientAvisActivity-center-button button[type="submit"] {
+.ProAvisActivity-center-button button[type="submit"] {
   background-color: var(--mainColor);
   /* Autres styles optionnels */
   color: white;
@@ -190,24 +190,24 @@
   /* ... */
 }
 
-.ClientAvisActivity-form-row {
+.ProAvisActivity-form-row {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.ClientAvisActivity-center-button {
+.ProAvisActivity-center-button {
   display: flex;
   justify-content: center;
 }
 
-.ClientAvisActivity-separator {
+.ProAvisActivity-separator {
   border-bottom: 2px solid gray;
   margin: 20px 0;
 }
 
-.ClientAvisActivity-separator-vertical {
+.ProAvisActivity-separator-vertical {
   border-left: 2px solid gray;
   margin: 20px 0;
   height: 100%;
@@ -216,12 +216,12 @@
 
 
 
-.ClientAvisActivity-column_10 {
+.ProAvisActivity-column_10 {
   flex: 0 0 10%;
   max-width: 10%;
 }
 
-.ClientAvisActivity-column_15 {
+.ProAvisActivity-column_15 {
   color: var(--mainColor);
   flex: 0 0 15%;
   max-width: 15%;
@@ -229,7 +229,7 @@
 
 }
 
-.ClientAvisActivity-column_20 {
+.ProAvisActivity-column_20 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 20%;
@@ -238,14 +238,14 @@
 
 /* UTILE  */
 
-.ClientAvisActivity-column_25 {
+.ProAvisActivity-column_25 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 25%;
   max-width: 25%;
 }
 
-.ClientAvisActivity-column_50 {
+.ProAvisActivity-column_50 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 50%;
@@ -253,7 +253,7 @@
   width: 50%
 }
 
-.ClientAvisActivity-column_75 {
+.ProAvisActivity-column_75 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 75%;
@@ -261,7 +261,7 @@
   margin: auto 0 auto 0;
 }
 
-.ClientAvisActivity-column_100 {
+.ProAvisActivity-column_100 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 100%;
@@ -269,7 +269,7 @@
   width: 100%
 }
 
-.ClientAvisActivity-label-column_25 {
+.ProAvisActivity-label-column_25 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 25%;
@@ -277,7 +277,7 @@
   width: 25%
 }
 
-.ClientAvisActivity-label-column_15 {
+.ProAvisActivity-label-column_15 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 15%;
@@ -286,7 +286,7 @@
   margin: auto auto auto auto;
 }
 
-.ClientAvisActivity-label-column_50 {
+.ProAvisActivity-label-column_50 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 50%;
@@ -294,14 +294,14 @@
   width: 50%
 }
 
-.ClientAvisActivity-label-column_75 {
+.ProAvisActivity-label-column_75 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 75%;
   max-width: 75%;
 }
 
-.ClientAvisActivity-label-column_100 {
+.ProAvisActivity-label-column_100 {
   color: var(--mainColor);
   text-align: left;
   /* flex: 0 0 100%; */
@@ -309,14 +309,14 @@
   position: relative;
 }
 
-.ClientAvisActivity-label-column {
+.ProAvisActivity-label-column {
   color: var(--mainColor);
   text-align: left;
 }
 
 /* UTILE */
 
-.ClientAvisActivity-column_30 {
+.ProAvisActivity-column_30 {
   flex: 0 0 30%;
   max-width: 30%;
 }
@@ -324,7 +324,7 @@
 
 
 
-.ClientAvisActivity-row {
+.ProAvisActivity-row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -333,7 +333,7 @@
   /* Align items at the top */
 }
 
-.ClientAvisActivity-boxshadow-left-side {
+.ProAvisActivity-boxshadow-left-side {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -345,7 +345,7 @@
   margin-bottom: 1%;
 }
 
-.ClientAvisActivity-boxshadow-right-side {
+.ProAvisActivity-boxshadow-right-side {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -357,21 +357,21 @@
   margin-bottom: 1%;
 }
 
-.ClientAvisActivity-left-side {
+.ProAvisActivity-left-side {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 1% 1% 1% 1%;
 }
 
-.ClientAvisActivity-right-side {
+.ProAvisActivity-right-side {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 1% 1% 1% 1%;
 }
 
-.ClientAvisActivity-left-side .ClientAvisActivity-column_20 {
+.ProAvisActivity-left-side .ProAvisActivity-column_20 {
   color: var(--mainColor);
   text-align: center;
   width: 100% !important;
@@ -379,12 +379,12 @@
   margin-right: 10%;
 }
 
-.ClientAvisActivity-left-side .ClientAvisActivity-column_50 {
+.ProAvisActivity-left-side .ProAvisActivity-column_50 {
   max-width: 100% !important;
   width: 50% !important;
 }
 
-.ClientAvisActivity-right-side .ClientAvisActivity-column_20 {
+.ProAvisActivity-right-side .ProAvisActivity-column_20 {
   color: var(--mainColor);
   text-align: center;
   width: 100% !important;
@@ -392,25 +392,25 @@
   margin-right: 10%;
 }
 
-.ClientAvisActivity-right-side .ClientAvisActivity-column_50 {
+.ProAvisActivity-right-side .ProAvisActivity-column_50 {
   max-width: 100% !important;
   width: 50% !important;
 }
 
 
-.ClientAvisActivity-photo-uploader {
+.ProAvisActivity-photo-uploader {
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.ClientAvisActivity-photo-uploader .ClientAvisActivity-column_20 {
+.ProAvisActivity-photo-uploader .ProAvisActivity-column_20 {
   width: 100%;
   max-width: 100%;
 }
 
-.ClientAvisActivity-image-upload {
+.ProAvisActivity-image-upload {
   display: flex;
   width: 100%;
   max-width: 100%;
@@ -420,11 +420,11 @@
   align-items: center;
 }
 
-.ClientAvisActivity-image-upload input[type="file"] {
+.ProAvisActivity-image-upload input[type="file"] {
   display: none;
 }
 
-.ClientAvisActivity-image-upload label {
+.ProAvisActivity-image-upload label {
   background-color: var(--mainColor);
   color: white;
   border-radius: 5px;
@@ -432,15 +432,15 @@
   cursor: pointer;
 }
 
-.ClientAvisActivity-price-empty {
+.ProAvisActivity-price-empty {
   margin-bottom: 53%;
 }
 
-.ClientAvisActivity-price-show {
+.ProAvisActivity-price-show {
   margin-top: 28%;
 }
 
-.ClientAvisActivity-price-form {
+.ProAvisActivity-price-form {
   display: flex;
   align-items: center;
   width: 100%;
@@ -451,14 +451,14 @@
 }
 
 /* 
-.ClientAvisActivity-form-row-price {
+.ProAvisActivity-form-row-price {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 11px;  
 } */
 
-.ClientAvisActivity-myButton {
+.ProAvisActivity-myButton {
   width: 200px;
   font-weight: bold;
   border-radius: 10px;

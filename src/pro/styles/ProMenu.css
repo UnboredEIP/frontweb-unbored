@@ -1,4 +1,4 @@
-.ClientMenu-titre_event {
+.ProMenu-titre_event {
   text-align: center;
   justify-content: center;
   background-color: red;
@@ -15,13 +15,13 @@
 }
 
 
-.ClientMenu-container {
+.ProMenu-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ClientMenu-sl-rouge {
+.ProMenu-sl-rouge {
   color: red;
   text-align: center;
   text-decoration: underline;
@@ -29,7 +29,7 @@
   margin: 1%;
 }
 
-.ClientMenu-red_values {
+.ProMenu-red_values {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@
   font-weight: bold; /* Met le texte en gras */
 }
 
-.ClientMenu-big_red_values {
+.ProMenu-big_red_values {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,7 @@
   font-weight: bold; /* Met le texte en gras */
 }
 
-.ClientMenu-normal_text {
+.ProMenu-normal_text {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,11 +56,11 @@
   text-align: center;
 }
 
-.ClientMenu-red_nb {
+.ProMenu-red_nb {
   color: red;
 }
 
-.ClientMenu-see_more {
+.ProMenu-see_more {
   text-align: center;
   justify-content: center;
   background-color: orange;
@@ -76,7 +76,7 @@
   margin: 1%;
 }
 
-.ClientMenu-boxshadow-right-side {
+.ProMenu-boxshadow-right-side {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -85,20 +85,20 @@
   margin: 1%
 }
 
-.ClientMenu-right-side {
+.ProMenu-right-side {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 1%;
 }
 
-.ClientMenu-row {
+.ProMenu-row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 
-.ClientMenu-boxshadow-left-side {
+.ProMenu-boxshadow-left-side {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -108,13 +108,13 @@
   padding: 1%;
 }
 
-.ClientMenu-button-container {
+.ProMenu-button-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.ClientMenu-button {
+.ProMenu-button {
   width: 150px;
   height: 150px;
   background-color: #E1604D;
@@ -128,7 +128,7 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.ClientMenu-form-container {
+.ProMenu-form-container {
   width: 60%;
   margin: 0 auto;
   background-color: white;

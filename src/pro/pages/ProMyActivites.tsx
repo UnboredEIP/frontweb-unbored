@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../styles/pages/ClientMyActivites.css';
+import '../styles/ProMyActivites.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -44,14 +44,14 @@ function Button({ text, activity }: ButtonProps) {
   };
 
   return (
-    <Link to={`/client-activityInfo/${activity._id}`} className="MyActivities-button">
+    <Link to={`/Pro-activityInfo/${activity._id}`} className="MyActivities-button">
       <div className="MyActivities-image-container" style={buttonStyle}></div>
       <div className="MyActivities-button-label">{text}</div>
     </Link>
   );
 }
 
-function ClientMyActivities() {
+function ProMyActivities() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -94,4 +94,4 @@ function ClientMyActivities() {
   );
 }
 
-export default ClientMyActivities;
+export default ProMyActivities;
