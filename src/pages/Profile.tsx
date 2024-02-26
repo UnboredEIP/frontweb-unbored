@@ -29,6 +29,7 @@ const ProfilePage = () => {
         const profileDetails = response.data.user;
         console.log("token de la  db: ")
         console.log(token)
+        console.log(profileDetails);
         
         // Check if the user has a profile picture
         if (profileDetails.profilPhoto) {

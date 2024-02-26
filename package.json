@@ -25,6 +25,7 @@
     "react-big-calendar": "^1.8.5",
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
+    "react-image-file-resizer": "^0.4.8",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "react-tsparticles": "^1.43.1",
