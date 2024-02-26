@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 interface Event {
   _id: string;
@@ -41,7 +42,14 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
               textColor={"E1604D"}
             >
               <strong>
-                <h2 style={{ fontSize: "24px" }}>{item.categories.join(', ')}</h2>
+                {/* Make the title clickable */}
+                <Link
+                  to={`/activity/${item._id}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  state={{ activity: item }} // Pass the activity information as state
+                >
+                  <h2 style={{ fontSize: "24px" }}>{item.categories.join(', ')}</h2>
+                </Link>
               </strong>
               <div
                 style={{
@@ -50,7 +58,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                 }}
               >
                 <img
-                  src={`https://your-image-base-url/${item.pictures[0].id}`}
+                  src={`http://20.216.143.86/getimage?imageName=${item.pictures[0].id}`}
                   alt={`Image for item ${item._id}`}
                   onError={(e) => {
                     e.currentTarget.src =

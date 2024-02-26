@@ -31,7 +31,7 @@ import CalendarComponent from './pages/CalendarComponent';
 import timelineData from "./components/Timeline/timeline.json";
 import ProMenuPage from "./pro/pages/ProMenu";
 import ForgetPass from "./pages/profile/ForgotPass"
-
+import ActivityPage from "./pages/ActivityPage";
 
 
 function App() {
@@ -151,6 +151,9 @@ function App() {
             path="/calendar"
             element={<CalendarComponent events={timelineData.events} />}
           />
+
+          <Route path="/activity/:id" element={<ActivityPage />} />
+
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
