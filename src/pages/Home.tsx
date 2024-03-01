@@ -1,32 +1,60 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/pages/Register.module.css";
-import { Box, Flex, Button,Input } from "@chakra-ui/react";
-import * as data from "../components/Timeline/timeline.json";
-import Timeline from "../components/Timeline/Timeline";
+import { Box, Flex, Button, Input } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-
-const timelineString = JSON.stringify(data);
-const timelineItems = JSON.parse(timelineString).events;
+import Timeline from "../components/Timeline/Timeline";
 
 type Event = {
-  id: number;
-  title: string;
-  date: string;
-  hour: string;
-  imageUrl: string;
-  catégorie: string;
+  _id: string;
+  name: string;
+  address: string;
+  rate: number[];
+  pictures: { id: string; userId: string }[];
+  categories: string[];
+  creator: string;
+  participents: string[];
 };
 
-
 const HomeHeader: React.FC<{}> = () => {
+  const [events, setEvents] = useState<Event[]>([]);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [eventToDisplay, setEventToDisplay] = useState("Sport");
   const [searchQuery, setSearchQuery] = useState("");
-  const [showAllEvents, setShowAllEvents] = useState(true); // State to control displaying all events
+  const [showAllEvents, setShowAllEvents] = useState(true);
 
   const navigate = useNavigate();
   const [isLoggedIn, setLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        };
+  
+        const response = await fetch('http://20.216.143.86/events/lists', config);
+  
+        if (response.status === 401) {
+          // Handle unauthorized access, e.g., redirect to login page
+          console.error('Unauthorized access');
+          return;
+        }
+  
+        const data = await response.json();
+        console.log(data);
+        setEvents(data.events);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
   const previousEvent = () => {
     if (currentEventIndex > 0) {
       setCurrentEventIndex(currentEventIndex - 1);
@@ -34,7 +62,7 @@ const HomeHeader: React.FC<{}> = () => {
   };
 
   const nextEvent = () => {
-    if (currentEventIndex < timelineItems.length - 1) {
+    if (currentEventIndex < events.length - 1) {
       setCurrentEventIndex(currentEventIndex + 1);
     }
   };
@@ -44,16 +72,16 @@ const HomeHeader: React.FC<{}> = () => {
 
   // Filter events by category or show all events
   const eventsToDisplay = showAllEvents
-    ? timelineItems
-    : timelineItems.filter((event: Event) => event.catégorie === eventToDisplay);
+    ? events || []  // Use empty array if events is undefined
+    : (events || []).filter((event) => event.categories.includes(eventToDisplay));
 
   // Filter events by search query
-  const filteredEvents = eventsToDisplay.filter((event: Event) =>
-    event.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredEvents = eventsToDisplay.filter((event) =>
+    event.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Get unique event categories
-  const uniqueCategories: string[] = Array.from(new Set(timelineItems.map((event: Event) => event.catégorie)));
+  const uniqueCategories: string[] = Array.from(new Set((events || []).map((event) => event.categories).flat()));
 
   const changeEventCategory = (category: string) => {
     setEventToDisplay(category);
@@ -68,11 +96,11 @@ const HomeHeader: React.FC<{}> = () => {
     setShowAllEvents(true); // Show all events when the button is clicked
   };
 
-  if (!isLoggedIn) {
-    console.log("toto est pas connecté");
-    //navigate('/');
-    //return null; // You can return null or any other placeholder while redirecting
-  }
+  // if (!isLoggedIn) {
+  //   console.log("toto est pas connecté");
+  //   //navigate('/');
+  //   //return null; // You can return null or any other placeholder while redirecting
+  // }
 
   return (
     <Flex direction="column">
@@ -80,7 +108,7 @@ const HomeHeader: React.FC<{}> = () => {
       <Input
         type="text"
         placeholder="Recherche les activités par titre"
-        style={{ fontSize: "36px" }}
+        style={{ fontSize: "36px", position: "relative", left: "350px" }}
         value={searchQuery}
         onChange={handleSearch}
       />
@@ -91,11 +119,11 @@ const HomeHeader: React.FC<{}> = () => {
       <Flex>
         <Button
           onClick={showAllEventsHandler}
-          style={{ position: "relative", left: "10px", top: "0px", fontSize: "36px" }}
-          variant={showAllEvents ? "solid" : "outline"} // Change button style based on the state
+          style={{ position: "relative", left: "350px", top: "0px", fontSize: "36px" }}
+          variant={showAllEvents ? "solid" : "outline"}
           bg="#e1604d"
           color="white"
-          mr={2} // Add right margin to separate it from category buttons
+          mr={2}
         >
           Tout les thémes
         </Button>
@@ -105,7 +133,7 @@ const HomeHeader: React.FC<{}> = () => {
         {uniqueCategories.map((category, index) => (
           <Button
             key={index}
-            style={{ position: "relative", left: "10px", top: "0px", fontSize: "36px" }}
+            style={{ position: "relative", left: "350px", top: "0px", fontSize: "36px" }}
             onClick={() => changeEventCategory(category)}
             variant={category === eventToDisplay ? "solid" : "outline"}
             bg="#e1604d"
@@ -116,7 +144,7 @@ const HomeHeader: React.FC<{}> = () => {
           </Button>
         ))}
       </Flex>
-
+      
       <Box style={{ position: "relative" }}>
         <Timeline items={filteredEvents} />
       </Box>
@@ -125,9 +153,7 @@ const HomeHeader: React.FC<{}> = () => {
 };
 
 
-
 const HomePage: React.FC<{}> = () => {
-
   const navigate = useNavigate();
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -138,17 +164,6 @@ const HomePage: React.FC<{}> = () => {
       {/* Add other content of your page here */}
     </Flex>
   );
-
-  // if (!isLoggedIn) {
-  //   console.log("toto est pas connecté");
-  //   //navigate('/');
-  //   //return null; // You can return null or any other placeholder while redirecting
-  // }
-  
-  // else {
-  //   console.log("toto est connecté");
-  // }
-  
 };
 
 export default HomePage;

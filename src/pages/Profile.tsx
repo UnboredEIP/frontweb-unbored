@@ -27,8 +27,10 @@ const ProfilePage = () => {
         const url = 'http://20.216.143.86/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
-        console.log("Information db ID: ")
-        console.log(profileDetails)
+        console.log("token de la  db: ")
+        console.log(token)
+        console.log(profileDetails);
+        
         // Check if the user has a profile picture
         if (profileDetails.profilPhoto) {
           const firstPictureId = profileDetails.profilPhoto;

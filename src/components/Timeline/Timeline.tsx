@@ -1,82 +1,92 @@
 import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
-interface TimelineItem {
-  id: number;
-  title: string;
-  date: string;
-  hour: string;
-  imageUrl: string;
-  catégorie: string;
+interface Event {
+  _id: string;
+  name: string;
+  address: string;
+  rate: number[];
+  pictures: { id: string; userId: string }[];
+  categories: string[];
+  creator: string;
+  participents: [];
+  description?: string;
 }
 
 interface TimelineProps {
-  items: TimelineItem[];
+  items: Event[];
 }
 
 const Timeline: React.FC<TimelineProps> = ({ items }) => {
   return (
     <div>
-      <Box
-        //borderColor="white"
-        borderWidth={10}
-        px={7}
-        py={7}
-        borderRadius={40}
-        //backgroundColor="#E1604D"
-        boxShadow="md"
-        textAlign={"center"}
-        mb={"20px"}
-        textColor={"E1604D"}
-      >
+      <Flex flexWrap="wrap" justifyContent="flex-end" marginLeft="300px">
         {items.map((item) => (
-          <li key={item.id}>
-            <strong>
-              <h2
-                style={{
-                  fontSize: "30px",
-                }}
-              >
-                {item.catégorie}
-              </h2>
-            </strong>
-            <div
-              style={{
-                marginBottom: "50px",
-                alignItems: "center",
-              }}
+          <Box
+            key={item._id}
+            width={{ base: "100%", md: "48%" }}
+            mb={{ base: "20px", md: "5%" }}
+            marginRight={{ md: "20px" }}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Box
+              borderWidth={10}
+              px={7}
+              py={7}
+              borderRadius={40}
+              boxShadow="md"
+              textAlign={"center"}
+              textColor={"E1604D"}
             >
-              <img
-                src={item.imageUrl}
-                alt={`Image for item ${item.id}`}
-                onError={(e) => {
-                  e.currentTarget.src =
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/EPITECH_Paris_Campus.jpg/1280px-EPITECH_Paris_Campus.jpg";
-                }}
-                style={{
-                  maxWidth: "600px",
-                  maxHeight: "600px",
-                  marginBottom: "25px",
-                  marginTop: "25px",
-                }}
-              />
+              <strong>
+                {/* Make the title clickable */}
+                <Link
+                  to={`/activity/${item._id}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  state={{ activity: item }} // Pass the activity information as state
+                >
+                  <h2 style={{ fontSize: "24px" }}>{item.categories.join(', ')}</h2>
+                </Link>
+              </strong>
               <div
                 style={{
-                  fontSize: "30px",
+                  marginBottom: "20px",
+                  alignItems: "center",
                 }}
               >
-            <h3><strong>{item.title}</strong></h3>
-            <p>
-              {item.date}
-              <br />
-              {item.hour}
-              <br />
-            </p>
-            </div>
-            </div>
-          </li>
+                <img
+                  src={`http://20.216.143.86/getimage?imageName=${item.pictures[0].id}`}
+                  alt={`Image for item ${item._id}`}
+                  onError={(e) => {
+                    e.currentTarget.src =
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/EPITECH_Paris_Campus.jpg/1280px-EPITECH_Paris_Campus.jpg";
+                  }}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "300px",
+                    marginBottom: "10px",
+                    marginTop: "10px",
+                  }}
+                />
+                <div
+                  style={{
+                    fontSize: "24px",
+                  }}
+                >
+                  <h3>
+                    <strong>{item.name}</strong>
+                  </h3>
+                  <p>{item.address}</p>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+            </Box>
+          </Box>
         ))}
-      </Box>
+      </Flex>
     </div>
   );
 };
