@@ -103,6 +103,18 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
     setRememberMe(!rememberMe);
   };
 
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+    const storedRememberMe = localStorage.getItem("rememberMe");
+
+    if (storedEmail && storedPassword && storedRememberMe === "true") {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, []);
+
   const handleSubmit = async () => {
     const success = await makeLoginRequest(email, password);
 
@@ -123,19 +135,7 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
       console.log("error ", success);
     }
   };
-
-  useEffect(() => {
-    const storedEmail = localStorage.getItem("email");
-    const storedPassword = localStorage.getItem("password");
-    const storedRememberMe = localStorage.getItem("rememberMe");
-
-    if (storedEmail && storedPassword && storedRememberMe === "true") {
-      setEmail(storedEmail);
-      setPassword(storedPassword);
-      setRememberMe(true);
-    }
-  }, []);
-
+  
   return (
     <Box textAlign="center">
       <ContextLogin.Provider value={contextData}>

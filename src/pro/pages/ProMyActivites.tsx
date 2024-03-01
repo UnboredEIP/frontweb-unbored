@@ -64,7 +64,7 @@ function ProMyActivities() {
           }
         };
 
-        const response = await axios.get('http://20.216.143.86/event/lists', config);
+        const response = await axios.get('http://20.216.143.86/events/lists', config);
         setEvents(response.data.events);
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);

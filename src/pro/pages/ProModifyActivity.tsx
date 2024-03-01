@@ -53,7 +53,7 @@ const ActivityDetailsPage: React.FC = () => {
   const ModifyActivity = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
-      const { type, nom, adresse } = state;
+      const { type, nom, adresse, date } = state;
 
       const token = localStorage.getItem('token');
       const config = {
@@ -62,10 +62,14 @@ const ActivityDetailsPage: React.FC = () => {
         }
       };
 
-      const response = await axios.put(`http://20.216.143.86/event/editevent?id=${id}`, {
+      const [hours, minutes] = state.horaires.split(':').map(Number);
+      const response = await axios.put(`http://20.216.143.86/events/edit?id=${id}`, {
         categories: type,
         name: nom,
         address: adresse,
+        date: date,
+        hours: hours,
+        minutes: minutes,
       }, config);
 
       const pictureURl = `http://20.216.143.86/event/upload?id=${id}`
@@ -114,7 +118,7 @@ const ActivityDetailsPage: React.FC = () => {
         },
       };
       console.log('ID from useParams:', id);
-      const url = `http://20.216.143.86/event/show?id=${id}`;
+      const url = `http://20.216.143.86/events/show?id=${id}`;
       const response = await axios.get(url, config);
       const activityDetails = response.data.event;
 
@@ -122,12 +126,17 @@ const ActivityDetailsPage: React.FC = () => {
         ? activityDetails.pictures[0].id
         : null;
 
+        const dateObject = new Date(activityDetails.date);
+      const formattedDate = dateObject.toISOString().split('T')[0];
+
+      const horaires = activityDetails.hours + ":" + activityDetails.minutes;
+
       setState({
         id_exemple: activityDetails._id,
         type: activityDetails.categories,
         nom: activityDetails.name,
-        horaires: activityDetails.horaires,
-        date: activityDetails.date,
+        horaires: horaires,
+        date: formattedDate,
         adresse: activityDetails.address,
         description: activityDetails.description,
         age: activityDetails.age,
@@ -259,7 +268,7 @@ const ActivityDetailsPage: React.FC = () => {
         <label className="ModifyActivity-column_25">
           <input
             className="ModifyActivity-input"
-            type="text"
+            type="time"
             value={state.horaires}
             onChange={(e) => setState(prevState => ({ ...prevState, horaires: e.target.value }))}
           />
@@ -271,7 +280,7 @@ const ActivityDetailsPage: React.FC = () => {
         <label className="ModifyActivity-column_25">
           <input
             className="ModifyActivity-input"
-            type="text"
+            type="date"
             value={state.date}
             onChange={(e) => setState(prevState => ({ ...prevState, date: e.target.value }))}
           />
