@@ -32,9 +32,7 @@ import timelineData from "./components/Timeline/timeline.json";
 import ProMenuPage from "./pro/pages/ProMenu";
 import ForgetPass from "./pages/profile/ForgotPass"
 import ManageAvatarPage from "./pages/ManageAvatar"
-
 import ActivityPage from "./pages/ActivityPage";
-
 
 
 function App() {

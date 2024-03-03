@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import fs from 'fs'; // Import the fs module
+import { useToast } from "@chakra-ui/react";
 
 const ActivityPage: React.FC = () => {
   const location = useLocation();
@@ -37,6 +38,68 @@ const ActivityPage: React.FC = () => {
   //console.log("toto");
   //console.log(activity);
   
+  const toast = useToast();
+
+  const BadRate = () => {
+    toast({
+      title: "Rate",
+      description: "Echec de la notation",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "red",
+    });
+  };
+
+  const GoodRate = () => {
+    toast({
+      title: "Rate",
+      description: "Notation réussie",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "green",
+    });
+  };
+
+  const NoCommentRate = () => {
+    toast({
+      title: "Rate",
+      description: "Ajoutez un commentaire",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "red",
+    });
+  };
+  
+  const NoRate = () => {
+    toast({
+      title: "Rate",
+      description: "Ajoutez une note",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "red",
+    });
+  };
+
+  const AlreadyInCalendar = () => {
+    toast({
+      title: "Calendrier",
+      description: "L'activité est déja dans le calendrier",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "yellow",
+    });
+  };
+  
+  const AddedInCalendar = () => {
+    toast({
+      title: "Calendrier",
+      description: "L'activité a été ajouté dans le calendrier",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "green",
+    });
+  };
+  
   if (!activity) {
     // Render loading state or any other content while fetching data
     return <div>Loading...</div>;
@@ -58,49 +121,55 @@ const ActivityPage: React.FC = () => {
   
         // Write the updated timeline data back to localStorage
         localStorage.setItem('timelineData', JSON.stringify(timelineArray));
-  
-        console.log('Event added to timeline successfully!');
+        AddedInCalendar();
+        //localStorage.removeItem('timelineData');
+        //console.log('Event added to timeline successfully!');
       } else {
-        console.log('Event is already in the timeline.');
+        //console.log('Event is already in the timeline.');
+        AlreadyInCalendar();
       }
     } catch (error) {
-      console.error('Error while adding event to timeline', error);
+      //console.error('Error while adding event to timeline', error);
     }
   };
 
   
   const addToCalendar = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('http://20.216.143.86/event/add', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify([activity.event._id]), // assuming the endpoint expects an array of events
-      });
+      // const token = localStorage.getItem('token');
+      // const response = await fetch('http://20.216.143.86/event/add', {
+      //   method: 'POST',
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify([activity.event._id]), // assuming the endpoint expects an array of events
+      // });
       
       addToTimeline(activity.event);
-      if (response.ok) {
-        //console.log('Event added to the calendar successfully!');
-        // Optionally, you can provide feedback to the user
-      } else {
-        //console.error('Failed to add the event to the calendar. Status:', response.status);
-      }
+      // if (response.ok) {
+      //   //console.log('Event added to the calendar successfully!');
+      //   // Optionally, you can provide feedback to the user
+      // } else {
+      //   //console.error('Failed to add the event to the calendar. Status:', response.status);
+      // }
     } catch (error) {
       //console.error('Error while adding the event to the calendar', error);
     }
   };
-  const averageRating = activity.rate
-  ? activity.rate.reduce((sum, r) => sum + parseInt(r.stars), 0) / activity.rate.length
-  : 0;
   
+  const averageRating =
+  activity.event && activity.event.rate && activity.event.rate.length > 0
+    ? activity.event.rate.reduce((sum, r) => sum + parseInt(r.stars), 0) / activity.event.rate.length
+    : 0;
+
+  const aaverageRating = 0;
   const handleUserRatingSubmit = async () => {
     // Perform the API call to allow the user to rate the event
     if (userRating === null) {
       // Handle the case where the user has not selected a rating
       console.error('Please select a rating before submitting.');
+      NoRate();
       return;
     }
 
@@ -117,14 +186,20 @@ const ActivityPage: React.FC = () => {
           comments: userComment,
         }),
       });
-      
-      
+      console.log(activity.rate);
       if (response.ok) {
         // Handle success, maybe show a success message
         console.log('User rated the event successfully!');
+        GoodRate();
         // Optionally, you can update the UI to reflect the new rating immediately
       } else {
         // Handle error, print the status error
+        if (userComment.length === 0) {
+          NoCommentRate();
+        }
+        else {
+          BadRate()
+        }
         console.error('Failed to rate the event. Status:', response.status);
       }
     } catch (error) {
@@ -190,19 +265,21 @@ const ActivityPage: React.FC = () => {
 
         {/* Display the average rating */}
         <div>
-          <p>Note moyenne: {renderStars(averageRating)}</p>
+        <p style={{ margin: '20px 0' }}>Note moyenne: {renderStars(averageRating)}</p>
         </div>
 
         {/* Add the rating form for the user */}
         <div>
-          <label htmlFor="userRating">Ta note: </label>
+        <label htmlFor="userRating" style={{ margin: '20px 0' }}>Ta note: </label>
           {renderStars(userRating || 0)}
         </div>
         <div>
-          <label htmlFor="userComment">Your Comment:</label>
+        <p style={{ margin: '20px 0' }}> </p>
+        <label htmlFor="userComment" style={{ margin: '20px 0' }}>Ton commentaire:</label>
           <textarea
             id="userComment"
             value={userComment}
+            placeholder='Ajoute un commentaire'
             onChange={(e) => setUserComment(e.target.value)}
             style={{ width: '100%', minHeight: '100px', padding: '8px', fontSize: '16px' }}
           />

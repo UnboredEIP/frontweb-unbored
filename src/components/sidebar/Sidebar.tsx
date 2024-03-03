@@ -19,14 +19,14 @@ const Nav = styled.div`
 `;
 
 const SidebarNav = styled.div<{ sidebar: boolean }>`
-  // background-color: var(--mainColor);
   width: 250px;
-  height: 100vh;
+  min-height: 100vh; /* Adjusted */
   position: fixed;
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   background-color: rgba(225, 96, 77, ${({ sidebar }) => (sidebar ? "1" : "0")});
   transition: 400ms;
+  overflow-y: auto; /* Added */
 `;
 
 const BackgroundCover = styled.div<{ sidebar: boolean }>`
@@ -42,12 +42,7 @@ const NavIcon = styled(Link)`
 `;
 
 const SidebarWrap = styled.div`
-  // display: flex;
-  // justify-content: flex-start;
-  align-items: center;
-  height: 6.2rem;
-  // background-color: var(--mainColor);
-  // padding-left: 75px;
+  height: 100%;
 `;
 
 const Sidebar: React.FC<{}> = () => {
