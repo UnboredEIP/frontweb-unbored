@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import fs from 'fs'; // Import the fs module
 import { useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const ActivityPage: React.FC = () => {
   const location = useLocation();
@@ -9,11 +10,17 @@ const ActivityPage: React.FC = () => {
   const [activity, setActivity] = useState<any>(null);
   const [userRating, setUserRating] = useState<number | null>(null);
   const [userComment, setUserComment] = useState<string>("");
+  const navigate = useNavigate(); // useNavigate always called
 
   useEffect(() => {
     const fetchActivity = async () => {
       try {
         const token = localStorage.getItem('token');
+        if (token === null) {
+          //console.log("caca null")
+          navigate("/");
+        }
+
         const response = await fetch(`http://20.216.143.86/events/show?id=${id}`,{
           method: 'GET',
           headers: {

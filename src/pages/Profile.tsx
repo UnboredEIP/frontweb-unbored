@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Box, Heading, Avatar, Text, Stack } from '@chakra-ui/react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState({
@@ -14,11 +15,17 @@ const ProfilePage = () => {
 
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
   const [responseImage, setResponseImage] = useState<string | null>(null);
+  const navigate = useNavigate(); // useNavigate always called
 
   useEffect(() => {
     const getProfileInfo = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');   
+        if (token === null) {
+          //console.log("caca null")
+          navigate("/");
+        }
+      
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,

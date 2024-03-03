@@ -21,6 +21,13 @@ const CalendarComponent: React.FC = () => {
   const [timelineData, setTimelineData] = useState<Event[]>([]);
   useEffect(() => {
     try {
+      const token = localStorage.getItem('token');
+       
+      if (token === null) {
+        //console.log("caca null")
+        navigate("/");
+      }
+    
       const timelineDataStr = localStorage.getItem('timelineData');
       const parsedTimelineData = timelineDataStr ? JSON.parse(timelineDataStr) : [];
       console.log('Timeline Data:', parsedTimelineData);

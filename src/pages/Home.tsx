@@ -4,6 +4,7 @@ import { Box, Flex, Button, Input } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Timeline from "../components/Timeline/Timeline";
 
+
 type Event = {
   _id: string;
   name: string;
@@ -15,20 +16,26 @@ type Event = {
   participents: string[];
 };
 
+
 const HomeHeader: React.FC<{}> = () => {
+  const navigate = useNavigate(); // useNavigate always called
   const [events, setEvents] = useState<Event[]>([]);
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [eventToDisplay, setEventToDisplay] = useState("Sport");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllEvents, setShowAllEvents] = useState(true);
 
-  const navigate = useNavigate();
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
+
+        if (token === null) {
+          //console.log("caca null")
+          navigate("/");
+        }
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -43,7 +50,7 @@ const HomeHeader: React.FC<{}> = () => {
           console.error('Unauthorized access');
           return;
         }
-  
+
         const data = await response.json();
         console.log(data);
         setEvents(data.events);

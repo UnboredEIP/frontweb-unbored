@@ -24,17 +24,17 @@ export const SidebarData: SidebarItem[] = [
     iconOpened: <AiFillCaretUp />,
     subnav: [
       {
-        title: "Màj profile",
+        title: "Mise à jour profile",
         path: "/update-profile",
         icon: <AiOutlineUser />,
       },
       {
-        title: "Màj email",
+        title: "Mise à jour email",
         path: "/update-email",
         icon: <AiOutlineMail />,
       },
       {
-        title: "Màj mot de passe",
+        title: "Mise à jour mot de passe",
         path: "/update-password",
         icon: <AiOutlineLock />,
       },
