@@ -1,15 +1,101 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import fs from 'fs'; // Import the fs module
 
 const ActivityPage: React.FC = () => {
   const location = useLocation();
-  const activity = location.state?.activity;
+  const { id } = useParams<{ id: string }>();
+  const [activity, setActivity] = useState<any>(null);
   const [userRating, setUserRating] = useState<number | null>(null);
   const [userComment, setUserComment] = useState<string>("");
 
-  // Calculate the average rating
-  const averageRating = activity.rate.reduce((sum, r) => sum + parseInt(r.stars), 0) / activity.rate.length;
+  useEffect(() => {
+    const fetchActivity = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://20.216.143.86/events/show?id=${id}`,{
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setActivity(data);
+        } else {
+          console.error('Failed to fetch activity details. Status:', response.status);
+        }
+      } catch (error) {
+        console.error('Error while fetching activity details', error);
+      }
+    };
 
+    fetchActivity();
+  }, [id]);
+
+  //console.log("toto");
+  //console.log(activity);
+  
+  if (!activity) {
+    // Render loading state or any other content while fetching data
+    return <div>Loading...</div>;
+  }
+
+  // Calculate the average rating
+
+  const addToTimeline = (eventData: any) => {
+    try {
+      const timelineData = localStorage.getItem('timelineData');
+      const timelineArray = timelineData ? JSON.parse(timelineData) : [];
+  
+      // Check if the event is already in the timeline
+      const isEventAlreadyAdded = timelineArray.some((event) => event._id === eventData._id);
+  
+      if (!isEventAlreadyAdded) {
+        // Add the new event data to the timeline
+        timelineArray.push(eventData);
+  
+        // Write the updated timeline data back to localStorage
+        localStorage.setItem('timelineData', JSON.stringify(timelineArray));
+  
+        console.log('Event added to timeline successfully!');
+      } else {
+        console.log('Event is already in the timeline.');
+      }
+    } catch (error) {
+      console.error('Error while adding event to timeline', error);
+    }
+  };
+
+  
+  const addToCalendar = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://20.216.143.86/event/add', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([activity.event._id]), // assuming the endpoint expects an array of events
+      });
+      
+      addToTimeline(activity.event);
+      if (response.ok) {
+        //console.log('Event added to the calendar successfully!');
+        // Optionally, you can provide feedback to the user
+      } else {
+        //console.error('Failed to add the event to the calendar. Status:', response.status);
+      }
+    } catch (error) {
+      //console.error('Error while adding the event to the calendar', error);
+    }
+  };
+  const averageRating = activity.rate
+  ? activity.rate.reduce((sum, r) => sum + parseInt(r.stars), 0) / activity.rate.length
+  : 0;
+  
   const handleUserRatingSubmit = async () => {
     // Perform the API call to allow the user to rate the event
     if (userRating === null) {
@@ -19,17 +105,20 @@ const ActivityPage: React.FC = () => {
     }
 
     try {
-      const response = await fetch(`/event/rate?id=${activity.id}`, {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://20.216.143.86/event/rate?id=${activity.event._id}`, {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          rating: userRating.toString(),
-          comment: userComment,
+          stars: userRating.toString(),
+          comments: userComment,
         }),
       });
-
+      
+      
       if (response.ok) {
         // Handle success, maybe show a success message
         console.log('User rated the event successfully!');
@@ -63,8 +152,8 @@ const ActivityPage: React.FC = () => {
     return stars;
   };
 
-  console.log("Les activités");
-  console.log(activity);
+  //console.log("Les activités");
+  //console.log(activity);
   if (!activity) {
     // Handle the case where activity information is not available
     return <div>Activity information not available.</div>;
@@ -83,29 +172,30 @@ const ActivityPage: React.FC = () => {
           display: 'inline-block',
         }}
       >
-        <h2 style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '24px' }}>{activity.name}</h2>
-        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.categories[0]}</p>
-        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.address}</p>
+        <h2 style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '24px' }}>{activity.event.name}</h2>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.categories[0]}</p>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.address}</p>
 
         <img
-          src={`http://20.216.143.86/getimage?imageName=${activity.pictures[0].id}`}
+          src={`http://20.216.143.86/getimage?imageName=${activity.event.pictures[0].id}`}
           alt={`Profile for ${activity.name}`}
           style={{
             maxWidth: '600px', // Adjust the size as needed
             maxHeight: '600px', // Adjust the size as needed
             borderRadius: '12px', // Rounded corners
             marginBottom: '40px',
+            marginLeft: '35px'
           }}
         />
 
         {/* Display the average rating */}
         <div>
-          <p>Average Rating: {renderStars(averageRating)}</p>
+          <p>Note moyenne: {renderStars(averageRating)}</p>
         </div>
 
         {/* Add the rating form for the user */}
         <div>
-          <label htmlFor="userRating">Your Rating: </label>
+          <label htmlFor="userRating">Ta note: </label>
           {renderStars(userRating || 0)}
         </div>
         <div>
@@ -117,7 +207,12 @@ const ActivityPage: React.FC = () => {
             style={{ width: '100%', minHeight: '100px', padding: '8px', fontSize: '16px' }}
           />
         </div>
-        <button onClick={handleUserRatingSubmit}>Submit Your Rating</button>
+        <button onClick={handleUserRatingSubmit}>Envoie ta note</button>
+
+        <div style={{ marginTop: '20px' }}>
+          <button onClick={addToCalendar}>Ajoute cette activité à ton calendrier</button>
+        </div>
+
       </div>
     </div>
   );

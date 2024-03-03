@@ -34,6 +34,7 @@ import ForgetPass from "./pages/profile/ForgotPass"
 import ActivityPage from "./pages/ActivityPage";
 
 
+
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
 
@@ -149,7 +150,7 @@ function App() {
           />
           <Route
             path="/calendar"
-            element={<CalendarComponent events={timelineData.events} />}
+            element={<CalendarComponent/>}
           />
 
           <Route path="/activity/:id" element={<ActivityPage />} />

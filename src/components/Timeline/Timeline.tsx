@@ -81,6 +81,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   </h3>
                   <p>{item.address}</p>
                   <p>{item.description}</p>
+                  <p>{item.date}</p>
                 </div>
               </div>
             </Box>

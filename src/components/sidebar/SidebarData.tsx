@@ -38,12 +38,12 @@ export const SidebarData: SidebarItem[] = [
         path: "/update-password",
         icon: <AiOutlineLock />,
       },
+      {
+        title: "Profile Info",
+        path: "/profile",
+        icon: <AiOutlineUser />,
+      },
     ],
-  },
-  {
-    title: "Profile Info",
-    path: "/profile",
-    icon: <AiOutlineUser />,
   },
   {
     title: "Login Pro",
