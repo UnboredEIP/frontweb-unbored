@@ -31,6 +31,8 @@ import CalendarComponent from './pages/CalendarComponent';
 import timelineData from "./components/Timeline/timeline.json";
 import ProMenuPage from "./pro/pages/ProMenu";
 import ForgetPass from "./pages/profile/ForgotPass"
+import ManageAvatarPage from "./pages/ManageAvatar"
+
 import ActivityPage from "./pages/ActivityPage";
 
 
@@ -99,7 +101,7 @@ function App() {
             path="/forgetpass"
             element={<ForgetPass onUpdateSuccess={HandleLoginSuccess} />}
           />
-          
+
           <Route
             path="/forgot-password"
             element={<ForgotpasswordPage onUpdateSuccess={HandleLoginSuccess} />}
@@ -148,6 +150,11 @@ function App() {
             path="/Pro-menu"
             element={<ProMenuPage />}
           />
+          <Route
+            path="/ManageAvatar"
+            element={<ManageAvatarPage />}
+          />
+          
           <Route
             path="/calendar"
             element={<CalendarComponent/>}

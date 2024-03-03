@@ -48,7 +48,7 @@ const ActivityDetailsPage: React.FC = () => {
         },
       };
       console.log('ID from useParams:', id);
-      const url = `http://20.216.143.86/event/show?id=${id}`;
+      const url = `http://20.216.143.86/events/show?id=${id}`;
       const response = await axios.get(url, config);
       const activityDetails = response.data.event;
 
@@ -56,12 +56,19 @@ const ActivityDetailsPage: React.FC = () => {
         ? activityDetails.pictures[0].id
         : null;
 
+      const dateObject = new Date(activityDetails.date);
+      const formattedDate = dateObject.toISOString().split('T')[0];
+
+      const horaires = activityDetails.hours + ":" + activityDetails.minutes;
+      // Utilisez formattedDate pour afficher dans un champ de type "date"
+
+
       setState({
         id_exemple: activityDetails._id,
         type: activityDetails.categories,
         nom: activityDetails.name,
-        horaires: activityDetails.horaires,
-        date: activityDetails.date,
+        horaires: horaires,
+        date: formattedDate,
         adresse: activityDetails.address,
         description: activityDetails.description,
         age: activityDetails.age,
@@ -70,7 +77,7 @@ const ActivityDetailsPage: React.FC = () => {
         email: activityDetails.email,
         telephone: activityDetails.telephone,
       });
-      
+
       const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
       const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
 
@@ -98,7 +105,7 @@ const ActivityDetailsPage: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const url = `http://20.216.143.86/event/deleteevent?id=${state.id_exemple}`;
+      const url = `http://20.216.143.86/events/delete?id=${state.id_exemple}`;
       const response = await axios.delete(url, config);
       console.log(response.data);
       toast({
@@ -205,7 +212,7 @@ const ActivityDetailsPage: React.FC = () => {
           <label className="ActivityInfo-column_25">
             <input
               className="ActivityInfo-input"
-              type="text"
+              type="date"
               readOnly
               value={state.date}
             />

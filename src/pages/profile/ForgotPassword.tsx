@@ -102,7 +102,7 @@ const UpdatePasswordForm: React.FC<{ onUpdateSuccess: () => void }> = ({
     } else {
       toast({
         title: "Erreur",
-        description: "Adress mail ou mot de passe incorrect",
+        description: "Une erreur est survenue",
         status: "error",
         duration: 3000,
         isClosable: true,

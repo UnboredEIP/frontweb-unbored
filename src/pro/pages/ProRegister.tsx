@@ -94,7 +94,7 @@ const RegisterForm: React.FC<{}> = () => {
     event.preventDefault();
     if (isFormValid) {
       try {
-        const response = await axios.post("http://20.216.143.86/auth/register", {
+        const response = await axios.post("http://20.216.143.86/auth/register/pro", {
           username,
           email,
           password,

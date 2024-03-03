@@ -111,10 +111,14 @@ const CreateActivityPage: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.post('http://20.216.143.86/event/createevent', {
+      const [hours, minutes] = state.horaires.split(':');
+      const response = await axios.post('http://20.216.143.86/events/create', {
         name: state.nom,
         address: lieu,
         categories: state.selectedOption,
+        date: state.date,
+        hours: hours,
+        minutes: minutes
       }, config);
 
       const eventId = response.data.event._id;
@@ -325,6 +329,7 @@ const CreateActivityPage: React.FC = () => {
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-column_75">
                     <input
+                      type="time"
                       className='CreateActivity-input'
                       name="horaires"
                       value={state.horaires}
@@ -381,6 +386,7 @@ const CreateActivityPage: React.FC = () => {
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-column_75">
                     <input
+                      type="date"
                       className='CreateActivity-input'
                       name="date"
                       value={state.date}
