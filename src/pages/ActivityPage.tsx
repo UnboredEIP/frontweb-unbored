@@ -257,7 +257,7 @@ const ActivityPage: React.FC = () => {
         <h2 style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '24px' }}>{activity.event.name}</h2>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.categories[0]}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.address}</p>
-
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.date.split("T")[0]}</p>
         <img
           src={`http://20.216.143.86/getimage?imageName=${activity.event.pictures[0].id}`}
           alt={`Profile for ${activity.name}`}
