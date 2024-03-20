@@ -64,9 +64,12 @@ const LinkRedirection: React.FC<{ isLoggedIn: boolean; setIsLoggedIn: React.Disp
 const Nav: React.FC<{}> = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
-  const isExcludedPage = window.location.pathname === "/forgot-password";
+  const isExcludedPage = window.location.pathname === "/forgot-password" || window.location.pathname === "/site_vitrine";
+  
 
   useEffect(() => {
+    const currentUrl = window.location.href;
+    console.log(currentUrl);
     setIsLoggedIn(!!localStorage.getItem("token"));
   }, []); // Run on mount to initialize login status
 

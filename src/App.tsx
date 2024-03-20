@@ -33,7 +33,7 @@ import ProMenuPage from "./pro/pages/ProMenu";
 import ForgetPass from "./pages/profile/ForgotPass"
 import ManageAvatarPage from "./pages/ManageAvatar"
 import ActivityPage from "./pages/ActivityPage";
-
+import SiteVitrine from "./pages/SiteVitrine"
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -159,7 +159,7 @@ function App() {
           />
 
           <Route path="/activity/:id" element={<ActivityPage />} />
-
+          <Route path="/site_vitrine" element={<SiteVitrine/>} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
