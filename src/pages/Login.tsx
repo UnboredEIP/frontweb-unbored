@@ -47,6 +47,31 @@ async function makeLoginRequest(email: string, password: string) {
   }
 }
 
+
+async function LoginViaGoogle() {
+  try {
+    const response = await fetch("http://20.216.143.86/auth/login/google", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("resp: " , response);
+    if (response.status === 202) {
+      const data = await response.json();
+      console.log(data);
+      //localStorage.setItem("token", data["token"]);
+      return true;
+    } else {
+      console.error("Google Login error");
+      return false;
+    }
+  } catch (error) {
+    console.error("Google OAuth2 login error:", error);
+    return false;
+  }
+}
+
 const LoginHeader: React.FC<{}> = () => {
   return (
     <Box textAlign="center" mt={4}>
@@ -135,7 +160,7 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
       console.log("error ", success);
     }
   };
-  
+
   return (
     <Box textAlign="center">
       <ContextLogin.Provider value={contextData}>
@@ -190,9 +215,14 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
             Se connecter
           </Button>
           <Stack isInline justifyContent="space-between" my={4}>
-            <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              Continuer avec Google
-            </Button>
+          <Button
+          borderRadius={12}
+          boxShadow="lg"
+          color={"black"}
+          onClick={LoginViaGoogle}
+        >
+          Continuer avec Google
+        </Button>
           </Stack>
         </form>
       </ContextLogin.Provider>

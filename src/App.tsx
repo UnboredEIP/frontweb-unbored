@@ -34,6 +34,7 @@ import ForgetPass from "./pages/profile/ForgotPass"
 import ManageAvatarPage from "./pages/ManageAvatar"
 import ActivityPage from "./pages/ActivityPage";
 import SiteVitrine from "./pages/SiteVitrine"
+import GoogleOAuthLogin from "./pages/GoogleLogin";
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -76,9 +77,11 @@ function App() {
           <Route path="/" element={<PresentationPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route
-            path="/login"
-            element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
+            path="/logindz"
+            //element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
           />
+          <Route path="/login" element={<GoogleOAuthLogin clientId="487961174475-pn9neff45nc2qq1d6unl0veedigfj359.apps.googleusercontent.com" onLoginSuccess={HandleLoginSuccess} />} />
+
           <Route
             path="/register"
             element={<RegisterPage onRegisterSuccess={HandleLoginSuccess} />}

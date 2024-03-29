@@ -75,7 +75,7 @@ const SiteVitrine: React.FC = () => {
       </style>
 
       <header>
-        <div className="container">
+        <div className="">
           <a href="/" className="logo-link"><img src="unbored.png" alt="Votre Logo" className="logo" /></a>
           <h2 className="blanc">Unbored</h2>
         </div>
