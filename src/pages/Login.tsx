@@ -18,6 +18,7 @@ import logoFacebook from "../facebook.png";
 import { ContextLogin } from "../contexts/LoginContext";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import GoogleOuath from "./GoogleLogin"; // Import GoogleOAuthLogin component
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -215,24 +216,14 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
             Se connecter
           </Button>
           <Stack isInline justifyContent="space-between" my={4}>
-          <Button
-          borderRadius={12}
-          boxShadow="lg"
-          color={"black"}
-          onClick={LoginViaGoogle}
-        >
-          Continuer avec Google
-        </Button>
           </Stack>
         </form>
       </ContextLogin.Provider>
     </Box>
   );
 };
-
 const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const navigate = useNavigate();
 
   const handleLoginSuccess = () => {
@@ -259,6 +250,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
       >
         <LoginHeader />
         <LoginForm onLoginSuccess={handleLoginSuccess} />
+        <GoogleOuath></GoogleOuath>
       </Box>
     </Flex>
   );

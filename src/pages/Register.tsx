@@ -21,6 +21,7 @@ import { ContextRegister, RegisterData } from "../contexts/RegisterContext";
 import { useToast } from "@chakra-ui/react";
 import { Select, RadioGroup, Radio} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import GoogleOuath from "./GoogleLogin"; // Import GoogleOAuthLogin component
 
 interface RegisterPageProps {
   onRegisterSuccess: () => void;
@@ -141,9 +142,10 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
   };
 
   const handleSubmit = async () => {
+    console.log("doing register");
     const success = await makeRegisterRequest(email, password, username,number,birthdate,gender);
     if (success) {
-      console.log("Login success");
+      console.log("Register success");
       onRegisterSuccess();
     } else {
       showToast();
@@ -241,12 +243,6 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
           >
             S'inscrire
           </Button>
-          <Stack isInline justifyContent="space-between" my={4}>
-            <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
-              Continuer avec Google
-            </Button>
-          </Stack>
         </form>
       </ContextRegister.Provider>
     </Box>
@@ -278,6 +274,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegisterSuccess }) => {
       >
         <RegisterHeader />
         <RegisterForm onRegisterSuccess={HandleLoginSuccess} />
+        <GoogleOuath></GoogleOuath>
       </Box>
     </Flex>
   );

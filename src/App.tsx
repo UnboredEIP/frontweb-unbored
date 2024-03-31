@@ -77,10 +77,10 @@ function App() {
           <Route path="/" element={<PresentationPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route
-            path="/logindz"
-            //element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
+            path="/login"
+            element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
           />
-          <Route path="/login" element={<GoogleOAuthLogin clientId="487961174475-pn9neff45nc2qq1d6unl0veedigfj359.apps.googleusercontent.com" onLoginSuccess={HandleLoginSuccess} />} />
+          <Route path="/loefzefgin" element={<GoogleOAuthLogin clientId="" onLoginSuccess={HandleLoginSuccess} />} />
 
           <Route
             path="/register"
