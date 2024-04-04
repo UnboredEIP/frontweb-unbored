@@ -143,23 +143,24 @@ const ActivityPage: React.FC = () => {
   
   const addToCalendar = async () => {
     try {
-      // const token = localStorage.getItem('token');
-      // const response = await fetch('http://20.216.143.86/event/add', {
-      //   method: 'POST',
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify([activity.event._id]), // assuming the endpoint expects an array of events
-      // });
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://20.216.143.86/event/add', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({events : [activity.event._id]}), // assuming the endpoint expects an array of events
+      });
+      console.log("Data: " , activity.event._id);
       
       addToTimeline(activity.event);
-      // if (response.ok) {
-      //   //console.log('Event added to the calendar successfully!');
-      //   // Optionally, you can provide feedback to the user
-      // } else {
-      //   //console.error('Failed to add the event to the calendar. Status:', response.status);
-      // }
+      if (response.ok) {
+        //console.log('Event added to the calendar successfully!');
+        // Optionally, you can provide feedback to the user
+      } else {
+        //console.error('Failed to add the event to the calendar. Status:', response.status);
+      }
     } catch (error) {
       //console.error('Error while adding the event to the calendar', error);
     }
