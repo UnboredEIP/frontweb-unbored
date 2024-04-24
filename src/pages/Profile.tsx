@@ -13,16 +13,15 @@ const ProfilePage = () => {
     interests: [],
   });
 
-  const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
+  const [selectedAvatar, setSelectedAvatar] = useState<File | null>(null);
   const [responseImage, setResponseImage] = useState<string | null>(null);
-  const navigate = useNavigate(); // useNavigate always called
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProfileInfo = async () => {
       try {
         const token = localStorage.getItem('token');   
         if (token === null) {
-          //console.log("caca null")
           navigate("/");
         }
       
@@ -34,13 +33,11 @@ const ProfilePage = () => {
         const url = 'http://20.216.143.86/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
-        console.log("token de la  db: ")
-        console.log(token)
-        console.log(profileDetails);
         
-        // Check if the user has a profile picture
-        if (profileDetails.profilPhoto) {
-          const firstPictureId = profileDetails.profilPhoto;
+        console.log("Info PPs " , profileDetails.profilePhoto);
+
+        if (profileDetails.profilePhoto) {
+          const firstPictureId = profileDetails.profilePhoto;
           const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
           const responseImage = await axios.get(urlImage, { responseType: 'blob', ...config });
 
@@ -50,7 +47,7 @@ const ProfilePage = () => {
 
         setUserData({
           name: profileDetails.username,
-          profilePicture: profileDetails.profilPhoto,
+          profilePicture: profileDetails.profilePhoto,
           followers: 0,
           following: 10,
           description: 'une description banale',
@@ -58,8 +55,7 @@ const ProfilePage = () => {
         });
       } catch (error) {
         const token = localStorage.getItem('token');
-        console.error('Token value: ');
-        console.error(token);
+        console.error('Token value: ', token);
         console.error(error);
       }
     };
@@ -67,78 +63,46 @@ const ProfilePage = () => {
     getProfileInfo();
   }, []);
 
-  const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    if (file) {
-      const avatarUrl = URL.createObjectURL(file);
-      setSelectedAvatar(avatarUrl);
-    }
-    updateProfilePicture();
-  };
-
-  const handleAvatarClick = () => {
-    // Trigger the file input click when the profile picture is clicked
-    document.getElementById('avatarInput')?.click();
-  };
-
-  const updateProfilePicture = async () => {
+  const updateProfilePicture = async (file: File) => {
     try {
       const token = localStorage.getItem('token');
-    const formData = new FormData();
-    
-    const config = {
-      headers: {
+      const url_ = 'http://20.216.143.86/profile/profilepicture';
+      
+      const headers = {
+        Accept: '*/*',
         Authorization: `Bearer ${token}`,
-      },
-    };
+      };
 
-    const url = 'http://20.216.143.86/profile';
-        const response = await axios.get(url, config);
-        const profileDetails = response.data.user;
-        console.log("Information db ID: ")
-        console.log(profileDetails)
-        let firstPictureId = "";
-        let PicUrl = "";
-        // Check if the user has a profile picture
-        if (profileDetails.profilPhoto) {
-          firstPictureId = profileDetails.profilPhoto;
-          PicUrl = "/getimage?id=" + firstPictureId
-        }
-    
-    // Append the file directly, not the URI
-    formData.append('file', selectedAvatar as File);
+      const formDataToSend = new FormData();
+      formDataToSend.append('file', file, file.name);
 
-    const url_ = 'http://20.216.143.86/profile/profilepicture';
-    const headers = {
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
-    };
-
-    try {
       const response = await fetch(url_, {
         method: 'POST',
         headers: headers,
-        body: formData,
+        body: formDataToSend,
       });
 
-
-      // Assuming the server responds with JSON, you can parse the response
-      const data = await response.json();
+      console.log("Data to send: " , file, file.name);
+      const responseData = await response.json();
 
       // Handle the response data as needed
-      console.log(data);
+      console.log(responseData);
     } catch (error) {
       console.error('Error:', error);
     }
-    //const picture = await axios.post(PicUrl, formData, config);
-    //console.log(picture.status);
-      // Optionally, you may want to fetch and update the user data after the picture update
-      // Call getProfileInfo() or refetch the updated user details as needed
-    } catch (error) {
-      const token = localStorage.getItem('token');
-      console.error('Error updating profile picture:', error);
+  };
+
+  const handleAvatarChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      setSelectedAvatar(file);
+      updateProfilePicture(file); // Call updateProfilePicture after setting the selected avatar
     }
+  };
+
+  const handleAvatarClick = () => {
+    document.getElementById('avatarInput')?.click();
   };
 
   return (
@@ -147,26 +111,22 @@ const ProfilePage = () => {
         {userData.name}
       </Heading>
 
-      {/* Display the selected avatar, user's profile picture, or a default avatar */}
       <label htmlFor="avatarInput" style={{ cursor: 'pointer' }}>
         <Avatar
           size="xl"
-          src={selectedAvatar || responseImage || userData.profilePicture}
+          src={selectedAvatar ? URL.createObjectURL(selectedAvatar) : responseImage || userData.profilePicture}
           mb={4}
           onClick={handleAvatarClick}
         />
       </label>
 
-      {/* Input for choosing a new avatar */}
       <input
         id="avatarInput"
         type="file"
         accept="image/*"
         onChange={handleAvatarChange}
-        style={{ display: 'none' }} // Hide the input element
+        style={{ display: 'none' }}
       />
-
-      {/* Rest of the code remains unchanged */}
 
       <Stack direction="row" spacing={4} mb={4} justifyContent="center">
         <Box>
