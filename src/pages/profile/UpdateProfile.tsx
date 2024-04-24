@@ -40,7 +40,7 @@ async function makeUpdateProfileRequest(
     if (gender) bodyData['gender'] = gender;
     if (password) bodyData['password'] = password;
     if (birthdate) bodyData['birthdate'] = birthdate;
-    if (preferences) bodyData['preferences'] = preferences.split(',');
+    if (preferences) bodyData['preferences'] = String(preferences).split(',');
 
     const response = await fetch("http://20.216.143.86/profile/update", {
       method: "PUT",

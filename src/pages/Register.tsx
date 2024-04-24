@@ -188,16 +188,6 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
               borderColor="#E1604D"
               onChange={handlePasswordChange}
             ></Input>
-            <FormLabel textAlign="left">Numéro de téléphone</FormLabel>
-            <Input
-              //type="tel"
-              placeholder="Entre ton numéro de téléphone"
-              textAlign="center"
-              borderRadius={50}
-              borderWidth={2}
-              borderColor="#E1604D"
-              onChange={handleNumberChange}
-            ></Input>
             <FormLabel textAlign="left">Date de naissance</FormLabel>
             <Input
               type="date"
