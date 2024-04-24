@@ -40,7 +40,7 @@ async function makeUpdateProfileRequest(
     if (gender) bodyData['gender'] = gender;
     if (password) bodyData['password'] = password;
     if (birthdate) bodyData['birthdate'] = birthdate;
-    if (preferences) bodyData['preferences'] = [preferences];
+    if (preferences) bodyData['preferences'] = preferences.split(',');
 
     const response = await fetch("http://20.216.143.86/profile/update", {
       method: "PUT",
@@ -55,8 +55,9 @@ async function makeUpdateProfileRequest(
       console.log("USER UPDATED");
       return true;
     } else {
-      console.error("UPDATE ERROR");
+      console.log("oooooo");
       console.error("toto , " , response , " tata");
+      console.error("UPDoiojiojATE ERROR");
       return false;
     }
   } catch (error) {
