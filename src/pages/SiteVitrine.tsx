@@ -122,7 +122,7 @@ const SiteVitrine: React.FC = () => {
         </div>
       </section>
       <section className="contact">
-        <div className="container">
+        <div className="container" style={{ marginTop: "20px" }}>
           <h2>Nous Contacter</h2>
           <p>Pour toute question ou demande, veuillez nous contacter à l'adresse suivante :</p>
           <p>Email: <a href="mailto:unbored_2025@labeip.epitech.eu">unbored_2025@labeip.epitech.eu</a></p>
