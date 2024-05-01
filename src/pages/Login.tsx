@@ -26,7 +26,7 @@ interface LoginPageProps {
 
 async function makeLoginRequest(email: string, password: string) {
   try {
-    const response = await fetch("http://20.216.143.86/auth/login", {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ async function makeLoginRequest(email: string, password: string) {
 
 async function LoginViaGoogle() {
   try {
-    const response = await fetch("http://20.216.143.86/auth/login/google", {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login/google", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

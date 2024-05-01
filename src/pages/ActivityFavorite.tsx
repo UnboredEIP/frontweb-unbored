@@ -35,7 +35,7 @@ const FavoriteActivitiesPage: React.FC = () => {
                 </button>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <img
-                    src={`http://20.216.143.86/getimage?imageName=${activity.pictures[0].id}`}
+                    src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${activity.pictures[0].id}`}
                     alt={`Profile for ${activity.name}`}
                     style={{
                       maxWidth: '600px', // Adjust the size as needed

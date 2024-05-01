@@ -79,7 +79,7 @@ const ProLoginForm: React.FC<{}> = () => {
     event.preventDefault();
     if (isFormValid) {
       try {
-        const response = await axios.post("http://20.216.143.86/auth/login", {
+        const response = await axios.post("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login", {
           email,
           password,
         });

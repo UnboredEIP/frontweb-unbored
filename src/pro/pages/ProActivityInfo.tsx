@@ -48,7 +48,7 @@ const ActivityDetailsPage: React.FC = () => {
         },
       };
       console.log('ID from useParams:', id);
-      const url = `http://20.216.143.86/events/show?id=${id}`;
+      const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${id}`;
       const response = await axios.get(url, config);
       const activityDetails = response.data.event;
 
@@ -78,7 +78,7 @@ const ActivityDetailsPage: React.FC = () => {
         telephone: activityDetails.telephone,
       });
 
-      const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
+      const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
       const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
 
       const img = URL.createObjectURL(responseImage.data);
@@ -105,7 +105,7 @@ const ActivityDetailsPage: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const url = `http://20.216.143.86/events/delete?id=${state.id_exemple}`;
+      const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/delete?id=${state.id_exemple}`;
       const response = await axios.delete(url, config);
       console.log(response.data);
       toast({

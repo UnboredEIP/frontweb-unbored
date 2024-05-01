@@ -28,16 +28,18 @@ export const SidebarData: SidebarItem[] = [
         path: "/update-profile",
         icon: <AiOutlineUser />,
       },
-      {
-        title: "Mise à jour email",
-        path: "/update-email",
-        icon: <AiOutlineMail />,
-      },
-      {
-        title: "Mise à jour mot de passe",
-        path: "/update-password",
-        icon: <AiOutlineLock />,
-      },
+      // //
+      // {
+      //   title: "Mise à jour email",
+      //   path: "/update-email",
+      //   icon: <AiOutlineMail />,
+      // },
+      // {
+      //   title: "Mise à jour mot de passe",
+      //   path: "/update-password",
+      //   icon: <AiOutlineLock />,
+      // },
+      // //
       {
         title: "Profile Info",
         path: "/profile",

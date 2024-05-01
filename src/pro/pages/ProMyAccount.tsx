@@ -46,7 +46,7 @@ function ProMyAccount() {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            const url = `http://20.216.143.86/profile`;
+            const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile`;
             const response = await axios.get(url, config);
             const profileDetails = response.data.user;
 
@@ -73,7 +73,7 @@ function ProMyAccount() {
                 },
             };
 
-            const response = await axios.put('http://20.216.143.86/profile/update', {
+            const response = await axios.put('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/update', {
                 username: fields.find(field => field.label === 'Nom')?.value,
                 email: fields.find(field => field.label === 'Mail')?.value,
                 gender: fields.find(field => field.label === 'Sexe')?.value,

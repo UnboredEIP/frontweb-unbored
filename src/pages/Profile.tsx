@@ -30,7 +30,7 @@ const ProfilePage = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const url = 'http://20.216.143.86/profile';
+        const url = 'https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
         
@@ -38,7 +38,7 @@ const ProfilePage = () => {
 
         if (profileDetails.profilePhoto) {
           const firstPictureId = profileDetails.profilePhoto;
-          const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
+          const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
           const responseImage = await axios.get(urlImage, { responseType: 'blob', ...config });
 
           const img = URL.createObjectURL(responseImage.data);
@@ -66,7 +66,7 @@ const ProfilePage = () => {
   const updateProfilePicture = async (file: File) => {
     try {
       const token = localStorage.getItem('token');
-      const url_ = 'http://20.216.143.86/profile/profilepicture';
+      const url_ = 'https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/profilepicture';
       
       const headers = {
         Accept: '*/*',

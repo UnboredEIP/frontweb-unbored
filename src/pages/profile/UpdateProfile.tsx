@@ -42,7 +42,7 @@ async function makeUpdateProfileRequest(
     if (birthdate) bodyData['birthdate'] = birthdate;
     if (preferences) bodyData['preferences'] = String(preferences).split(',');
 
-    const response = await fetch("http://20.216.143.86/profile/update", {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/update", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -112,7 +112,7 @@ const UpdateProfileForm: React.FC<{ onUpdateSuccess: () => void }> = ({
             Authorization: `Bearer ${token}`,
           },
         };
-        const url = "http://20.216.143.86/profile";
+        const url = "https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile";
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
         const birthdate = profileDetails.birthdate?.toString().substring(0, 10);

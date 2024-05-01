@@ -19,13 +19,15 @@ const MyCustomButton: React.FC<MyCustomButtonProps> = ({ onClick, children }) =>
 async function makeLoginRequest(email: string, navigate: ReturnType<typeof useNavigate>,showToast: (text: string) => void) {
   
   try {
-    const response = await fetch("http://20.216.143.86/auth/login", {
-      method: "POST",
+    //const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login", {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login/google" , {
+    method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password : "toto" }),
+      //body: JSON.stringify({ email, password : "toto" }),
     });
+    console.log("rep " , response.json());
     if (response.status === 202) {
       const data = await response.json();
       console.log(data);
@@ -47,7 +49,7 @@ async function makeLoginRequest(email: string, navigate: ReturnType<typeof useNa
 
 async function makeRegisterRequest(email: string, username: string, navigate: ReturnType<typeof useNavigate>, showToast: (text: string) => void) {
   try {
-    const response = await fetch("http://20.216.143.86/auth/register", {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

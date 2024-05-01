@@ -19,34 +19,40 @@ interface Event {
 
 const CalendarComponent: React.FC = () => {
   const [timelineData, setTimelineData] = useState<Event[]>([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    try {
-      const token = localStorage.getItem('token');
-       
-      if (token === null) {
-        //console.log("caca null")
-        navigate("/");
+    // Fetch initial timeline data
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        console.log("caca sur patte  " , response.json());
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        
+      } catch (error) {
+        console.error('Error while fetching timeline data', error);
+        // Optionally, handle the error, show a message, etc.
       }
-      
-      
-      const timelineDataStr = localStorage.getItem('timelineData');
-      const parsedTimelineData = timelineDataStr ? JSON.parse(timelineDataStr) : [];
-      console.log('Timeline Data:', parsedTimelineData);
-      setTimelineData(parsedTimelineData);
-    } catch (error) {
-      console.error('Error while fetching timeline data', error);
-    }
+    };
+
+    fetchData();
   }, []);
 
-  const navigate = useNavigate(); // useNavigate always called
-
   const handleEventClick = (event: any) => {
-    // Navigate to the /activity/:id route using the event.id
     navigate(`/activity/${event._id}`);
   };
 
   if (!timelineData) {
-    // If timelineData is still undefined, render a loading state or return null
     return <div>Loading...</div>;
   }
 

@@ -21,7 +21,7 @@ const ActivityPage: React.FC = () => {
           navigate("/");
         }
 
-        const response = await fetch(`http://20.216.143.86/events/show?id=${id}`,{
+        const response = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${id}`,{
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,6 +97,26 @@ const ActivityPage: React.FC = () => {
     });
   };
   
+  const ActivityFav = () => {
+    toast({
+      title: "Activity",
+      description: "L'activité a été ajouté en favori",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "green",
+    });
+  };
+
+  const ActivityAlreadyFav = () => {
+    toast({
+      title: "Activity",
+      description: "L'activité est déja en favori",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "yellow",
+    });
+  };
+  
   const AddedInCalendar = () => {
     toast({
       title: "Calendrier",
@@ -144,7 +164,7 @@ const ActivityPage: React.FC = () => {
   const addToCalendar = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://20.216.143.86/event/add', {
+      const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/add', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -154,15 +174,15 @@ const ActivityPage: React.FC = () => {
       });
       console.log("Data: " , activity.event._id);
       
-      addToTimeline(activity.event);
+      //addToTimeline(activity.event);
       if (response.ok) {
-        //console.log('Event added to the calendar successfully!');
+        console.log('Event added to the calendar successfully!');
         // Optionally, you can provide feedback to the user
       } else {
-        //console.error('Failed to add the event to the calendar. Status:', response.status);
+        console.error('Failed to add the event to the calendar. Status:', response.status);
       }
     } catch (error) {
-      //console.error('Error while adding the event to the calendar', error);
+      console.error('Error while adding the event to the calendar', error);
     }
   };
   
@@ -183,7 +203,7 @@ const ActivityPage: React.FC = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://20.216.143.86/event/rate?id=${activity.event._id}`, {
+      const response = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/rate?id=${activity.event._id}`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -235,6 +255,43 @@ const ActivityPage: React.FC = () => {
     return stars;
   };
 
+  const addToFavorites = () => {
+    try {
+      const favoriteActivities = localStorage.getItem('favoriteActivities');
+      const favoriteActivitiesArray = favoriteActivities ? JSON.parse(favoriteActivities) : [];
+      
+      console.log(activity.event.name ,  " ttto cacacaca");
+      // Check if activity.event is defined before accessing its properties
+      if (activity && activity.event && activity.event._id) {
+        const activityId = activity.event._id;
+  
+        // Check if the activity ID is already in favorites
+        const isActivityAlreadyAdded = favoriteActivitiesArray.some((activity) => activity._id === activityId);
+  
+        if (!isActivityAlreadyAdded) {
+          // Add the activity to favorites
+          favoriteActivitiesArray.push(activity.event);
+  
+          // Update localStorage
+          localStorage.setItem('favoriteActivities', JSON.stringify(favoriteActivitiesArray));
+  
+          // Optionally, provide feedback to the user
+          console.log('Activity added to favorites successfully!');
+          ActivityFav();
+        } else {
+          console.log('Activity is already in favorites.');
+          ActivityAlreadyFav();
+          // Optionally, provide feedback to the user
+        }
+      } else {
+        console.error('Activity, activity.event, or activity.event._id is undefined.');
+      }
+    } catch (error) {
+      console.error('Error while adding activity to favorites', error);
+      // Optionally, provide feedback to the user
+    }
+  };
+    
   //console.log("Les activités");
   //console.log(activity);
   if (!activity) {
@@ -262,7 +319,7 @@ const ActivityPage: React.FC = () => {
           {activity.event.date && activity.event.date.includes("T") ? activity.event.date.split("T")[0] : activity.event.date}
         </p>
         <img
-          src={`http://20.216.143.86/getimage?imageName=${activity.event.pictures[0].id}`}
+          src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${activity.event.pictures[0].id}`}
           alt={`Profile for ${activity.name}`}
           style={{
             maxWidth: '600px', // Adjust the size as needed
@@ -298,6 +355,10 @@ const ActivityPage: React.FC = () => {
 
         <div style={{ marginTop: '20px' }}>
           <button onClick={addToCalendar}>Ajoute cette activité à ton calendrier</button>
+        </div>
+
+        <div style={{ marginTop: '20px' }}>
+          <button onClick={addToFavorites}>Add to Favorites</button>
         </div>
 
       </div>

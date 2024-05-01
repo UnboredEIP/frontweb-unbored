@@ -63,7 +63,7 @@ const ActivityDetailsPage: React.FC = () => {
       };
 
       const [hours, minutes] = state.horaires.split(':').map(Number);
-      const response = await axios.put(`http://20.216.143.86/events/edit?id=${id}`, {
+      const response = await axios.put(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/edit?id=${id}`, {
         categories: type,
         name: nom,
         address: adresse,
@@ -72,7 +72,7 @@ const ActivityDetailsPage: React.FC = () => {
         minutes: minutes,
       }, config);
 
-      const pictureURl = `http://20.216.143.86/event/upload?id=${id}`
+      const pictureURl = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/upload?id=${id}`
 
       if (state.selectedFile) {
         const formData = new FormData();
@@ -118,7 +118,7 @@ const ActivityDetailsPage: React.FC = () => {
         },
       };
       console.log('ID from useParams:', id);
-      const url = `http://20.216.143.86/events/show?id=${id}`;
+      const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${id}`;
       const response = await axios.get(url, config);
       const activityDetails = response.data.event;
 
@@ -147,7 +147,7 @@ const ActivityDetailsPage: React.FC = () => {
         selectedFile: null,
       });
 
-      const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
+      const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
       const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
 
       const img = URL.createObjectURL(responseImage.data);

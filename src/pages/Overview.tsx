@@ -21,7 +21,7 @@ const DctivityPage: React.FC = () => {
           navigate("/");
         }
 
-        const response = await fetch(`http://20.216.143.86/events/show?id=${id}`,{
+        const response = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${id}`,{
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -148,7 +148,7 @@ const DctivityPage: React.FC = () => {
       console.log(activity.event._id);
       const toti = [activity.event._id]; // Corrected the property name from "activity.event_.id" to "activity.event._id"
       const token = localStorage.getItem('token');
-      const response = await fetch('http://20.216.143.86/event/add', {
+      const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/add', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -191,7 +191,7 @@ const DctivityPage: React.FC = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://20.216.143.86/event/rate?id=${activity.event._id}`, {
+      const response = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/rate?id=${activity.event._id}`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -268,7 +268,7 @@ const DctivityPage: React.FC = () => {
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.address}</p>
 
         <img
-          src={`http://20.216.143.86/getimage?imageName=${activity.event.pictures[0].id}`}
+          src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${activity.event.pictures[0].id}`}
           alt={`Profile for ${activity.name}`}
           style={{
             maxWidth: '600px', // Adjust the size as needed

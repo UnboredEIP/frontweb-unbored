@@ -23,7 +23,7 @@ function Button({ text, activity }: ButtonProps) {
           },
         };
 
-        const urlImage = `http://20.216.143.86/getimage?imageName=${activity.pictures[0].id}`;
+        const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${activity.pictures[0].id}`;
 
         const response = await axios.get(urlImage, { responseType: "blob", ...config });
         const imageUrl = URL.createObjectURL(response.data);
@@ -64,7 +64,7 @@ function ProMyActivities() {
           }
         };
 
-        const response = await axios.get('http://20.216.143.86/events/lists', config);
+        const response = await axios.get('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/lists', config);
         setEvents(response.data.events);
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);

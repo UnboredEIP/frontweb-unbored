@@ -112,7 +112,7 @@ const CreateActivityPage: React.FC = () => {
         },
       };
       const [hours, minutes] = state.horaires.split(':');
-      const response = await axios.post('http://20.216.143.86/events/create', {
+      const response = await axios.post('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/create', {
         name: state.nom,
         address: lieu,
         categories: state.selectedOption,
@@ -122,7 +122,7 @@ const CreateActivityPage: React.FC = () => {
       }, config);
 
       const eventId = response.data.event._id;
-      const pictureURl = 'http://20.216.143.86/event/upload?id=' + eventId;
+      const pictureURl = 'https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/upload?id=' + eventId;
 
       if (state.selectedFile) {
         const formData = new FormData();
