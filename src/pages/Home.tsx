@@ -4,7 +4,6 @@ import { Box, Flex, Button, Input } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Timeline from "../components/Timeline/Timeline";
 
-
 type Event = {
   _id: string;
   name: string;
@@ -15,7 +14,6 @@ type Event = {
   creator: string;
   participents: string[];
 };
-
 
 const HomeHeader: React.FC<{}> = () => {
   const navigate = useNavigate(); // useNavigate always called
@@ -103,11 +101,9 @@ const HomeHeader: React.FC<{}> = () => {
     setShowAllEvents(true); // Show all events when the button is clicked
   };
 
-  // if (!isLoggedIn) {
-  //   console.log("toto est pas connecté");
-  //   //navigate('/');
-  //   //return null; // You can return null or any other placeholder while redirecting
-  // }
+  const handleStartButtonClick = () => {
+    navigate("/activity-favorite");
+  };
 
   return (
     <Flex direction="column">
@@ -155,10 +151,19 @@ const HomeHeader: React.FC<{}> = () => {
       <Box style={{ position: "relative" }}>
         <Timeline items={filteredEvents} />
       </Box>
+
+      <Button
+        onClick={handleStartButtonClick}
+        style={{ position: "relative", left: "350px", top: "0px", fontSize: "36px" }}
+        variant="solid"
+        bg="#e1604d"
+        color="white"
+      >
+        ⭐Activitées
+      </Button>
     </Flex>
   );
 };
-
 
 const HomePage: React.FC<{}> = () => {
   const navigate = useNavigate();

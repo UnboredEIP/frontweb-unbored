@@ -35,6 +35,7 @@ import ManageAvatarPage from "./pages/ManageAvatar"
 import ActivityPage from "./pages/ActivityPage";
 import SiteVitrine from "./pages/site_vitrinee/config";
 import GoogleOAuthLogin from "./pages/GoogleLogin";
+import FavoriteActivitiesPage from "./pages/ActivityFavorite"
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -181,6 +182,11 @@ function App() {
             element={<CalendarComponent/>}
           />
 
+          <Route
+            path="/activity-favorite"
+            element={<FavoriteActivitiesPage/>}
+          />
+          
           <Route path="/activity/:id" element={<ActivityPage />} />
           <Route path="/site_vitrine" element={<SiteVitrine/>} />
           <Route path="/profile" element={<ProfilePage />} />

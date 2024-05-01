@@ -97,7 +97,7 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
 
 
   
-  const isFormValid = email !== "" && password !== "" && username !== "" && number !== "";
+  const isFormValid = email !== "" && password !== "" && username !== "";
   const contextData = {
     email: email,
     password: password,
