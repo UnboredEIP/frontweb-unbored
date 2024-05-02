@@ -382,7 +382,7 @@ const ActivityPage: React.FC = () => {
         </div>
 
         <div style={{ marginTop: '20px' }}>
-          <button onClick={addToFavorites}>Add to Favorites</button>
+          <button onClick={addToFavorites}>Ajoute cette activité à tes favoris</button>
         </div>
 
       </div>
