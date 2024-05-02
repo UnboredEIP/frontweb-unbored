@@ -296,6 +296,31 @@ const ActivityPage: React.FC = () => {
     return <div>Activity information not available.</div>;
   }
 
+  const months = {
+    '01': 'janvier',
+    '02': 'février',
+    '03': 'mars',
+    '04': 'avril',
+    '05': 'mai',
+    '06': 'juin',
+    '07': 'juillet',
+    '08': 'août',
+    '09': 'septembre',
+    '10': 'octobre',
+    '11': 'novembre',
+    '12': 'décembre'
+  };
+
+  //console.log("Activity  " , activity);
+  const stardate_ = activity.event.start_date.split("T")[0]
+  const split_date = stardate_.split("-")
+  const year = split_date[0]
+  const month = split_date[1]
+  const day = split_date[2]
+  const current_start_date = day + " " + months[month] + " " + year
+  
+  console.log("Starrrrttt daaaateee " , current_start_date);
+
   return (
     <div style={{ textAlign: 'center', margin: '0 auto', maxWidth: '900px', marginLeft: '500px' }}>
       {/* Display profile picture */}
@@ -312,6 +337,8 @@ const ActivityPage: React.FC = () => {
         <h2 style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '24px' }}>{activity.event.name}</h2>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.categories[0]}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.address}</p>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Début: {current_start_date + " à " + activity.event.start_date.split("T")[1].substring(0, 8)}</p>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Fin: {current_start_date + " à " + activity.event.end_date.split("T")[1].substring(0, 8)}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>
           {activity.event.date && activity.event.date.includes("T") ? activity.event.date.split("T")[0] : activity.event.date}
         </p>
