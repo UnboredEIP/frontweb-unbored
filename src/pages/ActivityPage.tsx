@@ -17,7 +17,6 @@ const ActivityPage: React.FC = () => {
       try {
         const token = localStorage.getItem('token');
         if (token === null) {
-          //console.log("caca null")
           navigate("/");
         }
 
@@ -173,7 +172,6 @@ const ActivityPage: React.FC = () => {
         body: JSON.stringify({events : [activity.event._id]}), // assuming the endpoint expects an array of events
       });
       console.log("Data: " , activity.event._id);
-      
       //addToTimeline(activity.event);
       if (response.ok) {
         console.log('Event added to the calendar successfully!');
@@ -260,7 +258,6 @@ const ActivityPage: React.FC = () => {
       const favoriteActivities = localStorage.getItem('favoriteActivities');
       const favoriteActivitiesArray = favoriteActivities ? JSON.parse(favoriteActivities) : [];
       
-      console.log(activity.event.name ,  " ttto cacacaca");
       // Check if activity.event is defined before accessing its properties
       if (activity && activity.event && activity.event._id) {
         const activityId = activity.event._id;
