@@ -16,27 +16,28 @@ const MyCustomButton: React.FC<MyCustomButtonProps> = ({ onClick, children }) =>
 );
 
 
-async function makeLoginRequest(email: string, navigate: ReturnType<typeof useNavigate>,showToast: (text: string) => void) {
-  
+async function makeLoginRequest(email: string, navigate: ReturnType<typeof useNavigate>, showToast: (text: string) => void, googletkn: string) {
   try {
-    //const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login", {
-    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login/google" , {
-    method: "POST",
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login/google", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      //body: JSON.stringify({ email, password : "toto" }),
+      body: JSON.stringify({ googleTokenId: googletkn }),
     });
-    console.log("rep " , response.json());
+
+    // Read the response body only once
+    const responseData = await response.json();
+
+    console.log("rep ", responseData);
+
     if (response.status === 202) {
-      const data = await response.json();
-      console.log(data);
-      localStorage.setItem("token", data["token"]);
+      localStorage.setItem("token", responseData["token"]);
       navigate("/home");
       window.location.reload();
       return true;
     } else {
-      console.error("Login error");
+      console.error("Login error ", response.status);
       showToast("Login with google error");
       return false;
     }
@@ -117,13 +118,16 @@ const GoogleOAuthLogin = () => {
             const decoded = jwtDecode(JSON.stringify(credentialResponse.credential));
             //console.log("Repkkpkp finale " , decoded.email,decoded.name,"dododo");
             const isLoginPage = window.location.pathname.includes('login');
+            console.log("Goooooglllleeee inffffoooooo " , decoded);
+
+            const googletoken = credentialResponse.credential;
             //console.log("test " , isLoginPage);
             if (isLoginPage === false) { 
               makeRegisterRequest(decoded.email,decoded.name,navigate,showToast);
             }
 
             else {
-              makeLoginRequest(decoded.email,navigate,showToast);
+              makeLoginRequest(decoded.email,navigate,showToast,googletoken);
               console.log("je suis ici");
             }
 
@@ -140,8 +144,11 @@ const GoogleOAuthLogin = () => {
 
 const GoogleOuath = () => {
   return (
-    <GoogleOAuthProvider clientId="487961174475-pn9neff45nc2qq1d6unl0veedigfj359.apps.googleusercontent.com">
-      <GoogleOAuthLogin />
+    //<GoogleOAuthProvider clientId="216056008491-eurn4lov5rq2p7lqfneqsnes2m5v3kvn.apps.googleusercontent.com">
+    
+    //<GoogleOAuthProvider clientId="216056008491-eurn4lov5rq2p7lqfneqsnes2m5v3kvn.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="216056008491-eurn4lov5rq2p7lqfneqsnes2m5v3kvn.apps.googleusercontent.com">
+    <GoogleOAuthLogin />
     </GoogleOAuthProvider>
   );
 };

@@ -34,7 +34,7 @@ const ProfilePage = () => {
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
         
-        console.log("Info PPs " , profileDetails.profilePhoto);
+        console.log("Profile Infos " , profileDetails);
 
         if (profileDetails.profilePhoto) {
           const firstPictureId = profileDetails.profilePhoto;
@@ -44,12 +44,12 @@ const ProfilePage = () => {
           const img = URL.createObjectURL(responseImage.data);
           setResponseImage(img);
         }
-
+        
         setUserData({
           name: profileDetails.username,
           profilePicture: profileDetails.profilePhoto,
-          followers: 0,
-          following: 10,
+          followers : profileDetails.friends.length,
+          following : profileDetails.reservations.length,
           description: 'une description banale',
           interests: profileDetails.preferences,
         });

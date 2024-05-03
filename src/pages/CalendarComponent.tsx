@@ -58,7 +58,7 @@ const CalendarComponent: React.FC = () => {
                 const activityData = await activityResponse.json();
                 return activityData;
               } else {
-                //console.log("caca");
+                //  '("caca");
                 console.error('Failed to fetch activity details. Status:', activityResponse.status);
                 return null;
               }
