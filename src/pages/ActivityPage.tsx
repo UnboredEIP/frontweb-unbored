@@ -29,6 +29,7 @@ const ActivityPage: React.FC = () => {
         });
         if (response.ok) {
           const data = await response.json();
+          console.log("Daaaataaaaa " , data);
           setActivity(data);
         } else {
           console.error('Failed to fetch activity details. Status:', response.status);
@@ -271,7 +272,7 @@ const ActivityPage: React.FC = () => {
   
           // Update localStorage
           localStorage.setItem('favoriteActivities', JSON.stringify(favoriteActivitiesArray));
-  
+          console.log("weccccc " , favoriteActivitiesArray);
           // Optionally, provide feedback to the user
           console.log('Activity added to favorites successfully!');
           ActivityFav();
@@ -339,6 +340,7 @@ const ActivityPage: React.FC = () => {
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.address}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Début: {current_start_date + " à " + activity.event.start_date.split("T")[1].substring(0, 8)}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Fin: {current_start_date + " à " + activity.event.end_date.split("T")[1].substring(0, 8)}</p>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Nombre de participants: {activity.event.participents.length}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>
           {activity.event.date && activity.event.date.includes("T") ? activity.event.date.split("T")[0] : activity.event.date}
         </p>
