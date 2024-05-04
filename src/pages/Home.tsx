@@ -3,6 +3,7 @@ import styles from "../styles/pages/Register.module.css";
 import { Box, Flex, Button, Input } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Timeline from "../components/Timeline/Timeline";
+import axios from 'axios';
 
 type Event = {
   _id: string;
@@ -24,6 +25,10 @@ const HomeHeader: React.FC<{}> = () => {
   const [showAllEvents, setShowAllEvents] = useState(true);
 
   const [isLoggedIn, setLoggedIn] = useState(false);
+
+  const [userData, setUserData] = useState({
+    name: '',
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +63,47 @@ const HomeHeader: React.FC<{}> = () => {
     };
   
     fetchData();
+    getProfileInfo();
   }, []);
+
+  const getProfileInfo = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token === null) {
+        navigate("/");
+      }
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const url = "https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile";
+      const response = await axios.get(url, config);
+      const profileDetails = response.data.user;
+
+      console.log("Profile Infos ", profileDetails);
+
+      if (profileDetails.profilePhoto) {
+        const firstPictureId = profileDetails.profilePhoto;
+        const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
+        const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
+
+        const img = URL.createObjectURL(responseImage.data);
+        // Set profile picture in your state if needed
+      }
+
+      setUserData({
+        name: profileDetails.username,
+      });
+
+      console.log("Toooooto " , profileDetails.username);
+    } catch (error) {
+      const token = localStorage.getItem("token");
+      console.error("Token value: ", token);
+      console.error(error);
+    }
+  };
   
   const previousEvent = () => {
     if (currentEventIndex > 0) {
@@ -161,6 +206,10 @@ const HomeHeader: React.FC<{}> = () => {
       >
         ⭐Activitées
       </Button>
+
+      <Box position="absolute" top="120px" right="20px" fontSize="36px" color="#333">
+        {userData.name}
+      </Box>
     </Flex>
   );
 };
