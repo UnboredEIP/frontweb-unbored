@@ -16,11 +16,13 @@ type Link = {
 const removeToken = async () => {
   localStorage.removeItem("token");
   setIsLoggedIn(false); // Update state to trigger re-render
+  window.location.reload(); // Refresh the page
 };
 
 
 const LinkRedirection: React.FC<{ isLoggedIn: boolean; setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>> }> = ({ isLoggedIn, setIsLoggedIn }) => {
   var links;
+  const navigate = useNavigate(); // useNavigate always called
 
   if (!isLoggedIn) {
     links = JSON.parse(linkString).navbar_links_not_connected;
@@ -44,7 +46,9 @@ const LinkRedirection: React.FC<{ isLoggedIn: boolean; setIsLoggedIn: React.Disp
           onClick={async () => {
             if (link.label === "Se déconnecter") {
               removeToken();
+              
               <RouterLink to="\">
+
               <Text>{link.label}</Text>
             </RouterLink>
             }
