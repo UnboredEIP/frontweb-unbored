@@ -18,7 +18,7 @@ interface ForgetPassProps {
 
 async function makePasswordResetRequest(email: string) {
   try {
-    const response = await fetch("http://20.216.143.86/auth/askreset", {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/askreset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

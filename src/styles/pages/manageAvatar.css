@@ -1,14 +1,41 @@
 .tabs {
   display: flex;
   gap: 10px; /* Espacement entre les onglets */
+  margin-bottom: 1%;
 }
 
+.color-cases {
+  display: flex;
+  justify-content: space-between; /* Pour espacer les cases de couleur */
+  margin-top: 10px; /* Espacement par rapport aux éléments au-dessus */
+  align-items: center;
+}
+
+:root {
+  --blazer-color: #3A4C5A; /* Couleur de remplissage par défaut */
+}
+
+.blazer-svg {
+  --blazer-color: #3A4C5A; /* Couleur de remplissage par défaut */
+}
+
+
+.color-case {
+  width: 50px; /* Largeur de chaque case de couleur */
+  height: 50px; /* Hauteur de chaque case de couleur */
+  border: none; /* Supprime les bordures */
+  cursor: pointer; /* Indique que le curseur devient pointer au survol */
+}
+
+/* Vous pouvez ajouter d'autres styles selon vos besoins */
+
+
 .tab {
-  padding: 10px 15px; /* Ajustez le rembourrage selon vos préférences */
-  border-radius: 5px 5px 0 0; /* Arrondir uniquement les coins supérieurs */
-  background-color: #f0f0f0; /* Couleur de fond des onglets */
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Animation de transition */
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px; /* Ajoutez du rembourrage pour l'espace à l'intérieur du rectangle */
+  border-radius: 5px; /* Animation de transition */
 }
 
 .tab.active {
@@ -16,7 +43,7 @@
 }
 
 /* Styles spécifiques à l'onglet dépassant de la boîte */
-.ProAvisActivity-boxshadow-right-side {
+.manageAvatar-boxshadow-right-side {
   overflow: visible; /* Pour que les onglets dépassent de la boîte */
 }
 
@@ -28,8 +55,8 @@
   box-shadow: none; /* Désactiver l'ombre sur l'onglet actif */
 }
 
-.ProAvisActivity-form-container {
-  width: 60%;
+.manageAvatar-form-container {
+  width: 70%;
   margin: 0 auto;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -37,12 +64,36 @@
   border-radius: 10px;
 }
 
-.ProAvisActivity-back-button {
+.tabs {
+  display: flex;
+  gap: 10px; /* Espacement entre les onglets */
+}
+
+.button {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px; /* Ajoutez du rembourrage pour l'espace à l'intérieur du rectangle */
+  border: none; /* Supprimez les bordures */
+  border-radius: 5px; /* Ajoutez des coins arrondis */
+  cursor: pointer; /* Changez le curseur pour indiquer qu'il est cliquable */
+}
+
+.active {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px; /* Ajoutez du rembourrage pour l'espace à l'intérieur du rectangle */
+  border-radius: 5px; /* Changez la couleur de fond pour l'onglet actif */
+}
+
+
+.manageAvatar-back-button {
   align-self: flex-start;
   margin: 10px;
 }
 
-.ProAvisActivity-back-button button {
+.manageAvatar-back-button button {
   padding: 5px 10px;
   background-color: #E1604D;
   color: white;
@@ -53,11 +104,11 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.ProAvisActivity-back-button button:hover {
+.manageAvatar-back-button button:hover {
   background-color: #D15040;
 }
 
-.ProAvisActivity-form-title {
+.manageAvatar-form-title {
   text-align: center;
   justify-content: center;
   background-color: red;
@@ -66,7 +117,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   color: white;
-  margin-bottom: 25px;
+  margin-top: 1%;
+  margin-bottom: 1%;
   width: 300px;
   /* Increase width */
   height: 50px;
@@ -78,7 +130,7 @@
   /* Add shadow to text */
 }
 
-.ProAvisActivity-form-nobox-title {
+.manageAvatar-form-nobox-title {
   text-align: left;
   justify-content: center;
   padding: 10px;
@@ -93,7 +145,7 @@
   /* Add shadow to text */
 }
 
-.ProAvisActivity-redbar {
+.manageAvatar-redbar {
   border-bottom: 5px solid red;
   /* Add this line */
   width: 100%;
@@ -101,7 +153,7 @@
   margin-bottom: auto;
 }
 
-.ProAvisActivity-note {
+.manageAvatar-note {
   text-align: center;
   justify-content: center;
   padding: 10px;
@@ -115,7 +167,7 @@
   margin: auto auto auto auto;
 }
 
-.ProAvisActivity-note-globale {
+.manageAvatar-note-globale {
   text-align: center;
   justify-content: center;
   padding: 10px;
@@ -131,17 +183,17 @@
 }
 
 
-.ProAvisActivity-container {
+.manageAvatar-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ProAvisActivity-label {
+.manageAvatar-label {
   color: var(--mainColor);
 }
 
-.ProAvisActivity-editable-field {
+.manageAvatar-editable-field {
   border-radius: 15px;
   padding: 10px;
   max-width: 80%;
@@ -152,7 +204,7 @@
   font-size: 16px;
 }
 
-.ProAvisActivity-editable-field:focus {
+.manageAvatar-editable-field:focus {
   border-color: blue;
   /* Style pour l'édition */
 }
@@ -165,7 +217,7 @@
   justify-content: center;
 }
 
-.ProAvisActivity-input {
+.manageAvatar-input {
   border: 2px solid var(--mainColor);
   border-radius: 20px;
   padding: 6px;
@@ -194,23 +246,23 @@
   border-width: 2px !important;
 }
 
-.ProAvisActivity-text-orange {
+.manageAvatar-text-orange {
   border: 2px solid var(--mainColor);
   border-radius: 20px;
   padding: 8px;
   width: 100%;
 }
 
-.ProAvisActivity-label-orange {
+.manageAvatar-label-orange {
   color: var(--mainColor);
 }
 
-.ProAvisActivity-form-container textarea {
+.manageAvatar-form-container textarea {
   height: 150px;
 }
 
 
-.ProAvisActivity-center-button button[type="submit"] {
+.manageAvatar-center-button button[type="submit"] {
   background-color: var(--mainColor);
   /* Autres styles optionnels */
   color: white;
@@ -220,24 +272,24 @@
   /* ... */
 }
 
-.ProAvisActivity-form-row {
+.manageAvatar-form-row {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.ProAvisActivity-center-button {
+.manageAvatar-center-button {
   display: flex;
   justify-content: center;
 }
 
-.ProAvisActivity-separator {
+.manageAvatar-separator {
   border-bottom: 2px solid gray;
   margin: 20px 0;
 }
 
-.ProAvisActivity-separator-vertical {
+.manageAvatar-separator-vertical {
   border-left: 2px solid gray;
   margin: 20px 0;
   height: 100%;
@@ -246,12 +298,12 @@
 
 
 
-.ProAvisActivity-column_10 {
+.manageAvatar-column_10 {
   flex: 0 0 10%;
   max-width: 10%;
 }
 
-.ProAvisActivity-column_15 {
+.manageAvatar-column_15 {
   color: var(--mainColor);
   flex: 0 0 15%;
   max-width: 15%;
@@ -259,7 +311,7 @@
 
 }
 
-.ProAvisActivity-column_20 {
+.manageAvatar-column_20 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 20%;
@@ -268,14 +320,14 @@
 
 /* UTILE  */
 
-.ProAvisActivity-column_25 {
+.manageAvatar-column_25 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 25%;
   max-width: 25%;
 }
 
-.ProAvisActivity-column_50 {
+.manageAvatar-column_50 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 50%;
@@ -283,7 +335,7 @@
   width: 50%
 }
 
-.ProAvisActivity-column_75 {
+.manageAvatar-column_75 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 75%;
@@ -291,7 +343,7 @@
   margin: auto 0 auto 0;
 }
 
-.ProAvisActivity-column_100 {
+.manageAvatar-column_100 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 100%;
@@ -299,7 +351,7 @@
   width: 100%
 }
 
-.ProAvisActivity-label-column_25 {
+.manageAvatar-label-column_25 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 25%;
@@ -307,7 +359,7 @@
   width: 25%
 }
 
-.ProAvisActivity-label-column_15 {
+.manageAvatar-label-column_15 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 15%;
@@ -316,7 +368,7 @@
   margin: auto auto auto auto;
 }
 
-.ProAvisActivity-label-column_50 {
+.manageAvatar-label-column_50 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 50%;
@@ -324,14 +376,14 @@
   width: 50%
 }
 
-.ProAvisActivity-label-column_75 {
+.manageAvatar-label-column_75 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 75%;
   max-width: 75%;
 }
 
-.ProAvisActivity-label-column_100 {
+.manageAvatar-label-column_100 {
   color: var(--mainColor);
   text-align: left;
   /* flex: 0 0 100%; */
@@ -339,14 +391,14 @@
   position: relative;
 }
 
-.ProAvisActivity-label-column {
+.manageAvatar-label-column {
   color: var(--mainColor);
   text-align: left;
 }
 
 /* UTILE */
 
-.ProAvisActivity-column_30 {
+.manageAvatar-column_30 {
   flex: 0 0 30%;
   max-width: 30%;
 }
@@ -354,7 +406,7 @@
 
 
 
-.ProAvisActivity-row {
+.manageAvatar-row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -363,7 +415,7 @@
   /* Align items at the top */
 }
 
-.ProAvisActivity-boxshadow-left-side {
+.manageAvatar-boxshadow-left-side {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -375,10 +427,24 @@
   margin-bottom: 1%;
 }
 
-.ProAvisActivity-boxshadow-right-side {
+.manageAvatar-boxshadow-svg {
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
   width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-right: 1%;
+  padding: 1% 1% 1% 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.manageAvatar-boxshadow-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 700%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   margin-left: 1%;
@@ -387,21 +453,21 @@
   margin-bottom: 1%;
 }
 
-.ProAvisActivity-left-side {
+.manageAvatar-left-side {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 1% 1% 1% 1%;
 }
 
-.ProAvisActivity-right-side {
+.manageAvatar-right-side {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 1% 1% 1% 1%;
 }
 
-.ProAvisActivity-left-side .ProAvisActivity-column_20 {
+.manageAvatar-left-side .manageAvatar-column_20 {
   color: var(--mainColor);
   text-align: center;
   width: 100% !important;
@@ -409,12 +475,12 @@
   margin-right: 10%;
 }
 
-.ProAvisActivity-left-side .ProAvisActivity-column_50 {
+.manageAvatar-left-side .manageAvatar-column_50 {
   max-width: 100% !important;
   width: 50% !important;
 }
 
-.ProAvisActivity-right-side .ProAvisActivity-column_20 {
+.manageAvatar-right-side .manageAvatar-column_20 {
   color: var(--mainColor);
   text-align: center;
   width: 100% !important;
@@ -422,25 +488,25 @@
   margin-right: 10%;
 }
 
-.ProAvisActivity-right-side .ProAvisActivity-column_50 {
+.manageAvatar-right-side .manageAvatar-column_50 {
   max-width: 100% !important;
   width: 50% !important;
 }
 
 
-.ProAvisActivity-photo-uploader {
+.manageAvatar-photo-uploader {
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.ProAvisActivity-photo-uploader .ProAvisActivity-column_20 {
+.manageAvatar-photo-uploader .manageAvatar-column_20 {
   width: 100%;
   max-width: 100%;
 }
 
-.ProAvisActivity-image-upload {
+.manageAvatar-image-upload {
   display: flex;
   width: 100%;
   max-width: 100%;
@@ -450,11 +516,11 @@
   align-items: center;
 }
 
-.ProAvisActivity-image-upload input[type="file"] {
+.manageAvatar-image-upload input[type="file"] {
   display: none;
 }
 
-.ProAvisActivity-image-upload label {
+.manageAvatar-image-upload label {
   background-color: var(--mainColor);
   color: white;
   border-radius: 5px;
@@ -462,15 +528,15 @@
   cursor: pointer;
 }
 
-.ProAvisActivity-price-empty {
+.manageAvatar-price-empty {
   margin-bottom: 53%;
 }
 
-.ProAvisActivity-price-show {
+.manageAvatar-price-show {
   margin-top: 28%;
 }
 
-.ProAvisActivity-price-form {
+.manageAvatar-price-form {
   display: flex;
   align-items: center;
   width: 100%;
@@ -481,14 +547,14 @@
 }
 
 /* 
-.ProAvisActivity-form-row-price {
+.manageAvatar-form-row-price {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 11px;  
 } */
 
-.ProAvisActivity-myButton {
+.manageAvatar-myButton {
   width: 200px;
   font-weight: bold;
   border-radius: 10px;

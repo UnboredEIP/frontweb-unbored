@@ -43,7 +43,7 @@ const HomeHeader: React.FC<{}> = () => {
           },
         };
   
-        const response = await fetch('http://20.216.143.86/events/lists', config);
+        const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/lists', config);
   
         if (response.status === 401) {
           // Handle unauthorized access, e.g., redirect to login page

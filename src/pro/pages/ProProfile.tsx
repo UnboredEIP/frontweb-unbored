@@ -17,6 +17,9 @@ function Button({ text }: ButtonProps) {
   else if (text === 'Contrat') {
     toPath = '/Pro-myContract';
   }
+  else if (text === 'Avatar') {
+    toPath = '/manageAvatar';
+  }
 
   return (
     <Link to={toPath}>
@@ -28,8 +31,8 @@ function Button({ text }: ButtonProps) {
 }
 
 function ProProfile() {
-  const topButtonLabels = ['Mon compte', 'Entreprise', 'Activité', 'Contrat', 'Historique'];
-  const botButtonLabels = ['Transactions', 'Parametre', 'Outil', 'Aide', 'Déconnexion'];
+  const topButtonLabels = ['Mon compte', 'Entreprise', 'Activité', 'Contrat', 'Avatar'];
+  const botButtonLabels = ['TBA', 'TBA', 'TBA', 'TBA', 'TBA'];
   const navigate = useNavigate();
 
   return (

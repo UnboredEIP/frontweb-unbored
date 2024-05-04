@@ -26,6 +26,7 @@ import UpdateEmailPage from "./pages/profile/UpdateEmail";
 import UpdatePasswordPage from "./pages/profile/UpdatePassword";
 import ProfilePage from "./pages/Profile";
 import AvisActivityPage from "./pro/pages/ProAvisActivity";
+import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
 import ForgotpasswordPage from "./pages/profile/ForgotPassword";
 import CalendarComponent from './pages/CalendarComponent';
 import timelineData from "./components/Timeline/timeline.json";
@@ -34,8 +35,8 @@ import ForgetPass from "./pages/profile/ForgotPass"
 import ManageAvatarPage from "./pages/ManageAvatar"
 import ActivityPage from "./pages/ActivityPage";
 import SiteVitrine from "./pages/SiteVitrine"
-import GoogleOAuthLogin from "./pages/GoogleLogin";
-import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
+
+
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -81,8 +82,6 @@ function App() {
             path="/login"
             element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
           />
-          <Route path="/loefzefgin" element={<GoogleOAuthLogin clientId="" onLoginSuccess={HandleLoginSuccess} />} />
-
           <Route
             path="/register"
             element={<RegisterPage onRegisterSuccess={HandleLoginSuccess} />}
@@ -141,7 +140,11 @@ function App() {
             element={<ProModifyActivity />}
           />
           <Route
-            path="/Pro-myAvis/:id"
+            path="/Pro-activitySubscribers/:id"
+            element={<ProActivitySubscribers />}
+          />
+          <Route
+            path="/Pro-myAvis"
             element={<AvisActivityPage />}
           ></Route>
           <Route
@@ -160,11 +163,6 @@ function App() {
           <Route
             path="/calendar"
             element={<CalendarComponent />}
-          />
-
-          <Route
-            path="/Pro-activitySubscribers/:id"
-            element={<ProActivitySubscribers />}
           />
 
           <Route path="/activity/:id" element={<ActivityPage />} />

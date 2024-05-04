@@ -58,7 +58,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                 }}
               >
                 <img
-                  src={`http://20.216.143.86/getimage?imageName=${item.pictures[0].id}`}
+                  src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${item.pictures[0].id}`}
                   alt={`Image for item ${item._id}`}
                   onError={(e) => {
                     e.currentTarget.src =

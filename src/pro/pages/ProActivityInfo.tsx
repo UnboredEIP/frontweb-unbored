@@ -4,12 +4,16 @@ import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
+import personIcon from "../../assets/icons/personIcon.png";
+import { partial } from 'lodash';
+
 
 interface State {
   id_exemple: string;
   type: string;
   nom: string;
-  horaires: string;
+  horairesStart: string;
+  horairesEnd: string;
   date: string;
   adresse: string;
   description: string;
@@ -18,6 +22,7 @@ interface State {
   prix: string;
   email: string;
   telephone: string;
+  participants: string[]
 }
 
 const ActivityDetailsPage: React.FC = () => {
@@ -25,7 +30,8 @@ const ActivityDetailsPage: React.FC = () => {
     id_exemple: '',
     type: '',
     nom: '',
-    horaires: '',
+    horairesStart: '',
+    horairesEnd: '',
     date: '',
     adresse: '',
     description: '',
@@ -34,6 +40,7 @@ const ActivityDetailsPage: React.FC = () => {
     prix: '',
     email: '',
     telephone: '',
+    participants: [],
   });
 
   const { id } = useParams();
@@ -48,7 +55,7 @@ const ActivityDetailsPage: React.FC = () => {
         },
       };
       console.log('ID from useParams:', id);
-      const url = `http://20.216.143.86/events/show?id=${id}`;
+      const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${id}`;
       const response = await axios.get(url, config);
       const activityDetails = response.data.event;
 
@@ -56,34 +63,40 @@ const ActivityDetailsPage: React.FC = () => {
         ? activityDetails.pictures[0].id
         : null;
 
-      const dateObject = new Date(activityDetails.date);
+      const dateObject = new Date(activityDetails.start_date);
       const formattedDate = dateObject.toISOString().split('T')[0];
 
-      const horaires = activityDetails.hours + ":" + activityDetails.minutes;
-      // Utilisez formattedDate pour afficher dans un champ de type "date"
-
+      const start = activityDetails.start_date.split('T')[1].substring(0, 5);
+      const end = activityDetails.end_date.split('T')[1].substring(0, 5);
 
       setState({
         id_exemple: activityDetails._id,
         type: activityDetails.categories,
         nom: activityDetails.name,
-        horaires: horaires,
+        horairesStart: start,
+        horairesEnd: end,
         date: formattedDate,
         adresse: activityDetails.address,
         description: activityDetails.description,
         age: activityDetails.age,
-        payante: activityDetails.payante,
-        prix: activityDetails.prix,
+        payante: activityDetails.price,
+        prix: activityDetails.price,
         email: activityDetails.email,
-        telephone: activityDetails.telephone,
+        telephone: activityDetails.phone,
+        participants: activityDetails.participents
       });
 
-      const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
+      console.log("toto")
+      console.log(activityDetails.participents.length)
+
+      const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
       const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
 
       const img = URL.createObjectURL(responseImage.data);
 
       setResponseImage(img);
+
+
 
     } catch (error) {
       console.error(error);
@@ -105,7 +118,7 @@ const ActivityDetailsPage: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const url = `http://20.216.143.86/events/delete?id=${state.id_exemple}`;
+      const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/delete?id=${state.id_exemple}`;
       const response = await axios.delete(url, config);
       console.log(response.data);
       toast({
@@ -131,14 +144,24 @@ const ActivityDetailsPage: React.FC = () => {
 
   return (
     <div className="ActivityInfo-form-container">
+      <button className="ActivityInfo-Button" onClick={() => navigate(-1)}>Retour</button>
       <div className="ActivityInfo-container">
         <div className="ActivityInfo-header">
-          <button onClick={() => navigate(-1)}>Retour</button>
-          <Link to="/Pro-myAvis">
-            <button>Avis</button>
-          </Link>
+          <div className="ActivityInfo-left-side">
+            <div className="ActivityInfo-form-row">
+              <Link to={`/Pro-myAvis/${id}`}>
+                <button className="ActivityInfo-Button" style={{ marginRight: '10px' }}>Avis</button>
+              </Link>
+              <div className="ActivityInfo-form-row" style={{ marginTop: '5px' }}>
+                <Link to={`/Pro-activitySubscribers/${id}`}>
+                  <img src={personIcon} alt="Nombre de participants" width="30" height="20" />
+                </Link>
+                <span style={{ color: 'red' }}>{state.participants.length}</span>
+              </div>
+            </div>
+          </div>
           <div className="ActivityInfo-buttons">
-            <Link to={`/Pro-modifyActivity/${id}`}>
+            <Link to={`/pro-ModifyActivity/${id}`}>
               <button>Modifier</button>
             </Link>
             <button onClick={deleteActivity}>Supprimer</button>
@@ -151,13 +174,13 @@ const ActivityDetailsPage: React.FC = () => {
           </div>
         </div>
         <h2 className="ActivityInfo-form-title">Détails de l'activité</h2>
-        {/* <div className="ModifyActivity-form-row">
-          <label className="ModifyActivity-column_20">
+        {/* <div className="ActivityInfo-form-row">
+          <label className="ActivityInfo-column_20">
             id:
           </label>
-          <label className="ModifyActivity-column_75">
+          <label className="ActivityInfo-column_75">
             <input
-              className="ModifyActivity-input"
+              className="ActivityInfo-input"
               type="text"
               value={state.id_exemple}
               onChange={(e) => setState({ ...state, id_exemple: e.target.value })}
@@ -195,18 +218,6 @@ const ActivityDetailsPage: React.FC = () => {
         <br />
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
-            Horaires:
-          </label>
-          <label className="ActivityInfo-column_25">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.horaires}
-            />
-          </label>
-          <label className="ActivityInfo-column_10"></label>
-          <label className="ActivityInfo-column_15">
             Date:
           </label>
           <label className="ActivityInfo-column_25">
@@ -217,6 +228,32 @@ const ActivityDetailsPage: React.FC = () => {
               value={state.date}
             />
           </label>
+        </div>
+        <div className="ActivityInfo-form-row">
+          <label className="ActivityInfo-column_20">
+            Horaires Debut:
+          </label>
+          <label className="ActivityInfo-column_25">
+            <input
+              className="ActivityInfo-input"
+              type="text"
+              readOnly
+              value={state.horairesStart}
+            />
+          </label>
+          <label className="ActivityInfo-column_5"></label>
+          <label className="ActivityInfo-column_20">
+            Horaires Fin:
+          </label>
+          <label className="ActivityInfo-column_25">
+            <input
+              className="ActivityInfo-input"
+              type="text"
+              readOnly
+              value={state.horairesEnd}
+            />
+          </label>
+
         </div>
         <div className="ActivityInfo-separator"></div>
         <div className="ActivityInfo-form-row">
@@ -235,7 +272,7 @@ const ActivityDetailsPage: React.FC = () => {
         <div className="ActivityInfo-separator"></div>
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
-            Age conseillé:
+            Age minimum:
           </label>
           <label className="ActivityInfo-column_75">
             <input

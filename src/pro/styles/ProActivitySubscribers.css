@@ -1,4 +1,4 @@
-.ProAvisActivity-form-container {
+.ProActivitySubscribers-form-container {
   width: 60%;
   margin: 0 auto;
   background-color: white;
@@ -7,12 +7,12 @@
   border-radius: 10px;
 }
 
-.ProAvisActivity-back-button {
+.ProActivitySubscribers-back-button {
   align-self: flex-start;
   margin: 10px;
 }
 
-.ProAvisActivity-back-button button {
+.ProActivitySubscribers-back-button button {
   padding: 5px 10px;
   background-color: #E1604D;
   color: white;
@@ -23,11 +23,11 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.ProAvisActivity-back-button button:hover {
+.ProActivitySubscribers-back-button button:hover {
   background-color: #D15040;
 }
 
-.ProAvisActivity-form-title {
+.ProActivitySubscribers-form-title {
   text-align: center;
   justify-content: center;
   background-color: red;
@@ -48,7 +48,7 @@
   /* Add shadow to text */
 }
 
-.ProAvisActivity-form-nobox-title {
+.ProActivitySubscribers-form-nobox-title {
   text-align: left;
   justify-content: center;
   padding: 10px;
@@ -63,7 +63,7 @@
   /* Add shadow to text */
 }
 
-.ProAvisActivity-redbar {
+.ProActivitySubscribers-redbar {
   border-bottom: 5px solid red;
   /* Add this line */
   width: 100%;
@@ -71,7 +71,7 @@
   margin-bottom: auto;
 }
 
-.ProAvisActivity-note {
+.ProActivitySubscribers-note {
   text-align: center;
   justify-content: center;
   padding: 10px;
@@ -85,7 +85,7 @@
   margin: auto auto auto auto;
 }
 
-.ProAvisActivity-note-globale {
+.ProActivitySubscribers-note-globale {
   text-align: center;
   justify-content: center;
   padding: 10px;
@@ -101,17 +101,17 @@
 }
 
 
-.ProAvisActivity-container {
+.ProActivitySubscribers-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ProAvisActivity-label {
+.ProActivitySubscribers-label {
   color: var(--mainColor);
 }
 
-.ProAvisActivity-editable-field {
+.ProActivitySubscribers-editable-field {
   border-radius: 15px;
   padding: 10px;
   max-width: 80%;
@@ -122,7 +122,7 @@
   font-size: 16px;
 }
 
-.ProAvisActivity-editable-field:focus {
+.ProActivitySubscribers-editable-field:focus {
   border-color: blue;
   /* Style pour l'édition */
 }
@@ -135,7 +135,7 @@
   justify-content: center;
 }
 
-.ProAvisActivity-input {
+.ProActivitySubscribers-input {
   border: 2px solid var(--mainColor);
   border-radius: 20px;
   padding: 6px;
@@ -164,23 +164,23 @@
   border-width: 2px !important;
 }
 
-.ProAvisActivity-text-orange {
+.ProActivitySubscribers-text-orange {
   border: 2px solid var(--mainColor);
   border-radius: 20px;
   padding: 8px;
   width: 100%;
 }
 
-.ProAvisActivity-label-orange {
+.ProActivitySubscribers-label-orange {
   color: var(--mainColor);
 }
 
-.ProAvisActivity-form-container textarea {
+.ProActivitySubscribers-form-container textarea {
   height: 150px;
 }
 
 
-.ProAvisActivity-center-button button[type="submit"] {
+.ProActivitySubscribers-center-button button[type="submit"] {
   background-color: var(--mainColor);
   /* Autres styles optionnels */
   color: white;
@@ -190,24 +190,23 @@
   /* ... */
 }
 
-.ProAvisActivity-form-row {
+.ProActivitySubscribers-form-row {
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 10px;
 }
 
-.ProAvisActivity-center-button {
+.ProActivitySubscribers-center-button {
   display: flex;
   justify-content: center;
 }
 
-.ProAvisActivity-separator {
+.ProActivitySubscribers-separator {
   border-bottom: 2px solid gray;
   margin: 20px 0;
 }
 
-.ProAvisActivity-separator-vertical {
+.ProActivitySubscribers-separator-vertical {
   border-left: 2px solid gray;
   margin: 20px 0;
   height: 100%;
@@ -216,12 +215,12 @@
 
 
 
-.ProAvisActivity-column_10 {
+.ProActivitySubscribers-column_10 {
   flex: 0 0 10%;
   max-width: 10%;
 }
 
-.ProAvisActivity-column_15 {
+.ProActivitySubscribers-column_15 {
   color: var(--mainColor);
   flex: 0 0 15%;
   max-width: 15%;
@@ -229,7 +228,7 @@
 
 }
 
-.ProAvisActivity-column_20 {
+.ProActivitySubscribers-column_20 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 20%;
@@ -238,14 +237,14 @@
 
 /* UTILE  */
 
-.ProAvisActivity-column_25 {
+.ProActivitySubscribers-column_25 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 25%;
   max-width: 25%;
 }
 
-.ProAvisActivity-column_50 {
+.ProActivitySubscribers-column_50 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 50%;
@@ -253,7 +252,7 @@
   width: 50%
 }
 
-.ProAvisActivity-column_75 {
+.ProActivitySubscribers-column_75 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 75%;
@@ -261,7 +260,7 @@
   margin: auto 0 auto 0;
 }
 
-.ProAvisActivity-column_100 {
+.ProActivitySubscribers-column_100 {
   color: var(--mainColor);
   text-align: center;
   flex: 0 0 100%;
@@ -269,7 +268,7 @@
   width: 100%
 }
 
-.ProAvisActivity-label-column_25 {
+.ProActivitySubscribers-label-column_25 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 25%;
@@ -277,7 +276,7 @@
   width: 25%
 }
 
-.ProAvisActivity-label-column_15 {
+.ProActivitySubscribers-label-column_15 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 15%;
@@ -286,7 +285,7 @@
   margin: auto auto auto auto;
 }
 
-.ProAvisActivity-label-column_50 {
+.ProActivitySubscribers-label-column_50 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 50%;
@@ -294,14 +293,14 @@
   width: 50%
 }
 
-.ProAvisActivity-label-column_75 {
+.ProActivitySubscribers-label-column_75 {
   color: var(--mainColor);
   text-align: left;
   flex: 0 0 75%;
   max-width: 75%;
 }
 
-.ProAvisActivity-label-column_100 {
+.ProActivitySubscribers-label-column_100 {
   color: var(--mainColor);
   text-align: left;
   /* flex: 0 0 100%; */
@@ -309,22 +308,19 @@
   position: relative;
 }
 
-.ProAvisActivity-label-column {
+.ProActivitySubscribers-label-column {
   color: var(--mainColor);
   text-align: left;
 }
 
 /* UTILE */
 
-.ProAvisActivity-column_30 {
+.ProActivitySubscribers-column_30 {
   flex: 0 0 30%;
   max-width: 30%;
 }
 
-
-
-
-.ProAvisActivity-row {
+.ProActivitySubscribers-row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -333,20 +329,19 @@
   /* Align items at the top */
 }
 
-.ProAvisActivity-boxshadow-left-side {
+.ProActivitySubscribers-boxshadow-left-side {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   margin-right: 1%;
   padding: 1% 1% 1% 1%;
   margin-top: 1%;
   margin-bottom: 1%;
-  max-height: 500px;
 }
 
-.ProAvisActivity-boxshadow-right-side {
+.ProActivitySubscribers-boxshadow-right-side {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -356,24 +351,23 @@
   padding: 1% 1% 1% 1%;
   margin-top: 1%;
   margin-bottom: 1%;
-  max-height: 500px;
 }
 
-.ProAvisActivity-left-side {
+.ProActivitySubscribers-left-side {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 1% 1% 1% 1%;
 }
 
-.ProAvisActivity-right-side {
+.ProActivitySubscribers-right-side {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 1% 1% 1% 1%;
 }
 
-.ProAvisActivity-left-side .ProAvisActivity-column_20 {
+.ProActivitySubscribers-left-side .ProActivitySubscribers-column_20 {
   color: var(--mainColor);
   text-align: center;
   width: 100% !important;
@@ -381,12 +375,12 @@
   margin-right: 10%;
 }
 
-.ProAvisActivity-left-side .ProAvisActivity-column_50 {
+.ProActivitySubscribers-left-side .ProActivitySubscribers-column_50 {
   max-width: 100% !important;
   width: 50% !important;
 }
 
-.ProAvisActivity-right-side .ProAvisActivity-column_20 {
+.ProActivitySubscribers-right-side .ProActivitySubscribers-column_20 {
   color: var(--mainColor);
   text-align: center;
   width: 100% !important;
@@ -394,25 +388,25 @@
   margin-right: 10%;
 }
 
-.ProAvisActivity-right-side .ProAvisActivity-column_50 {
+.ProActivitySubscribers-right-side .ProActivitySubscribers-column_50 {
   max-width: 100% !important;
   width: 50% !important;
 }
 
 
-.ProAvisActivity-photo-uploader {
+.ProActivitySubscribers-photo-uploader {
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.ProAvisActivity-photo-uploader .ProAvisActivity-column_20 {
+.ProActivitySubscribers-photo-uploader .ProActivitySubscribers-column_20 {
   width: 100%;
   max-width: 100%;
 }
 
-.ProAvisActivity-image-upload {
+.ProActivitySubscribers-image-upload {
   display: flex;
   width: 100%;
   max-width: 100%;
@@ -422,11 +416,11 @@
   align-items: center;
 }
 
-.ProAvisActivity-image-upload input[type="file"] {
+.ProActivitySubscribers-image-upload input[type="file"] {
   display: none;
 }
 
-.ProAvisActivity-image-upload label {
+.ProActivitySubscribers-image-upload label {
   background-color: var(--mainColor);
   color: white;
   border-radius: 5px;
@@ -434,15 +428,15 @@
   cursor: pointer;
 }
 
-.ProAvisActivity-price-empty {
+.ProActivitySubscribers-price-empty {
   margin-bottom: 53%;
 }
 
-.ProAvisActivity-price-show {
+.ProActivitySubscribers-price-show {
   margin-top: 28%;
 }
 
-.ProAvisActivity-price-form {
+.ProActivitySubscribers-price-form {
   display: flex;
   align-items: center;
   width: 100%;
@@ -453,14 +447,14 @@
 }
 
 /* 
-.ProAvisActivity-form-row-price {
+.ProActivitySubscribers-form-row-price {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 11px;  
 } */
 
-.ProAvisActivity-myButton {
+.ProActivitySubscribers-myButton {
   width: 200px;
   font-weight: bold;
   border-radius: 10px;

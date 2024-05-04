@@ -110,6 +110,7 @@
   display: flex;
   margin-right: 50px;
   width: 100%;
+  margin-top: 1%;
 }
 
 .ModifyActivity-center-button {
@@ -140,6 +141,11 @@
   margin-left: 10px;
 }
 
+.ModifyActivity-column_5 {
+  flex: 0 0 5%;
+  max-width: 5%;
+}
+
 .ModifyActivity-column_10 {
   flex: 0 0 10%;
   max-width: 10%;
@@ -157,6 +163,9 @@
   flex: 0 0 20%;
   max-width: 20%;
   font-weight: bold;
+  display: flex; /* Ajout de flexbox */
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
 }
 
 .ModifyActivity-column_25 {
@@ -189,7 +198,6 @@
   border-radius: 10px;
   padding: 6px;
   width: 100%;
-  margin-top: 8px;
   font-size: 14px;
   text-align: center;
   font-weight: bold; /* Texte en gras */
@@ -291,4 +299,18 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   background-color: #E1604D; /* Couleur pour le bouton Retour */
   color: white;
+}
+
+.ModifyActivity-left-side {
+  /* margin-lef */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ModifyActivity-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* columns: 6rem; */
 }

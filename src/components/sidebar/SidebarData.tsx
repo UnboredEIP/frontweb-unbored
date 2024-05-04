@@ -46,11 +46,6 @@ export const SidebarData: SidebarItem[] = [
     ],
   },
   {
-    title: "Login Pro",
-    path: "/Pro-login",
-    icon: <AiOutlineUser />,
-  },
-  {
     title: "Menu Pro",
     path: "/Pro-menu",
     icon: <AiOutlineUser />,

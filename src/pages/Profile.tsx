@@ -31,7 +31,7 @@ const ProfilePage = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const url = 'http://20.216.143.86/profile';
+        const url = 'https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
         console.log("token de la  db: ")
@@ -41,7 +41,7 @@ const ProfilePage = () => {
         // Check if the user has a profile picture
         if (profileDetails.profilPhoto) {
           const firstPictureId = profileDetails.profilPhoto;
-          const urlImage = `http://20.216.143.86/getimage?imageName=${firstPictureId}`;
+          const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
           const responseImage = await axios.get(urlImage, { responseType: 'blob', ...config });
 
           const img = URL.createObjectURL(responseImage.data);
@@ -93,7 +93,7 @@ const ProfilePage = () => {
       },
     };
 
-    const url = 'http://20.216.143.86/profile';
+    const url = 'https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
         console.log("Information db ID: ")
@@ -109,7 +109,7 @@ const ProfilePage = () => {
     // Append the file directly, not the URI
     formData.append('file', selectedAvatar as File);
 
-    const url_ = 'http://20.216.143.86/profile/profilepicture';
+    const url_ = 'https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/profilepicture';
     const headers = {
       Accept: 'application/json',
       Authorization: `Bearer ${token}`,
