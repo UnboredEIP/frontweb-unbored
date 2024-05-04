@@ -7,7 +7,6 @@ const FavoriteActivitiesPage: React.FC = () => {
 
   useEffect(() => {
     // Retrieve favorite activities from localStorage
-    localStorage.removeItem('favoriteActivities');
     const storedFavoriteActivities = localStorage.getItem('favoriteActivities');
     if (storedFavoriteActivities) {
       setFavoriteActivities(JSON.parse(storedFavoriteActivities));
