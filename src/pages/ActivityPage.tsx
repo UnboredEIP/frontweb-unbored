@@ -160,6 +160,30 @@ const ActivityPage: React.FC = () => {
     }
   };
 
+  const addToFavorites = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/favorites/add', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({events : [activity.event._id]}), // assuming the endpoint expects an array of events
+      });
+      console.log("Data: " , activity.event._id);
+      //addToTimeline(activity.event);
+      if (response.ok) {
+        console.log('Event added to favorite successfully!');
+        ActivityFav();
+        // Optionally, you can provide feedback to the user
+      } else {
+        console.error('Failed to add the event to the favorite. Status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error while adding the event to the favorite', error);
+    }
+  };
   
   const addToCalendar = async () => {
     try {
@@ -254,42 +278,6 @@ const ActivityPage: React.FC = () => {
     return stars;
   };
 
-  const addToFavorites = () => {
-    try {
-      const favoriteActivities = localStorage.getItem('favoriteActivities');
-      const favoriteActivitiesArray = favoriteActivities ? JSON.parse(favoriteActivities) : [];
-      
-      // Check if activity.event is defined before accessing its properties
-      if (activity && activity.event && activity.event._id) {
-        const activityId = activity.event._id;
-  
-        // Check if the activity ID is already in favorites
-        const isActivityAlreadyAdded = favoriteActivitiesArray.some((activity) => activity._id === activityId);
-  
-        if (!isActivityAlreadyAdded) {
-          // Add the activity to favorites
-          favoriteActivitiesArray.push(activity.event);
-  
-          // Update localStorage
-          localStorage.setItem('favoriteActivities', JSON.stringify(favoriteActivitiesArray));
-          console.log("weccccc " , favoriteActivitiesArray);
-          // Optionally, provide feedback to the user
-          console.log('Activity added to favorites successfully!');
-          ActivityFav();
-        } else {
-          console.log('Activity is already in favorites.');
-          ActivityAlreadyFav();
-          // Optionally, provide feedback to the user
-        }
-      } else {
-        console.error('Activity, activity.event, or activity.event._id is undefined.');
-      }
-    } catch (error) {
-      console.error('Error while adding activity to favorites', error);
-      // Optionally, provide feedback to the user
-    }
-  };
-    
   //console.log("Les activités");
   //console.log(activity);
   if (!activity) {
