@@ -4,16 +4,26 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+interface Picture {
+ id: string;
+}
+
+interface Activity {
+ name: string;
+ _id: string;
+ pictures: Picture[];
+}
+
 interface ButtonProps {
-  text: string;
-  index: number;
-  images: string[];
+ text: string;
+ activity: Activity;
+ images: string[];
 }
 
 function Button({ text, activity }: ButtonProps) {
-  const [imageBlob, setImageBlob] = useState<string | null>(null);
+ const [imageBlob, setImageBlob] = useState<string | null>(null);
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchImage = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -37,24 +47,24 @@ function Button({ text, activity }: ButtonProps) {
     if (activity.pictures.length > 0) {
       fetchImage();
     }
-  }, [activity.pictures]);
+ }, [activity.pictures]);
 
-  const buttonStyle = {
+ const buttonStyle = {
     backgroundImage: `url(${imageBlob || ''})`,
-  };
+ };
 
-  return (
+ return (
     <Link to={`/Pro-activityInfo/${activity._id}`} className="MyActivities-button">
       <div className="MyActivities-image-container" style={buttonStyle}></div>
       <div className="MyActivities-button-label">{text}</div>
     </Link>
-  );
+ );
 }
 
 function ProMyActivities() {
-  const [events, setEvents] = useState([]);
+ const [events, setEvents] = useState<Activity[]>([]);
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -72,11 +82,11 @@ function ProMyActivities() {
     };
 
     fetchData();
-  }, []);
+ }, []);
 
-  const navigate = useNavigate();
+ const navigate = useNavigate();
 
-  return (
+ return (
     <div className="MyActivities-button-box">
       <div className="MyActivities-back-button">
         <button onClick={() => navigate(-1)}>Retour</button>
@@ -87,11 +97,10 @@ function ProMyActivities() {
           {events.map((activity, index) => (
             <Button key={index} text={activity.name} activity={activity} images={activity.pictures.map(pic => pic.id)} />
           ))}
-
         </div>
       </div>
     </div>
-  );
+ );
 }
 
 export default ProMyActivities;

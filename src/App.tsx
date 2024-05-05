@@ -11,7 +11,7 @@ import PresentationPage from "./pages/Presentation";
 import ParticleBackground from "./components/ParticleBackground";
 import CreateActivityPage from "./pro/pages/ProCreateActivityPage";
 import ChooseContractPage from "./pro/pages/ProChooseContractPage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Import useLocation
 import UpdateProfilePage from "./pages/profile/UpdateProfile";
 import ProLoginPage from "./pro/pages/ProLogin";
 import ProRegisterPage from "./pro/pages/ProRegister";
@@ -33,15 +33,17 @@ import ProMenuPage from "./pro/pages/ProMenu";
 import ForgetPass from "./pages/profile/ForgotPass"
 import ManageAvatarPage from "./pages/ManageAvatar"
 import ActivityPage from "./pages/ActivityPage";
-import SiteVitrine from "./pages/SiteVitrine"
+import SiteVitrine from "./pages/site_vitrinee/config";
 import GoogleOAuthLogin from "./pages/GoogleLogin";
+import FavoriteActivitiesPage from "./pages/ActivityFavorite"
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
   useEffect(() => {
     const storedJsonData = localStorage.getItem("myJsonData");
     if (storedJsonData) {
@@ -52,7 +54,25 @@ function App() {
     if (storedIsLoggedIn) {
       setIsLoggedIn(JSON.parse(storedIsLoggedIn));
     }
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
+
+  const handleScroll = () => {
+    var dddd = document.getElementById('dddd');
+
+    if (window.scrollY > 0) {
+      dddd?.classList.add('coucou');
+    } else {
+      dddd?.classList.remove('coucou');
+    }
+  };
 
   const updateJsonData = (newData: any) => {
     setJsonData(newData);
@@ -161,12 +181,15 @@ function App() {
             path="/calendar"
             element={<CalendarComponent />}
           />
-
           <Route
             path="/Pro-activitySubscribers/:id"
             element={<ProActivitySubscribers />}
           />
 
+          <Route
+            path="/activity-favorite"
+            element={<FavoriteActivitiesPage />}
+          />
           <Route path="/activity/:id" element={<ActivityPage />} />
           <Route path="/site_vitrine" element={<SiteVitrine />} />
           <Route path="/profile" element={<ProfilePage />} />

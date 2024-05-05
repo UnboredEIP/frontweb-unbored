@@ -97,7 +97,7 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
 
 
   
-  const isFormValid = email !== "" && password !== "" && username !== "" && number !== "";
+  const isFormValid = email !== "" && password !== "" && username !== "";
   const contextData = {
     email: email,
     password: password,
@@ -187,16 +187,6 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
               borderWidth={2}
               borderColor="#E1604D"
               onChange={handlePasswordChange}
-            ></Input>
-            <FormLabel textAlign="left">Numéro de téléphone</FormLabel>
-            <Input
-              //type="tel"
-              placeholder="Entre ton numéro de téléphone"
-              textAlign="center"
-              borderRadius={50}
-              borderWidth={2}
-              borderColor="#E1604D"
-              onChange={handleNumberChange}
             ></Input>
             <FormLabel textAlign="left">Date de naissance</FormLabel>
             <Input

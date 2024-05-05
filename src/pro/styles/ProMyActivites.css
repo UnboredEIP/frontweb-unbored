@@ -152,7 +152,7 @@
   background-color: red;
   color: white;
   border-radius: 20px;
-  width: 100px;
+  width: 150px;
   height: 50px;
   display: flex; /* Add this line */
   justify-content: center; /* Add this line */

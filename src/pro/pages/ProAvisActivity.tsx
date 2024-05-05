@@ -22,6 +22,9 @@ const AvisActivityPage: React.FC = () => {
     const [nbTwoStars, setNbTwoStars] = useState<number>(0);
     const [nbOneStars, setNbOneStars] = useState<number>(0);
 
+    const [eventName, setEventName] = useState<string>('');
+    const [responseImage, setResponseImage] = useState<string | null>(null);
+
 
     const getParticipants = async () => {
         try {
@@ -35,6 +38,21 @@ const AvisActivityPage: React.FC = () => {
             const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${id}`;
             const response = await axios.get(url, config);
             const activityDetails = response.data.event;
+
+            const firstPictureId = activityDetails.pictures.length > 0
+                ? activityDetails.pictures[0].id
+                : null;
+
+            setEventName(activityDetails.name)
+
+            if (firstPictureId != null) {
+                const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
+                const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
+
+                const img = URL.createObjectURL(responseImage.data);
+
+                setResponseImage(img);
+            }
 
             const avisPosArray = [];
             const avisNegArray = [];
@@ -129,8 +147,15 @@ const AvisActivityPage: React.FC = () => {
             <div className="ProAvisActivity-back-button">
                 <button onClick={() => navigate(-1)}>Retour</button>
             </div>
+            <h2 className="ActivityInfo-form-title">{eventName}</h2>
+            <div className='ActivityInfo-image-conteneur'>
+                <div className="ActivityInfo-image">
+                    {responseImage && <img src={responseImage} />}
+                </div>
+            </div>
             <div className="ProAvisActivity-row">
                 {/* GAUCHE*/}
+
                 <div className="ProAvisActivity-boxshadow-left-side">
                     <div className="ProAvisActivity-container">
                         <h2 className="ProAvisActivity-form-title">Avis Positif</h2>

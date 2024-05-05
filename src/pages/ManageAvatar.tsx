@@ -233,7 +233,7 @@ const AvisActivityPage: React.FC = () => {
 
   const imageSet = tabImageSetMap[activeTab] || [];
 
-  const applyColorToSVG = (svg, principColor, secColor) => {
+  const applyColorToSVG = (svg: SVGSVGElement, principColor: string, secColor: string) => {
     const paths = svg.querySelectorAll('path');
     paths.forEach(path => {
       path.setAttribute('fill', principColor);
@@ -355,6 +355,8 @@ const AvisActivityPage: React.FC = () => {
     setMergedSVG(merged);
   }, [selectedBody, selectedHair, selectedBeard, selectedEyebrows, selectedEyes, selectedHat, selectedMouth, selectedPrincipColorSkin]);
 
+  let rows: string[][] = [];
+
   return (
     <div className="manageAvatar-form-container">
       <div className="manageAvatar-back-button">
@@ -388,14 +390,14 @@ const AvisActivityPage: React.FC = () => {
           </div>
           <div className="manageAvatar-container">
             <div className="manageAvatar-back-button">
-            <button onClick={clearSelection} style={{ margin: 0 }}>Retirer</button>
+              <button onClick={clearSelection} style={{ margin: 0 }}>Retirer</button>
 
             </div>
           </div>
           <div className="manageAvatar-row">
             <div className="manageAvatar-boxshadow-left-side">
               <div className="color-cases">
-              <span style={{ color: 'red', textDecoration: 'underline', fontWeight: 'bold' }}>Couleur Principale</span>
+                <span style={{ color: 'red', textDecoration: 'underline', fontWeight: 'bold' }}>Couleur Principale</span>
                 {colors.map(color => (
                   <button
                     key={color}
@@ -410,7 +412,7 @@ const AvisActivityPage: React.FC = () => {
           <div className="manageAvatar-row">
             <div className="manageAvatar-boxshadow-left-side">
               <div className="color-cases">
-              <span style={{ color: 'red', textDecoration: 'underline', fontWeight: 'bold' }}>Couleur Secondaire</span>
+                <span style={{ color: 'red', textDecoration: 'underline', fontWeight: 'bold' }}>Couleur Secondaire</span>
                 {colors.map(color => (
                   <button
                     key={color}
@@ -423,6 +425,8 @@ const AvisActivityPage: React.FC = () => {
             </div>
           </div>
 
+
+
           <div>
             {imageSet.reduce((rows, key, index) => {
               const rowIndex = Math.floor(index / 3);
@@ -433,7 +437,7 @@ const AvisActivityPage: React.FC = () => {
               return rows;
             }, []).map((row, rowIndex) => (
               <div key={rowIndex} className="manageAvatar-row">
-                {row.map((image, imageIndex) => (
+                {row.map((image: string, imageIndex: React.Key | null | undefined) => (
                   <div key={imageIndex} className="manageAvatar-boxshadow-svg" >
                     <ReactSVG
                       src={require(`../assets/avatars/${imageName}/${image}.svg`)}

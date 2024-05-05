@@ -28,7 +28,7 @@ function ProMyAccount() {
         setIsEditing(false);
 
         await updateProfile();
-      };
+    };
 
     const handleFieldChange = (index: number, newValue: string) => {
         const updatedFields = [...fields];
@@ -50,11 +50,14 @@ function ProMyAccount() {
             const response = await axios.get(url, config);
             const profileDetails = response.data.user;
 
+            console.log(profileDetails.birthdate)
+            const formattedBirthdate = new Date(profileDetails.birthdate).toISOString().slice(0, 10);
+
             setFields([
                 { label: 'Nom', value: profileDetails.username },
                 { label: 'Mail', value: profileDetails.email },
                 { label: 'Sexe', value: profileDetails.gender },
-                { label: 'Date de naissance', value: profileDetails.birthdate },
+                { label: 'Date de naissance', value: formattedBirthdate },
             ]);
 
         } catch (error) {
@@ -86,7 +89,7 @@ function ProMyAccount() {
                 status: "success",
                 duration: 3000,
                 isClosable: true,
-              });
+            });
 
         } catch (error) {
             toast({
@@ -95,7 +98,7 @@ function ProMyAccount() {
                 status: "error",
                 duration: 3000,
                 isClosable: true,
-              });
+            });
             console.error(error);
         }
     };
@@ -110,27 +113,42 @@ function ProMyAccount() {
                 <button onClick={() => navigate(-1)}>Retour</button>
             </div>
             <div className="MyAccount-banner">Mon Compte</div>
-            <div className="MyAccount-row">
+            <div className="MyAccount-row" style={{ width: '60%' }}>
                 <div className="MyAccount-boxshadow-left-side ">
-                    <div className="MyAccount-banner">Infos Utilisateur</div>
+                    {/* <div className="MyAccount-banner">Infos Utilisateur</div> */}
                     {fields.map((field, index) => {
                         if (index % 2 === 0) {
                             const nextField = fields[index + 1];
                             return (
-
                                 <div className="MyAccount-input-group" key={index}>
                                     <div className="MyAccount-label-column">
                                         <label>{field.label}</label>
                                     </div>
-                                    <div className="MyAccount-input-column">
-                                        <input
-                                            type="text"
-                                            value={field.value}
-                                            readOnly={!isEditing}
-                                            className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                            onChange={(e) => handleFieldChange(index, e.target.value)}
-                                        />
-                                    </div>
+                                    {field.label === 'Sexe' ? (
+                                        <div className="MyAccount-input-column">
+                                            <select
+                                                value={field.value}
+                                                disabled={!isEditing}
+                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
+                                                onChange={(e) => handleFieldChange(index, e.target.value)}
+                                            >
+                                                <option value="">Sélectionnez votre sexe</option>
+                                                <option value="Homme">Homme</option>
+                                                <option value="Femme">Femme</option>
+                                                <option value="Autre">Autre</option>
+                                            </select>
+                                        </div>
+                                    ) : (
+                                        <div className="MyAccount-input-column">
+                                            <input
+                                                type={field.label === 'Date de naissance' ? 'date' : 'text'}
+                                                value={field.value}
+                                                readOnly={!isEditing}
+                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
+                                                onChange={(e) => handleFieldChange(index, e.target.value)}
+                                            />
+                                        </div>
+                                    )}
                                     {nextField && (
                                         <div className="MyAccount-label-column">
                                             <label>{nextField.label}</label>
@@ -139,7 +157,7 @@ function ProMyAccount() {
                                     {nextField && (
                                         <div className="MyAccount-input-column">
                                             <input
-                                                type="text"
+                                                type={nextField.label === 'Date de naissance' ? 'date' : 'text'}
                                                 value={nextField.value}
                                                 readOnly={!isEditing}
                                                 className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
@@ -154,49 +172,6 @@ function ProMyAccount() {
                     })}
 
                 </div>
-                <div className="MyAccount-boxshadow-right-side ">
-                    <div className="MyAccount-banner">Infos Entreprise</div>
-                    {fields.map((field, index) => {
-                        if (index % 2 === 0) {
-                            const nextField = fields[index + 1];
-                            return (
-                                <div className="MyAccount-input-group" key={index}>
-                                    <div className="MyAccount-label-column">
-                                        <label>{field.label}</label>
-                                    </div>
-                                    <div className="MyAccount-input-column">
-                                        <input
-                                            type="text"
-                                            value={field.value}
-                                            readOnly={!isEditing}
-                                            className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                            onChange={(e) => handleFieldChange(index, e.target.value)}
-                                        />
-                                    </div>
-                                    {nextField && (
-                                        <div className="MyAccount-label-column">
-                                            <label>{nextField.label}</label>
-                                        </div>
-                                    )}
-                                    {nextField && (
-                                        <div className="MyAccount-input-column">
-                                            <input
-                                                type="text"
-                                                value={nextField.value}
-                                                readOnly={!isEditing}
-                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                                onChange={(e) => handleFieldChange(index + 1, e.target.value)}
-                                            />
-                                        </div>
-                                    )}
-                                </div>
-                            );
-                        }
-                        return null;
-                    })}
-
-                </div>
-
             </div>
             <div className="MyAccount-input-group center-content">
                 {isEditing ? (

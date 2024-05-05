@@ -17,7 +17,6 @@ const ActivityPage: React.FC = () => {
       try {
         const token = localStorage.getItem('token');
         if (token === null) {
-          //console.log("caca null")
           navigate("/");
         }
 
@@ -30,6 +29,7 @@ const ActivityPage: React.FC = () => {
         });
         if (response.ok) {
           const data = await response.json();
+          console.log("Daaaataaaaa " , data);
           setActivity(data);
         } else {
           console.error('Failed to fetch activity details. Status:', response.status);
@@ -97,6 +97,26 @@ const ActivityPage: React.FC = () => {
     });
   };
   
+  const ActivityFav = () => {
+    toast({
+      title: "Activity",
+      description: "L'activité a été ajouté en favori",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "green",
+    });
+  };
+
+  const ActivityAlreadyFav = () => {
+    toast({
+      title: "Activity",
+      description: "L'activité est déja en favori",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "yellow",
+    });
+  };
+  
   const AddedInCalendar = () => {
     toast({
       title: "Calendrier",
@@ -143,25 +163,25 @@ const ActivityPage: React.FC = () => {
   
   const addToCalendar = async () => {
     try {
-      // const token = localStorage.getItem('token');
-      // const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/add', {
-      //   method: 'POST',
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify([activity.event._id]), // assuming the endpoint expects an array of events
-      // });
-      
-      addToTimeline(activity.event);
-      // if (response.ok) {
-      //   //console.log('Event added to the calendar successfully!');
-      //   // Optionally, you can provide feedback to the user
-      // } else {
-      //   //console.error('Failed to add the event to the calendar. Status:', response.status);
-      // }
+      const token = localStorage.getItem('token');
+      const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/add', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({events : [activity.event._id]}), // assuming the endpoint expects an array of events
+      });
+      console.log("Data: " , activity.event._id);
+      //addToTimeline(activity.event);
+      if (response.ok) {
+        console.log('Event added to the calendar successfully!');
+        // Optionally, you can provide feedback to the user
+      } else {
+        console.error('Failed to add the event to the calendar. Status:', response.status);
+      }
     } catch (error) {
-      //console.error('Error while adding the event to the calendar', error);
+      console.error('Error while adding the event to the calendar', error);
     }
   };
   
@@ -234,12 +254,73 @@ const ActivityPage: React.FC = () => {
     return stars;
   };
 
+  const addToFavorites = () => {
+    try {
+      const favoriteActivities = localStorage.getItem('favoriteActivities');
+      const favoriteActivitiesArray = favoriteActivities ? JSON.parse(favoriteActivities) : [];
+      
+      // Check if activity.event is defined before accessing its properties
+      if (activity && activity.event && activity.event._id) {
+        const activityId = activity.event._id;
+  
+        // Check if the activity ID is already in favorites
+        const isActivityAlreadyAdded = favoriteActivitiesArray.some((activity) => activity._id === activityId);
+  
+        if (!isActivityAlreadyAdded) {
+          // Add the activity to favorites
+          favoriteActivitiesArray.push(activity.event);
+  
+          // Update localStorage
+          localStorage.setItem('favoriteActivities', JSON.stringify(favoriteActivitiesArray));
+          console.log("weccccc " , favoriteActivitiesArray);
+          // Optionally, provide feedback to the user
+          console.log('Activity added to favorites successfully!');
+          ActivityFav();
+        } else {
+          console.log('Activity is already in favorites.');
+          ActivityAlreadyFav();
+          // Optionally, provide feedback to the user
+        }
+      } else {
+        console.error('Activity, activity.event, or activity.event._id is undefined.');
+      }
+    } catch (error) {
+      console.error('Error while adding activity to favorites', error);
+      // Optionally, provide feedback to the user
+    }
+  };
+    
   //console.log("Les activités");
   //console.log(activity);
   if (!activity) {
     // Handle the case where activity information is not available
     return <div>Activity information not available.</div>;
   }
+
+  const months = {
+    '01': 'janvier',
+    '02': 'février',
+    '03': 'mars',
+    '04': 'avril',
+    '05': 'mai',
+    '06': 'juin',
+    '07': 'juillet',
+    '08': 'août',
+    '09': 'septembre',
+    '10': 'octobre',
+    '11': 'novembre',
+    '12': 'décembre'
+  };
+
+  //console.log("Activity  " , activity);
+  const stardate_ = activity.event.start_date.split("T")[0]
+  const split_date = stardate_.split("-")
+  const year = split_date[0]
+  const month = split_date[1]
+  const day = split_date[2]
+  const current_start_date = day + " " + months[month] + " " + year
+  
+  console.log("Starrrrttt daaaateee " , current_start_date);
 
   return (
     <div style={{ textAlign: 'center', margin: '0 auto', maxWidth: '900px', marginLeft: '500px' }}>
@@ -257,6 +338,9 @@ const ActivityPage: React.FC = () => {
         <h2 style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '24px' }}>{activity.event.name}</h2>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.categories[0]}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.address}</p>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Début: {current_start_date + " à " + activity.event.start_date.split("T")[1].substring(0, 8)}</p>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Fin: {current_start_date + " à " + activity.event.end_date.split("T")[1].substring(0, 8)}</p>
+        <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Nombre de participants: {activity.event.participents.length}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>
           {activity.event.date && activity.event.date.includes("T") ? activity.event.date.split("T")[0] : activity.event.date}
         </p>
@@ -297,6 +381,10 @@ const ActivityPage: React.FC = () => {
 
         <div style={{ marginTop: '20px' }}>
           <button onClick={addToCalendar}>Ajoute cette activité à ton calendrier</button>
+        </div>
+
+        <div style={{ marginTop: '20px' }}>
+          <button onClick={addToFavorites}>Ajoute cette activité à tes favoris</button>
         </div>
 
       </div>

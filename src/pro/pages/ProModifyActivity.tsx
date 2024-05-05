@@ -58,7 +58,7 @@ const ActivityDetailsPage: React.FC = () => {
     if (!state.nom || !state.adresse || !state.date
       || !state.horairesStart || !state.horairesEnd || (state.payante && (parseInt(state.prix, 10) <= 0 || !state.prix)) || !state.telephone
       || !state.email || !state.age || !state.description) {
-    
+
       toast({
         title: "Erreur",
         description: "Certains champs clés ne sont pas remplis",
@@ -66,9 +66,9 @@ const ActivityDetailsPage: React.FC = () => {
         duration: 3000,
         isClosable: true,
       });
-    
+
       console.log("Veuillez remplir tous les champs.");
-    
+
       if (!state.nom) console.log("Le champ Nom n'est pas rempli.");
       if (!state.adresse) console.log("Le champ Adresse n'est pas rempli.");
       if (!state.date) console.log("Le champ Date n'est pas rempli.");
@@ -81,10 +81,10 @@ const ActivityDetailsPage: React.FC = () => {
       if (!state.email) console.log("Le champ Email n'est pas rempli.");
       if (!state.age) console.log("Le champ Age n'est pas rempli.");
       if (!state.description) console.log("Le champ Description n'est pas rempli.");
-    
+
       return; // Empêcher le formulaire de se soumettre
     }
-    
+
 
     try {
       const { type, nom, adresse, date } = state;
@@ -224,12 +224,14 @@ const ActivityDetailsPage: React.FC = () => {
           payante: true // Mettre à jour la propriété payante
         }));
       }
-      const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
-      const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
+      if (firstPictureId != null) {
+        const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
+        const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
 
-      const img = URL.createObjectURL(responseImage.data);
+        const img = URL.createObjectURL(responseImage.data);
 
-      setResponseImage(img);
+        setResponseImage(img);
+      }
 
     } catch (error) {
       console.error(error);
@@ -268,7 +270,7 @@ const ActivityDetailsPage: React.FC = () => {
       <div className="ModifyActivity-header">
         <button onClick={() => navigate(-1)}>Retour</button>
         <div className="ModifyActivity-buttons">
-          <button onClick={ModifyActivity}>Sauvegarder</button>
+          <button onClick={ModifyActivity} style={{ width: '150px' }}>Sauvegarder</button>
         </div>
       </div>
       <h2 className="ModifyActivity-form-title">{state.nom}</h2>
@@ -472,9 +474,12 @@ const ActivityDetailsPage: React.FC = () => {
         </label>
       </div>
       <div className="ModifyActivity-separator"></div>
-      <label>
+      <div className="ModifyActivity-form-row">
+
         <span className="ModifyActivity-label-orange">Description de l'activité:</span>
-        <div className="ModifyActivity-description">
+      </div>
+      <div className="ModifyActivity-form-row">
+        <div className="ModifyActivity-description" style={{ width: '100%' }}>
           <input
             className="ModifyActivity-input"
             type="textarea"
@@ -482,7 +487,8 @@ const ActivityDetailsPage: React.FC = () => {
             onChange={(e) => setState(prevState => ({ ...prevState, description: e.target.value }))}
           />
         </div>
-      </label>
+
+      </div>
     </div>
   );
 }

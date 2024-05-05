@@ -19,43 +19,98 @@ interface Event {
 
 const CalendarComponent: React.FC = () => {
   const [timelineData, setTimelineData] = useState<Event[]>([]);
+  const [activities, setActivities] = useState<Event[]>([]); // New state for activity details
+  const navigate = useNavigate();
+
   useEffect(() => {
-    try {
-      const token = localStorage.getItem('token');
-       
-      if (token === null) {
-        //console.log("caca null")
-        navigate("/");
+    // Fetch initial timeline data
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        const reservations = data.reservations;
+        setTimelineData(reservations);
+
+        // Fetch activity details for each reservation
+        
+        const fetchActivityDetails = async () => {
+          const activitiesPromise = reservations.map(async (reservation: Event, index: number) => { // Add index and its type here
+            try {
+              const activityResponse = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${reservations[index]}`,{ // Use index here
+                method: 'GET',
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  'Content-Type': 'application/json',
+                },
+              });
+              if (activityResponse.ok) {
+                const activityData = await activityResponse.json();
+                return activityData;
+              } else {
+                //  '("caca");
+                console.error('Failed to fetch activity details. Status:', activityResponse.status);
+                return null;
+              }
+            } catch (error) {
+              console.error('Error while fetching activity details', error);
+              return null;
+            }
+          });
+          const activitiesData = await Promise.all(activitiesPromise);
+          //console.log("popo " , activitiesData);
+          setActivities(activitiesData.filter(activity => activity !== null));
+        };
+
+        fetchActivityDetails();
+
+      } catch (error) {
+        console.error('Error while fetching timeline data', error);
+        // Optionally, handle the error, show a message, etc.
       }
-      
-      
-      const timelineDataStr = localStorage.getItem('timelineData');
-      const parsedTimelineData = timelineDataStr ? JSON.parse(timelineDataStr) : [];
-      console.log('Timeline Data:', parsedTimelineData);
-      setTimelineData(parsedTimelineData);
-    } catch (error) {
-      console.error('Error while fetching timeline data', error);
-    }
+    };
+
+    fetchData();
   }, []);
 
-  const navigate = useNavigate(); // useNavigate always called
-
-  const handleEventClick = (event: any) => {
-    // Navigate to the /activity/:id route using the event.id
-    navigate(`/activity/${event._id}`);
-  };
+  //const handleEventClick = (event: any) => {
+  //  navigate(`/activity/${event._id}`);
+  //};
 
   if (!timelineData) {
-    // If timelineData is still undefined, render a loading state or return null
     return <div>Loading...</div>;
   }
 
-  const adaptedEvents = timelineData.map(event => ({
-    ...event,
-    start: new Date(event.date),
-    end: new Date(event.date),
-    title: event.name,
+  
+  //console.log("activities " , activities[0].event.end_date);
+  //console.log("caca");
+  const adaptedEvents = activities.map((activity, index) => ({
+    ...activity,
+    start: new Date(activities[index].event.start_date),
+    end: new Date(activities[index].event.end_date),
+    title: activities[index].event.name,
   }));
+  
+  const handleEventClick = (activity: any) => {
+    //console.log("Activities send " , activity.event._id);
+    
+    if (activity.event._id != null) {
+      navigate(`/activity/${activity.event._id}`);
+    } else {
+      console.error("Activity not found or missing data");
+      // Handle the error as per your application's logic
+    }
+  }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', height: '100vh', paddingRight: '20%' }}>
@@ -66,8 +121,8 @@ const CalendarComponent: React.FC = () => {
         endAccessor="end"
         views={['month', 'week', 'day']}
         style={{ width: '80%' }}
-        onSelectEvent={handleEventClick}
-      />
+        onSelectEvent={(event, e) => handleEventClick(event, e)}
+        />
     </div>
   );
 };

@@ -45,6 +45,8 @@ const ActivityDetailsPage: React.FC = () => {
 
   const { id } = useParams();
   const [responseImage, setResponseImage] = useState<string | null>(null);
+  const [isCreator, setIsCreator] = useState<boolean>(false);
+  const [creatorInfo, setCreatorInfo] = useState<any>(null);
 
   const getActivity = async () => {
     try {
@@ -89,14 +91,34 @@ const ActivityDetailsPage: React.FC = () => {
       console.log("toto")
       console.log(activityDetails.participents.length)
 
-      const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
-      const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
+      if (firstPictureId != null) {
+        const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
+        const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
+        const img = URL.createObjectURL(responseImage.data);
+        setResponseImage(img);
+      }
 
-      const img = URL.createObjectURL(responseImage.data);
+      const urlCreator = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile?id=${activityDetails.creator}`;
+      const responseCreator = await fetch(urlCreator, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const userData = await responseCreator.json();
+      setCreatorInfo(userData.user)
 
-      setResponseImage(img);
+      const profileUrl = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile`;
+      const profileResponse = await axios.get(profileUrl, config);
+      const profileDetails = profileResponse.data.user;
 
+      if (activityDetails.creator == profileDetails._id) {
+        setIsCreator(true)
+      }
 
+      console.log("creato", isCreator)
+      console.log(profileDetails)
 
     } catch (error) {
       console.error(error);
@@ -161,12 +183,21 @@ const ActivityDetailsPage: React.FC = () => {
             </div>
           </div>
           <div className="ActivityInfo-buttons">
-            <Link to={`/pro-ModifyActivity/${id}`}>
-              <button>Modifier</button>
-            </Link>
-            <button onClick={deleteActivity}>Supprimer</button>
+            {isCreator && (
+              <>
+                <Link to={`/pro-ModifyActivity/${id}`}>
+                  <button>Modifier</button>
+                </Link>
+                <button onClick={deleteActivity}>Supprimer</button>
+              </>
+            )}
           </div>
         </div>
+        {creatorInfo && (
+          <label className="ActivityInfo-column_20">
+            Created by {creatorInfo.username} {creatorInfo.email}
+          </label>
+        )}
         <h2 className="ActivityInfo-form-title">{state.nom}</h2>
         <div className='ActivityInfo-image-conteneur'>
           <div className="ActivityInfo-image">
@@ -174,19 +205,6 @@ const ActivityDetailsPage: React.FC = () => {
           </div>
         </div>
         <h2 className="ActivityInfo-form-title">Détails de l'activité</h2>
-        {/* <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
-            id:
-          </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              value={state.id_exemple}
-              onChange={(e) => setState({ ...state, id_exemple: e.target.value })}
-            />
-          </label>
-        </div> */}
         <br />
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
@@ -339,9 +357,12 @@ const ActivityDetailsPage: React.FC = () => {
           </label>
         </div>
         <div className="ActivityInfo-separator"></div>
-        <label>
+        <div className="ActivityInfo-form-row">
+
           <span className="ActivityInfo-label-red">Description de l'activité:</span>
-          <div className="ActivityInfo-description">
+        </div>
+        <div className="ActivityInfo-form-row">
+          <div className="ActivityInfo-description" style={{ width: '100%' }}>
             <input
               className="ActivityInfo-input"
               type="textarea"
@@ -349,7 +370,8 @@ const ActivityDetailsPage: React.FC = () => {
               value={state.description}
             />
           </div>
-        </label>
+
+        </div>
       </div>
       <div className="ActivityInfo-container">
         <h2 className="ActivityInfo-form-title">Statistiques de l'activité</h2>
