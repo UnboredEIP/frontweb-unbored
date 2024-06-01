@@ -46,6 +46,8 @@ const RegisterForm: React.FC<{}> = () => {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [gender, setGender] = useState('');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
@@ -58,6 +60,8 @@ const RegisterForm: React.FC<{}> = () => {
   const isFormValid =
     username !== "" &&
     email !== "" &&
+    birthdate !== "" &&
+    gender !== "" &&
     password !== "" &&
     confirmPassword !== "" &&
     passwordsMatch;
@@ -72,6 +76,18 @@ const RegisterForm: React.FC<{}> = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setEmail(event.target.value);
+  };
+
+  const handleBirthdateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setBirthdate(event.target.value);
+  };
+
+  const handleGenderChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setGender(event.target.value);
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,8 +114,8 @@ const RegisterForm: React.FC<{}> = () => {
           username,
           email,
           password,
-          "gender": "Homme",
-          "birthdate": "2002-01-01",
+          gender,
+          birthdate,
           "preferences": ["basket", "foot"]
         });
         console.log(response.status);
@@ -146,105 +162,138 @@ const RegisterForm: React.FC<{}> = () => {
           Vous êtes déjà connecté. <Link color="orange" href="/dashboard">Accéder au tableau de bord</Link>
         </Text>
       ) : ( */}
-        <form>
-          <FormControl mt={10} textAlign="left">
-            <FormLabel textAlign="left" mt={4}>Nom d'utilisateur</FormLabel>
-            <Input
-              type="username"
-              placeholder="Entrez votre nom d'utilisateur"
-              textAlign="center"
-              borderRadius={50}
-              borderWidth={2}
-              borderColor="#E1604D"
-              value={username}
-              bg="white"
-              onChange={handleUsernameChange}
-            ></Input>
-            <FormLabel textAlign="left" mt={4}>Adresse mail</FormLabel>
-            <Input
-              type="email"
-              placeholder="Entrez votre adresse mail"
-              textAlign="center"
-              borderRadius={50}
-              borderWidth={2}
-              borderColor="#E1604D"
-              value={email}
-              bg="white"
-              onChange={handleEmailChange}
-            ></Input>
-            <FormLabel textAlign="left" mt={4}>Mot de passe</FormLabel>
-            <InputGroup>
-              <Input
-                type={showPassword ? "text" : "password"}
-                placeholder="Entrez votre mot de passe"
-                textAlign="center"
-                borderRadius={50}
-                borderWidth={2}
-                borderColor="#E1604D"
-                value={password}
-                bg="white"
-                onChange={handlePasswordChange}
-              />
-              <InputRightElement>
-                {showPassword ? (
-                  <FaEyeSlash onClick={toggleShowPassword} />
-                ) : (
-                  <FaEye onClick={toggleShowPassword} />
-                )}
-              </InputRightElement>
-            </InputGroup>
-            <FormLabel textAlign="left" mt={4}>Confirmer mot de passe</FormLabel>
-            <InputGroup>
-              <Input
-                type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirmez votre mot de passe"
-                textAlign="center"
-                borderRadius={50}
-                borderWidth={2}
-                borderColor="#E1604D"
-                value={confirmPassword}
-                bg="white"
-                onChange={handleConfirmPasswordChange}
-              ></Input>
-              <InputRightElement>
-                {showConfirmPassword ? (
-                  <FaEyeSlash onClick={toggleShowConfirmPassword} />
-                ) : (
-                  <FaEye onClick={toggleShowConfirmPassword} />
-                )}
-              </InputRightElement>
-            </InputGroup>
-            {!passwordsMatch && (
-              <Text color="red">Les mots de passe ne correspondent pas !</Text>
-            )}
-          </FormControl>
-          <Text fontSize={15} textAlign="center" color="gray">
-            J'ai déjà un compte, <Link color="orange" href="/Pro-login">se connecter</Link>
-          </Text>
-          <Button
-            type="submit"
-            mt={4}
-            my={4}
+      <form>
+        <FormControl mt={10} textAlign="left">
+          <FormLabel textAlign="left" mt={4}>Nom d'utilisateur</FormLabel>
+          <Input
+            type="username"
+            placeholder="Entrez votre nom d'utilisateur"
+            textAlign="center"
             borderRadius={50}
-            boxShadow="lg"
-            backgroundColor="#E1604D"
-            color="whitesmoke"
-            isDisabled={!isFormValid}
-            onClick={handleSubmit}
-            textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
-            width="200px"
-            height="50px"
-          >
-            S'inscrire
-          </Button>
+            borderWidth={2}
+            borderColor="#E1604D"
+            value={username}
+            bg="white"
+            onChange={handleUsernameChange}
+          ></Input>
+          <FormLabel textAlign="left" mt={4}>Adresse mail</FormLabel>
+          <Input
+            type="email"
+            placeholder="Entrez votre adresse mail"
+            textAlign="center"
+            borderRadius={50}
+            borderWidth={2}
+            borderColor="#E1604D"
+            value={email}
+            bg="white"
+            onChange={handleEmailChange}
+          ></Input>
+          <FormLabel textAlign="left" mt={4}>Date de naissance</FormLabel>
+          <Input
+            type="date" // Changé de "username" à "date"
+            placeholder="Entrez votre date de naissance"
+            textAlign="center"
+            borderRadius={50}
+            borderWidth={2}
+            borderColor="#E1604D"
+            value={birthdate} // Assurez-vous d'avoir un état pour la date de naissance
+            bg="white"
+            onChange={handleBirthdateChange} // Assurez-vous d'avoir une fonction pour gérer le changement de la date de naissance
+          ></Input>
 
-          <Stack isInline justifyContent="space-between" my={4}>
-            <Button borderRadius={12} boxShadow="lg" color={"black"}>
+          <FormLabel textAlign="left" mt={4}>Genre</FormLabel>
+          <select
+            value={gender} // Assurez-vous d'avoir un état pour le genre
+            onChange={handleGenderChange} // Assurez-vous d'avoir une fonction pour gérer le changement du genre
+            style={{
+              textAlign: "center",
+              borderRadius: 50,
+              borderWidth: 2,
+              borderColor: "#E1604D",
+              backgroundColor: "white",
+              width: "100%", // Pour s'assurer que le select prend toute la largeur disponible
+            }}
+          >
+            <option value="">Sélectionnez votre genre</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+            <option value="Autre">Autre</option>
+          </select>
+
+          <FormLabel textAlign="left" mt={4}>Mot de passe</FormLabel>
+          <InputGroup>
+            <Input
+              type={showPassword ? "text" : "password"}
+              placeholder="Entrez votre mot de passe"
+              textAlign="center"
+              borderRadius={50}
+              borderWidth={2}
+              borderColor="#E1604D"
+              value={password}
+              bg="white"
+              onChange={handlePasswordChange}
+            />
+            <InputRightElement>
+              {showPassword ? (
+                <FaEyeSlash onClick={toggleShowPassword} />
+              ) : (
+                <FaEye onClick={toggleShowPassword} />
+              )}
+            </InputRightElement>
+          </InputGroup>
+          <FormLabel textAlign="left" mt={4}>Confirmer mot de passe</FormLabel>
+          <InputGroup>
+            <Input
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirmez votre mot de passe"
+              textAlign="center"
+              borderRadius={50}
+              borderWidth={2}
+              borderColor="#E1604D"
+              value={confirmPassword}
+              bg="white"
+              onChange={handleConfirmPasswordChange}
+            ></Input>
+            <InputRightElement>
+              {showConfirmPassword ? (
+                <FaEyeSlash onClick={toggleShowConfirmPassword} />
+              ) : (
+                <FaEye onClick={toggleShowConfirmPassword} />
+              )}
+            </InputRightElement>
+          </InputGroup>
+          {!passwordsMatch && (
+            <Text color="red">Les mots de passe ne correspondent pas !</Text>
+          )}
+
+        </FormControl>
+        <Text fontSize={15} textAlign="center" color="gray">
+          J'ai déjà un compte, <Link color="orange" href="/Pro-login">se connecter</Link>
+        </Text>
+        <Button
+          type="submit"
+          mt={4}
+          my={4}
+          borderRadius={50}
+          boxShadow="lg"
+          backgroundColor="#E1604D"
+          color="whitesmoke"
+          isDisabled={!isFormValid}
+          onClick={handleSubmit}
+          textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
+          width="200px"
+          height="50px"
+        >
+          S'inscrire
+        </Button>
+
+        <Stack isInline justifyContent="space-between" my={4}>
+          <Button borderRadius={12} boxShadow="lg" color={"black"}>
             <img src={logoGoogle} alt="Logo" className={styles["logo"]} width="20" height="20" />
-              Continuer avec Google
-            </Button>
-          </Stack>
-        </form>
+            Continuer avec Google
+          </Button>
+        </Stack>
+      </form>
       {/* )} */}
     </Box>
   );

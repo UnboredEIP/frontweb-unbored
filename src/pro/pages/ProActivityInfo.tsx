@@ -4,12 +4,16 @@ import { Link, useParams } from 'react-router-dom';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
+import personIcon from "../../assets/icons/personIcon.png";
+import { partial } from 'lodash';
+
 
 interface State {
   id_exemple: string;
   type: string;
   nom: string;
-  horaires: string;
+  horairesStart: string;
+  horairesEnd: string;
   date: string;
   adresse: string;
   description: string;
@@ -18,6 +22,7 @@ interface State {
   prix: string;
   email: string;
   telephone: string;
+  participants: string[]
 }
 
 const ActivityDetailsPage: React.FC = () => {
@@ -25,7 +30,8 @@ const ActivityDetailsPage: React.FC = () => {
     id_exemple: '',
     type: '',
     nom: '',
-    horaires: '',
+    horairesStart: '',
+    horairesEnd: '',
     date: '',
     adresse: '',
     description: '',
@@ -34,10 +40,13 @@ const ActivityDetailsPage: React.FC = () => {
     prix: '',
     email: '',
     telephone: '',
+    participants: [],
   });
 
   const { id } = useParams();
   const [responseImage, setResponseImage] = useState<string | null>(null);
+  const [isCreator, setIsCreator] = useState<boolean>(false);
+  const [creatorInfo, setCreatorInfo] = useState<any>(null);
 
   const getActivity = async () => {
     try {
@@ -56,34 +65,60 @@ const ActivityDetailsPage: React.FC = () => {
         ? activityDetails.pictures[0].id
         : null;
 
-      const dateObject = new Date(activityDetails.date);
+      const dateObject = new Date(activityDetails.start_date);
       const formattedDate = dateObject.toISOString().split('T')[0];
 
-      const horaires = activityDetails.hours + ":" + activityDetails.minutes;
-      // Utilisez formattedDate pour afficher dans un champ de type "date"
-
+      const start = activityDetails.start_date.split('T')[1].substring(0, 5);
+      const end = activityDetails.end_date.split('T')[1].substring(0, 5);
 
       setState({
         id_exemple: activityDetails._id,
         type: activityDetails.categories,
         nom: activityDetails.name,
-        horaires: horaires,
+        horairesStart: start,
+        horairesEnd: end,
         date: formattedDate,
         adresse: activityDetails.address,
         description: activityDetails.description,
         age: activityDetails.age,
-        payante: activityDetails.payante,
-        prix: activityDetails.prix,
+        payante: activityDetails.price,
+        prix: activityDetails.price,
         email: activityDetails.email,
-        telephone: activityDetails.telephone,
+        telephone: activityDetails.phone,
+        participants: activityDetails.participents
       });
 
-      const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
-      const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
+      console.log("toto")
+      console.log(activityDetails.participents.length)
 
-      const img = URL.createObjectURL(responseImage.data);
+      if (firstPictureId != null) {
+        const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
+        const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
+        const img = URL.createObjectURL(responseImage.data);
+        setResponseImage(img);
+      }
 
-      setResponseImage(img);
+      const urlCreator = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile?id=${activityDetails.creator}`;
+      const responseCreator = await fetch(urlCreator, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const userData = await responseCreator.json();
+      setCreatorInfo(userData.user)
+
+      const profileUrl = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile`;
+      const profileResponse = await axios.get(profileUrl, config);
+      const profileDetails = profileResponse.data.user;
+
+      if (activityDetails.creator == profileDetails._id) {
+        setIsCreator(true)
+      }
+
+      console.log("creato", isCreator)
+      console.log(profileDetails)
 
     } catch (error) {
       console.error(error);
@@ -131,19 +166,38 @@ const ActivityDetailsPage: React.FC = () => {
 
   return (
     <div className="ActivityInfo-form-container">
+      <button className="ActivityInfo-Button" onClick={() => navigate(-1)}>Retour</button>
       <div className="ActivityInfo-container">
         <div className="ActivityInfo-header">
-          <button onClick={() => navigate(-1)}>Retour</button>
-          <Link to="/Pro-myAvis">
-            <button>Avis</button>
-          </Link>
+          <div className="ActivityInfo-left-side">
+            <div className="ActivityInfo-form-row">
+              <Link to={`/Pro-myAvis/${id}`}>
+                <button className="ActivityInfo-Button" style={{ marginRight: '10px' }}>Avis</button>
+              </Link>
+              <div className="ActivityInfo-form-row" style={{ marginTop: '5px' }}>
+                <Link to={`/Pro-activitySubscribers/${id}`}>
+                  <img src={personIcon} alt="Nombre de participants" width="30" height="20" />
+                </Link>
+                <span style={{ color: 'red' }}>{state.participants.length}</span>
+              </div>
+            </div>
+          </div>
           <div className="ActivityInfo-buttons">
-            <Link to={`/Pro-modifyActivity/${id}`}>
-              <button>Modifier</button>
-            </Link>
-            <button onClick={deleteActivity}>Supprimer</button>
+            {isCreator && (
+              <>
+                <Link to={`/pro-ModifyActivity/${id}`}>
+                  <button>Modifier</button>
+                </Link>
+                <button onClick={deleteActivity}>Supprimer</button>
+              </>
+            )}
           </div>
         </div>
+        {creatorInfo && (
+          <label className="ActivityInfo-column_20">
+            Created by {creatorInfo.username} {creatorInfo.email}
+          </label>
+        )}
         <h2 className="ActivityInfo-form-title">{state.nom}</h2>
         <div className='ActivityInfo-image-conteneur'>
           <div className="ActivityInfo-image">
@@ -151,19 +205,6 @@ const ActivityDetailsPage: React.FC = () => {
           </div>
         </div>
         <h2 className="ActivityInfo-form-title">Détails de l'activité</h2>
-        {/* <div className="ModifyActivity-form-row">
-          <label className="ModifyActivity-column_20">
-            id:
-          </label>
-          <label className="ModifyActivity-column_75">
-            <input
-              className="ModifyActivity-input"
-              type="text"
-              value={state.id_exemple}
-              onChange={(e) => setState({ ...state, id_exemple: e.target.value })}
-            />
-          </label>
-        </div> */}
         <br />
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
@@ -195,18 +236,6 @@ const ActivityDetailsPage: React.FC = () => {
         <br />
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
-            Horaires:
-          </label>
-          <label className="ActivityInfo-column_25">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.horaires}
-            />
-          </label>
-          <label className="ActivityInfo-column_10"></label>
-          <label className="ActivityInfo-column_15">
             Date:
           </label>
           <label className="ActivityInfo-column_25">
@@ -217,6 +246,32 @@ const ActivityDetailsPage: React.FC = () => {
               value={state.date}
             />
           </label>
+        </div>
+        <div className="ActivityInfo-form-row">
+          <label className="ActivityInfo-column_20">
+            Horaires Debut:
+          </label>
+          <label className="ActivityInfo-column_25">
+            <input
+              className="ActivityInfo-input"
+              type="text"
+              readOnly
+              value={state.horairesStart}
+            />
+          </label>
+          <label className="ActivityInfo-column_5"></label>
+          <label className="ActivityInfo-column_20">
+            Horaires Fin:
+          </label>
+          <label className="ActivityInfo-column_25">
+            <input
+              className="ActivityInfo-input"
+              type="text"
+              readOnly
+              value={state.horairesEnd}
+            />
+          </label>
+
         </div>
         <div className="ActivityInfo-separator"></div>
         <div className="ActivityInfo-form-row">
@@ -235,7 +290,7 @@ const ActivityDetailsPage: React.FC = () => {
         <div className="ActivityInfo-separator"></div>
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
-            Age conseillé:
+            Age minimum:
           </label>
           <label className="ActivityInfo-column_75">
             <input
@@ -302,9 +357,12 @@ const ActivityDetailsPage: React.FC = () => {
           </label>
         </div>
         <div className="ActivityInfo-separator"></div>
-        <label>
+        <div className="ActivityInfo-form-row">
+
           <span className="ActivityInfo-label-red">Description de l'activité:</span>
-          <div className="ActivityInfo-description">
+        </div>
+        <div className="ActivityInfo-form-row">
+          <div className="ActivityInfo-description" style={{ width: '100%' }}>
             <input
               className="ActivityInfo-input"
               type="textarea"
@@ -312,7 +370,8 @@ const ActivityDetailsPage: React.FC = () => {
               value={state.description}
             />
           </div>
-        </label>
+
+        </div>
       </div>
       <div className="ActivityInfo-container">
         <h2 className="ActivityInfo-form-title">Statistiques de l'activité</h2>

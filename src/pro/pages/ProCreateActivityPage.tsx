@@ -8,8 +8,9 @@ import { useToast } from "@chakra-ui/react";
 interface State {
   type: string;
   nom: string;
-  horaires: string;
-  date: string;
+  horairesStart: string;
+  horairesEnd: string;
+  date: Date | null;
   lieuVille: string;
   lieuRue: string;
   lieuNumero: string;
@@ -27,8 +28,9 @@ const CreateActivityPage: React.FC = () => {
   const [state, setState] = useState<State>({
     type: '',
     nom: '',
-    horaires: '',
-    date: '',
+    horairesStart: '',
+    horairesEnd: '',
+    date: null,
     lieuVille: '',
     lieuRue: '',
     lieuNumero: '',
@@ -103,6 +105,21 @@ const CreateActivityPage: React.FC = () => {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+
+    if (!state.nom || !state.lieuRue || !state.lieuNumero || !state.lieuVille || !state.selectedOption || !state.date
+      || !state.horairesStart || !state.horairesEnd || (state.payante == true && (parseInt(state.prix, 10) <= 0 || !state.prix)) || !state.telephone 
+      || !state.email || !state.age || !state.description) {
+      toast({
+        title: "Erreur",
+        description: "Certains champs clés ne sont pas remplis",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      console.log("Veuillez remplir tous les champs.");
+      return; // Empêcher le formulaire de se soumettre
+    }
+
     try {
       const lieu = `${state.lieuRue} ${state.lieuNumero} ${state.lieuVille}`;
       const token = localStorage.getItem('token');
@@ -111,14 +128,53 @@ const CreateActivityPage: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const [hours, minutes] = state.horaires.split(':');
+
+      const [hoursStrStart, minutesStrStart] = state.horairesStart.split(':');
+      const hoursStart = parseInt(hoursStrStart, 10);
+      const minutesStart = parseInt(minutesStrStart, 10);
+      let theDateStart = null;
+
+      if (state.date != null) {
+        theDateStart = new Date(state.date);
+        theDateStart.setUTCHours(hoursStart);
+        theDateStart.setUTCMinutes(minutesStart);
+      }
+
+      const [hoursStrEnd, minutesStrEnd] = state.horairesEnd.split(':');
+      const hoursEnd = parseInt(hoursStrEnd, 10);
+      const minutesEnd = parseInt(minutesStrEnd, 10);
+      let theDateEnd = null;
+
+      if (state.date != null) {
+        theDateEnd = new Date(state.date);
+        theDateEnd.setUTCHours(hoursEnd);
+        theDateEnd.setUTCMinutes(minutesEnd);
+      }
+
+      if (theDateStart != null && theDateEnd != null) {
+        if (theDateStart.getTime() >= theDateEnd.getTime()) {
+          toast({
+            title: "Erreur",
+            description: "L'horaire de fin doit être supérieur à celle de début",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+          return;
+        }
+      }
+
       const response = await axios.post('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/create', {
         name: state.nom,
         address: lieu,
         categories: state.selectedOption,
-        date: state.date,
-        hours: hours,
-        minutes: minutes
+        start_date: theDateStart,
+        end_date: theDateEnd,
+        age: state.age,
+        price: state.prix,
+        phone: state.telephone,
+        email: state.email,
+        description: state.description
       }, config);
 
       const eventId = response.data.event._id;
@@ -210,10 +266,10 @@ const CreateActivityPage: React.FC = () => {
             <div className="CreateActivity-row">
               {/* GAUCHE 1.1*/}
               <div className="CreateActivity-left-side">
-                {/* Age conseillé */}
+                {/* Age minimum */}
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-label-column_100">
-                    Age conseillé:
+                    Age Minimum:
                   </label>
                 </div>
                 <div className="CreateActivity-form-row">
@@ -270,23 +326,25 @@ const CreateActivityPage: React.FC = () => {
                     </div>
                     <div className="CreateActivity-price-form">
                       <label className="CreateActivity-label-column_25">
-                        Prix:
+                        Prix (€):
                       </label>
                     </div>
                     <div className="CreateActivity-form-row">
                       <label className="CreateActivity-column_75">
                         <input
+                          type="text" pattern="[0-9]*"
                           className="CreateActivity-input"
                           id="prix"
                           name="prix"
                           value={state.prix}
-                          onChange={handleInputChange} />
+                          onChange={handleInputChange}
+                        />
                       </label>
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className='CreateActivity-price-empty' style={{ marginTop: '2px' }}>
+                    <div style={{ marginTop: '149px' }}>
                     </div>
                   </>
                 )}
@@ -319,20 +377,36 @@ const CreateActivityPage: React.FC = () => {
             <div className="CreateActivity-row">
               {/* gauche 1.1 */}
               <div className="CreateActivity-left-side" style={{ marginLeft: '10%' }}>
+                {/* Date */}
+                <div className="CreateActivity-form-row">
+                  <label className="CreateActivity-label-column_100">
+                    Date:
+                  </label>
+                </div>
+                <div className="CreateActivity-form-row">
+                  <label className="CreateActivity-column_75">
+                    <input
+                      type="date"
+                      className='CreateActivity-input'
+                      name="date"
+                      value={state.date instanceof Date ? state.date.toISOString().split('T')[0] : (state.date || '')} // Vérifie si state.date est un objet Date
+                      onChange={handleInputChange}
+                    />
+                  </label>
+                </div>
                 {/* Horaire */}
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-label-column_100">
-                    Horaires:
+                    Horaires Debut:
                   </label>
-
                 </div>
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-column_75">
                     <input
                       type="time"
                       className='CreateActivity-input'
-                      name="horaires"
-                      value={state.horaires}
+                      name="horairesStart"
+                      value={state.horairesStart}
                       onChange={handleInputChange}
                     />
                   </label>
@@ -372,28 +446,29 @@ const CreateActivityPage: React.FC = () => {
                 </div>
               </div>
 
-
-
-
               {/* droite 1.1*/}
               <div className="CreateActivity-right-side">
-                {/* Date */}
+                <div style={{ marginTop: '80px' }}>
+                </div>
+
+                {/* Horaire */}
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-label-column_100">
-                    Date:
+                    Horaires Fin:
                   </label>
                 </div>
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-column_75">
                     <input
-                      type="date"
+                      type="time"
                       className='CreateActivity-input'
-                      name="date"
-                      value={state.date}
+                      name="horairesEnd"
+                      value={state.horairesEnd}
                       onChange={handleInputChange}
                     />
                   </label>
                 </div>
+
                 {/* Lieu Rue */}
                 <div className="CreateActivity-form-row">
                   <label className="CreateActivity-label-column_100">

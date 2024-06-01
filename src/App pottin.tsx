@@ -11,7 +11,7 @@ import PresentationPage from "./pages/Presentation";
 import ParticleBackground from "./components/ParticleBackground";
 import CreateActivityPage from "./pro/pages/ProCreateActivityPage";
 import ChooseContractPage from "./pro/pages/ProChooseContractPage";
-import { useNavigate } from "react-router-dom"; // Import useLocation
+import { useNavigate } from "react-router-dom";
 import UpdateProfilePage from "./pages/profile/UpdateProfile";
 import ProLoginPage from "./pro/pages/ProLogin";
 import ProRegisterPage from "./pro/pages/ProRegister";
@@ -26,6 +26,7 @@ import UpdateEmailPage from "./pages/profile/UpdateEmail";
 import UpdatePasswordPage from "./pages/profile/UpdatePassword";
 import ProfilePage from "./pages/Profile";
 import AvisActivityPage from "./pro/pages/ProAvisActivity";
+import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
 import ForgotpasswordPage from "./pages/profile/ForgotPassword";
 import CalendarComponent from './pages/CalendarComponent';
 import timelineData from "./components/Timeline/timeline.json";
@@ -33,18 +34,15 @@ import ProMenuPage from "./pro/pages/ProMenu";
 import ForgetPass from "./pages/profile/ForgotPass"
 import ManageAvatarPage from "./pages/ManageAvatar"
 import ActivityPage from "./pages/ActivityPage";
-import SiteVitrine from "./pages/site_vitrinee/config";
-import GoogleOAuthLogin from "./pages/GoogleLogin";
-import FavoriteActivitiesPage from "./pages/ActivityFavorite"
-import EventSwipe from "./pages/EventSwipe"; // Ensure this is the correct import
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
+import SiteVitrine from "./pages/SiteVitrine"
+
+
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
   useEffect(() => {
     const storedJsonData = localStorage.getItem("myJsonData");
     if (storedJsonData) {
@@ -55,25 +53,7 @@ function App() {
     if (storedIsLoggedIn) {
       setIsLoggedIn(JSON.parse(storedIsLoggedIn));
     }
-
-    window.addEventListener('scroll', handleScroll);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
-
-
-  const handleScroll = () => {
-    var dddd = document.getElementById('dddd');
-
-    if (window.scrollY > 0) {
-      dddd?.classList.add('coucou');
-    } else {
-      dddd?.classList.remove('coucou');
-    }
-  };
 
   const updateJsonData = (newData: any) => {
     setJsonData(newData);
@@ -102,8 +82,6 @@ function App() {
             path="/login"
             element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
           />
-          <Route path="/loefzefgin" element={<GoogleOAuthLogin clientId="" onLoginSuccess={HandleLoginSuccess} />} />
-
           <Route
             path="/register"
             element={<RegisterPage onRegisterSuccess={HandleLoginSuccess} />}
@@ -162,7 +140,11 @@ function App() {
             element={<ProModifyActivity />}
           />
           <Route
-            path="/Pro-myAvis/:id"
+            path="/Pro-activitySubscribers/:id"
+            element={<ProActivitySubscribers />}
+          />
+          <Route
+            path="/Pro-myAvis"
             element={<AvisActivityPage />}
           ></Route>
           <Route
@@ -182,20 +164,10 @@ function App() {
             path="/calendar"
             element={<CalendarComponent />}
           />
-          <Route
-            path="/Pro-activitySubscribers/:id"
-            element={<ProActivitySubscribers />}
-          />
 
-          <Route
-            path="/activity-favorite"
-            element={<FavoriteActivitiesPage />}
-          />
           <Route path="/activity/:id" element={<ActivityPage />} />
           <Route path="/site_vitrine" element={<SiteVitrine />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/EventSwipe" element={<EventSwipe />} />
-          
         </Routes>
       </Router>
       <header className={styles["App-header"]}></header>
