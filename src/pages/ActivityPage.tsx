@@ -196,7 +196,7 @@ const ActivityPage: React.FC = () => {
         },
         body: JSON.stringify({events : [activity.event._id]}), // assuming the endpoint expects an array of events
       });
-      console.log("Data: " , activity.event._id);
+      console.log("Data: " , activity);
       //addToTimeline(activity.event);
       if (response.ok) {
         console.log('Event added to the calendar successfully!');
