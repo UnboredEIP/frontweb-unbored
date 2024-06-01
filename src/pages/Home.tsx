@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/pages/Register.module.css";
 import { Box, Flex, Button, Input } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Timeline from "../components/Timeline/Timeline";
@@ -17,14 +16,12 @@ type Event = {
 };
 
 const HomeHeader: React.FC<{}> = () => {
-  const navigate = useNavigate(); // useNavigate always called
+  const navigate = useNavigate();
   const [events, setEvents] = useState<Event[]>([]);
-  const [currentEventIndex, setCurrentEventIndex] = useState(0);
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [eventToDisplay, setEventToDisplay] = useState("Sport");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllEvents, setShowAllEvents] = useState(true);
-
-  const [isLoggedIn, setLoggedIn] = useState(false);
 
   const [userData, setUserData] = useState({
     name: '',
@@ -36,7 +33,6 @@ const HomeHeader: React.FC<{}> = () => {
         const token = localStorage.getItem('token');
 
         if (token === null) {
-          //console.log("caca null")
           navigate("/");
         }
         const config = {
@@ -49,7 +45,6 @@ const HomeHeader: React.FC<{}> = () => {
         const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/lists', config);
   
         if (response.status === 401) {
-          // Handle unauthorized access, e.g., redirect to login page
           console.error('Unauthorized access');
           return;
         }
@@ -90,7 +85,6 @@ const HomeHeader: React.FC<{}> = () => {
         const responseImage = await axios.get(urlImage, { responseType: "blob", ...config });
 
         const img = URL.createObjectURL(responseImage.data);
-        // Set profile picture in your state if needed
       }
 
       setUserData({
@@ -105,37 +99,34 @@ const HomeHeader: React.FC<{}> = () => {
     }
   };
   
-  const previousEvent = () => {
-    if (currentEventIndex > 0) {
-      setCurrentEventIndex(currentEventIndex - 1);
+  const previousCategory = () => {
+    if (currentCategoryIndex > 0) {
+      setCurrentCategoryIndex(currentCategoryIndex - 1);
     }
   };
 
-  const nextEvent = () => {
-    if (currentEventIndex < events.length - 1) {
-      setCurrentEventIndex(currentEventIndex + 1);
+  const nextCategory = () => {
+    if (currentCategoryIndex < uniqueCategories.length - 5) {
+      setCurrentCategoryIndex(currentCategoryIndex + 1);
     }
   };
 
   const right_arrow = "→";
   const left_arrow = "←";
 
-  // Filter events by category or show all events
   const eventsToDisplay = showAllEvents
-    ? events || []  // Use empty array if events is undefined
+    ? events || []
     : (events || []).filter((event) => event.categories.includes(eventToDisplay));
 
-  // Filter events by search query
   const filteredEvents = eventsToDisplay.filter((event) =>
     event.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Get unique event categories
   const uniqueCategories: string[] = Array.from(new Set((events || []).map((event) => event.categories).flat()));
 
   const changeEventCategory = (category: string) => {
     setEventToDisplay(category);
-    setShowAllEvents(false); // Reset to category-based filtering
+    setShowAllEvents(false);
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -143,7 +134,7 @@ const HomeHeader: React.FC<{}> = () => {
   };
 
   const showAllEventsHandler = () => {
-    setShowAllEvents(true); // Show all events when the button is clicked
+    setShowAllEvents(true);
   };
 
   const handleStartButtonClick = () => {
@@ -152,54 +143,76 @@ const HomeHeader: React.FC<{}> = () => {
 
   return (
     <Flex direction="column">
-      {/* Search bar */}
       <Input
         type="text"
         placeholder="Recherche les activités par titre"
-        style={{ fontSize: "36px", position: "relative", left: "350px",width: "530px"}}
+        style={{ fontSize: "36px", position: "relative", left: "200px", width: "530px" }}
         value={searchQuery}
         onChange={handleSearch}
       />
 
-      {/* Ajout d'un espace */}
       <Box style={{ margin: "50px 0" }} />
 
-      <Flex>
+      <Button
+        onClick={showAllEventsHandler}
+        style={{ position: "relative", left: "200px", top: "0px", fontSize: "36px" }}
+        variant={showAllEvents ? "solid" : "outline"}
+        bg="#e1604d"
+        color="white"
+        mr={2}
+      >
+        Tout les thémes
+      </Button>
+      
+      <br />
+      <Flex align="center" justifyContent="space-between">
         <Button
-          onClick={showAllEventsHandler}
-          style={{ position: "relative", left: "350px", top: "0px", fontSize: "36px" }}
-          variant={showAllEvents ? "solid" : "outline"}
-          bg="#e1604d"
-          color="white"
-          mr={2}
+          onClick={previousCategory}
+          style={{ fontSize: "72px", background: "none", border: "none", color: "#e1604d", marginLeft: "190px" }}
+          disabled={currentCategoryIndex === 0}
         >
-          Tout les thémes
+          {left_arrow}
         </Button>
 
-        <Box style={{ margin: "30px 0" }} />
+        <Flex justify="center" align="center" flex="1">
+          {(uniqueCategories.slice(currentCategoryIndex, currentCategoryIndex + 5)).map((category, index) => (
+            <Button
+              key={index}
+              style={{ margin: "0 10px", fontSize: "36px" }}
+              onClick={() => changeEventCategory(category)}
+              variant={category === eventToDisplay ? "solid" : "outline"}
+              bg="#e1604d"
+              color="white"
+            >
+              {category}
+            </Button>
+          ))}
+        </Flex>
 
-        {uniqueCategories.map((category, index) => (
-          <Button
-            key={index}
-            style={{ position: "relative", left: "350px", top: "0px", fontSize: "36px" }}
-            onClick={() => changeEventCategory(category)}
-            variant={category === eventToDisplay ? "solid" : "outline"}
-            bg="#e1604d"
-            color="white"
-            _notFirst={{ ml: "30px" }}
-          >
-            {category}
-          </Button>
-        ))}
+        <Button
+          onClick={nextCategory}
+          style={{ fontSize: "72px", background: "none", border: "none", color:"#e1604d", marginRight: "-200px" }}
+          disabled={currentCategoryIndex >= uniqueCategories.length - 5}
+        >
+          {right_arrow}
+        </Button>
       </Flex>
-      
+
+      <br />
+      <br />
+      <br />
+
       <Box style={{ position: "relative" }}>
         <Timeline items={filteredEvents} />
       </Box>
 
+      <br />
+      <br />
+      <br />
+
       <Button
         onClick={handleStartButtonClick}
-        style={{ position: "relative", left: "350px", top: "0px", fontSize: "36px" }}
+        style={{ position: "relative", left: "200px", top: "0px", fontSize: "36px" }}
         variant="solid"
         bg="#e1604d"
         color="white"
@@ -218,11 +231,9 @@ const HomePage: React.FC<{}> = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  // // Check if the user is not logged in, then redirect to "/"
   return (
     <Flex minHeight="100vh" align="center" width="full" justifyContent="center">
       <HomeHeader />
-      {/* Add other content of your page here */}
     </Flex>
   );
 };

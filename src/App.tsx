@@ -36,6 +36,7 @@ import ActivityPage from "./pages/ActivityPage";
 import SiteVitrine from "./pages/site_vitrinee/config";
 import GoogleOAuthLogin from "./pages/GoogleLogin";
 import FavoriteActivitiesPage from "./pages/ActivityFavorite"
+import EventSwipe from "./pages/EventSwipe"; // Ensure this is the correct import
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -190,6 +191,8 @@ function App() {
           <Route path="/activity/:id" element={<ActivityPage />} />
           <Route path="/site_vitrine" element={<SiteVitrine/>} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/EventSwipe" element={<EventSwipe />} />
+          
         </Routes>
       </Router>
       <header className={styles["App-header"]}></header>
