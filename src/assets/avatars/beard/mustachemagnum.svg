@@ -7,7 +7,7 @@
             <mask id="mask-hi0y2mwfjs-2" fill="white">
                 <use xlink:href="#path-hi0y2mwfjs-1"></use>
             </mask>
-            <use id="Hey..." fill="#28354B" xlink:href="#path-hi0y2mwfjs-1"></use>
+            <use class="Beard" id="Hey..." fill="#28354B" xlink:href="#path-hi0y2mwfjs-1"></use>
         </g>
     </g>
 </svg>

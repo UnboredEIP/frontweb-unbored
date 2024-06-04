@@ -8,7 +8,7 @@
                 <use xlink:href="#path-nssup2f-0w-1"></use>
             </mask>
             <use id="Clothes" fill="#E6E6E6" xlink:href="#path-nssup2f-0w-1"></use>
-            <g id="↳-Color-Fabric" mask="url(#mask-nssup2f-0w-2)" fill="#E6E6E6">
+            <g class="Clothes" id="↳-Color-Fabric" mask="url(#mask-nssup2f-0w-2)" fill="#E6E6E6">
                 <rect id="🖍Color" x="0" y="0" width="264" height="110"></rect>
             </g>
         </g>

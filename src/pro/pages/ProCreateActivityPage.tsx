@@ -49,15 +49,16 @@ const CreateActivityPage: React.FC = () => {
   const toast = useToast();
 
   const options: readonly any[] = [
-    { value: 'sport', label: 'Sport' },
-    { value: 'theatre', label: 'Théâtre' },
-    { value: 'musique', label: 'Musique' },
-    { value: 'art', label: 'Art' },
-    { value: 'danse', label: 'Danse' },
-    { value: 'cuisine', label: 'Cuisine' },
-    { value: 'jeux', label: 'Jeux' },
-    { value: 'nature', label: 'Nature' },
-    { value: 'technologie', label: 'Technologie' },
+    { value: 'Sport', label: 'Sport' },
+    { value: 'Théàtre', label: 'Théâtre' },
+    { value: 'Musique', label: 'Musique' },
+    { value: 'Art', label: 'Art' },
+    { value: 'Danse', label: 'Danse' },
+    { value: 'Cuisine', label: 'Cuisine' },
+    { value: 'Jeux', label: 'Jeux' },
+    { value: 'Nature', label: 'Nature' },
+    { value: 'Technologie', label: 'Technologie' },
+    { value: 'Soirée', label: 'Soirée' },
   ];
 
   const handleFileSelect = () => {

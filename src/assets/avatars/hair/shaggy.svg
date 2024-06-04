@@ -8,7 +8,7 @@
                 <use xlink:href="#path-i1w4z66htf-1" transform="translate(143.4652, 67.2342) scale(-1, 1) translate(-143.4652, -67.2342)"></use>
             </mask>
             <use id="Shaggy-Hair" fill="#28354B" transform="translate(143.4652, 67.2342) scale(-1, 1) translate(-143.4652, -67.2342)" xlink:href="#path-i1w4z66htf-1"></use>
-            <g id="↳-💈Hair-Color" mask="url(#mask-i1w4z66htf-2)" fill="#724133">
+            <g class="Hairs" id="↳-💈Hair-Color" mask="url(#mask-i1w4z66htf-2)" fill="#724133">
                 <g transform="translate(1, 0)" id="Color">
                     <rect x="0" y="0" width="264" height="280"></rect>
                 </g>

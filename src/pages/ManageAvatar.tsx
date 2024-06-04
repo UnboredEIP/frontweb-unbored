@@ -1,38 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/pages/manageAvatar.css';
-import { Link } from 'react-router-dom';
+import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import avatar from "../assets/avatars/body.svg"
 import { ReactSVG } from 'react-svg';
-import { position } from '@chakra-ui/react';
+import { useToast } from "@chakra-ui/react";
+import { secureHeapUsed } from 'crypto';
 
 const AvisActivityPage: React.FC = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Vêtement");
 
   const [selectedPrincipColorSkin, setSelectedPrincipColorSkin] = useState("Beige");
-  const [selectedSecColorSkin, setSelectedSecColorSkin] = useState("Red");
+  const [selectedSecColorSkin, setSelectedSecColorSkin] = useState("Black");
 
   const [selectedPrincipColorBeard, setSelectedPrincipColorBeard] = useState("Black");
-  const [selectedSecColorBeard, setSelectedSecColorBeard] = useState("Red");
+  const [selectedSecColorBeard, setSelectedSecColorBeard] = useState("Black");
 
   const [selectedPrincipColorBody, setSelectedPrincipColorBody] = useState("Black");
-  const [selectedSecColorBody, setSelectedSecColorBody] = useState("Red");
+  const [selectedSecColorBody, setSelectedSecColorBody] = useState("Black");
 
   const [selectedPrincipColorEyebrows, setSelectedPrincipColorEyebrows] = useState("Black");
-  const [selectedSecColorEyebrows, setSelectedSecColoreyebrows] = useState("Red");
+  const [selectedSecColorEyebrows, setSelectedSecColoreyebrows] = useState("Black");
 
   const [selectedPrincipColorEyes, setSelectedPrincipColorEyes] = useState("Black");
-  const [selectedSecColorEyes, setSelectedSecColorEyes] = useState("Red");
+  const [selectedSecColorEyes, setSelectedSecColorEyes] = useState("Black");
 
   const [selectedPrincipColorHair, setSelectedPrincipColorHair] = useState("Black");
-  const [selectedSecColorHair, setSelectedSecColorHair] = useState("Red");
+  const [selectedSecColorHair, setSelectedSecColorHair] = useState("Black");
 
   const [selectedPrincipColorHat, setSelectedPrincipColorHat] = useState("Black");
-  const [selectedSecColorHat, setSelectedSecColorHat] = useState("Red");
+  const [selectedSecColorHat, setSelectedSecColorHat] = useState("Black");
 
   const [selectedPrincipColorMouth, setSelectedPrincipColorMouth] = useState("Black");
-  const [selectedSecColorMouth, setSelectedSecColorMouth] = useState("Red");
+  const [selectedSecColorMouth, setSelectedSecColorMouth] = useState("Black");
 
   const [mergedSVG, setMergedSVG] = useState<JSX.Element | null>(null);
 
@@ -44,6 +45,84 @@ const AvisActivityPage: React.FC = () => {
   const [selectedHat, setSelectedHat] = useState<string | null>(null);
   const [selectedMouth, setSelectedMouth] = useState<string | null>(null);
 
+  const [indexSelectedBeard, setIndexSelectedBeard] = useState<string | null>(null);
+  const [indexSelectedBody, setIndexSelectedBody] = useState<string | null>(null);
+  const [indexSelectedEyebrows, setIndexSelectedEyebrows] = useState<string | null>(null);
+  const [indexSelectedEyes, setIndexSelectedEyes] = useState<string | null>(null);
+  const [indexSelectedHair, setIndexSelectedHair] = useState<string | null>(null);
+  const [indexSelectedHat, setIndexSelectedHat] = useState<string | null>(null);
+  const [indexSelectedMouth, setIndexSelectedMouth] = useState<string | null>(null);
+
+  const toast = useToast();
+
+  const postAvatar = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/avatar`;
+
+      const dataToSend = {
+        head: {
+          id: indexSelectedBeard,
+          color: selectedPrincipColorBeard
+        },
+        eyebrows: {
+          id: indexSelectedEyebrows,
+          color: selectedPrincipColorEyebrows
+        },
+        hair: {
+          id: indexSelectedHair,
+          color: selectedPrincipColorHair
+        },
+        eyes: {
+          id: indexSelectedEyes,
+          color: selectedPrincipColorEyes
+        },
+        mouth: {
+          id: indexSelectedMouth,
+          color: selectedPrincipColorMouth
+        },
+        beard: {
+          id: indexSelectedBeard,
+          color: selectedPrincipColorBeard
+        },
+        accessory: {
+          id: indexSelectedHat,
+          color: selectedPrincipColorHat
+        },
+        clothes: {
+          id: indexSelectedBody,
+          color: selectedPrincipColorBody
+        }
+      };
+
+      const response = await axios.post(url,
+        dataToSend, config);
+      console.log(response.data);
+      toast({
+        title: "Succès !",
+        description: "Votre avatar à correctement été sauvegardé",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Un problème est survenu dans la sauvegarde de votre avatar",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      console.error(error);
+    }
+  };
+
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
@@ -52,24 +131,31 @@ const AvisActivityPage: React.FC = () => {
     switch (activeTab) {
       case "Barbe":
         setSelectedBeard(null);
+        setIndexSelectedBeard(null);
         break;
       case "Vêtement":
         setSelectedBody(null);
+        setIndexSelectedBody(null);
         break;
       case "Sourcils":
         setSelectedEyebrows(null);
+        setIndexSelectedEyebrows(null);
         break;
       case "Yeux":
         setSelectedEyes(null);
+        setIndexSelectedEyes(null);
         break;
       case "Cheveux":
         setSelectedHair(null);
+        setIndexSelectedHair(null);
         break;
       case "Chapeau":
         setSelectedHat(null);
+        setIndexSelectedHat(null);
         break;
       case "Bouche":
         setSelectedMouth(null);
+        setIndexSelectedMouth(null);
         break;
       default:
         break;
@@ -117,49 +203,57 @@ const AvisActivityPage: React.FC = () => {
     }
   };
 
-  const handleBeardClick = (str: string) => {
+  const handleBeardClick = (str: string, index: number) => {
     setSelectedBeard(str);
+    setIndexSelectedBeard(index.toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
-  const handleBodyClick = (str: string) => {
+  const handleBodyClick = (str: string, index: number) => {
     setSelectedBody(str);
+    setIndexSelectedBody(index.toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
-  const handleEyebrowsClick = (str: string) => {
+  const handleEyebrowsClick = (str: string, index: number) => {
     setSelectedEyebrows(str);
+    setIndexSelectedEyebrows(index.toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
-  const handleEyesClick = (str: string) => {
+  const handleEyesClick = (str: string, index: number) => {
     setSelectedEyes(str);
+    setIndexSelectedEyes(index.toString())
+    console.log(index)
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
-  const handleHairClick = (str: string) => {
+  const handleHairClick = (str: string, index: number) => {
     setSelectedHair(str);
+    setIndexSelectedHair(index.toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
-  const handleHatClick = (str: string) => {
+  const handleHatClick = (str: string, index: number) => {
     setSelectedHat(str);
+    setIndexSelectedHat(index.toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
-  const handleMouthClick = (str: string) => {
+  const handleMouthClick = (str: string, index: number) => {
     setSelectedMouth(str);
+    setIndexSelectedMouth(index.toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
-  const tabConfigMap: { [key: string]: { handleClick: (str: string) => void; primaryColor: string; secondaryColor: string; } } = {
+  const tabConfigMap: { [key: string]: { handleClick: (str: string, index: number) => void; primaryColor: string; secondaryColor: string; } } = {
     "Barbe": {
       handleClick: handleBeardClick,
       primaryColor: selectedPrincipColorBeard,
@@ -199,7 +293,8 @@ const AvisActivityPage: React.FC = () => {
 
   const tabConfig = tabConfigMap[activeTab] || {};
 
-  const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "beige", "wheat", "brown", "black", "white"];
+  const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "beige", "wheat", "brown", "white", "black"];
+  const skinColors = ["#ffdbac", "#f1c27d", "#e0ac69", "#c68642", "#8d5524"]
 
   const tabs = ["Barbe", "Vêtement", "Sourcils", "Yeux", "Cheveux", "Chapeau", "Bouche", "Peau"];
   const tabImageMap: { [key: string]: string } = {
@@ -234,34 +329,38 @@ const AvisActivityPage: React.FC = () => {
   const imageSet = tabImageSetMap[activeTab] || [];
 
   const applyColorToSVG = (svg: SVGSVGElement, principColor: string, secColor: string) => {
-    const paths = svg.querySelectorAll('path');
-    paths.forEach(path => {
-      path.setAttribute('fill', principColor);
-    });
-
-    const wings = svg.querySelectorAll('.Wing');
-    wings.forEach(wing => {
-      wing.setAttribute('fill', secColor);
-    });
-
-    const straps = svg.querySelectorAll('.Straps');
-    straps.forEach(strap => {
-      strap.setAttribute('fill', secColor);
-    });
-
-    const Shadows = svg.querySelectorAll('.Shadow');
-    Shadows.forEach(shadow => {
-      shadow.setAttribute('fill', secColor);
-    });
-
-    const Collars = svg.querySelectorAll('.Collar');
-    Collars.forEach(collar => {
-      collar.setAttribute('fill', secColor);
-    });
-
     const Eyes = svg.querySelectorAll('.Eye');
     Eyes.forEach(eye => {
       eye.setAttribute('fill', principColor);
+    });
+
+    const Bears = svg.querySelectorAll('.Beard');
+    Bears.forEach(beard => {
+      beard.setAttribute('fill', principColor);
+    });
+
+    const Clothes = svg.querySelectorAll('.Clothes');
+    Clothes.forEach(cloth => {
+      cloth.setAttribute('fill', principColor);
+    });
+    const SecClothes = svg.querySelectorAll('.SecClothes');
+    SecClothes.forEach(secClothes => {
+      secClothes.setAttribute('fill', secColor);
+    });
+
+    const Eyebrows = svg.querySelectorAll('.Eyebrows');
+    Eyebrows.forEach(eyebrow => {
+      eyebrow.setAttribute('fill', principColor);
+    });
+
+    const Hairs = svg.querySelectorAll('.Hairs');
+    Hairs.forEach(Hair => {
+      Hair.setAttribute('fill', principColor);
+    });
+
+    const Skins = svg.querySelectorAll('.Skins');
+    Skins.forEach(Skin => {
+      Skin.setAttribute('fill', principColor);
     });
   };
 
@@ -371,6 +470,9 @@ const AvisActivityPage: React.FC = () => {
           <div className="manageAvatar-container">
             {mergedSVG}
           </div>
+          <div className="manageAvatar-container">
+            <button className="manageAvatar-button" onClick={postAvatar}>Sauvegarder</button>
+          </div>
         </div>
         {/* DROITE */}
         <div className="manageAvatar-boxshadow-right-side">
@@ -398,18 +500,31 @@ const AvisActivityPage: React.FC = () => {
             <div className="manageAvatar-boxshadow-left-side">
               <div className="color-cases">
                 <span style={{ color: 'red', textDecoration: 'underline', fontWeight: 'bold' }}>Couleur Principale</span>
-                {colors.map(color => (
-                  <button
-                    key={color}
-                    className="color-case"
-                    style={{ backgroundColor: color }}
-                    onClick={() => handleColorClick(color, "princip")}
-                  />
-                ))}
+                {/* Utilisez activeTab pour décider entre colors et skinColors */}
+                {activeTab === "Peau" ?
+                  skinColors.map(color => (
+                    <button
+                      key={color}
+                      className="color-case"
+                      style={{ backgroundColor: color }}
+                      onClick={() => handleColorClick(color, "princip")}
+                    />
+                  ))
+                  :
+                  colors.map(color => (
+                    <button
+                      key={color}
+                      className="color-case"
+                      style={{ backgroundColor: color }}
+                      onClick={() => handleColorClick(color, "princip")}
+                    />
+                  ))
+                }
               </div>
             </div>
           </div>
-          <div className="manageAvatar-row">
+
+          {/* <div className="manageAvatar-row">
             <div className="manageAvatar-boxshadow-left-side">
               <div className="color-cases">
                 <span style={{ color: 'red', textDecoration: 'underline', fontWeight: 'bold' }}>Couleur Secondaire</span>
@@ -423,7 +538,7 @@ const AvisActivityPage: React.FC = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </div> */}
 
 
 
@@ -437,11 +552,11 @@ const AvisActivityPage: React.FC = () => {
               return rows;
             }, []).map((row, rowIndex) => (
               <div key={rowIndex} className="manageAvatar-row">
-                {row.map((image: string, imageIndex: React.Key | null | undefined) => (
+                {row.map((image: string, imageIndex: number) => (
                   <div key={imageIndex} className="manageAvatar-boxshadow-svg" >
                     <ReactSVG
                       src={require(`../assets/avatars/${imageName}/${image}.svg`)}
-                      onClick={() => tabConfig.handleClick && tabConfig.handleClick(image)}
+                      onClick={() => tabConfig.handleClick && tabConfig.handleClick(image, rowIndex * 3 + imageIndex)}
                       beforeInjection={(svg) => {
                         if (tabConfig.primaryColor && tabConfig.secondaryColor) {
                           applyColorToSVG(svg, tabConfig.primaryColor, tabConfig.secondaryColor);
@@ -454,6 +569,7 @@ const AvisActivityPage: React.FC = () => {
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </div>

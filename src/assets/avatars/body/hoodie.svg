@@ -8,7 +8,7 @@
                 <use xlink:href="#path-by9cwaxx4p-1"></use>
             </mask>
             <use id="Hoodie" fill="#B7C1DB" xlink:href="#path-by9cwaxx4p-1"></use>
-            <g id="↳-Color-Fabric" mask="url(#mask-by9cwaxx4p-2)" fill="#E6E6E6">
+            <g class="Clothes" id="↳-Color-Fabric" mask="url(#mask-by9cwaxx4p-2)" fill="#E6E6E6">
                 <rect id="🖍Color" x="0" y="0" width="264" height="110"></rect>
             </g>
             <path d="M101.999618,61.7388852 L102,110 L95,110 L94.9990839,58.149718 C97.2029904,59.4596568 99.5461861,60.6605136 101.999618,61.7388852 Z M169.001367,58.1494501 L169,98.5 C169,100.432997 167.432997,102 165.5,102 C163.567003,102 162,100.432997 162,98.5 L162.001384,61.7384448 C164.454619,60.6601132 166.797629,59.4593148 169.001367,58.1494501 Z" class="Straps" fill="#F4F4F4" mask="url(#mask-by9cwaxx4p-2)"></path>

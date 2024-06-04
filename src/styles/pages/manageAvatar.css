@@ -6,9 +6,9 @@
 
 .color-cases {
   display: flex;
-  justify-content: space-between; /* Pour espacer les cases de couleur */
   margin-top: 10px; /* Espacement par rapport aux éléments au-dessus */
   align-items: center;
+  gap: 5px;
 }
 
 :root {
@@ -23,9 +23,12 @@
 .color-case {
   width: 50px; /* Largeur de chaque case de couleur */
   height: 50px; /* Hauteur de chaque case de couleur */
-  border: none; /* Supprime les bordures */
+  border: 1px solid black; /* Ajoute une légère bordure noire */
   cursor: pointer; /* Indique que le curseur devient pointer au survol */
+  border-radius: 50%; /* Maintient le bord rond complet */
 }
+
+
 
 /* Vous pouvez ajouter d'autres styles selon vos besoins */
 
@@ -86,6 +89,22 @@
   padding: 5px 10px; /* Ajoutez du rembourrage pour l'espace à l'intérieur du rectangle */
   border-radius: 5px; /* Changez la couleur de fond pour l'onglet actif */
 }
+
+.manageAvatar-button {
+  background-color: #4CAF50; /* Vert */
+  border: none;
+  color: white;
+  padding: 10px 32px; /* Ajustement ici : réduit la hauteur */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px; /* Arrondi des coins */
+  font-weight: bold; /* Texte en gras */
+}
+
 
 
 .manageAvatar-back-button {
@@ -432,7 +451,7 @@
   flex-direction: column;
   justify-content: center; /* Centrer horizontalement */
   align-items: center; /* Centrer verticalement */
-  width: 100%;
+  /* width: 100%; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   margin-right: 1%;

@@ -57,8 +57,9 @@ const ProActivitySubscribersPage: React.FC = () => {
                     },
                 });
                 const data = await responseParticipant.json();
-                if (data.user != null)
+                if (data.user != null) {
                     participantsArray.push(data);
+                }
                 console.log("toto", data)
             }
 
