@@ -79,8 +79,8 @@ const EventSwipe: React.FC = () => {
           )}
         </div>
         <div style={styles.navigation}>
-          <button onClick={handlePrevious} style={styles.button}>&larr; Previous</button>
-          <button onClick={handleNext} style={styles.button}>Next &rarr;</button>
+          <button onClick={handlePrevious} style={styles.button}>&larr; </button>
+          <button onClick={handleNext} style={styles.button}> &rarr;</button>
         </div>
       </div>
     </div>
@@ -122,7 +122,7 @@ const styles = {
     padding: '10px 20px',
     borderRadius: '5px',
     border: 'none',
-    backgroundColor: '#007BFF',
+    backgroundColor: '#E14D35',
     color: '#fff',
     cursor: 'pointer',
   },
