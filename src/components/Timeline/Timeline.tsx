@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 interface Event {
@@ -21,28 +21,22 @@ interface TimelineProps {
 const Timeline: React.FC<TimelineProps> = ({ items }) => {
   return (
     <div>
-      <Flex flexWrap="wrap" justifyContent="flex-end" marginLeft="300px">
+      <Grid
+        templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+        gap={6}
+        ml={{ base: "0", md: "100px", lg: "200px" }}
+      >
         {items.map((item) => (
           <Box
             key={item._id}
-            width={{ base: "100%", md: "48%" }}
-            mb={{ base: "20px", md: "5%" }}
-            marginRight={{ md: "20px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
+            borderWidth={1}
+            borderRadius="lg"
+            overflow="hidden"
+            p={4}
+            boxShadow="md"
           >
-            <Box
-              borderWidth={10}
-              px={7}
-              py={7}
-              borderRadius={40}
-              boxShadow="md"
-              textAlign={"center"}
-              textColor={"E1604D"}
-            >
+            <Box textAlign="center" mb={4}>
               <strong>
-                {/* Make the title clickable */}
                 <Link
                   to={`/activity/${item._id}`}
                   style={{ textDecoration: 'none', color: 'inherit' }}
@@ -51,11 +45,11 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                   <h2 style={{ fontSize: "24px" }}>{item.categories.join(', ')}</h2>
                 </Link>
               </strong>
-              <div
-                style={{
-                  marginBottom: "20px",
-                  alignItems: "center",
-                }}
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                mb={4}
               >
                 <img
                   src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${item.pictures[0].id}`}
@@ -65,29 +59,25 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/EPITECH_Paris_Campus.jpg/1280px-EPITECH_Paris_Campus.jpg";
                   }}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "300px",
+                    width: "300px",
+                    height: "300px",
+                    objectFit: "cover",
                     marginBottom: "10px",
                     marginTop: "10px",
                   }}
                 />
-                <div
-                  style={{
-                    fontSize: "24px",
-                  }}
-                >
-                  <h3>
-                    <strong>{item.name}</strong>
-                  </h3>
-                  <p>{item.address}</p>
-                  <p>{item.description}</p>
-                  <p>{item.date}</p>
-                </div>
+              </Box>
+              <div>
+                <h3>
+                  <strong>{item.name}</strong>
+                </h3>
+                <p>{item.address}</p>
+                <p>{item.date}</p>
               </div>
             </Box>
           </Box>
         ))}
-      </Flex>
+      </Grid>
     </div>
   );
 };
