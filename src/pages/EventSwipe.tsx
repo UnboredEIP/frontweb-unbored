@@ -63,8 +63,14 @@ const EventSwipe: React.FC = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
   };
 
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length);
+  const handleLike = () => {
+    console.log(`Liked event: ${currentEvent.title}`);
+    handleNext();
+  };
+
+  const handleDislike = () => {
+    console.log(`Disliked event: ${currentEvent.title}`);
+    handleNext();
   };
 
   return (
@@ -79,8 +85,8 @@ const EventSwipe: React.FC = () => {
           )}
         </div>
         <div style={styles.navigation}>
-          <button onClick={handlePrevious} style={styles.button}>&larr; </button>
-          <button onClick={handleNext} style={styles.button}> &rarr;</button>
+          <button onClick={handleDislike} style={{ ...styles.button, backgroundColor: '#E14D35' }}>Dislike</button>
+          <button onClick={handleLike} style={{ ...styles.button, backgroundColor: '#28A745' }}>Like</button>
         </div>
       </div>
     </div>
@@ -122,7 +128,6 @@ const styles = {
     padding: '10px 20px',
     borderRadius: '5px',
     border: 'none',
-    backgroundColor: '#E14D35',
     color: '#fff',
     cursor: 'pointer',
   },
