@@ -9,7 +9,7 @@
                     <use xlink:href="#path-glwbz3b90y-1"></use>
                 </mask>
                 <use fill="#D0C6AC" xlink:href="#path-glwbz3b90y-1"></use>
-                <g id="🎨-Skin" mask="url(#mask-glwbz3b90y-2)" fill="#D08B5B">
+                <g class="Skins" id="🎨-Skin" mask="url(#mask-glwbz3b90y-2)" fill="#D08B5B">
                     <g transform="translate(-32, 0)" id="Color">
                         <rect x="0" y="0" width="264" height="244"></rect>
                     </g>

@@ -7,7 +7,7 @@
             <mask id="mask-pbi8_wkx_o-2" fill="white">
                 <use xlink:href="#path-pbi8_wkx_o-1"></use>
             </mask>
-            <use id="Beardness" fill="#252E32" xlink:href="#path-pbi8_wkx_o-1"></use>
+            <use class="Beard" id="Beardness" fill="#252E32" xlink:href="#path-pbi8_wkx_o-1"></use>
         </g>
     </g>
 </svg>

@@ -51,13 +51,27 @@ const EventSwipe: React.FC = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [data?.length]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!data || data.length === 0) return <p>No events available</p>;
 
   const currentEvent = data[currentIndex];
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
+  };
+
+  const handleLike = () => {
+    console.log(`Liked event: ${currentEvent.title}`);
+    handleNext();
+  };
+
+  const handleDislike = () => {
+    console.log(`Disliked event: ${currentEvent.title}`);
+    handleNext();
+  };
 
   return (
     <div style={styles.container}>
@@ -69,6 +83,10 @@ const EventSwipe: React.FC = () => {
               <img src={currentEvent.cover_url} alt={currentEvent.title} style={styles.image} />
             </a>
           )}
+        </div>
+        <div style={styles.navigation}>
+          <button onClick={handleDislike} style={{ ...styles.button, backgroundColor: '#E14D35' }}>Dislike</button>
+          <button onClick={handleLike} style={{ ...styles.button, backgroundColor: '#28A745' }}>Like</button>
         </div>
       </div>
     </div>
@@ -82,7 +100,7 @@ const styles = {
     alignItems: 'center',
     height: '100vh',
     backgroundColor: '#f0f0f0',
-    textAlign: 'center' as 'center', // TypeScript requires explicit casting
+    textAlign: 'center' as 'center',
   },
   content: {
     backgroundColor: '#fff',
@@ -99,6 +117,18 @@ const styles = {
     maxWidth: '100%',
     height: 'auto',
     borderRadius: '8px',
+    cursor: 'pointer',
+  },
+  navigation: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: '20px',
+  },
+  button: {
+    padding: '10px 20px',
+    borderRadius: '5px',
+    border: 'none',
+    color: '#fff',
     cursor: 'pointer',
   },
 };

@@ -9,7 +9,7 @@
                     <use xlink:href="#path-k9sr3ss6a2-1"></use>
                 </mask>
                 <use id="Dreads" fill="#2E3257" xlink:href="#path-k9sr3ss6a2-1"></use>
-                <g id="↳-💈Hair-Color" mask="url(#mask-k9sr3ss6a2-2)" fill="#2C1B18">
+                <g class="Hairs" id="↳-💈Hair-Color" mask="url(#mask-k9sr3ss6a2-2)" fill="#2C1B18">
                     <g transform="translate(-35, 0)" id="Color">
                         <rect x="0" y="0" width="264" height="280"></rect>
                     </g>

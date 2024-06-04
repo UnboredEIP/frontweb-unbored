@@ -102,6 +102,10 @@ const AvisActivityPage: React.FC = () => {
                 const userData = await responseParticipant.json();
                 // console.log("toto", userData)
 
+                if (userData.user = null) {
+                    userData.user.username = "Utilisateur Inconnu"
+                }
+
                 activityDetails.rate[i] = {
                     ...activityDetails.rate[i],
                     ...userData.user

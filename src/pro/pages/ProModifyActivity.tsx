@@ -321,7 +321,7 @@ const ActivityDetailsPage: React.FC = () => {
             <option value="cuisine">Cuisine</option>
             <option value="jeux">Jeux</option>
             <option value="nature">Nature</option>
-            <option value="technologie">Technologie</option>
+            <option value="Food">Food</option>
           </select>
         </label>
       </div>

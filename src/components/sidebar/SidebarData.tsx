@@ -5,6 +5,7 @@ import {
   AiOutlineUser,
   AiOutlineMail,
   AiOutlineLock,
+  AiOutlineBlock,
 } from "react-icons/ai";
 import { FaCog } from "react-icons/fa";
 import { SidebarItem } from "../../models/Sidebaritem";
@@ -57,5 +58,12 @@ export const SidebarData: SidebarItem[] = [
     path: "/calendar",
     icon: <AiOutlineCalendar />,
   },
+
+  {
+    title: "Explore",
+    path: "/eventswipe",
+    icon: <AiOutlineBlock />,
+  },
+
   
 ];
