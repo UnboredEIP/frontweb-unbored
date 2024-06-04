@@ -108,6 +108,16 @@ const RegisterForm: React.FC<{}> = () => {
 
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.preventDefault();
+    if (password.length < 6) {
+      toast({
+        title: "Erreur",
+        description: "Ton mot de passe doit avoir au moins 6 caractères",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
     if (isFormValid) {
       try {
         const response = await axios.post("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/register/pro", {
@@ -144,7 +154,7 @@ const RegisterForm: React.FC<{}> = () => {
       }
     }
   };
-
+  
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
