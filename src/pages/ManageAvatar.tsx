@@ -480,7 +480,7 @@ const AvisActivityPage: React.FC = () => {
             {tabs.map(tab => (
               <button
                 key={tab}
-                className={activeTab === tab ? "active" : "tab"}
+                className={activeTab === tab ? "manageAvatar-active" : "manageAvatar-tab"}
                 onClick={() => handleTabClick(tab)}
               >
                 {tab}

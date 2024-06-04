@@ -33,7 +33,7 @@
 /* Vous pouvez ajouter d'autres styles selon vos besoins */
 
 
-.tab {
+.manageAvatar-tab {
   background-color: red;
   color: white;
   font-weight: bold;
@@ -82,7 +82,7 @@
   cursor: pointer; /* Changez le curseur pour indiquer qu'il est cliquable */
 }
 
-.active {
+.manageAvatar-active {
   background-color: blue;
   color: white;
   font-weight: bold;
