@@ -79,7 +79,7 @@
   cursor: pointer; /* Changez le curseur pour indiquer qu'il est cliquable */
 }
 
-.active {
+.fdp {
   background-color: blue;
   color: white;
   font-weight: bold;

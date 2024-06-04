@@ -1,0 +1,35 @@
+.LogoUnbored {
+    width: 350px; /* Vous pouvez définir la largeur selon vos besoins */
+    height: auto; /* Cela garantit que l'image conserve ses proportions */
+}
+
+.ShowcaseTitle {
+    font-size: 2.5rem;
+    font-family: "Poetsen One", sans-serif;
+    color: #e1604d;
+}
+
+.ShowcaseText {
+    font-size: 1.5rem;
+    font-family: "Poetsen One", sans-serif;
+}
+
+.ShowcaseBody {
+    height: 85vh;
+}
+
+.carousel {
+    width:35%;
+    height: auto;
+    margin: auto;
+    img {
+        width: 75%;
+        height: auto;
+    }
+}
+/* 
+.active {
+    height: 100% !important;
+    background-color: transparent !important;
+} */
+

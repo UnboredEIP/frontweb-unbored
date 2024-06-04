@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.coucou {
-  /* padding-left: 16.6666%; */
-  /* transition: all 0.2s ease; */
-}
-
 .gradient_background {
   background: linear-gradient(90deg, #f18b0e, #e7daeb);
 }
