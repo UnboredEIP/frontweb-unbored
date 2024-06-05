@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, ChangeEvent} from "react";
 import styles from "../styles/ProLoginRegister.css";
 import {
   Box,
@@ -49,13 +49,28 @@ const RegisterForm: React.FC<{}> = () => {
   const [birthdate, setBirthdate] = useState("");
   const [gender, setGender] = useState('');
   const [password, setPassword] = useState("");
+  const [isPasswordGood, setIsPasswordGood] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const validatePasswordsMatch = useCallback(() => {
     setPasswordsMatch(password === confirmPassword);
   }, [confirmPassword, password]);
+
+  const checkPassword = useCallback(() => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!regex.test(password)) {
+      setPasswordError('Le mot de passe doit contenir au moins 8 caractères, y compris des lettres majuscules et minuscules, des chiffres et des symboles spéciaux.');
+      setIsPasswordGood(false);
+    } else {
+      setIsPasswordGood(true);
+      setPasswordError('');
+    }
+    console.log(password); // Affiche la valeur actuelle du mot de passe
+    console.log(isPasswordGood); // Affiche l'état actuel de isPasswordGood
+  }, [password]);
 
   const isFormValid =
     username !== "" &&
@@ -64,7 +79,7 @@ const RegisterForm: React.FC<{}> = () => {
     gender !== "" &&
     password !== "" &&
     confirmPassword !== "" &&
-    passwordsMatch;
+    passwordsMatch && isPasswordGood;
 
   const handleUsernameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -84,9 +99,7 @@ const RegisterForm: React.FC<{}> = () => {
     setBirthdate(event.target.value);
   };
 
-  const handleGenderChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleGenderChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setGender(event.target.value);
   };
 
@@ -102,22 +115,13 @@ const RegisterForm: React.FC<{}> = () => {
 
   useEffect(() => {
     validatePasswordsMatch();
+    checkPassword();
   }, [confirmPassword, validatePasswordsMatch]);
 
   const toast = useToast();
 
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.preventDefault();
-    if (password.length < 6) {
-      toast({
-        title: "Erreur",
-        description: "Ton mot de passe doit avoir au moins 6 caractères",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
     if (isFormValid) {
       try {
         const response = await axios.post("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/register/pro", {
@@ -154,7 +158,7 @@ const RegisterForm: React.FC<{}> = () => {
       }
     }
   };
-  
+
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -162,6 +166,8 @@ const RegisterForm: React.FC<{}> = () => {
   const toggleShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
+  const [passwordError, setPasswordError] = useState('');
 
   const isLoggedIn = localStorage.getItem("token") !== null;
 
@@ -251,6 +257,7 @@ const RegisterForm: React.FC<{}> = () => {
               )}
             </InputRightElement>
           </InputGroup>
+          {passwordError && <Text color="red">{passwordError}</Text>}
           <FormLabel textAlign="left" mt={4}>Confirmer mot de passe</FormLabel>
           <InputGroup>
             <Input
@@ -275,6 +282,7 @@ const RegisterForm: React.FC<{}> = () => {
           {!passwordsMatch && (
             <Text color="red">Les mots de passe ne correspondent pas !</Text>
           )}
+          
 
         </FormControl>
         <Text fontSize={15} textAlign="center" color="gray">
