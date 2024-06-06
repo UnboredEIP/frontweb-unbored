@@ -56,7 +56,7 @@ const LinkRedirection: React.FC<{ isLoggedIn: boolean; setIsLoggedIn: React.Disp
         >
           <div className={styles["link"]}>
             <RouterLink to={link.href}>
-              <Text>{link.label}</Text>
+            <Text style={{ marginTop: '10px' }}>{link.label}</Text>  {/* Adjust the inline style here */}
             </RouterLink>
           </div>
         </Button>

@@ -35,6 +35,7 @@ const ProfilePage = () => {
         const profileDetails = response.data.user;
         
         console.log("Profile Infos " , profileDetails);
+        console.log(token);
 
         if (profileDetails.profilePhoto) {
           const firstPictureId = profileDetails.profilePhoto;
@@ -50,7 +51,7 @@ const ProfilePage = () => {
           profilePicture: profileDetails.profilePhoto,
           followers : profileDetails.friends.length,
           following : profileDetails.reservations.length,
-          description: 'une description banale',
+          description: '',
           interests: profileDetails.preferences,
         });
       } catch (error) {
