@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles/App.module.css";
 import Nav from "./components/Nav/Nav";
 import Sidebar from "./components/sidebar/Sidebar";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import Overview from "./pages/Overview";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
@@ -40,6 +40,9 @@ import EventSwipe from "./pages/EventSwipe"; // Ensure this is the correct impor
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
+import Sidebar2 from "./components/sidebartwo/Sidebar";
+import Navbar from "./components/navbar/Navbar";
+import Vitrine from "./pages/vitrine/Vitrine";
 
 function App() {
   const [jsonData, setJsonData] = useState<any>(null);
@@ -90,9 +93,33 @@ function App() {
     navigation("/home");
   };
 
+  const showcaseSideItems = [{name: "Presentation", links: "#presentation"}, {name: "Application", links: "#mobile"}, {name: "Utilisateur", links: "#user"}, {name: "Professionel", links: "#pro"}] 
+  const showcaseItems = [{name: "Notre site !", links: "/"}] 
+
+  const location = window.location.href;
+  const showcase = location.includes("/site_vitrine");
+
+
   return (
     <>
+      <header className={styles["App-header"]}></header>
+
       <ParticleBackground />
+      {/* <div className="position-fixed col-2 h-100"> */}
+        {/* <Sidebar2 items={showcaseSideItems}/> */}
+      {/* </div> */}
+      {
+        
+        showcase ? 
+        
+        <>
+            <div className="position-fixed col-12 z-3">
+                <Navbar items={showcaseItems}/>
+            </div>
+        </>
+      :
+      <> </>
+      }
       <Router>
         <Nav />
         <Routes>
@@ -102,7 +129,7 @@ function App() {
             path="/login"
             element={<LoginPage onLoginSuccess={HandleLoginSuccess} />}
           />
-          <Route path="/loefzefgin" element={<GoogleOAuthLogin clientId="" onLoginSuccess={HandleLoginSuccess} />} />
+          {/* <Route path="/loefzefgin" element={<GoogleOAuthLogin clientId="" onLoginSuccess={HandleLoginSuccess} />} /> */}
 
           <Route
             path="/register"
@@ -192,13 +219,15 @@ function App() {
             element={<FavoriteActivitiesPage />}
           />
           <Route path="/activity/:id" element={<ActivityPage />} />
-          <Route path="/site_vitrine" element={<SiteVitrine />} />
+          {/* <Route path="/site_vitrine" element={<SiteVitrine />} /> */}
+
+          <Route path="/site_vitrine" element={<Vitrine />} />
+
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/EventSwipe" element={<EventSwipe />} />
           
         </Routes>
       </Router>
-      <header className={styles["App-header"]}></header>
     </>
   );
 }

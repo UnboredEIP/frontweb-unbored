@@ -11,29 +11,29 @@ const AvisActivityPage: React.FC = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Vêtement");
 
-  const [selectedPrincipColorSkin, setSelectedPrincipColorSkin] = useState("Beige");
-  const [selectedSecColorSkin, setSelectedSecColorSkin] = useState("Black");
+  const [selectedPrincipColorSkin, setSelectedPrincipColorSkin] = useState("beige");
+  const [selectedSecColorSkin, setSelectedSecColorSkin] = useState("black");
 
-  const [selectedPrincipColorBeard, setSelectedPrincipColorBeard] = useState("Black");
-  const [selectedSecColorBeard, setSelectedSecColorBeard] = useState("Black");
+  const [selectedPrincipColorBeard, setSelectedPrincipColorBeard] = useState("black");
+  const [selectedSecColorBeard, setSelectedSecColorBeard] = useState("black");
 
-  const [selectedPrincipColorBody, setSelectedPrincipColorBody] = useState("Black");
-  const [selectedSecColorBody, setSelectedSecColorBody] = useState("Black");
+  const [selectedPrincipColorBody, setSelectedPrincipColorBody] = useState("black");
+  const [selectedSecColorBody, setSelectedSecColorBody] = useState("black");
 
-  const [selectedPrincipColorEyebrows, setSelectedPrincipColorEyebrows] = useState("Black");
-  const [selectedSecColorEyebrows, setSelectedSecColoreyebrows] = useState("Black");
+  const [selectedPrincipColorEyebrows, setSelectedPrincipColorEyebrows] = useState("black");
+  const [selectedSecColorEyebrows, setSelectedSecColoreyebrows] = useState("black");
 
-  const [selectedPrincipColorEyes, setSelectedPrincipColorEyes] = useState("Black");
-  const [selectedSecColorEyes, setSelectedSecColorEyes] = useState("Black");
+  const [selectedPrincipColorEyes, setSelectedPrincipColorEyes] = useState("black");
+  const [selectedSecColorEyes, setSelectedSecColorEyes] = useState("black");
 
-  const [selectedPrincipColorHair, setSelectedPrincipColorHair] = useState("Black");
-  const [selectedSecColorHair, setSelectedSecColorHair] = useState("Black");
+  const [selectedPrincipColorHair, setSelectedPrincipColorHair] = useState("black");
+  const [selectedSecColorHair, setSelectedSecColorHair] = useState("black");
 
-  const [selectedPrincipColorHat, setSelectedPrincipColorHat] = useState("Black");
-  const [selectedSecColorHat, setSelectedSecColorHat] = useState("Black");
+  const [selectedPrincipColorHat, setSelectedPrincipColorHat] = useState("black");
+  const [selectedSecColorHat, setSelectedSecColorHat] = useState("black");
 
-  const [selectedPrincipColorMouth, setSelectedPrincipColorMouth] = useState("Black");
-  const [selectedSecColorMouth, setSelectedSecColorMouth] = useState("Black");
+  const [selectedPrincipColorMouth, setSelectedPrincipColorMouth] = useState("black");
+  const [selectedSecColorMouth, setSelectedSecColorMouth] = useState("black");
 
   const [mergedSVG, setMergedSVG] = useState<JSX.Element | null>(null);
 
@@ -68,8 +68,8 @@ const AvisActivityPage: React.FC = () => {
 
       const dataToSend = {
         head: {
-          id: indexSelectedBeard,
-          color: selectedPrincipColorBeard
+          id: "null",
+          color: selectedPrincipColorSkin
         },
         eyebrows: {
           id: indexSelectedEyebrows,
@@ -92,8 +92,8 @@ const AvisActivityPage: React.FC = () => {
           color: selectedPrincipColorBeard
         },
         accessory: {
-          id: indexSelectedHat,
-          color: selectedPrincipColorHat
+          id: indexSelectedBody,
+          color: selectedPrincipColorBody 
         },
         clothes: {
           id: indexSelectedBody,
@@ -205,28 +205,32 @@ const AvisActivityPage: React.FC = () => {
 
   const handleBeardClick = (str: string, index: number) => {
     setSelectedBeard(str);
-    setIndexSelectedBeard(index.toString())
+    let newIndex = index + 1; 
+    setIndexSelectedBeard(newIndex .toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
   const handleBodyClick = (str: string, index: number) => {
     setSelectedBody(str);
-    setIndexSelectedBody(index.toString())
+    let newIndex = index + 1; 
+    setIndexSelectedBody(newIndex .toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
   const handleEyebrowsClick = (str: string, index: number) => {
     setSelectedEyebrows(str);
-    setIndexSelectedEyebrows(index.toString())
+    let newIndex = index + 1; 
+    setIndexSelectedEyebrows(newIndex .toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
   const handleEyesClick = (str: string, index: number) => {
     setSelectedEyes(str);
-    setIndexSelectedEyes(index.toString())
+    let newIndex = index + 1; 
+    setIndexSelectedEyes(newIndex .toString())
     console.log(index)
     const merged = mergeSVGs();
     setMergedSVG(merged);
@@ -234,21 +238,24 @@ const AvisActivityPage: React.FC = () => {
 
   const handleHairClick = (str: string, index: number) => {
     setSelectedHair(str);
-    setIndexSelectedHair(index.toString())
+    let newIndex = index + 1; 
+    setIndexSelectedHair(newIndex .toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
   const handleHatClick = (str: string, index: number) => {
     setSelectedHat(str);
-    setIndexSelectedHat(index.toString())
+    let newIndex = index + 1; 
+    setIndexSelectedHat(newIndex .toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
 
   const handleMouthClick = (str: string, index: number) => {
     setSelectedMouth(str);
-    setIndexSelectedMouth(index.toString())
+    let newIndex = index + 1; 
+    setIndexSelectedMouth(newIndex .toString())
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };
@@ -308,13 +315,72 @@ const AvisActivityPage: React.FC = () => {
   };
   const imageName = tabImageMap[activeTab];
 
-  const beardImages = ["light", "majestic", "medium", "mustache", "mustachemagnum"];
-  const bodyImages = ["blazer", "crewneck", "hoodie", "overall", "polo", "scoopneck", "shirt", "vneck"];
-  const eyebrowsImages = ["angry", "exited", "flat", "natural", "sad", "sad2", "unibrow", "updown"];
-  const eyesImages = ["closed", "cry", "default", "dizzy", "eyeroll", "happy", "heart", "side", "squint", "surprised", "wacky", "wink"];
-  const hairImages = ["afro", "big", "bun", "buzzcut", "calvitie", "curly", "curlyshort", "curvy", "frizzy", "longdreads", "longstraight", "medium", "mediumdreads", "mediumlong", "minidreads", "shaggy", "shaggymulet", "shortflat", "shortwaved", "square"];
+  const beardImages = ["medium",
+    "majestic",
+    "light",
+    "mustachemagnum",
+    "mustache",];
+  const bodyImages = ["hoodie",
+    "crewneck",
+    "blazer",
+    "shirt",
+    "scoopneck",
+    "polo",
+    "vneck",
+    "overall",];
+  const eyebrowsImages = ["natural",
+    "flat",
+    "exited",
+    "angry",
+    "updown",
+    "unibrow",
+    "sad2",
+    "sad",];
+  const eyesImages = ["dizzy",
+    "default",
+    "cry",
+    "closed",
+    "side",
+    "heart",
+    "happy",
+    "eyeroll",
+    "wink",
+    "wacky",
+    "surprised",
+    "squint",];
+  const hairImages = [
+    "calvitie",
+    "buzzcut",
+    "big",
+    "afro",
+    "frizzy",
+    "curvy",
+    "curlyshort",
+    "curly",
+    "mediumdreads",
+    "medium",
+    "longstraight",
+    "longdreads",
+    "shaggymullet",
+    "shaggy",
+    "minidreads",
+    "mediumlong",
+    "square",
+    "shortwaved",
+    "shortflat",];
   const hatImages = ["fedora", "hijab", "turban", "winter", "winter2", "wintercat"];
-  const mouthImages = ["default", "desbelief", "eating", "grimace", "open", "sad", "scream", "serious", "smile", "tongue", "twinkle", "vomit"];
+  const mouthImages = ["grimace",
+    "eating",
+    "desbelief",
+    "default",
+    "serious",
+    "scream",
+    "sad",
+    "open",
+    "vomit",
+    "twinkle",
+    "tongue",
+    "smile",];
 
   const tabImageSetMap: { [key: string]: string[] } = {
     "Barbe": beardImages,
@@ -325,6 +391,14 @@ const AvisActivityPage: React.FC = () => {
     "Chapeau": hatImages,
     "Bouche": mouthImages
   };
+
+  // const beardImages = ["light", "majestic", "medium", "mustache", "mustachemagnum"];
+  // const bodyImages = ["blazer", "crewneck", "hoodie", "overall", "polo", "scoopneck", "shirt", "vneck"];
+  // const eyebrowsImages = ["angry", "exited", "flat", "natural", "sad", "sad2", "unibrow", "updown"];
+  // const eyesImages = ["closed", "cry", "default", "dizzy", "eyeroll", "happy", "heart", "side", "squint", "surprised", "wacky", "wink"];
+  // const hairImages = ["afro", "big", "bun", "buzzcut", "calvitie", "curly", "curlyshort", "curvy", "frizzy", "longdreads", "longstraight", "medium", "mediumdreads", "mediumlong", "minidreads", "shaggy", "shaggymulet", "shortflat", "shortwaved", "square"];
+  // const hatImages = ["fedora", "hijab", "turban", "winter", "winter2", "wintercat"];
+  // const mouthImages = ["default", "desbelief", "eating", "grimace", "open", "sad", "scream", "serious", "smile", "tongue", "twinkle", "vomit"];
 
   const imageSet = tabImageSetMap[activeTab] || [];
 
