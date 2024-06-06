@@ -105,14 +105,14 @@ function App() {
       <header className={styles["App-header"]}></header>
 
       <ParticleBackground />
+      {/* <div className="position-fixed col-2 h-100"> */}
+        {/* <Sidebar2 items={showcaseSideItems}/> */}
+      {/* </div> */}
       {
         
         showcase ? 
         
         <>
-            <div className="position-fixed col-2 h-100">
-              <Sidebar2 items={showcaseSideItems}/>
-            </div>
             <div className="position-fixed col-12 z-3">
                 <Navbar items={showcaseItems}/>
             </div>
