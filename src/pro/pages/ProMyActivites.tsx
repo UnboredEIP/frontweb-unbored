@@ -91,7 +91,7 @@ function ProMyActivities() {
       <div className="MyActivities-back-button">
         <button onClick={() => navigate(-1)}>Retour</button>
       </div>
-      <div className="MyActivities-banner">Mes Activités</div>
+      <div className="MyActivities-banner">Activités</div>
       <div className="MyActivities-scroll-box">
         <div className="MyActivities-button-container">
           {events.map((activity, index) => (
