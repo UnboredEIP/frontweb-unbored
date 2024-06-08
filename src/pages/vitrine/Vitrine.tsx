@@ -253,7 +253,7 @@ const Vitrine = () => {
                     <div className="col-4 text-start d-flex flex-column">
                         <p className="ShowcaseTitle"> Gestion d'avis </p>
                         <p className="ShowcaseText">
-                        Les utilisateurs pourront laisser un avis sur vos activités.
+                            Les utilisateurs pourront laisser un avis sur vos activités.
                             <br/>
                             Vous pourrez consulter les activités et améliorer vos propositions en fonction des avis positifs ou négatifs.
                         </p>
@@ -268,47 +268,42 @@ const Vitrine = () => {
             <div className="col-12 d-flex flex-column justify-content-center align-items-center ShowcaseBody">
                 <p className="ShowcaseTitle"> Qui somme nous ? </p>
                 <div className="col-10 d-flex flex-row flex-wrap justify-content-around mt-6">
-                    <div className="col-2 mx-1 my-1 d-flex flex-column ShowcasePresCard">
+                    
+                    <div className="col-3 mx-1 my-1 d-flex flex-column ShowcasePresCard">
                         <img alt="" src={jimy}></img>
                         <p className="ShowcaseText"> Jimy <br/>Xu
                         </p>
                         <p className="ShowcaseText"> Developpeur full-stack </p>
                     </div>
 
-                    <div className="col-2 mx-1 my-1 d-flex flex-column ShowcasePresCard">
+                    <div className="col-3 mx-1 my-1 d-flex flex-column ShowcasePresCard">
                         <img alt="" src={antonin}></img>
                         <p className="ShowcaseText"> Antonin <br/>Pottin</p>
                         <p className="ShowcaseText"> Developpeur front-web</p>
                     </div>
 
-                    <div className="col-2 mx-1 my-1 d-flex flex-column ShowcasePresCard">
+                    <div className="col-3 mx-1 my-1 d-flex flex-column ShowcasePresCard">
                         <img alt="" src={steeven}></img>
                         <p className="ShowcaseText"> Steeven <br/> Akintilo</p>
                         <p className="ShowcaseText"> Developpeur front-web</p>
                     </div>
 
-                    <div className="col-2 mx-1 my-1 d-flex flex-column ShowcasePresCard">
+                    <div className="col-3 mx-1 my-1 d-flex flex-column ShowcasePresCard">
                         <img alt="" src={idrissa}></img>
                         <p className="ShowcaseText"> Idrissa <br/>Fall</p>
                         <p className="ShowcaseText"> Developpeur mobile</p>
                     </div>
 
-                    <div className="col-2 mx-1 my-1 d-flex flex-column ShowcasePresCard">
+                    <div className="col-3 mx-1 my-1 d-flex flex-column ShowcasePresCard">
                         <img alt="" src={remi}></img>
                         <p className="ShowcaseText"> Rémi <br/>Saleh</p>
                         <p className="ShowcaseText"> Developpeur mobile</p>
                     </div>
 
-                    <div className="col-2 mx-1 my-1 d-flex flex-column ShowcasePresCard">
+                    <div className="col-3 mx-1 my-1 d-flex flex-column ShowcasePresCard">
                         <img alt="" src={yacine}></img>
                         <p className="ShowcaseText"> Yacine <br/>Abu-khalil</p>
                         <p className="ShowcaseText"> Developpeur mobile</p>
-                    </div>
-
-                    <div className="col-2 mx-1 my-1 d-flex flex-column ShowcasePresCard">
-                        <img alt="" src={christian}></img>
-                        <p className="ShowcaseText"> Christian <br/>Tran</p>
-                        <p className="ShowcaseText"> Developpeur back-end</p>
                     </div>
                 </div>
             </div>
