@@ -37,6 +37,7 @@ import SiteVitrine from "./pages/site_vitrinee/config";
 import GoogleOAuthLogin from "./pages/GoogleLogin";
 import FavoriteActivitiesPage from "./pages/ActivityFavorite"
 import EventSwipe from "./pages/EventSwipe"; // Ensure this is the correct import
+import UserProfile from "./pages/UserProfile";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
@@ -225,6 +226,7 @@ function App() {
 
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/EventSwipe" element={<EventSwipe />} />
+          <Route path="/userprofil/:username" element={<UserProfile />} />
           
         </Routes>
       </Router>
