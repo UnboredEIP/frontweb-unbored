@@ -49,7 +49,6 @@ const ActivityPage: React.FC = () => {
     fetchActivity();
   }, [id, navigate]);
 
-  // Helper functions for toast notifications
   const BadRate = () => toast({ title: "Rate", description: "Echec de la notation", duration: 5000, isClosable: true, colorScheme: "red" });
   const GoodRate = () => toast({ title: "Rate", description: "Notation réussie", duration: 5000, isClosable: true, colorScheme: "green" });
   const NoCommentRate = () => toast({ title: "Rate", description: "Ajoutez un commentaire", duration: 5000, isClosable: true, colorScheme: "red" });
@@ -228,19 +227,16 @@ const ActivityPage: React.FC = () => {
 
       for (let participant of activity.event.participents) {
         try {
-          const response = await axios.get(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile?id=${participant.id}`, config);
-          const profile = response.data.user;
+          const response = await axios.get(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${participant}`, config);
+          const profile = await response.data.user;
 
-          if (!uniqueIds.has(profile._id)) {
-            uniqueIds.add(profile._id);
-            participantsWithProfiles.push({ ...participant, profileDetails: profile });
+          if (!uniqueIds.has(participant) && profile) {
+            uniqueIds.add(participant);
+            participantsWithProfiles.push({ participant, profileDetails: profile });
           }
         } catch (error) {
           console.error('Error fetching participant profile', error);
-          if (!uniqueIds.has(participant.id)) {
-            uniqueIds.add(participant.id);
-            participantsWithProfiles.push(participant);
-          }
+          // Si une erreur survient ou que le profil est inconnu, ne pas l'ajouter
         }
       }
 
@@ -261,16 +257,16 @@ const ActivityPage: React.FC = () => {
           style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px', cursor: 'pointer', color: 'blue', textDecoration: 'underline' }} 
           onClick={handleToggleParticipants}
         >
-          Nombre de participants: {uniqueParticipantsLength}
+          Nombre de participants: {participantsWithProfiles.length}
         </p>
         {showParticipants && (
           <div style={{ textAlign: 'left', marginTop: '20px', border: '1px solid #808080', borderRadius: '12px', padding: '20px', backgroundColor: '#f9f9f9' }}>
             <h3 style={{ fontWeight: 'bold', fontSize: '20px', marginBottom: '10px' }}>Participants:</h3>
             <ul>
-              {participantsWithProfiles.map((participant, index) => (
+              {participantsWithProfiles.filter(participant => participant.profileDetails).map((participant, index) => (
                 <li key={index} style={{ fontSize: '16px', margin: '10px 0' }}>
-                  <Link to={`/userprofil/${participant.profileDetails ? participant.profileDetails._id : 'unknown'}`}>
-                    {participant.profileDetails ? participant.profileDetails.username : 'Utilisateur inconnu'}
+                  <Link to={`/userprofil/${participant.profileDetails._id}`}>
+                    {participant.profileDetails.username}
                   </Link>
                 </li>
               ))}
