@@ -266,12 +266,12 @@ const ActivityPage: React.FC = () => {
 
         <div className="flex items-center space-x-2">
           <Icon as={FaUser} boxSize={10} color="gray.500"  style={{ position: 'relative', top: '-280px', right: '-400px' }} onClick={handleToggleParticipants}/> {/* Person icon */}
-          <span style={{ position: 'relative', top: '-280px', right: '-400px' }}>{uniqueParticipantsLength}</span>
+          {/* <span style={{ position: 'relative', top: '-280px', right: '-400px' }}>{uniqueParticipantsLength}</span> */}
         </div>
 
         {showParticipants && (
           <div style={{ textAlign: 'left', marginTop: '20px', border: '1px solid #808080', borderRadius: '12px', padding: '20px', backgroundColor: '#f9f9f9' }}>
-            <h3 style={{ fontWeight: 'bold', fontSize: '20px', marginBottom: '10px' }}>Participants:</h3>
+            <h3 style={{ fontWeight: 'bold', fontSize: '20px', marginBottom: '10px' }}>Participants: {participantsWithProfiles.length}</h3>
             <ul>
               {participantsWithProfiles.filter(participant => participant.profileDetails).map((participant, index) => (
                 <li key={index} style={{ fontSize: '16px', margin: '10px 0' }}>

@@ -42,7 +42,7 @@ const ProfilePage = () => {
         if (token === null) {
           navigate('/');
         }
-
+  
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -51,16 +51,16 @@ const ProfilePage = () => {
         const url = 'https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile';
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
-
+  
         if (profileDetails.profilePhoto) {
           const firstPictureId = profileDetails.profilePhoto;
           const urlImage = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${firstPictureId}`;
           const responseImage = await axios.get(urlImage, { responseType: 'blob', ...config });
-
+  
           const img = URL.createObjectURL(responseImage.data);
           setResponseImage(img);
         }
-
+  
         // Update the user data with the initial details
         setUserData((prevState) => ({
           ...prevState,
@@ -70,11 +70,11 @@ const ProfilePage = () => {
           description: '',
           interests: profileDetails.preferences,
         }));
-
-        // Fetch the list of friends to update followers count
-        fetchFriendsCount();
+  
+        // Fetch the friends list to update the followers count
+        await fetchFriendsList(); // Call fetchFriendsList to get the followers count
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching profile info:', error);
       }
     };
 
@@ -101,7 +101,7 @@ const ProfilePage = () => {
 
     getProfileInfo();
   }, [navigate]);
-
+  
   const fetchFriendRequests = async () => {
     try {
       const token = localStorage.getItem('token');
