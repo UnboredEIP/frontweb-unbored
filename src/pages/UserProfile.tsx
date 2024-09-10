@@ -70,6 +70,7 @@ const UserProfile: React.FC = () => {
 
       // Optionally, you can update the profile state or show a success message
     } catch (error) {
+      console.log("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/friends/invite?user_id=${profile._id}")
       console.error('Error inviting friend', error);
       // Handle error state or display an error message
     }
