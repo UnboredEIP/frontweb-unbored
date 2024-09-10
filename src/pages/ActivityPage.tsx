@@ -3,6 +3,9 @@ import { useLocation, useParams, Link } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { Icon } from "@chakra-ui/react";
+import { FaUser } from 'react-icons/fa'; // Import the person icon from Font Awesome
+
 
 const ActivityPage: React.FC = () => {
   const location = useLocation();
@@ -253,12 +256,19 @@ const ActivityPage: React.FC = () => {
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>{activity.event.address}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Début: {current_start_date + " à " + activity.event.start_date.split("T")[1].substring(0, 8)}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Fin: {current_start_date + " à " + activity.event.end_date.split("T")[1].substring(0, 8)}</p>
-        <p 
+
+        {/* <p 
           style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px', cursor: 'pointer', color: 'blue', textDecoration: 'underline' }} 
           onClick={handleToggleParticipants}
         >
           Nombre de participants: {participantsWithProfiles.length}
-        </p>
+        </p> */}
+
+        <div className="flex items-center space-x-2">
+          <Icon as={FaUser} boxSize={10} color="gray.500"  style={{ position: 'relative', top: '-280px', right: '-400px' }} onClick={handleToggleParticipants}/> {/* Person icon */}
+          <span style={{ position: 'relative', top: '-280px', right: '-400px' }}>{uniqueParticipantsLength}</span>
+        </div>
+
         {showParticipants && (
           <div style={{ textAlign: 'left', marginTop: '20px', border: '1px solid #808080', borderRadius: '12px', padding: '20px', backgroundColor: '#f9f9f9' }}>
             <h3 style={{ fontWeight: 'bold', fontSize: '20px', marginBottom: '10px' }}>Participants:</h3>
