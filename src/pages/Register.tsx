@@ -129,7 +129,13 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
   };
 
   const handleBirthdateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBirthdate(event.target.value);
+    const dateValue = event.target.value;
+    const formattedDate = new Date(dateValue).toLocaleDateString('fr-FR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+    setBirthdate(formattedDate);
   };
 
   const handleGenderChange = (value: string) => {

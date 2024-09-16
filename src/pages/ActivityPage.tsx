@@ -98,6 +98,7 @@ const ActivityPage: React.FC = () => {
       console.log("Data: ", activity);
       if (response.ok) {
         console.log('Event added to the calendar successfully!');
+        AddedInCalendar();
       } else {
         console.error('Failed to add the event to the calendar. Status:', response.status);
       }
