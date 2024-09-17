@@ -51,6 +51,11 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                 alignItems="center"
                 mb={4}
               >
+                <Link
+                  to={`/activity/${item._id}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  state={{ activity: item }} // Pass the activity information as state
+                >
                 <img
                   src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${item.pictures[0].id}`}
                   alt={`Image for item ${item._id}`}
@@ -66,6 +71,7 @@ const Timeline: React.FC<TimelineProps> = ({ items }) => {
                     marginTop: "10px",
                   }}
                 />
+                </Link>
               </Box>
               <div>
                 <h3>
