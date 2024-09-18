@@ -44,7 +44,7 @@ import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
 import Sidebar2 from "./components/sidebartwo/Sidebar";
 import Navbar from "./components/navbar/Navbar";
 import Vitrine from "./pages/vitrine/Vitrine";
-import CreatePrivateActivityPage from "./pages/CreatePriveActivity";
+//import CreatePrivateActivityPage from "./pages/CreatePriveActivity";
 
 
 function App() {
@@ -203,11 +203,11 @@ function App() {
             path="/Pro-menu"
             element={<ProMenuPage />}
           />
-          <Route
+          {/* <Route
           path="create-private-activity"
           element={<CreatePrivateActivityPage/>}
           />
-          
+           */}
           <Route
             path="/ManageAvatar"
             element={<ManageAvatarPage />}
