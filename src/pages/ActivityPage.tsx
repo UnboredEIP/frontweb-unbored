@@ -119,6 +119,8 @@ const ActivityPage: React.FC = () => {
       return;
     }
 
+    console.log("Data: ", activity);
+
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/rate?id=${activity.event._id}`, {
@@ -284,12 +286,17 @@ const ActivityPage: React.FC = () => {
             </ul>
           </div>
         )}
+        
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img
-            src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${activity.event.pictures[0].id}`}
-            alt={`Profile for ${activity.name}`}
-            style={{ maxWidth: '600px', maxHeight: '600px', borderRadius: '12px', marginBottom: '40px' }}
-          />
+          {activity.event.pictures && activity.event.pictures.length > 0 ? (
+            <img
+              src={`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/getimage?imageName=${activity.event.pictures[0].id}`}
+              alt={`Profile for ${activity.event.name}`}
+              style={{ maxWidth: '600px', maxHeight: '600px', borderRadius: '12px', marginBottom: '40px' }}
+            />
+          ) : (
+            <p>No image available</p> // Or a fallback image if you have one
+          )}
         </div>
 
         <div>

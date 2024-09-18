@@ -68,6 +68,7 @@ const CalendarComponent: React.FC = () => {
             }
           });
           const activitiesData = await Promise.all(activitiesPromise);
+          
           //console.log("popo " , activitiesData);
           setActivities(activitiesData.filter(activity => activity !== null));
         };
@@ -103,7 +104,7 @@ const CalendarComponent: React.FC = () => {
   
   const handleEventClick = (activity: any) => {
     //console.log("Activities send " , activity.event._id);
-    
+    console.log("Infffoooooo " , activity)
     if (activity.event._id != null) {
       navigate(`/activity/${activity.event._id}`);
     } else {

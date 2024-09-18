@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useParams, Link, useNavigate } from 'react-router-dom';
 
 // CSS-in-JS styles
 const styles = {
@@ -50,7 +51,7 @@ const styles = {
     marginBottom: '20px',
     maxWidth: '600px',
     overflowY: 'auto' as 'auto',
-    maxHeight: '100px', // Limits the height to avoid excessive scrolling
+    maxHeight: '100px',
     border: '1px solid #ccc',
     borderRadius: '8px',
     padding: '10px',
@@ -64,7 +65,7 @@ const styles = {
     backgroundColor: '#e0e0e0',
     cursor: 'pointer',
     transition: 'background-color 0.3s',
-    whiteSpace: 'nowrap' as 'nowrap', // Prevents text wrapping within the button
+    whiteSpace: 'nowrap' as 'nowrap',
   },
   allTagsButton: {
     padding: '5px 10px',
@@ -83,6 +84,7 @@ const EventSwipe: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [animationClass, setAnimationClass] = useState<string>('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const navigate = useNavigate(); // Initialize the hook here
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,22 +92,24 @@ const EventSwipe: React.FC = () => {
       setError(null);
 
       try {
-        const token = localStorage.getItem('token');
-        const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/paris', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await fetch(
+          'https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records?limit=10'
+        );
 
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
 
         const result = await response.json();
-        console.log('Fetched data:', result);
-        setData(result.events.results || []);
+        console.log('API Response:', result); // Log the API response
+
+        // Extract the `results` array from the API response
+        if (result && Array.isArray(result.results)) {
+          setData(result.results); // Set data to the `results` array
+        } else {
+          console.error('Expected results to be an array but got:', result);
+          setData([]); // Set to an empty array if the structure is not as expected
+        }
       } catch (error: any) {
         console.error('Error fetching data:', error);
         setError(error.message);
@@ -131,11 +135,9 @@ const EventSwipe: React.FC = () => {
     };
   }, [data.length]);
 
-  // Collect unique tags from all activities
-  const allTags = Array.from(new Set(data.flatMap(event => event.tags || [])));
+  const allTags = Array.from(new Set(data.flatMap((event) => event.tags || [])));
 
-  // Filter data based on the selected tag
-  const filteredData = selectedTag ? data.filter(event => event.tags?.includes(selectedTag)) : data;
+  const filteredData = selectedTag ? data.filter((event) => event.tags?.includes(selectedTag)) : data;
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -143,27 +145,48 @@ const EventSwipe: React.FC = () => {
 
   const currentEvent = filteredData[currentIndex];
 
-  const addToCalendar = async (eventId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/add', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({events : [eventId]}), // assuming the endpoint expects an array of events
-      });
-      
-      if (response.ok) {
-        console.log('Event added to the calendar successfully!');
-        // Optionally, you can provide feedback to the user
-      } else {
-        console.error('Failed to add the event to the calendar. Status:', response.status);
-      }
-    } catch (error) {
-      console.error('Error while adding the event to the calendar', error);
+  const createEvent = async (currentIndex: number) => {
+    const currentEvent = filteredData[currentIndex];
+
+    const formattedStartDate = new Date(currentEvent.date_start); // Convert to Date object
+    let formattedEndDate = new Date(currentEvent.date_end); // Convert to Date object
+
+    // Calculate the difference in milliseconds
+    const duration = formattedEndDate.getTime() - formattedStartDate.getTime();
+
+    // Check if the duration exceeds 24 hours (in milliseconds)
+    const maxDuration = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+    // If duration is more than 24 hours, adjust the end date to be 24 hours from the start
+    if (duration > maxDuration) {
+      formattedEndDate = new Date(formattedStartDate.getTime() + maxDuration);
     }
+
+    // Function to format date to YYYY-MM-DDTHH:mm:ss+00:00
+    function formatToISO(date: Date) {
+      // Get the components
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+      const day = String(date.getUTCDate()).padStart(2, '0');
+      const hours = String(date.getUTCHours()).padStart(2, '0');
+      const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+      const offset = '+00:00'; // UTC offset
+
+      // Return the formatted string
+      return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}${offset}`;
+    }
+
+    // Convert both dates to the desired format
+    const formattedStartDateString = formatToISO(formattedStartDate);
+    const formattedEndDateString = formatToISO(formattedEndDate);
+
+    const activityName = currentEvent.title;
+    const address = `${currentEvent.address_street || ''} ${currentEvent.address_city || ''}`.trim();
+    const firstSentence = currentEvent.description.split('.')[0];
+
+    // Navigate to the private activity creation page with the event details
+    //navigate('/create-private-activity', { state: { event: currentEvent } });
   };
 
   const handleNext = () => {
@@ -172,9 +195,8 @@ const EventSwipe: React.FC = () => {
   };
 
   const handleLike = () => {
-    console.log(`Liked event: ${currentEvent.title}`);
     setAnimationClass('like');
-    //addToCalendar(currentEvent.id); // Call addToCalendar with event ID
+    createEvent(currentIndex);
     setTimeout(handleNext, 500);
   };
 
@@ -185,13 +207,12 @@ const EventSwipe: React.FC = () => {
   };
 
   const handleTagClick = (tag: string | null) => {
-    setSelectedTag(tag === selectedTag ? null : tag); // Toggle the selected tag
-    setCurrentIndex(0); // Reset the current index when changing the filter
+    setSelectedTag(tag === selectedTag ? null : tag);
+    setCurrentIndex(0);
   };
 
   return (
     <div style={styles.container}>
-      {/* Display all tags */}
       <div style={styles.tagsContainer}>
         <button
           style={{
@@ -216,27 +237,38 @@ const EventSwipe: React.FC = () => {
         ))}
       </div>
 
-      {/* Display the current event */}
       <div
         style={{
           ...styles.content,
           backgroundColor: animationClass === 'like' ? '#DFF2BF' : animationClass === 'dislike' ? '#FFBABA' : '#fff',
-          transform: animationClass ? 'scale(1.1)' : 'scale(1)',
+          transform: animationClass ? 'scale(0.9)' : 'scale(1)',
         }}
-        className={animationClass}
       >
         <div style={styles.event}>
-          <h2>{currentEvent.title}</h2>
-          {currentEvent.cover_url && (
-            <a href={currentEvent.url} target="_blank" rel="noopener noreferrer">
-              <img src={currentEvent.cover_url} alt={currentEvent.title} style={styles.image} />
-            </a>
-          )}
+          <h3>{currentEvent.title}</h3>
         </div>
-        <div style={styles.navigation}>
-          <button onClick={handleDislike} style={{ ...styles.button, backgroundColor: '#E14D35' }}>Dislike</button>
-          <button onClick={handleLike} style={{ ...styles.button, backgroundColor: '#28A745' }}>Like</button>
-        </div>
+
+        <img
+          style={styles.image}
+          src={currentEvent.cover_url}
+          alt={currentEvent.title}
+          onClick={handleLike}
+        />
+      </div>
+
+      <div style={styles.navigation}>
+        <button
+          style={{ ...styles.button, backgroundColor: '#ff6b6b' }}
+          onClick={handleDislike}
+        >
+          Dislike
+        </button>
+        <button
+          style={{ ...styles.button, backgroundColor: '#4CAF50' }}
+          onClick={handleLike}
+        >
+          Like
+        </button>
       </div>
     </div>
   );
