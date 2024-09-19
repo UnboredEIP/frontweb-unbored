@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/ProActivitySubscribers.css';
 import personIcon from "../../assets/icons/personIcon.png";
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import Avatar from '../component/displayAvatar';
+import removeIcon from "../../assets/icons/remove.png";
 
 const ProActivitySubscribersPage: React.FC = () => {
     const navigate = useNavigate();
@@ -50,7 +52,7 @@ const ProActivitySubscribersPage: React.FC = () => {
                 const urlParticipant = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile?id=${participantId}`;
                 // const responseParticipant = await axios.get(urlParticipant, config);
                 const responseParticipant = await fetch(urlParticipant, {
-                    method: "POST",
+                    method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
@@ -81,13 +83,53 @@ const ProActivitySubscribersPage: React.FC = () => {
         return chunks;
     };
 
+    const handleRemoveParticipant = async (participant) => {
+        try {
+            console.log(`Suppression de l'utilisateur ${participant.username} (id: ${participant._id}) de l'activité ${id}`);
+
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json', // Définir le type de contenu pour envoyer des données en JSON
+                },
+            };
+
+            const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/remove-participant`;
+
+            // Le corps de la requête POST contient l'ID du participant et celui de l'activité
+            const data = {
+                participantId: participant._id,
+                activityId: id,
+            };
+
+            // Envoi de la requête POST avec axios
+            const response = await axios.post(url, data, config);
+            const result = response.data;
+
+            console.log(`Participant ${participant.username} supprimé avec succès de l'activité ${id}.`);
+        } catch (error) {
+            console.error('Erreur lors de la suppression du participant :', error);
+        }
+    };
+
+
     const participantPairs = chunkArray(participants, 2);
 
     return (
         <div className="ProActivitySubscribers-form-container">
-            <div className="ProActivitySubscribers-back-button">
-                <button onClick={() => navigate(-1)}>Retour</button>
-            </div>
+            <nav className="ProActivitySubscribers-breadcrumb">
+                <Link to="/">Home</Link>/
+                <Link to="/Pro-menu">Pro</Link>/
+                <Link
+                    to="/Pro-profile"
+                    state={{ fromPage: "activités" }} // Utiliser state directement
+                >
+                    Activités
+                </Link>/
+                <Link to={`/Pro-activityInfo/${id}`}>{eventName}</Link>/
+                <Link to="" className="active">Participants</Link>
+            </nav>
             <div className="ProActivitySubscribers-row">
                 {/* GAUCHE*/}
                 <div className="ProActivitySubscribers-left-side">
@@ -111,9 +153,9 @@ const ProActivitySubscribersPage: React.FC = () => {
                                         <div className="ProActivitySubscribers-row">
                                             <div className="ProActivitySubscribers-form-row">
                                                 <label className="ProActivitySubscribers-label-column_15">
-                                                    <img src={personIcon} alt="Activité" style={{ maxHeight: '50px' }} />
+                                                    <Avatar avatarData={participant.user.style} size={0.3} />
                                                 </label>
-                                                <label className="ProActivitySubscribers-label-column_75">
+                                                <label className="ProActivitySubscribers-label-column_50">
                                                     {participant.user.username}
 
                                                     <div className="ProActivitySubscribers-form-row">
@@ -123,6 +165,16 @@ const ProActivitySubscribersPage: React.FC = () => {
                                                         {participant.user.birthdate ? participant.user.birthdate.split("T")[0] : ""}
                                                     </div>
                                                 </label>
+                                                <label className="ProActivitySubscribers-label-column_15">
+                                                    <img
+                                                        src={removeIcon}
+                                                        alt="Remove Icon"
+                                                        style={{ width: '50%', cursor: 'pointer' }} // Ajoute le curseur cliquable
+                                                        onClick={() => handleRemoveParticipant(participant.user)}
+                                                    />
+
+                                                </label>
+
                                             </div>
                                         </div>
                                     </div>

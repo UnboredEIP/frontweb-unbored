@@ -1,115 +1,104 @@
 .tabs {
   display: flex;
-  gap: 10px; /* Espacement entre les onglets */
+  justify-content: space-between;
   margin-bottom: 1%;
 }
 
-.color-cases {
-  display: flex;
-  margin-top: 10px; /* Espacement par rapport aux éléments au-dessus */
-  align-items: center;
-  gap: 5px;
-}
-
-:root {
-  --blazer-color: #3A4C5A; /* Couleur de remplissage par défaut */
-}
-
-.blazer-svg {
-  --blazer-color: #3A4C5A; /* Couleur de remplissage par défaut */
-}
-
-
-.color-case {
-  width: 50px; /* Largeur de chaque case de couleur */
-  height: 50px; /* Hauteur de chaque case de couleur */
-  border: 1px solid black; /* Ajoute une légère bordure noire */
-  cursor: pointer; /* Indique que le curseur devient pointer au survol */
-  border-radius: 50%; /* Maintient le bord rond complet */
-}
-
-
-
-/* Vous pouvez ajouter d'autres styles selon vos besoins */
-
-
 .manageAvatar-tab {
-  background-color: red;
-  color: white;
-  font-weight: bold;
-  padding: 5px 10px; /* Ajoutez du rembourrage pour l'espace à l'intérieur du rectangle */
-  border-radius: 5px; /* Animation de transition */
-}
-
-.tab.active {
-  background-color: #ffffff; /* Couleur de fond des onglets actifs */
-}
-
-/* Styles spécifiques à l'onglet dépassant de la boîte */
-.manageAvatar-boxshadow-right-side {
-  overflow: visible; /* Pour que les onglets dépassent de la boîte */
-}
-
-.tab {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre aux onglets */
-}
-
-.tab.active {
-  box-shadow: none; /* Désactiver l'ombre sur l'onglet actif */
-}
-
-.manageAvatar-form-container {
-  width: 70%;
-  margin: 0 auto;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.tabs {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
   display: flex;
-  gap: 10px; /* Espacement entre les onglets */
-}
-
-.button {
-  background-color: red;
-  color: white;
-  font-weight: bold;
-  padding: 5px 10px; /* Ajoutez du rembourrage pour l'espace à l'intérieur du rectangle */
-  border: none; /* Supprimez les bordures */
-  border-radius: 5px; /* Ajoutez des coins arrondis */
-  cursor: pointer; /* Changez le curseur pour indiquer qu'il est cliquable */
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #E1604D;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 10%;
+  justify-content: center;
 }
 
 .manageAvatar-active {
-  background-color: blue;
-  color: white;
-  font-weight: bold;
-  padding: 5px 10px; /* Ajoutez du rembourrage pour l'espace à l'intérieur du rectangle */
-  border-radius: 5px; /* Changez la couleur de fond pour l'onglet actif */
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #5A42BC;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 10%;
+  justify-content: center;
+}
+
+.manageAvatar-casesSvg {
+  background: #F4F6F9;
+  /* Couleur de fond */
+  display: flex;
+  justify-content: center;
+  /* Centrer horizontalement */
+}
+
+.manageAvatar-svgbox {
+  display: flex;
+  flex-direction: column;
+  /* Centre les éléments horizontalement */
+  align-items: center;
+  /* Centre les éléments verticalement */
+
+  background: #FFFFFF;
+  box-shadow: -228px 0px 91px rgba(0, 0, 0, 0.01), -128px 0px 77px rgba(0, 0, 0, 0.03), -57px 0px 57px rgba(0, 0, 0, 0.04), -14px 0px 31px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+
+  overflow-x: auto;
+  /* Ajoute une barre de défilement horizontale */
+  overflow-y: auto;
+  /* Masque la barre de défilement verticale */
+  width: 100%;
+  /* Assure que l'élément prend toute la largeur disponible */
+  white-space: nowrap;
+  /* Empêche le contenu de passer à la ligne */
+
+  max-height: 600px;
+  /* Limite la hauteur maximale à 300px */
+
+  scrollbar-width: auto;
+  /* Largeur de la barre de défilement (peut varier selon le navigateur) */
+  scrollbar-color: #E1604D orange;
+
+}
+
+.manageAvatar-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  gap: 2%;
+  /* Ajoute un espacement de 10px entre les éléments */
 }
 
 .manageAvatar-button {
-  background-color: #4CAF50; /* Vert */
+  background-color: #4CAF50;
   border: none;
   color: white;
-  padding: 10px 32px; /* Ajustement ici : réduit la hauteur */
+  padding: 10px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 8px; /* Arrondi des coins */
-  font-weight: bold; /* Texte en gras */
-}
-
-
-
-.manageAvatar-back-button {
-  align-self: flex-start;
-  margin: 10px;
+  border-radius: 8px;
+  font-weight: bold;
 }
 
 .manageAvatar-back-button button {
@@ -128,454 +117,109 @@
 }
 
 .manageAvatar-form-title {
-  text-align: center;
-  justify-content: center;
-  background-color: red;
-  padding: 10px;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  color: white;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  width: 300px;
-  /* Increase width */
-  height: 50px;
-  /* Increase height */
-  font-size: 20px;
-  /* Increase text size */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  text-decoration: underline;
-  /* Add shadow to text */
-}
-
-.manageAvatar-form-nobox-title {
-  text-align: left;
-  justify-content: center;
-  padding: 10px;
-  font-weight: bold;
-  color: red;
-  width: 200px;
-  /* Increase width */
-  height: 50px;
-  /* Increase height */
-  font-size: 20px;
-  /* Increase text size */
-  /* Add shadow to text */
-}
-
-.manageAvatar-redbar {
-  border-bottom: 5px solid red;
-  /* Add this line */
-  width: 100%;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.manageAvatar-note {
-  text-align: center;
-  justify-content: center;
-  padding: 10px;
-  font-weight: bold;
-  background-color: red;
-  color: white;
-  border-radius: 20px;
-  width: 70px;
-  height: 40px;
-  font-size: 20px;
-  margin: auto auto auto auto;
-}
-
-.manageAvatar-note-globale {
-  text-align: center;
-  justify-content: center;
-  padding: 10px;
-  font-weight: bold;
-  background-color: red;
-  color: white;
-  border-radius: 20px;
-  width: 100px;
-  height: 60px;
-  font-size: 40px;
+  background: #E1604D;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 150%;
   display: flex;
-  align-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px 20px 10px 20px;
 }
-
 
 .manageAvatar-container {
   display: flex;
   justify-content: center;
+  /* Centre le contenu horizontalement */
   align-items: center;
-}
-
-.manageAvatar-label {
-  color: var(--mainColor);
-}
-
-.manageAvatar-editable-field {
-  border-radius: 15px;
-  padding: 10px;
-  max-width: 80%;
-  width: 100%;
-  border: 5px solid blue;
-  /* Style par défaut pour readonly */
-  outline: none;
-  font-size: 16px;
-}
-
-.manageAvatar-editable-field:focus {
-  border-color: blue;
-  /* Style pour l'édition */
-}
-
-.css-3w2yfm-ValueContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
-}
-
-.manageAvatar-input {
-  border: 2px solid var(--mainColor);
-  border-radius: 20px;
-  padding: 6px;
-  width: 100%;
-  /* margin-top: 8px; */
-  font-size: 14px;
-  text-align: center;
-  font-weight: bold;
-  /* Texte en gras */
-}
-
-.selectYes {
-  width: 75% !important;
-  border-radius: 100px;
-}
-
-.css-13cymwt-control .css-t3ipsp-control {
-  border-color: var(--mainColor) !important;
-  border-radius: 20px !important;
-  border-width: 2px !important;
-}
-
-.css-13cymwt-control:hover {
-  border-color: var(--mainColor) !important;
-  border-radius: 20px;
-  border-width: 2px !important;
-}
-
-.manageAvatar-text-orange {
-  border: 2px solid var(--mainColor);
-  border-radius: 20px;
-  padding: 8px;
-  width: 100%;
-}
-
-.manageAvatar-label-orange {
-  color: var(--mainColor);
-}
-
-.manageAvatar-form-container textarea {
-  height: 150px;
-}
-
-
-.manageAvatar-center-button button[type="submit"] {
-  background-color: var(--mainColor);
-  /* Autres styles optionnels */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  /* ... */
-}
-
-.manageAvatar-form-row {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.manageAvatar-center-button {
-  display: flex;
-  justify-content: center;
-}
-
-.manageAvatar-separator {
-  border-bottom: 2px solid gray;
-  margin: 20px 0;
-}
-
-.manageAvatar-separator-vertical {
-  border-left: 2px solid gray;
-  margin: 20px 0;
-  height: 100%;
-  /* Set the height to your desired value */
-}
-
-
-
-.manageAvatar-column_10 {
-  flex: 0 0 10%;
-  max-width: 10%;
-}
-
-.manageAvatar-column_15 {
-  color: var(--mainColor);
-  flex: 0 0 15%;
-  max-width: 15%;
-  text-align: center;
-
-}
-
-.manageAvatar-column_20 {
-  color: var(--mainColor);
-  text-align: center;
-  flex: 0 0 20%;
-  max-width: 20%;
-}
-
-/* UTILE  */
-
-.manageAvatar-column_25 {
-  color: var(--mainColor);
-  text-align: center;
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-
-.manageAvatar-column_50 {
-  color: var(--mainColor);
-  text-align: center;
-  flex: 0 0 50%;
-  max-width: 50%;
-  width: 50%
-}
-
-.manageAvatar-column_75 {
-  color: var(--mainColor);
-  text-align: center;
-  flex: 0 0 75%;
-  max-width: 75%;
-  margin: auto 0 auto 0;
-}
-
-.manageAvatar-column_100 {
-  color: var(--mainColor);
-  text-align: center;
-  flex: 0 0 100%;
-  max-width: 100%;
-  width: 100%
-}
-
-.manageAvatar-label-column_25 {
-  color: var(--mainColor);
-  text-align: left;
-  flex: 0 0 25%;
-  max-width: 25%;
-  width: 25%
-}
-
-.manageAvatar-label-column_15 {
-  color: var(--mainColor);
-  text-align: left;
-  flex: 0 0 15%;
-  max-width: 15%;
-  width: 15%;
-  margin: auto auto auto auto;
-}
-
-.manageAvatar-label-column_50 {
-  color: var(--mainColor);
-  text-align: left;
-  flex: 0 0 50%;
-  max-width: 50%;
-  width: 50%
-}
-
-.manageAvatar-label-column_75 {
-  color: var(--mainColor);
-  text-align: left;
-  flex: 0 0 75%;
-  max-width: 75%;
-}
-
-.manageAvatar-label-column_100 {
-  color: var(--mainColor);
-  text-align: left;
-  /* flex: 0 0 100%; */
-  max-width: 100%;
-  position: relative;
-}
-
-.manageAvatar-label-column {
-  color: var(--mainColor);
-  text-align: left;
-}
-
-/* UTILE */
-
-.manageAvatar-column_30 {
-  flex: 0 0 30%;
-  max-width: 30%;
-}
-
-
-
-
-.manageAvatar-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  /* Align items at the top */
+  /* Centre le contenu verticalement */
 }
 
 .manageAvatar-boxshadow-left-side {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  margin-right: 1%;
-  padding: 1% 1% 1% 1%;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  width: 23%;
+  height: 450px;
+  margin-top: 15%;
+  margin-right: 5%;
+  background: #FFFFFF;
+  box-shadow: 0px 198px 79px rgba(0, 0, 0, 0.01), 0px 112px 67px rgba(0, 0, 0, 0.03), 0px 50px 50px rgba(0, 0, 0, 0.04), 0px 12px 27px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
 }
 
-.manageAvatar-boxshadow-svg {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centrer horizontalement */
-  align-items: center; /* Centrer verticalement */
-  /* width: 100%; */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  margin-right: 1%;
-  padding: 1% 1% 1% 1%;
-  margin-top: 1%;
-  margin-bottom: 1%;
-}
-
+.manageAvatar-boxshadow-svg,
 .manageAvatar-boxshadow-right-side {
   display: flex;
   flex-direction: column;
-  width: 700%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  margin-left: 1%;
-  padding: 1% 1% 1% 1%;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  padding: 2%;
+  width: 70%;
+
+  background: #FFFFFF;
+  box-shadow: 0px 198px 79px rgba(0, 0, 0, 0.01), 0px 112px 67px rgba(0, 0, 0, 0.03), 0px 50px 50px rgba(0, 0, 0, 0.04), 0px 12px 27px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  max-height: 660px;
 }
 
-.manageAvatar-left-side {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1% 1% 1% 1%;
-}
+/* .manageAvatar-colorbox {
 
-.manageAvatar-right-side {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1% 1% 1% 1%;
-}
-
-.manageAvatar-left-side .manageAvatar-column_20 {
-  color: var(--mainColor);
-  text-align: center;
-  width: 100% !important;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.manageAvatar-left-side .manageAvatar-column_50 {
-  max-width: 100% !important;
-  width: 50% !important;
-}
-
-.manageAvatar-right-side .manageAvatar-column_20 {
-  color: var(--mainColor);
-  text-align: center;
-  width: 100% !important;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.manageAvatar-right-side .manageAvatar-column_50 {
-  max-width: 100% !important;
-  width: 50% !important;
-}
-
-
-.manageAvatar-photo-uploader {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.manageAvatar-photo-uploader .manageAvatar-column_20 {
-  width: 100%;
-  max-width: 100%;
-}
-
-.manageAvatar-image-upload {
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  justify-content: center;
-  /* margin-left: 10%; */
-  align-self: center;
-  align-items: center;
-}
-
-.manageAvatar-image-upload input[type="file"] {
-  display: none;
-}
-
-.manageAvatar-image-upload label {
-  background-color: var(--mainColor);
-  color: white;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.manageAvatar-price-empty {
-  margin-bottom: 53%;
-}
-
-.manageAvatar-price-show {
-  margin-top: 28%;
-}
-
-.manageAvatar-price-form {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  /* color: var(--mainColor); */
-  /* text-align: left; */
-  /* flex: 0 0 25%; */
-  /* max-width: 25%; */
-}
-
-/* 
-.manageAvatar-form-row-price {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 11px;  
 } */
 
-.manageAvatar-myButton {
-  width: 200px;
-  font-weight: bold;
+.color-cases {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: #FFFFFF;
+  box-shadow: -228px 0px 91px rgba(0, 0, 0, 0.01), -128px 0px 77px rgba(0, 0, 0, 0.03), -57px 0px 57px rgba(0, 0, 0, 0.04), -14px 0px 31px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+}
+
+.color-case {
+  width: 50px;
+  height: 50px;
+  border: 0.1px solid black;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+
+.manageAvatar-boxshadow-svg {
+  justify-content: center;
+  /* Centrer horizontalement */
+  align-items: center;
+  /* Centrer verticalement */
+}
+
+.manageAvatar-form-container {
+  /* width: 70%; */
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.manageAvatar-rm-button {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #FD9841;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
 }

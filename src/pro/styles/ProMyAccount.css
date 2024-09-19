@@ -1,174 +1,171 @@
-/* ../styles/pages/ProProfile.css */
-
-.MyAccount-button-box {
+.MyAccount-page {
   background-color: white;
   padding: 20px;
-  width: 70%;
   margin: 0 auto;
   border-radius: 15px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 198px 79px rgba(0, 0, 0, 0.01), 0px 112px 67px rgba(0, 0, 0, 0.03), 0px 50px 50px rgba(0, 0, 0, 0.04), 0px 12px 27px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .MyAccount-banner {
-  background-color: #E1604D;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  max-width: 30%;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 24px;
-  font-weight: bold;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.MyAccount-input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 20px;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-}
-
-.MyAccount-input-group {
-  display: flex;
-  align-items: center;
-  margin: 1% 1% 1% 1%
-}
-
-.MyAccount-label-column {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   color: #E1604D;
+  text-align: center;
+  font-size: 40px;
   font-weight: bold;
-}
-
-.MyAccount-input-column {
-  flex: 2;
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.MyAccount-input-wrapper label {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.MyAccount-input-wrapper input {
-  padding: 10px;
-  border: 2px solid orange;
-  border-radius: 20px;
-  width: 100%;
 }
 
 .MyAccount-edit-all-button {
-  padding: 5px 10px;
+  padding: 10px;
   background-color: #E1604D;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  margin: 1%
 }
 
 .MyAccount-edit-all-button:hover {
   background-color: #D15040;
 }
 
-.MyAccount-back-button {
-  align-self: flex-start;
-  margin: 10px;
-}
-
-.MyAccount-back-button button {
-  padding: 5px 10px;
-  background-color: #E1604D;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.MyAccount-back-button button:hover {
-  background-color: #D15040;
-}
-
-.MyAccount-rounded-orange-border {
-  padding: 10px;
-  border: 2px solid orange;
-  border-radius: 20px;
-  width: 100%;
-  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
-  margin: 0 auto;
-  text-align: center;
-}
-
-.MyAccount-editable-field {
-  padding: 10px;
-  border: 2px solid blue;
-  border-radius: 20px;
-  width: 100%;
-  text-align: center;
-}
-
 .MyAccount-row {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  margin-top: 1%;
-  margin-bottom: 1%;
-  /* Align items at the top */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
 }
 
-.MyAccount-boxshadow-left-side {
+.MyAccount-row-center {
+  justify-content: center;
   display: flex;
-  flex-direction: column;
   width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+}
+
+.MyAccount-label-50 {
+  font-weight: bold;
+  width: 50%;
+  margin: 1%;
+}
+
+.MyAccount-label-100 {
+  font-weight: bold;
+  width: 100%;
+  margin: 1%;
+}
+
+.MyAccount-input-50 {
+  width: 50%;
+  padding: 10px;
+  border: 2px solid #E1604D;
   border-radius: 20px;
-  margin-right: 1%;
-  padding: 1% 1% 1% 1%;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
 }
 
-.MyAccount-boxshadow-right-side {
-  display: flex;
-  flex-direction: column;
+.MyAccount-input-100 {
   width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border: 2px solid #E1604D;
   border-radius: 20px;
-  margin-left: 1%;
-  padding: 1% 1% 1% 1%;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
 }
 
-.MyAccount-left-side {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1% 1% 1% 1%;
+.MyAccount-edit-input-50 {
+  width: 50%;
+  padding: 10px;
+  border: 2px solid Orange;
+  border-radius: 20px;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
 }
 
-.MyAccount-right-side {
+.MyAccount-edit-input-100 {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid Orange;
+  border-radius: 20px;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
+}
+
+.MyAccount-box {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 1% 1% 1% 1%;
+  justify-content: center;
+  align-items: center;
 }
+
+.MyAccount-scroll-box {
+  width: 100%;
+  overflow-y: auto; /* Activer la barre de défilement verticale */
+  max-height: 700px; /* Définir une hauteur maximale avec défilement */
+  scrollbar-width: auto; /* Largeur de la barre de défilement (peut varier selon le navigateur) */
+  scrollbar-color: #E1604D orange; /* Couleur de la barre de défilement */
+}
+
+/* Stylisation spécifique pour Chrome, Edge et Safari */
+.MyAccount-scroll-box::-webkit-scrollbar {
+  width: 10px; /* Largeur de la barre de défilement */
+}
+
+.MyAccount-scroll-box::-webkit-scrollbar-track {
+  background: orange; /* Couleur de fond de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis de la barre de défilement */
+}
+
+.MyAccount-scroll-box::-webkit-scrollbar-thumb {
+  background-color: #E1604D; /* Couleur du bouton de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis du bouton de la barre de défilement */
+}
+
+.MyAccount-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
+
+.MyAccount-breadcrumb a {
+  color: black; /* Noir pour Home et Pro */
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.MyAccount-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
+
+.MyAccount-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
+}
+
+.MyAccount-box-avatar {
+  background-color: white;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre portée très légère */
+}
+

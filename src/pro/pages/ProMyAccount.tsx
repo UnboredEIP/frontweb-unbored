@@ -1,24 +1,22 @@
-
-import '../styles/ProMyAccount.css'; // Utilisez les mêmes styles que ProProfile
-import { useNavigate } from 'react-router-dom';
+import '../styles/ProMyAccount.css';
+import { Link } from 'react-router-dom';
 import axios from "axios";
-import React, { Component, ChangeEvent, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useToast } from "@chakra-ui/react";
-
-interface Field {
-    label: string;
-    value: string;
-}
+import Avatar from '../component/displayAvatar';
 
 function ProMyAccount() {
-    const [fields, setFields] = useState<Field[]>([
-        { label: 'Nom', value: '' },
-        { label: 'Mail', value: '' },
-        { label: 'Sexe', value: '' },
-        { label: 'Date de naissance', value: '' },
-    ]);
+    const [nom, setNom] = useState('');
+    const [prenom, setPrenom] = useState('');
+    const [dateNaissance, setDateNaissance] = useState('');
+    const [tel, setTel] = useState('');
+    const [mail, setMail] = useState('');
+    const [sexe, setSexe] = useState('');
 
+    const [style, setStyle] = useState('');
     const [isEditing, setIsEditing] = useState(false);
+
+
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -26,17 +24,8 @@ function ProMyAccount() {
 
     const handleSaveClick = async () => {
         setIsEditing(false);
-
         await updateProfile();
     };
-
-    const handleFieldChange = (index: number, newValue: string) => {
-        const updatedFields = [...fields];
-        updatedFields[index].value = newValue;
-        setFields(updatedFields);
-    };
-
-    const navigate = useNavigate();
 
     const getProfile = async () => {
         try {
@@ -50,16 +39,15 @@ function ProMyAccount() {
             const response = await axios.get(url, config);
             const profileDetails = response.data.user;
 
-            console.log(profileDetails.birthdate)
             const formattedBirthdate = new Date(profileDetails.birthdate).toISOString().slice(0, 10);
 
-            setFields([
-                { label: 'Nom', value: profileDetails.username },
-                { label: 'Mail', value: profileDetails.email },
-                { label: 'Sexe', value: profileDetails.gender },
-                { label: 'Date de naissance', value: formattedBirthdate },
-            ]);
+            setNom(profileDetails.username);
+            setPrenom(profileDetails.username);
+            setMail(profileDetails.email);
+            setSexe(profileDetails.gender);
+            setDateNaissance(formattedBirthdate);
 
+            setStyle(profileDetails.style);
         } catch (error) {
             console.error(error);
         }
@@ -76,21 +64,20 @@ function ProMyAccount() {
                 },
             };
 
-            const response = await axios.put('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/update', {
-                username: fields.find(field => field.label === 'Nom')?.value,
-                email: fields.find(field => field.label === 'Mail')?.value,
-                gender: fields.find(field => field.label === 'Sexe')?.value,
-                birthdate: fields.find(field => field.label === 'Date de naissance')?.value,
+            await axios.put('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/update', {
+                username: nom,
+                email: mail,
+                gender: sexe,
+                birthdate: dateNaissance,
             }, config);
 
             toast({
                 title: "Succès !",
-                description: "Votre compte à bien été mis à jour ! ",
+                description: "Votre compte à bien été mis à jour !",
                 status: "success",
                 duration: 3000,
                 isClosable: true,
             });
-
         } catch (error) {
             toast({
                 title: "Erreur",
@@ -108,81 +95,108 @@ function ProMyAccount() {
     }, []);
 
     return (
-        <div className="MyAccount-button-box">
-            <div className="MyAccount-back-button">
-                <button onClick={() => navigate(-1)}>Retour</button>
-            </div>
-            <div className="MyAccount-banner">Mon Compte</div>
-            <div className="MyAccount-row" style={{ width: '60%' }}>
-                <div className="MyAccount-boxshadow-left-side ">
-                    {/* <div className="MyAccount-banner">Infos Utilisateur</div> */}
-                    {fields.map((field, index) => {
-                        if (index % 2 === 0) {
-                            const nextField = fields[index + 1];
-                            return (
-                                <div className="MyAccount-input-group" key={index}>
-                                    <div className="MyAccount-label-column">
-                                        <label>{field.label}</label>
-                                    </div>
-                                    {field.label === 'Sexe' ? (
-                                        <div className="MyAccount-input-column">
-                                            <select
-                                                value={field.value}
-                                                disabled={!isEditing}
-                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                                onChange={(e) => handleFieldChange(index, e.target.value)}
-                                            >
-                                                <option value="">Sélectionnez votre sexe</option>
-                                                <option value="Homme">Homme</option>
-                                                <option value="Femme">Femme</option>
-                                                <option value="Autre">Autre</option>
-                                            </select>
-                                        </div>
-                                    ) : (
-                                        <div className="MyAccount-input-column">
-                                            <input
-                                                type={field.label === 'Date de naissance' ? 'date' : 'text'}
-                                                value={field.value}
-                                                readOnly={!isEditing}
-                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                                onChange={(e) => handleFieldChange(index, e.target.value)}
-                                            />
-                                        </div>
-                                    )}
-                                    {nextField && (
-                                        <div className="MyAccount-label-column">
-                                            <label>{nextField.label}</label>
-                                        </div>
-                                    )}
-                                    {nextField && (
-                                        <div className="MyAccount-input-column">
-                                            <input
-                                                type={nextField.label === 'Date de naissance' ? 'date' : 'text'}
-                                                value={nextField.value}
-                                                readOnly={!isEditing}
-                                                className={isEditing ? 'MyAccount-editable-field' : 'MyAccount-rounded-orange-border'}
-                                                onChange={(e) => handleFieldChange(index + 1, e.target.value)}
-                                            />
-                                        </div>
-                                    )}
-                                </div>
-                            );
-                        }
-                        return null;
-                    })}
-
+        <div className="MyAccount-page">
+            <div className="MyAccount-box">
+                <div className="MyAccount-row">
+                    <nav className="MyAccount-breadcrumb">
+                        <Link to="/">Home</Link>/
+                        <Link to="/Pro-menu">Pro</Link>/
+                        <Link to="/Pro-profile" className="active">Profil</Link>
+                    </nav>
                 </div>
-            </div>
-            <div className="MyAccount-input-group center-content">
-                {isEditing ? (
-                    <button className="MyAccount-edit-all-button" onClick={handleSaveClick}>
-                        Sauvegarder
-                    </button>
-                ) : (
-                    <button className="MyAccount-edit-all-button" onClick={handleEditClick}>
-                        Modifier Les Informations
-                    </button>
-                )}
+                <div className="MyAccount-row">
+                    <div className="MyAccount-banner">Profil</div>
+                </div>
+                <div className="MyAccount-scroll-box">
+                    <div className="MyAccount-row-center">
+                        <div className="MyAccount-box-avatar">
+                            <Avatar
+                                avatarData={style}
+                                size={1} // Par exemple, 50% de la taille du conteneur parent
+                            />
+
+                        </div>
+                    </div>
+                    <div className="MyAccount-row">
+                        <label className="MyAccount-label-50">Nom</label>
+                        <label className='MyAccount-label-50'>Prénom</label>
+                    </div>
+                    <div className="MyAccount-row">
+                        <input
+                            type="text"
+                            value={nom}
+                            readOnly={!isEditing}
+                            onChange={(e) => setNom(e.target.value)}
+                            className={isEditing ? 'MyAccount-edit-input-50' : 'MyAccount-input-50'}
+                        />
+                        <input
+                            type="text"
+                            value={prenom}
+                            readOnly={!isEditing}
+                            onChange={(e) => setPrenom(e.target.value)}
+                            className={isEditing ? 'MyAccount-edit-input-50' : 'MyAccount-input-50'}
+                        />
+                    </div>
+                    <div className="MyAccount-row">
+                        <label className="MyAccount-label-50">Date de naissance</label>
+                        <label className="MyAccount-label-50">Tél</label>
+                    </div>
+                    <div className="MyAccount-row">
+                        <input
+                            type="date"
+                            value={dateNaissance}
+                            readOnly={!isEditing}
+                            onChange={(e) => setDateNaissance(e.target.value)}
+                            className={isEditing ? 'MyAccount-edit-input-50' : 'MyAccount-input-50'}
+                        />
+                        <input
+                            type="text"
+                            value={tel}
+                            readOnly={!isEditing}
+                            onChange={(e) => setTel(e.target.value)}
+                            className={isEditing ? 'MyAccount-edit-input-50' : 'MyAccount-input-50'}
+                        />
+                    </div>
+
+                    <div className="MyAccount-row">
+                        <label className="MyAccount-label-100">Mail</label>
+                    </div>
+                    <div className="MyAccount-row">
+                        <input
+                            type="text"
+                            value={mail}
+                            readOnly={!isEditing}
+                            onChange={(e) => setMail(e.target.value)}
+                            className={isEditing ? 'MyAccount-edit-input-100' : 'MyAccount-input-100'}
+                        />
+                    </div>
+
+
+                    <div className="MyAccount-row">
+                        <label className="MyAccount-label-50">Sexe</label>
+                    </div>
+                    <div className="MyAccount-row">
+                        <input
+                            type="text"
+                            value={sexe}
+                            readOnly={!isEditing}
+                            onChange={(e) => setSexe(e.target.value)}
+                            className={isEditing ? 'MyAccount-edit-input-50' : 'MyAccount-input-50'}
+                        />
+                    </div>
+
+                    <div className="MyAccount-row-center">
+                        {isEditing ? (
+                            <button className="MyAccount-edit-all-button" onClick={handleSaveClick}>
+                                Sauvegarder
+                            </button>
+                        ) : (
+                            <button className="MyAccount-edit-all-button" onClick={handleEditClick}>
+                                Modifier
+                            </button>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
