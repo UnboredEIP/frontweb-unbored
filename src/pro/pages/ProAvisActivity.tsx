@@ -1,9 +1,16 @@
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect, useRef, } from 'react';
 import '../styles/ProAvisActivity.css';
-import personIcon from "../../assets/icons/personIcon.png";
+import speechBubbleIcon from "../../assets/icons/speech-bubble.png";
+import heartIcon from "../../assets/icons/heart.png";
+import sendIcon from "../../assets/icons/send.png";
 import { Link } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import Avatar from '../component/displayAvatar';
+
+import { Textarea, InputGroup, InputRightElement } from '@chakra-ui/react';
+import arrowIcon from "../../assets/icons/arrow.png"; // Assurez-vous que le chemin est correct
+
 
 const AvisActivityPage: React.FC = () => {
 
@@ -24,6 +31,12 @@ const AvisActivityPage: React.FC = () => {
 
     const [eventName, setEventName] = useState<string>('');
     const [responseImage, setResponseImage] = useState<string | null>(null);
+
+    const [replyingTo, setReplyingTo] = useState<string | null>(null);
+    const [responseCommentary, setResponseCommentary] = useState("");
+    const textareaRef = useRef(null);
+
+
 
 
     const getParticipants = async () => {
@@ -92,26 +105,16 @@ const AvisActivityPage: React.FC = () => {
                 }
 
                 const urlParticipant = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile?id=${activityDetails.rate[i].userId}`;
-                const responseParticipant = await fetch(urlParticipant, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                const userData = await responseParticipant.json();
-                // console.log("toto", userData)
+                const responseParticipant = await axios.get(urlParticipant, config);
+                const participantDetails = responseParticipant.data.user;
 
-                if (userData.user = null) {
-                    userData.user.username = "Utilisateur Inconnu"
-                }
 
                 activityDetails.rate[i] = {
                     ...activityDetails.rate[i],
-                    ...userData.user
+                    username: participantDetails.username,
+                    style: participantDetails.style
                 };
 
-                console.log(activityDetails.rate[i])
 
                 // Classification des avis positifs et négatifs
                 if (starsInt >= 3) {
@@ -141,16 +144,82 @@ const AvisActivityPage: React.FC = () => {
         }
     };
 
+
+
+    const adjustTextareaHeight = (event) => {
+        const textarea = event.target;
+        textarea.style.height = "auto";
+        textarea.style.height = `${textarea.scrollHeight - 30}px`;
+    };
+
+    const handleReply = (commentId: string) => {
+        if (replyingTo == null) {
+            setReplyingTo(commentId);
+        } else {
+            setReplyingTo(null);
+            setResponseCommentary("");
+        }
+    };
+
+    const handleSendReply = async (commentId: string) => {
+        try {
+            // Logique pour envoyer la réponse
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json', // Assure-toi que le serveur attend du JSON
+                },
+            };
+
+            const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/commentaryResponse`;
+
+            const data = {
+                responseCommentary,
+                commentId,
+                id,
+            };
+
+            // Envoi de la requête POST avec axios
+            const response = await axios.post(url, data, config);
+            const result = response.data;
+
+            console.log(`Réponse envoyée : "${responseCommentary}" au commentaire ID : ${commentId}`);
+
+            // Réinitialisation après envoi
+            setReplyingTo(null);
+            setResponseCommentary("");
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi de la réponse :', error);
+        }
+    };
+
     useEffect(() => {
         getParticipants();
     }, [id]);
 
+    useEffect(() => {
+        if (textareaRef.current) {
+            const textarea = textareaRef.current;
+            textarea.style.height = "auto";
+            textarea.style.height = `${textarea.scrollHeight - 30}px`;
+        }
+    }, [replyingTo]);
+
     return (
         <div className="ProAvisActivity-form-container">
-
-            <div className="ProAvisActivity-back-button">
-                <button onClick={() => navigate(-1)}>Retour</button>
-            </div>
+            <nav className="ProAvisActivity-breadcrumb">
+                <Link to="/">Home</Link>/
+                <Link to="/Pro-menu">Pro</Link>/
+                <Link
+                    to="/Pro-profile"
+                    state={{ fromPage: "activités" }} // Utiliser state directement
+                >
+                    Activités
+                </Link>/
+                <Link to={`/Pro-activityInfo/${id}`}>{eventName}</Link>/
+                <Link to="" className="active">Avis</Link>
+            </nav>
             <h2 className="ActivityInfo-form-title">{eventName}</h2>
             <div className='ActivityInfo-image-conteneur'>
                 <div className="ActivityInfo-image">
@@ -170,13 +239,13 @@ const AvisActivityPage: React.FC = () => {
                                 <div className="ProAvisActivity-row">
                                     <div className="ProAvisActivity-form-row">
                                         <label className="ProAvisActivity-label-column_15">
-                                            <img src={personIcon} alt="Activité" style={{ maxHeight: '50px' }} />
-                                        </label>
-                                        <label className="ProAvisActivity-label-column_75">
-                                            {avis.username}
-                                            <div className="ProAvisActivity-form-row">
-                                                01/01/2001
+                                            <div className="ProAvisActivity-avatar-circle">
+                                                <Avatar avatarData={avis.style} size={0.2} />
                                             </div>
+                                        </label>
+
+                                        <label className="ProAvisActivity-label-column_75">
+                                            {avis.username} - 01/01/2001
                                         </label>
                                         <label className="ProAvisActivity-note">
                                             {avis.stars}/5
@@ -184,10 +253,65 @@ const AvisActivityPage: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="ProAvisActivity-form-row">
-                                    {avis.comments}
+                                    <input
+                                        className="ProAvisActivity-commentary"
+                                        value={avis.comments}
+                                        readOnly
+                                    />
                                 </div>
+                                {/* Bouton Répondre */}
+                                <div className="ProAvisActivity-form-row">
+                                    <img
+                                        src={heartIcon}
+                                        alt="Like"
+                                        style={{ margin: '1%', cursor: 'pointer', width: '20px', height: '20px' }}
+                                    />
+                                    <img
+                                        src={speechBubbleIcon}
+                                        alt="Répondre"
+                                        onClick={() => handleReply(avis.id)}
+                                        style={{ margin: '1%', cursor: 'pointer', width: '20px', height: '20px' }}
+                                    />
+                                    <img
+                                        src={sendIcon}
+                                        alt="Envoyer"
+                                        style={{ margin: '1%', cursor: 'pointer', width: '20px', height: '20px' }}
+                                    />
+                                </div>
+                                {replyingTo === avis.id && (
+                                    <div>
+                                        <div className="ProAvisActivity-form-row">
+                                            <Textarea
+                                                ref={textareaRef} // Lier la référence
+                                                placeholder="Postez votre réponse"
+                                                value={responseCommentary}
+                                                onChange={(e) => setResponseCommentary(e.target.value)}
+                                                onInput={adjustTextareaHeight}
+                                                borderRadius={15}
+                                                borderWidth={2}
+                                                borderColor="#E1604D"
+                                                bg="white"
+                                                minHeight="20px"
+                                                resize="none"
+                                                overflow="hidden"
+                                                style={{ paddingBottom: '5%' }}
+                                            />
+
+                                        </div>
+                                        <div className="ProAvisActivity-form-row-right">
+                                            <img
+                                                src={arrowIcon}
+                                                alt="Flèche"
+                                                className="responseButton"
+                                                onClick={() => handleSendReply(avis.id)}
+                                            />
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         ))}
+
+
                     </div>
                 </div>
                 {/* drotie */}
@@ -201,13 +325,13 @@ const AvisActivityPage: React.FC = () => {
                                 <div className="ProAvisActivity-row">
                                     <div className="ProAvisActivity-form-row">
                                         <label className="ProAvisActivity-label-column_15">
-                                            <img src={personIcon} alt="Activité" style={{ maxHeight: '50px' }} />
-                                        </label>
-                                        <label className="ProAvisActivity-label-column_75">
-                                            {avis.username}
-                                            <div className="ProAvisActivity-form-row">
-                                                01/01/2001
+                                            <div className="ProAvisActivity-avatar-circle">
+                                                <Avatar avatarData={avis.style} size={0.2} />
                                             </div>
+                                        </label>
+
+                                        <label className="ProAvisActivity-label-column_75">
+                                            {avis.username} - 01/01/2001
                                         </label>
                                         <label className="ProAvisActivity-note">
                                             {avis.stars}/5
@@ -215,8 +339,61 @@ const AvisActivityPage: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="ProAvisActivity-form-row">
-                                    {avis.comments}
+                                    <input
+                                        className="ProAvisActivity-commentary"
+                                        value={avis.comments}
+                                        readOnly
+                                    />
                                 </div>
+                                {/* Bouton Répondre */}
+                                <div className="ProAvisActivity-form-row">
+                                    <img
+                                        src={heartIcon}
+                                        alt="Like"
+                                        style={{ margin: '1%', cursor: 'pointer', width: '20px', height: '20px' }}
+                                    />
+                                    <img
+                                        src={speechBubbleIcon}
+                                        alt="Répondre"
+                                        onClick={() => handleReply(avis.id)}
+                                        style={{ margin: '1%', cursor: 'pointer', width: '20px', height: '20px' }}
+                                    />
+                                    <img
+                                        src={sendIcon}
+                                        alt="Envoyer"
+                                        style={{ margin: '1%', cursor: 'pointer', width: '20px', height: '20px' }}
+                                    />
+                                </div>
+                                {replyingTo === avis.id && (
+                                    <div>
+                                        <div className="ProAvisActivity-form-row">
+                                            <Textarea
+                                                ref={textareaRef} // Lier la référence
+                                                placeholder="Postez votre réponse"
+                                                value={responseCommentary}
+                                                onChange={(e) => setResponseCommentary(e.target.value)}
+                                                onInput={adjustTextareaHeight}
+                                                borderRadius={15}
+                                                borderWidth={2}
+                                                borderColor="#E1604D"
+                                                bg="white"
+                                                minHeight="20px"
+                                                resize="none"
+                                                overflow="hidden"
+                                                style={{ paddingBottom: '5%' }}
+                                            />
+
+                                        </div>
+                                        <div className="ProAvisActivity-form-row-right">
+                                            <img
+                                                src={arrowIcon}
+                                                alt="Flèche"
+                                                className="responseButton"
+                                                onClick={() => handleSendReply(avis.id)}
+                                            />
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>

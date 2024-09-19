@@ -3,13 +3,15 @@
 .MyActivities-button-box {
   background-color: white;
   padding: 20px;
-  width: 70%;
+  /* width: 70%; */
+  height: 900px;
   margin: 0 auto;
   border-radius: 15px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .MyActivities-banner {
@@ -24,17 +26,15 @@
   font-size: 24px;
   font-weight: bold;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-  display: flex; /* Add this line */
-  justify-content: center; /* Add this line */
-  align-items: center; /* Add this line */
- }
- 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .MyActivities-button-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .MyActivities-button {
@@ -42,18 +42,54 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background-size: cover;
   background-position: center;
   border: none;
-  border-radius: 15px;
+  border-radius: 50px;
   margin: 15px;
   color: red;
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   text-decoration: none;
+  position: relative; /* Pour le label sur l'image */
+}
+
+.My-activities-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.MyActivities-image-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 15px;
+}
+
+.MyActivities-button-label {
+  position: absolute;
+  bottom: 0;
+  left: 0; /* Prendre toute la largeur */
+  right: 0; /* Prendre toute la largeur */
+  font-weight: bold;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)); /* Dégradé du haut vers le bas */
+  color: white;
+  border-radius: 0 0 15px 15px; /* Coins arrondis en bas seulement */
+  height: 50px;
+  display: flex;
+  justify-content: flex-start; /* Aligner à gauche */
+  align-items: center;
+  text-align: left; /* Aligner le texte à gauche */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding-left: 10px; /* Ajouter de l'espace à gauche */
+  margin-bottom: 0; /* Ajuster selon vos besoins */
 }
 
 .MyActivities-input-container {
@@ -122,6 +158,35 @@
   margin: 10px;
 }
 
+
+/* ../styles/pages/ProProfile.MyActivities-css */
+
+.MyActivities-scroll-box {
+  margin-top: 20px;
+  justify-content: center; /* Centrer verticalement */
+  width: 100%;
+  overflow-y: auto; /* Activer la barre de défilement verticale */
+  max-height: 600px; /* Définir une hauteur maximale avec défilement */
+  scrollbar-width: auto; /* Largeur de la barre de défilement (peut varier selon le navigateur) */
+  scrollbar-color: #E1604D orange; /* Couleur de la barre de défilement */
+}
+
+/* Stylisation spécifique pour Chrome, Edge et Safari */
+.MyActivities-scroll-box::-webkit-scrollbar {
+  width: 10px; /* Largeur de la barre de défilement */
+}
+
+.MyActivities-scroll-box::-webkit-scrollbar-track {
+  background: orange; /* Couleur de fond de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis de la barre de défilement */
+}
+
+.MyActivities-scroll-box::-webkit-scrollbar-thumb {
+  background-color: #E1604D; /* Couleur du bouton de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis du bouton de la barre de défilement */
+}
+
+
 .MyActivities-back-button button {
   padding: 5px 10px;
   background-color: #E1604D;
@@ -137,67 +202,38 @@
   background-color: #D15040;
 }
 
-.MyActivities-image-container {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  border: none;
-  margin-bottom: 5px;
+.MyActivities-searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.MyActivities-button-label {
-  font-weight: bold;
-  margin-top: 5px;
-  background-color: red;
-  color: white;
-  border-radius: 20px;
-  width: 150px;
-  height: 50px;
-  display: flex; /* Add this line */
-  justify-content: center; /* Add this line */
-  align-items: center; /* Add this line */
-  text-align: center; /* Add this line */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add this line */
- }
- 
+.MyActivities-search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  width: 300px;
+  font-size: 16px;
+}
 
+.MyActivities-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
 
+.MyActivities-breadcrumb a {
+  color: black; /* Noir pour Home et Pro */
+  text-decoration: none;
+  margin-right: 5px;
+}
 
+.MyActivities-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
 
-
- /* TESTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */
-
- .MyActivities-button-container {
-  position: relative; /* Add this line */
- }
- 
- .MyActivities-button-container::before,
- .MyActivities-button-container::after {
-  content: ''; /* Add this line */
-  position: absolute; /* Add this line */
-  width: 0; /* Add this line */
-  height: 0; /* Add this line */
-  border-style: solid; /* Add this line */
-  border-width: 60px 60px 60px 0; /* Reduce the width of the arrows */
- }
- 
- .MyActivities-button-container::before {
-  top: 50%; /* Center the arrow vertically relative to the button container */
-  left: -60px; /* Add this line */
-  transform: translateY(-50%); /* Center the arrow vertically relative to the button container */
-  border-color: transparent #E1604D transparent transparent; /* Add this line */
- }
- 
- .MyActivities-button-container::after {
-  top: 50%; /* Center the arrow vertically relative to the button container */
-  right: -60px; /* Add this line */
-  transform: translateY(-50%); /* Center the arrow vertically relative to the button container */
-  border-width: 60px 0 60px 60px; /* Reduce the width of the arrows */
-  border-color: transparent transparent transparent #E1604D; /* Add this line */
- }
- 
- 
- 
- 
- 
+.MyActivities-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
+}

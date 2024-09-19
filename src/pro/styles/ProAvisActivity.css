@@ -194,7 +194,13 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 10px;
+}
+
+.ProAvisActivity-form-row-right {
+  display: flex;
+  align-items: center; /* Aligne les éléments verticalement au centre (ou ajustez selon vos besoins) */
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .ProAvisActivity-center-button {
@@ -465,4 +471,69 @@
   font-weight: bold;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ProAvisActivity-reply-form {
+  width: 100%;
+  padding: 10px;
+  height: 40px;
+  border: 2px solid orange;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #000;
+  outline: none;
+}
+
+.ProAvisActivity-avatar-circle {
+  border: 3px solid #E1604D;
+  border-radius: 50%;
+  display: inline-block;
+  height: auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ProAvisActivity-commentary {
+  width: 100%;
+  font-size: 14px;
+  margin: 1%
+}
+
+.responseButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 7%; /* Largeur du rectangle */
+  background-color: #F4A300; /* Couleur orange */
+  border-radius: 10px; /* Bord arrondi */
+  padding: 2%;
+  cursor: pointer;
+  overflow: hidden; /* Assure que l'image ne dépasse pas du rectangle */
+  margin: 1%;
+}
+
+.responseButton img {
+  width: 10px; /* Ajustez la taille de l'image */
+  height: 10px; /* Ajustez la taille de l'image */
+} 
+
+.ProAvisActivity-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
+
+.ProAvisActivity-breadcrumb a {
+  color: black; /* Noir pour Home et Pro */
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.ProAvisActivity-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
+
+.ProAvisActivity-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
 }

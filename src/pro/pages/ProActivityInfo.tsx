@@ -10,7 +10,7 @@ import { partial } from 'lodash';
 
 interface State {
   id_exemple: string;
-  type: string;
+  type: string | string[];
   nom: string;
   horairesStart: string;
   horairesEnd: string;
@@ -163,202 +163,181 @@ const ActivityDetailsPage: React.FC = () => {
   };
 
   const navigate = useNavigate();
+  const types = Array.isArray(state.type) ? state.type : (typeof state.type === 'string' ? state.type.split(',') : []);
 
   return (
     <div className="ActivityInfo-form-container">
-      <button className="ActivityInfo-Button" onClick={() => navigate(-1)}>Retour</button>
-      <div className="ActivityInfo-container">
-        <div className="ActivityInfo-header">
-          <div className="ActivityInfo-left-side">
-            <div className="ActivityInfo-form-row">
-              <Link to={`/Pro-myAvis/${id}`}>
-                <button className="ActivityInfo-Button" style={{ marginRight: '10px' }}>Avis</button>
+      <nav className="MyAccount-breadcrumb">
+        <Link to="/">Home</Link>/
+        <Link to="/Pro-menu">Pro</Link>/
+        <Link
+          to="/Pro-profile"
+          state={{ fromPage: "activités" }} // Utiliser state directement
+        >
+          Activités
+        </Link>/
+        <Link to="" className="active">{state.nom}</Link>
+      </nav>
+      <div className="ActivityInfo-header">
+        <div className="ActivityInfo-left-side">
+          <div className="ActivityInfo-form-row">
+            <Link to={`/Pro-myAvis/${id}`}>
+              <button className="ActivityInfo-Button" style={{ marginRight: '10px' }}>Avis</button>
+            </Link>
+            <div className="ActivityInfo-form-row" style={{ marginTop: '5px' }}>
+              <Link to={`/Pro-activitySubscribers/${id}`}>
+                <img src={personIcon} alt="Nombre de participants" width="30" height="20" />
               </Link>
-              <div className="ActivityInfo-form-row" style={{ marginTop: '5px' }}>
-                <Link to={`/Pro-activitySubscribers/${id}`}>
-                  <img src={personIcon} alt="Nombre de participants" width="30" height="20" />
-                </Link>
-                <span style={{ color: 'red' }}>{state.participants.length}</span>
-              </div>
+              <span style={{ color: 'red' }}>{state.participants.length}</span>
             </div>
           </div>
-          <div className="ActivityInfo-buttons">
-            {isCreator && (
-              <>
-                <Link to={`/pro-ModifyActivity/${id}`}>
-                  <button>Modifier</button>
-                </Link>
-                <button onClick={deleteActivity}>Supprimer</button>
-              </>
-            )}
+        </div>
+        <div className="ActivityInfo-buttons">
+          {isCreator && (
+            <>
+              <Link to={`/pro-ModifyActivity/${id}`}>
+                <button>Modifier</button>
+              </Link>
+              <button onClick={deleteActivity}>Supprimer</button>
+            </>
+          )}
+        </div>
+      </div>
+      {creatorInfo && (
+        <label className="ActivityInfo-column_20">
+          Created by {creatorInfo.username} {creatorInfo.email}
+        </label>
+      )}
+      <h2 className="ActivityInfo-big-title">{state.nom}</h2>
+      <div className='ActivityInfo-image-conteneur'>
+        <div className="ActivityInfo-image">
+          {responseImage && <img src={responseImage} />}
+        </div>
+      </div>
+      <div className="ActivityInfo-container-details">
+        <h2 className="ActivityInfo-small-title">Détails de l'activité</h2>
+        <div className="ActivityInfo-form-row">
+          <div className="ActivityInfo-typetag_container">
+            {types.map((type, index) => (
+              <span key={index} className="ActivityInfo-typetag">
+                {type}
+                {index < types.length - 1}
+              </span>
+            ))}
           </div>
         </div>
-        {creatorInfo && (
-          <label className="ActivityInfo-column_20">
-            Created by {creatorInfo.username} {creatorInfo.email}
-          </label>
-        )}
-        <h2 className="ActivityInfo-form-title">{state.nom}</h2>
-        <div className='ActivityInfo-image-conteneur'>
-          <div className="ActivityInfo-image">
-            {responseImage && <img src={responseImage} />}
-          </div>
-        </div>
-        <h2 className="ActivityInfo-form-title">Détails de l'activité</h2>
-        <br />
+
+        {/* ADRESSE */}
         <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
-            Type d'activité:
+          <label className="ActivityInfo-label-full-new">
+            Adresse
           </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.type}
-            />
-          </label>
+          <input
+            className="ActivityInfo-input-new"
+            type="text"
+            readOnly
+            value={state.adresse}
+          />
         </div>
-        <br />
+
+        {/* DATE */}
         <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
-            Nom de l'activité:
-          </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.nom}
-            />
-          </label>
-        </div>
-        <br />
-        <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
+          <label className="ActivityInfo-label-full-new">
             Date:
           </label>
-          <label className="ActivityInfo-column_25">
-            <input
-              className="ActivityInfo-input"
-              type="date"
-              readOnly
-              value={state.date}
-            />
-          </label>
+          <input
+            className="ActivityInfo-input-half-new"
+            type="date"
+            readOnly
+            value={state.date}
+          />
         </div>
+
+        {/* HORAIRES */}
         <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
+          <label className="ActivityInfo-label-half-new">
             Horaires Debut:
           </label>
-          <label className="ActivityInfo-column_25">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.horairesStart}
-            />
-          </label>
-          <label className="ActivityInfo-column_5"></label>
-          <label className="ActivityInfo-column_20">
+          <input
+            className="ActivityInfo-input-half-new"
+            type="text"
+            readOnly
+            value={state.horairesStart}
+          />
+          <label className="ActivityInfo-label-half-new">
             Horaires Fin:
           </label>
-          <label className="ActivityInfo-column_25">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.horairesEnd}
-            />
-          </label>
+          <input
+            className="ActivityInfo-input-half-new"
+            type="text"
+            readOnly
+            value={state.horairesEnd}
+          />
+        </div>
 
-        </div>
         <div className="ActivityInfo-separator"></div>
         <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
-            Adresse:
-          </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.adresse}
-            />
-          </label>
-        </div>
-        <div className="ActivityInfo-separator"></div>
-        <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
+          <label className="ActivityInfo-label-half-new">
             Age minimum:
           </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.age}
-            />
-          </label>
+          <input
+            className="ActivityInfo-input-half-new"
+            type="text"
+            readOnly
+            value={state.age}
+          />
         </div>
+
         <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
+          <label className="ActivityInfo-label-half-new">
             Activité payante:
           </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.payante ? 'Oui' : 'Non'}
-            />
+          <input
+            className="ActivityInfo-input-radio-new"
+            type="radio"
+            readOnly
+            checked={state.payante}
+          />
 
-          </label>
+          {state.payante && (
+            <div style={{ width: '50%' }}> { }
+              <div className="ActivityInfo-form-row">
+                <label className="ActivityInfo-label-price-new">
+                  Prix:
+                </label>
+                <input
+                  className="ActivityInfo-input-price-new"
+                  type="text"
+                  readOnly
+                  value={`${state.prix} €`}
+                />
+              </div>
+            </div>
+          )}
         </div>
-        {state.payante && (
-          <div className="ActivityInfo-form-row">
-            <label className="ActivityInfo-column_20">
-              Prix:
-            </label>
-            <label className="ActivityInfo-column_75">
-              <input
-                className="ActivityInfo-input"
-                type="text"
-                readOnly
-                value={`${state.prix} €`}
-              />
-            </label>
-          </div>
-        )}
+
         <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
+          <label className="ActivityInfo-label-half-new">
             Adresse e-mail:
           </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.email}
-            />
-          </label>
-        </div>
-        <div className="ActivityInfo-form-row">
-          <label className="ActivityInfo-column_20">
+          <input
+            className="ActivityInfo-input-half-new"
+            type="text"
+            readOnly
+            value={state.email}
+          />
+          <label className="ActivityInfo-label-half-new">
             Tél.:
           </label>
-          <label className="ActivityInfo-column_75">
-            <input
-              className="ActivityInfo-input"
-              type="text"
-              readOnly
-              value={state.telephone}
-            />
-          </label>
+          <input
+            className="ActivityInfo-input-half-new"
+            type="text"
+            readOnly
+            value={state.telephone}
+          />
         </div>
         <div className="ActivityInfo-separator"></div>
         <div className="ActivityInfo-form-row">
-
           <span className="ActivityInfo-label-red">Description de l'activité:</span>
         </div>
         <div className="ActivityInfo-form-row">
@@ -373,8 +352,8 @@ const ActivityDetailsPage: React.FC = () => {
 
         </div>
       </div>
-      <div className="ActivityInfo-container">
-        <h2 className="ActivityInfo-form-title">Statistiques de l'activité</h2>
+      <div className="ActivityInfo-container-stats">
+        <h2 className="ActivityInfo-small-title">Statistiques de l'activité</h2>
         <div className="ActivityInfo-form-row">
           <label className="ActivityInfo-column_20">
             Tranche d'âge cible:
@@ -428,7 +407,7 @@ const ActivityDetailsPage: React.FC = () => {
           </label>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
