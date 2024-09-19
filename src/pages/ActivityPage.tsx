@@ -39,7 +39,9 @@ const ActivityPage: React.FC = () => {
           setActivity(data);
 
           // Calculate unique participants length
-          const uniqueIds = new Set(data.event.participents.map((participant: any) => participant.id));
+          console.log("Data info " , data)
+          const uniqueIds = new Set(data.event.participents.map((participant: any) => participant.user));
+          console.log("Id des mecs " , uniqueIds)
           setUniqueParticipantsLength(uniqueIds.size);
         } else {
           console.error('Failed to fetch activity details. Status:', response.status);
@@ -233,11 +235,12 @@ const ActivityPage: React.FC = () => {
 
       for (let participant of activity.event.participents) {
         try {
-          const response = await axios.get(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${participant}`, config);
+          //console.log("ERRRURURE E E E " , participant)
+          const response = await axios.get(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${participant.user}`, config);
           const profile = await response.data.user;
 
-          if (!uniqueIds.has(participant) && profile) {
-            uniqueIds.add(participant);
+          if (!uniqueIds.has(participant.user) && profile) {
+            uniqueIds.add(participant.user);
             participantsWithProfiles.push({ participant, profileDetails: profile });
           }
         } catch (error) {
