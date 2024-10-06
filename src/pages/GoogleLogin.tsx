@@ -30,6 +30,7 @@ async function makeLoginRequest(email: string, navigate: ReturnType<typeof useNa
     const responseData = await response.json();
 
     console.log("rep ", responseData);
+    
 
     if (response.status === 202) {
       localStorage.setItem("token", responseData["token"]);
@@ -119,6 +120,7 @@ const GoogleOAuthLogin = () => {
             //console.log("Repkkpkp finale " , decoded.email,decoded.name,"dododo");
             const isLoginPage = window.location.pathname.includes('login');
             console.log("Goooooglllleeee inffffoooooo " , decoded);
+
 
             const googletoken = credentialResponse.credential;
             //console.log("test " , isLoginPage);

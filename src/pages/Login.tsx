@@ -60,7 +60,6 @@ async function LoginViaGoogle() {
     console.log("resp: " , response);
     if (response.status === 202) {
       const data = await response.json();
-      console.log(data);
       //localStorage.setItem("token", data["token"]);
       return true;
     } else {
