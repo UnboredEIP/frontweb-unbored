@@ -1,0 +1,43 @@
+.displayAvatar-box {
+    position: relative; /* Ensures the child SVGs are positioned relative to this container */
+    margin: auto; /* Center the box horizontally if needed */
+    padding: 1%; /* Remove default padding if any */
+    display: flex;
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Centers items vertically */
+}
+
+.displayAvatar-body {
+    position: absolute; /* Allow overlapping */
+    top: 3px;
+}
+
+.displayAvatar-clothes {
+    position: absolute; /* Allow overlapping */
+    top: 137px;
+}
+
+.displayAvatar-hair {
+    position: absolute; /* Allow overlapping */
+    top: -34px;
+}
+
+.displayAvatar-beard {
+    position: absolute; /* Allow overlapping */
+    top: 60px;
+}
+
+.displayAvatar-eyebrows {
+    position: absolute; /* Allow overlapping */
+    top: 50px;
+}
+
+.displayAvatar-eyes {
+    position: absolute; /* Allow overlapping */
+    top: 72px;
+}
+
+.displayAvatar-mouth {
+    position: absolute; /* Allow overlapping */
+    top: 115px;
+}

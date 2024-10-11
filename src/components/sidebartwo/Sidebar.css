@@ -1,0 +1,22 @@
+.Sidebar {
+    height: 100%;
+    background-color: #e1604d;
+}
+
+.SidebarText {
+    font-size: 1.2rem;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: bold;
+    color: whitesmoke;
+    padding-top: 5%;
+    transition: ease background-color 250ms;
+    &:hover {
+        background-color: #e1604d;
+        filter: brightness(80%);
+    };
+    cursor: pointer;
+    p {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+}

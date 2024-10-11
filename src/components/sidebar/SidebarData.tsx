@@ -3,49 +3,67 @@ import {
   AiFillCaretDown,
   AiFillCaretUp,
   AiOutlineUser,
+  AiOutlineMail,
+  AiOutlineLock,
+  AiOutlineBlock,
 } from "react-icons/ai";
 import { FaCog } from "react-icons/fa";
 import { SidebarItem } from "../../models/Sidebaritem";
+import { AiOutlineCalendar } from 'react-icons/ai';
 
 export const SidebarData: SidebarItem[] = [
   {
-    title: "Overview",
+    title: "Home",
+    path: "/home",
+    icon: <AiOutlineHome />,
+  },
+  {
+    title: "Profile",
     path: "#",
     icon: <AiOutlineHome />,
     iconClosed: <AiFillCaretDown />,
     iconOpened: <AiFillCaretUp />,
     subnav: [
       {
-        title: "Register",
-        path: "/register",
+        title: "Mise à jour profile",
+        path: "/update-profile",
         icon: <AiOutlineUser />,
       },
+      // //
+      // {
+      //   title: "Mise à jour email",
+      //   path: "/update-email",
+      //   icon: <AiOutlineMail />,
+      // },
+      // {
+      //   title: "Mise à jour mot de passe",
+      //   path: "/update-password",
+      //   icon: <AiOutlineLock />,
+      // },
+      // //
       {
-        title: "Login",
-        path: "/login",
+        title: "Profile Info",
+        path: "/profile",
         icon: <AiOutlineUser />,
       },
     ],
   },
   {
-    title: "Configurations",
-    path: "/configurations",
-    icon: <FaCog />,
-  },
-
-  {
-    title: "Users",
-    path: "/overview/users",
+    title: "Menu Pro",
+    path: "/Pro-menu",
     icon: <AiOutlineUser />,
   },
   {
-    title: "Créer une activité",
-    path: "/create-activity",
-    icon: <FaCog/>,
+    title: "Calendrier",
+    path: "/calendar",
+    icon: <AiOutlineCalendar />,
   },
+
   {
-    title: "Choisir un contrat",
-    path: "/choose-contract",
-    icon: <FaCog/>,
+    title: "Explore",
+    path: "/eventswipe",
+    icon: <AiOutlineBlock />,
   },
+
+  
 ];

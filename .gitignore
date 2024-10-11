@@ -11,6 +11,7 @@
 # production
 /build
 .htaccess
+timeline.json
 
 # misc
 .DS_Store

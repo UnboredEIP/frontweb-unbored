@@ -1,0 +1,7 @@
+version: '3.6'
+services:
+  client_web:
+    container_name: web-app
+    build: ./
+    ports:
+      - "3000:3000"
