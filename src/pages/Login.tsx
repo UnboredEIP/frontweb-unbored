@@ -249,7 +249,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
       >
         <LoginHeader />
         <LoginForm onLoginSuccess={handleLoginSuccess} />
-        <GoogleOuath></GoogleOuath>
+        {/* <GoogleOuath></GoogleOuath>*/}
       </Box>
     </Flex>
   );

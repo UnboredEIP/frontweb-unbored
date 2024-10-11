@@ -266,7 +266,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegisterSuccess }) => {
       >
         <RegisterHeader />
         <RegisterForm onRegisterSuccess={HandleLoginSuccess} />
-        <GoogleOuath />
+        {/* <GoogleOuath /> */}
       </Box>
     </Flex>
   );
