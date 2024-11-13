@@ -164,7 +164,7 @@ const DMPage = () => {
                 {msg.content}
               </Box>
               <Text fontSize="xs" color="gray" mt={1}>
-                {format(new Date(msg.createdAt), 'HH:mm')}
+                {format(new Date(msg.createdAt), 'dd/MM/yyyy HH:mm')}
               </Text>
             </Box>
           ))
