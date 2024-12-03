@@ -104,10 +104,10 @@ const ProActivitySubscribersPage: React.FC = () => {
             };
 
             // Envoi de la requête POST avec axios
-            const response = await axios.post(url, data, config);
+            const response = await axios.put(url, data, config);
             const result = response.data;
 
-            
+            window.location.reload();
 
             console.log(`Participant ${participant.username} supprimé avec succès de l'activité ${id}.`);
         } catch (error) {
