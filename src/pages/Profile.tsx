@@ -164,7 +164,7 @@ const ProfilePage = () => {
           const senderUsername = profileResponse.data.user.username;
   
           // Log the friend's ID and the username
-          console.log(`Friend ID: ${friend._id}, Username: ${senderUsername}`);
+          //console.log(`Friend ID: ${friend._id}, Username: ${senderUsername}`);
   
           // Return the friend object with id and username
           return {
@@ -203,7 +203,7 @@ const ProfilePage = () => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      ////console.log(responseData);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -262,7 +262,7 @@ const ProfilePage = () => {
 
   const handleRejectFriendRequest = (senderId: string) => {
     // Do nothing for now when "Supprimer" is clicked.
-    console.log('Supprimer clicked for senderId:', senderId);
+    //console.log('Supprimer clicked for senderId:', senderId);
   };
 
   return (

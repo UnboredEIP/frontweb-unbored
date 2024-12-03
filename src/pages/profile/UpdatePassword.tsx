@@ -50,7 +50,7 @@ async function makeUpdatePasswordRequest(email: string) {
       body: JSON.stringify({ email }),
     });
     if (response.status === 200) {
-      console.log("USER UPDATED");
+      //console.log("USER UPDATED");
       return true;
     } else {
       console.error("UPDATE ERROR " ,  await response.text());
@@ -148,10 +148,10 @@ const UpdatePasswordForm: React.FC<{ onUpdateSuccess: () => void }> = ({
   const handleSubmit = async () => {
     const success = await makeUpdatePasswordRequest(password);
     if (success) {
-      console.log("Update success");
+      //console.log("Update success");
       onUpdateSuccess();
     } else {
-      console.log("error");
+      //console.log("error");
     }
   };
 

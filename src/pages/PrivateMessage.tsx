@@ -41,7 +41,7 @@ const DMPage = () => {
       if (id) {
         setUserId(id);
       } else {
-        console.log("User ID not found. Redirecting to home.");
+        //console.log("User ID not found. Redirecting to home.");
         navigate('/');
       }
     };
@@ -94,7 +94,7 @@ const DMPage = () => {
         }
 
         const responseData = await response.json();
-        console.log('Message sent:', responseData);
+        //console.log('Message sent:', responseData);
 
         // Add the new message to the UI
         setMessages((prevMessages) => [...prevMessages, responseData]);
@@ -125,7 +125,7 @@ const DMPage = () => {
       }
 
       const messagesData = await response.json();
-      console.log('Fetched Messages Data:', messagesData);
+      //console.log('Fetched Messages Data:', messagesData);
       return messagesData;
     } catch (error) {
       console.error('Error fetching messages:', error);

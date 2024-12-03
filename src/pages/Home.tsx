@@ -53,7 +53,7 @@ const HomeHeader: React.FC<{}> = () => {
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         setEvents(data.events);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -80,7 +80,7 @@ const HomeHeader: React.FC<{}> = () => {
       const response = await axios.get(url, config);
       const profileDetails = response.data.user;
 
-      console.log("Profile Infos ", profileDetails);
+      //console.log("Profile Infos ", profileDetails);
 
       if (profileDetails.profilePhoto) {
         const firstPictureId = profileDetails.profilePhoto;
@@ -94,7 +94,7 @@ const HomeHeader: React.FC<{}> = () => {
         name: profileDetails.username,
       });
 
-      console.log("Toooooto " , profileDetails.username);
+      //console.log("Toooooto " , profileDetails.username);
     } catch (error) {
       const token = localStorage.getItem("token");
       console.error("Token value: ", token);

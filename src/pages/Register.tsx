@@ -49,7 +49,7 @@ async function makeRegisterRequest(
       }),
     });
     if (response.status === 201) {
-      console.log("User created");
+      //console.log("User created");
       return true;
     } else {
       const data = await response.json();

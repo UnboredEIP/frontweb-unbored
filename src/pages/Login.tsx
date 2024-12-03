@@ -35,7 +35,7 @@ async function makeLoginRequest(email: string, password: string) {
     });
     if (response.status === 202) {
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       localStorage.setItem("token", data["token"]);
       return true;
     } else {
@@ -57,7 +57,7 @@ async function LoginViaGoogle() {
         "Content-Type": "application/json",
       },
     });
-    console.log("resp: " , response);
+    //console.log("resp: " , response);
     if (response.status === 202) {
       const data = await response.json();
       //localStorage.setItem("token", data["token"]);
@@ -157,7 +157,7 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
       onLoginSuccess();
     } else {
       showToast();
-      console.log("error ", success);
+      //console.log("error ", success);
     }
   };
 

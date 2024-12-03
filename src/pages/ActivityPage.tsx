@@ -38,9 +38,9 @@ const ActivityPage: React.FC = () => {
           setActivity(data);
 
           // Calculate unique participants length
-          console.log("Data info " , data)
+          //console.log("Data info " , data)
           const uniqueIds = new Set(data.event.participents.map((participant: any) => participant.user));
-          //console.log("Id des mecs " , uniqueIds)
+          ////console.log("Id des mecs " , uniqueIds)
           setUniqueParticipantsLength(uniqueIds.size);
         } else {
           console.error('Failed to fetch activity details. Status:', response.status);
@@ -98,9 +98,9 @@ const ActivityPage: React.FC = () => {
         },
         body: JSON.stringify({ events: [activity.event._id] }),
       });
-      console.log("Data: ", activity);
+      //console.log("Data: ", activity);
       if (response.ok) {
-        console.log('Event added to the calendar successfully!');
+        //console.log('Event added to the calendar successfully!');
         AddedInCalendar();
       } else {
         console.error('Failed to add the event to the calendar. Status:', response.status);
@@ -122,7 +122,7 @@ const ActivityPage: React.FC = () => {
       return;
     }
 
-    console.log("Data: ", activity);
+    //console.log("Data: ", activity);
 
     try {
       const token = localStorage.getItem('token');
@@ -138,7 +138,7 @@ const ActivityPage: React.FC = () => {
         }),
       });
       if (response.ok) {
-        console.log('User rated the event successfully!');
+        //console.log('User rated the event successfully!');
         GoodRate();
       } else {
         if (userComment.length === 0) {
@@ -186,10 +186,10 @@ const ActivityPage: React.FC = () => {
         if (!isActivityAlreadyAdded) {
           favoriteActivitiesArray.push(activity.event);
           localStorage.setItem('favoriteActivities', JSON.stringify(favoriteActivitiesArray));
-          console.log('Activity added to favorites successfully!');
+          //console.log('Activity added to favorites successfully!');
           ActivityFav();
         } else {
-          console.log('Activity is already in favorites.');
+          //console.log('Activity is already in favorites.');
           ActivityAlreadyFav();
         }
       } else {
@@ -236,7 +236,7 @@ const ActivityPage: React.FC = () => {
 
       for (let participant of activity.event.participents) {
         try {
-          //console.log("ERRRURURE E E E " , participant)
+          ////console.log("ERRRURURE E E E " , participant)
           const response = await axios.get(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${participant.user}`, config);
           const profile = await response.data.user;
 
@@ -251,7 +251,7 @@ const ActivityPage: React.FC = () => {
       }
 
       setParticipantsWithProfiles(participantsWithProfiles);
-      console.log('Participants with profiles:', participantsWithProfiles);
+      //console.log('Participants with profiles:', participantsWithProfiles);
     }
   };
 

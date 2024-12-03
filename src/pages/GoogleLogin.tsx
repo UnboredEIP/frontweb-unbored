@@ -29,7 +29,7 @@ async function makeLoginRequest(email: string, navigate: ReturnType<typeof useNa
     // Read the response body only once
     const responseData = await response.json();
 
-    console.log("rep ", responseData);
+    //console.log("rep ", responseData);
     
 
     if (response.status === 202) {
@@ -66,7 +66,7 @@ async function makeRegisterRequest(email: string, username: string, navigate: Re
       
     });
     if (response.status === 201) {
-      console.log("User created");
+      //console.log("User created");
       return true;
     } else {
       const data = await response.json();
@@ -99,9 +99,9 @@ const GoogleOAuthLogin = () => {
 
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      //console.log("email reponse: " , tokenResponse);
+      ////console.log("email reponse: " , tokenResponse);
       //const decoded = jwtDecode(JSON.stringify(tokenResponse.credential));
-      //console.log("Rep finale " , decoded);
+      ////console.log("Rep finale " , decoded);
     },
     flow: 'auth-code',
     onError: (error) => {
@@ -115,27 +115,27 @@ const GoogleOAuthLogin = () => {
       <div>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            //console.log("toto gogo coco " , credentialResponse.credential);
+            ////console.log("toto gogo coco " , credentialResponse.credential);
             const decoded = jwtDecode(JSON.stringify(credentialResponse.credential));
-            //console.log("Repkkpkp finale " , decoded.email,decoded.name,"dododo");
+            ////console.log("Repkkpkp finale " , decoded.email,decoded.name,"dododo");
             const isLoginPage = window.location.pathname.includes('login');
-            console.log("Goooooglllleeee inffffoooooo " , decoded);
+            //console.log("Goooooglllleeee inffffoooooo " , decoded);
 
 
             const googletoken = credentialResponse.credential;
-            //console.log("test " , isLoginPage);
+            ////console.log("test " , isLoginPage);
             if (isLoginPage === false) { 
               makeRegisterRequest(decoded.email,decoded.name,navigate,showToast);
             }
 
             else {
               makeLoginRequest(decoded.email,navigate,showToast,googletoken);
-              console.log("je suis ici");
+              //console.log("je suis ici");
             }
 
           }}
           onError={() => {
-            console.log('Login Failed');
+            //console.log('Login Failed');
           }}
         />
         <MyCustomButton onClick={() => login()}></MyCustomButton>

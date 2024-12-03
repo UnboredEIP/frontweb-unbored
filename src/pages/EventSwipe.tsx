@@ -101,7 +101,7 @@ const EventSwipe: React.FC = () => {
         }
 
         const result = await response.json();
-        console.log('API Response:', result); // Log the API response
+        //console.log('API Response:', result); // Log the API response
 
         // Extract the `results` array from the API response
         if (result && Array.isArray(result.results)) {
@@ -201,7 +201,7 @@ const EventSwipe: React.FC = () => {
   };
 
   const handleDislike = () => {
-    console.log(`Disliked event: ${currentEvent.title}`);
+    //console.log(`Disliked event: ${currentEvent.title}`);
     setAnimationClass('dislike');
     setTimeout(handleNext, 500);
   };

@@ -73,7 +73,7 @@ const Nav: React.FC<{}> = () => {
 
   useEffect(() => {
     const currentUrl = window.location.href;
-    console.log(currentUrl);
+    //console.log(currentUrl);
     setIsLoggedIn(!!localStorage.getItem("token"));
   }, []); // Run on mount to initialize login status
 

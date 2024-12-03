@@ -26,7 +26,7 @@ async function makePasswordResetRequest(email: string) {
       body: JSON.stringify({ email }),
     });
     if (response.status === 200) {
-      console.log("EMAIL SENT");
+      //console.log("EMAIL SENT");
       return true;
     } else {
       console.error("EMAIL SEND ERROR:", await response.text());
@@ -57,10 +57,10 @@ const ForgetPass: React.FC<ForgetPassProps> = ({ onUpdateSuccess }) => {
 
     const success = await makePasswordResetRequest(email);
     if (success) {
-      console.log("Password reset request successful");
+      //console.log("Password reset request successful");
       onUpdateSuccess();
     } else {
-      console.log("Password reset request failed");
+      //console.log("Password reset request failed");
     }
   };
 

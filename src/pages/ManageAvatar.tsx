@@ -102,7 +102,7 @@ const AvisActivityPage: React.FC = () => {
 
       const response = await axios.post(url,
         dataToSend, config);
-      console.log(response.data);
+      //console.log(response.data);
       toast({
         title: "Succès !",
         description: "Votre avatar à correctement été sauvegardé",
@@ -230,7 +230,7 @@ const AvisActivityPage: React.FC = () => {
     setSelectedEyes(str);
     let newIndex = index + 1;
     setIndexSelectedEyes(newIndex.toString())
-    console.log(index)
+    //console.log(index)
     const merged = mergeSVGs();
     setMergedSVG(merged);
   };

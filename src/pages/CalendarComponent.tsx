@@ -40,14 +40,14 @@ const CalendarComponent: React.FC = () => {
         }
         const data = await response.json();
         const reservations = data.reservations;
-        //console.log("res " , reservations)
+        ////console.log("res " , reservations)
         setTimelineData(reservations);
 
         // Fetch activity details for each reservation
         
         const fetchActivityDetails = async () => {
           const activitiesPromise = reservations.map(async (reservation: Event, index: number) => { // Add index and its type here
-            console.log("dodododo " , reservations[index].id)
+            //console.log("dodododo " , reservations[index].id)
             try {
               const activityResponse = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${reservations[index].id}`,{ // Use index here
                 method: 'GET',
@@ -71,7 +71,7 @@ const CalendarComponent: React.FC = () => {
           });
           const activitiesData = await Promise.all(activitiesPromise);
           
-          //console.log("popo " , activitiesData);
+          ////console.log("popo " , activitiesData);
           setActivities(activitiesData.filter(activity => activity !== null));
         };
 
@@ -95,8 +95,8 @@ const CalendarComponent: React.FC = () => {
   }
 
   
-  //console.log("activities " , activities[0].event.end_date);
-  //console.log("caca");
+  ////console.log("activities " , activities[0].event.end_date);
+  ////console.log("caca");
   const adaptedEvents = activities.map((activity, index) => ({
     ...activity,
     start: new Date(activities[index].event.start_date),
@@ -105,8 +105,8 @@ const CalendarComponent: React.FC = () => {
   }));
   
   const handleEventClick = (activity: any) => {
-    //console.log("Activities send " , activity.event._id);
-    console.log("Infffoooooo " , activity)
+    ////console.log("Activities send " , activity.event._id);
+    //console.log("Infffoooooo " , activity)
     if (activity.event._id != null) {
       navigate(`/activity/${activity.event._id}`);
     } else {

@@ -28,7 +28,7 @@ async function makeUpdatePasswordRequest(id: string, password: string) {
       body: JSON.stringify({ password }),
     });
     if (response.status === 202) {
-      console.log("USER UPDATED");
+      //console.log("USER UPDATED");
       return true;
     } else {
       console.error("UPDATE ERROR");
@@ -87,7 +87,7 @@ const UpdatePasswordForm: React.FC<{ onUpdateSuccess: () => void }> = ({
   const handleSubmit = async () => {
     const success = await makeUpdatePasswordRequest(id, password);
     if (success) {
-      console.log("Update success");
+      //console.log("Update success");
       // onUpdateSuccess();
       toast({
         title: "Succès",
@@ -107,7 +107,7 @@ const UpdatePasswordForm: React.FC<{ onUpdateSuccess: () => void }> = ({
         duration: 3000,
         isClosable: true,
       });
-      console.log("error");
+      //console.log("error");
     }
   };
 
