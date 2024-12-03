@@ -164,8 +164,16 @@ const ProActivitySubscribersPage: React.FC = () => {
                                                         {participant.user.email}
                                                     </div>
                                                     <div className="ProActivitySubscribers-form-row">
-                                                        {participant.user.birthdate ? participant.user.birthdate.split("T")[0] : ""}
+                                                        {participant.user.reservations &&
+                                                            participant.user.reservations.find(reservation => reservation.id === id)?.joinedAt &&
+                                                            new Date(participant.user.reservations.find(reservation => reservation.id === id).joinedAt)
+                                                                .toLocaleDateString('fr-FR', {
+                                                                    day: '2-digit',
+                                                                    month: '2-digit',
+                                                                    year: '2-digit',
+                                                                }) || ""}
                                                     </div>
+
                                                 </label>
                                                 <label className="ProActivitySubscribers-label-column_15">
                                                     <img
