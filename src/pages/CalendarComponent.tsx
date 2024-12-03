@@ -40,14 +40,16 @@ const CalendarComponent: React.FC = () => {
         }
         const data = await response.json();
         const reservations = data.reservations;
+        //console.log("res " , reservations)
         setTimelineData(reservations);
 
         // Fetch activity details for each reservation
         
         const fetchActivityDetails = async () => {
           const activitiesPromise = reservations.map(async (reservation: Event, index: number) => { // Add index and its type here
+            console.log("dodododo " , reservations[index].id)
             try {
-              const activityResponse = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${reservations[index]}`,{ // Use index here
+              const activityResponse = await fetch(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/show?id=${reservations[index].id}`,{ // Use index here
                 method: 'GET',
                 headers: {
                   Authorization: `Bearer ${token}`,
