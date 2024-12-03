@@ -47,9 +47,9 @@ const ProActivitySubscribersPage: React.FC = () => {
             const participantsArray = [];
 
             for (let i = 0; i < activityDetails.participents.length; i++) {
-                const participantId = activityDetails.participents[i];
+                const participantId = activityDetails.participents[i].user;
                 // console.log(participantId)
-                const urlParticipant = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile?id=${participantId}`;
+                const urlParticipant = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${participantId}`;
                 // const responseParticipant = await axios.get(urlParticipant, config);
                 const responseParticipant = await fetch(urlParticipant, {
                     method: "GET",
@@ -95,17 +95,19 @@ const ProActivitySubscribersPage: React.FC = () => {
                 },
             };
 
-            const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/remove`;
+            const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/delete/user`;
 
             // Le corps de la requête POST contient l'ID du participant et celui de l'activité
             const data = {
-                participantId: participant._id,
-                activityId: id,
+                userList: [participant._id],
+                eventId: id,
             };
 
             // Envoi de la requête POST avec axios
             const response = await axios.post(url, data, config);
             const result = response.data;
+
+            
 
             console.log(`Participant ${participant.username} supprimé avec succès de l'activité ${id}.`);
         } catch (error) {

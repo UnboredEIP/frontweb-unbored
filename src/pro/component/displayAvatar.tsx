@@ -22,96 +22,96 @@ const applyColorToSVG = (svg: SVGSVGElement, principColor: string) => {
 
 const Avatar = ({ avatarData, size }) => {
     try {
-        const eyeImage = eyesImages[avatarData.eyes.id - 1];
-        const bodyImage = bodyImages[avatarData.clothes.id - 1];
-        const hairImage = hairImages[avatarData.hair.id - 1];
-        const beardImage = beardImages[avatarData.beard.id - 1];
-        const eyebrowsImage = eyebrowsImages[avatarData.eyebrows.id - 1];
-        const mouthImage = mouthImages[avatarData.mouth.id - 1];
+        const eyeImage = eyesImages[avatarData.eyes?.id - 1];
+        const bodyImage = bodyImages[avatarData.clothes?.id - 1] || bodyImages[avatarData.accessory?.id - 1];
+        const hairImage = hairImages[avatarData.hair?.id - 1];
+        const beardImage = beardImages[avatarData.beard?.id - 1];
+        const eyebrowsImage = eyebrowsImages[avatarData.eyebrows?.id - 1];
+        const mouthImage = mouthImages[avatarData.mouth?.id - 1];
 
-        const scaling = size
-        const widthValue = size * 300
-        const heightValue = size * 300
+        const scaling = size;
+        const widthValue = size * 300;
+        const heightValue = size * 300;
 
         return (
-            <div className="displayAvatar-box" style={{ width: `${widthValue}px`, height: `${heightValue}px`, transform: `scale(${scaling})` }}>
+            <div
+                className="displayAvatar-box"
+                style={{
+                    width: `${widthValue}px`,
+                    height: `${heightValue}px`,
+                    transform: `scale(${scaling})`,
+                }}
+            >
                 {/* Base Avatar */}
                 <ReactSVG
-                    className='displayAvatar-body'
+                    className="displayAvatar-body"
                     src={baseAvatar}
-                    beforeInjection={(svg) =>
-                        applyColorToSVG(svg, avatarData.head.color)
-                    }
+                    beforeInjection={(svg) => applyColorToSVG(svg, avatarData.head.color)}
                 />
+
                 {/* Dynamically load body */}
-                {avatarData.clothes?.id !== undefined && (
+                {bodyImage && avatarData.clothes?.color && (
                     <ReactSVG
-                        className='displayAvatar-clothes'
+                        className="displayAvatar-clothes"
                         src={require(`../../assets/avatars/body/${bodyImage}.svg`)}
                         beforeInjection={(svg) =>
                             applyColorToSVG(svg, avatarData.clothes.color)
                         }
-
                     />
                 )}
 
                 {/* Dynamically load hair */}
-                {avatarData.hair?.id !== undefined && (
+                {hairImage && avatarData.hair?.color && (
                     <ReactSVG
-                        className='displayAvatar-hair'
+                        className="displayAvatar-hair"
                         src={require(`../../assets/avatars/hair/${hairImage}.svg`)}
                         beforeInjection={(svg) =>
                             applyColorToSVG(svg, avatarData.hair.color)
                         }
-
                     />
                 )}
 
                 {/* Dynamically load beard */}
-                {avatarData.beard?.id !== undefined && (
+                {beardImage && avatarData.beard?.color && (
                     <ReactSVG
-                        className='displayAvatar-beard'
+                        className="displayAvatar-beard"
                         src={require(`../../assets/avatars/beard/${beardImage}.svg`)}
                         beforeInjection={(svg) =>
                             applyColorToSVG(svg, avatarData.beard.color)
                         }
-
                     />
                 )}
 
                 {/* Dynamically load eyebrows */}
-                {avatarData.eyebrows?.id !== undefined && (
+                {eyebrowsImage && avatarData.eyebrows?.color && (
                     <ReactSVG
-                        className='displayAvatar-eyebrows'
+                        className="displayAvatar-eyebrows"
                         src={require(`../../assets/avatars/eyebrows/${eyebrowsImage}.svg`)}
                         beforeInjection={(svg) =>
                             applyColorToSVG(svg, avatarData.eyebrows.color)
                         }
-
                     />
                 )}
 
                 {/* Dynamically load eyes */}
-                {avatarData.eyes?.id !== undefined && (
+                {eyeImage && avatarData.eyes?.color && (
                     <ReactSVG
-                        className='displayAvatar-eyes'
+                        className="displayAvatar-eyes"
                         src={require(`../../assets/avatars/eyes/${eyeImage}.svg`)}
                         beforeInjection={(svg) =>
                             applyColorToSVG(svg, avatarData.eyes.color)
                         }
-
                     />
                 )}
 
                 {/* Dynamically load mouth */}
-                {avatarData.mouth?.id !== undefined && (
+                {mouthImage && avatarData.mouth?.color && (
                     <ReactSVG
-                        className='displayAvatar-mouth'
+                        className="displayAvatar-mouth"
                         src={require(`../../assets/avatars/mouth/${mouthImage}.svg`)}
                         beforeInjection={(svg) =>
                             applyColorToSVG(svg, avatarData.mouth.color)
                         }
-
                     />
                 )}
             </div>

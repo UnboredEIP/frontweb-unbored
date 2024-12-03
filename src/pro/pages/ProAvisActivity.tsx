@@ -104,7 +104,7 @@ const AvisActivityPage: React.FC = () => {
                         break;
                 }
 
-                const urlParticipant = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile?id=${activityDetails.rate[i].userId}`;
+                const urlParticipant = ` https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${activityDetails.rate[i].userId}`;
                 const responseParticipant = await axios.get(urlParticipant, config);
                 const participantDetails = responseParticipant.data.user;
 
