@@ -1,5 +1,4 @@
 .MyAccount-page {
-  background-color: white;
   padding: 20px;
   margin: 0 auto;
   border-radius: 15px;
@@ -145,7 +144,6 @@
 }
 
 .MyAccount-breadcrumb a {
-  color: black; /* Noir pour Home et Pro */
   text-decoration: none;
   margin-right: 5px;
 }
@@ -160,7 +158,6 @@
 }
 
 .MyAccount-box-avatar {
-  background-color: white;
   padding: 20px;
   margin: 0 auto;
   border-radius: 15px;

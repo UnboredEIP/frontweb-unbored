@@ -83,7 +83,7 @@ const ProActivitySubscribersPage: React.FC = () => {
         return chunks;
     };
 
-    const handleRemoveParticipant = async (participant) => {
+    const handleRemoveParticipant = async (participant: { username: any; _id: any; }) => {
         try {
             console.log(`Suppression de l'utilisateur ${participant.username} (id: ${participant._id}) de l'activité ${id}`);
 
@@ -95,7 +95,7 @@ const ProActivitySubscribersPage: React.FC = () => {
                 },
             };
 
-            const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/remove-participant`;
+            const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/remove`;
 
             // Le corps de la requête POST contient l'ID du participant et celui de l'activité
             const data = {

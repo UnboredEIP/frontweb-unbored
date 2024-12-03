@@ -1,7 +1,6 @@
 /* ../styles/pages/ProProfile.MyActivities-css */
 
 .MyActivities-button-box {
-  background-color: white;
   padding: 20px;
   /* width: 70%; */
   height: 900px;
@@ -224,7 +223,6 @@
 }
 
 .MyActivities-breadcrumb a {
-  color: black; /* Noir pour Home et Pro */
   text-decoration: none;
   margin-right: 5px;
 }
@@ -237,3 +235,24 @@
 .MyActivities-breadcrumb a:hover {
   text-decoration: underline; /* Souligne sur hover */
 }
+
+.MyActivities-activity-toggle {
+  margin-top: 1%;
+  color: #ff7f50; /* Couleur orange */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.MyActivities-activity-toggle:hover {
+  text-decoration: underline; /* Soulignement au survol */
+  color: #e67340; /* Couleur orange plus foncée au survol */
+}
+
+.MyActivities-activity-toggle:active {
+  color: #cc5e33; /* Couleur plus foncée lors du clic */
+}
+

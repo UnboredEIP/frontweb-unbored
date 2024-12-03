@@ -63,7 +63,10 @@ function Button({ text, activity }: ButtonProps) {
 
 function ProMyActivities() {
   const [events, setEvents] = useState<Activity[]>([]);
+  const [allEvents, setAllEvents] = useState<Activity[]>([]);
+  const [myEvents, setMyEvents] = useState<Activity[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [myActivitiesOnly, setMyActivitiesOnly] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,18 +77,28 @@ function ProMyActivities() {
             Authorization: `Bearer ${token}`
           }
         };
-
         const response = await axios.get('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/lists', config);
-        setEvents(response.data.events);
+        const eventsResponse = response.data.events;  // Assigner la réponse des événements
+        const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile`;
+        const responseProfile = await axios.get(url, config);
+        const profileDetails = responseProfile.data.user;
+        const IDUser = profileDetails._id;
+        const filteredEvents = eventsResponse.filter(event => event.creator === IDUser);
+
+        setAllEvents(eventsResponse)
+        setMyEvents(filteredEvents);
+
+        setMyActivitiesOnly(false)
+        setEvents(eventsResponse);
+
       } catch (error) {
-        console.error('Erreur lors de la récupération des données :', error);
+        console.error('Erreur lors de la récupération des données', error);
       }
     };
 
     fetchData();
   }, []);
 
-  const navigate = useNavigate();
 
   // Fonction pour diviser les événements en sous-tableaux de 4 éléments
   const chunkArray = (array: Activity[], chunkSize: number) => {
@@ -109,6 +122,18 @@ function ProMyActivities() {
     setSearchTerm(event.target.value);
   };
 
+  const toggleActivities = () => {
+    setMyActivitiesOnly(prevState => {
+      const newState = !prevState;
+      if (newState === true) {
+        setEvents(myEvents);
+      } else {
+        setEvents(allEvents);
+      }
+      return newState;
+    });
+  };
+  
   return (
     <div className="MyActivities-button-box">
       <div className="MyActivities-back-button">
@@ -120,6 +145,9 @@ function ProMyActivities() {
       </div>
 
       <div className="MyActivities-banner">Activités</div>
+      <div onClick={toggleActivities} className="MyActivities-activity-toggle">
+        {myActivitiesOnly ? "Toutes les activités" : "Uniquement mes activités"}
+      </div>
       <div className="MyActivities-searchbar">
         <input
           type="text"

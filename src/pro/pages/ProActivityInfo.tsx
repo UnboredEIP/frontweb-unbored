@@ -167,7 +167,7 @@ const ActivityDetailsPage: React.FC = () => {
 
   return (
     <div className="ActivityInfo-form-container">
-      <nav className="MyAccount-breadcrumb">
+      <nav className="ActivityInfo-breadcrumb">
         <Link to="/">Home</Link>/
         <Link to="/Pro-menu">Pro</Link>/
         <Link

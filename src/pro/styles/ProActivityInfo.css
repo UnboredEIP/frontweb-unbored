@@ -551,23 +551,22 @@
   width: 61%;
 }
 
-.MyAccount-breadcrumb {
+.ActivityInfo-breadcrumb {
   font-size: 24px; /* Augmente la taille */
   font-weight: bold; /* En gras */
   margin-bottom: 20px;
 }
 
-.MyAccount-breadcrumb a {
-  color: black; /* Noir pour Home et Pro */
+.ActivityInfo-breadcrumb a {/* Noir pour Home et Pro */
   text-decoration: none;
   margin-right: 5px;
 }
 
-.MyAccount-breadcrumb a.active {
+.ActivityInfo-breadcrumb a.active {
   color: #E1604D; /* Orange pour Profil */
   text-decoration: underline;
 }
 
-.MyAccount-breadcrumb a:hover {
+.ActivityInfo-breadcrumb a:hover {
   text-decoration: underline; /* Souligne sur hover */
 }
