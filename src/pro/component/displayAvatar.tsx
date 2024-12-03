@@ -23,7 +23,7 @@ const applyColorToSVG = (svg: SVGSVGElement, principColor: string) => {
 const Avatar = ({ avatarData, size }) => {
     try {
         const eyeImage = eyesImages[avatarData.eyes?.id - 1];
-        const bodyImage = bodyImages[avatarData.clothes?.id - 1] || bodyImages[avatarData.accessory?.id - 1];
+        const bodyImage = bodyImages[avatarData.clothes?.id - 1]
         const hairImage = hairImages[avatarData.hair?.id - 1];
         const beardImage = beardImages[avatarData.beard?.id - 1];
         const eyebrowsImage = eyebrowsImages[avatarData.eyebrows?.id - 1];
