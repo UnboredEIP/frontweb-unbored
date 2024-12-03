@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Heading,
@@ -15,9 +15,10 @@ import {
 import styles from "../styles/pages/Register.module.css";
 import logoGoogle from "../google.png";
 import logoFacebook from "../facebook.png";
-import { ContextLogin, LoginData } from "../contexts/LoginContext";
+import { ContextLogin } from "../contexts/LoginContext";
 import { useToast } from "@chakra-ui/react";
-import HomePage from "./Home";
+import { useNavigate } from "react-router-dom";
+import GoogleOuath from "./GoogleLogin"; // Import GoogleOAuthLogin component
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -25,17 +26,17 @@ interface LoginPageProps {
 
 async function makeLoginRequest(email: string, password: string) {
   try {
-    const response = await fetch("http://localhost:8080/auth/login", {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
-    if (response.status === 201) {
+    if (response.status === 202) {
       const data = await response.json();
       console.log(data);
-      localStorage.setItem("token", data["refresh"]);
+      localStorage.setItem("token", data["token"]);
       return true;
     } else {
       console.error("Login error");
@@ -43,6 +44,31 @@ async function makeLoginRequest(email: string, password: string) {
     }
   } catch (error) {
     console.error("Request error: ", error);
+    return false;
+  }
+}
+
+
+async function LoginViaGoogle() {
+  try {
+    const response = await fetch("https://x2025unbored786979363000.francecentral.cloudapp.azure.com/auth/login/google", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("resp: " , response);
+    if (response.status === 202) {
+      const data = await response.json();
+      console.log(data);
+      //localStorage.setItem("token", data["token"]);
+      return true;
+    } else {
+      console.error("Google Login error");
+      return false;
+    }
+  } catch (error) {
+    console.error("Google OAuth2 login error:", error);
     return false;
   }
 }
@@ -60,8 +86,8 @@ const LoginHeader: React.FC<{}> = () => {
       >
         <Heading color="whitesmoke"> Connectes toi !</Heading>
         <Text fontSize={20}>
-          Ou <Link href="/register">crées ton compte </Link>
-          si tu n'en a pas encore
+          Ou <Link href="/register">crée ton compte </Link>
+          si tu n'en as pas encore
         </Text>
       </Box>
     </Box>
@@ -73,6 +99,7 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const isFormValid = email !== "" && password !== "";
   const contextData = {
     email: email,
@@ -97,14 +124,41 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
+
+  const handleRememberMeChange = () => {
+    setRememberMe(!rememberMe);
+  };
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+    const storedRememberMe = localStorage.getItem("rememberMe");
+
+    if (storedEmail && storedPassword && storedRememberMe === "true") {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true);
+    }
+  }, []);
+
   const handleSubmit = async () => {
     const success = await makeLoginRequest(email, password);
+
     if (success) {
-      console.log("Login success");
+      if (rememberMe) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+        localStorage.setItem("rememberMe", "true");
+      } else {
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+        localStorage.removeItem("rememberMe");
+      }
+
       onLoginSuccess();
     } else {
       showToast();
-      console.log("error");
+      console.log("error ", success);
     }
   };
 
@@ -122,7 +176,8 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
               borderWidth={2}
               borderColor="#E1604D"
               onChange={handleEmailChange}
-            ></Input>
+              value={email}
+            />
             <FormLabel textAlign="left">Mot de passe</FormLabel>
             <Input
               type="password"
@@ -132,16 +187,23 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
               borderWidth={2}
               borderColor="#E1604D"
               onChange={handlePasswordChange}
-            ></Input>
+              value={password}
+            />
           </FormControl>
           <Stack isInline justifyContent="space-between">
             <Box>
-              <Checkbox>Se souvenir de moi</Checkbox>
+              <Checkbox
+                isChecked={rememberMe}
+                onChange={handleRememberMeChange}
+              >
+                Se souvenir de moi
+              </Checkbox>
             </Box>
-            <Box>*Mot de passe oublié ?</Box>
+            <Box>
+              <a href="/forgetpass">Mot de passe oublié ?</a>
+            </Box>
           </Stack>
           <Button
-            // type="submit"
             mt={4}
             my={4}
             borderRadius={50}
@@ -154,30 +216,26 @@ const LoginForm: React.FC<{ onLoginSuccess: () => void }> = ({
             Se connecter
           </Button>
           <Stack isInline justifyContent="space-between" my={4}>
-            <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              <img src={logoGoogle} alt="Logo" className={styles["logo"]} />
-              Continuer avec Google
-            </Button>
-            <Button borderRadius={12} boxShadow="lg" color={"black"}>
-              <img src={logoFacebook} alt="Logo" className={styles["logo"]} />
-              Continuer avec Facebook
-            </Button>
           </Stack>
         </form>
       </ContextLogin.Provider>
     </Box>
   );
 };
-
 const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
-  if (isLoggedIn == true) {
-    return <HomePage></HomePage>;
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home");
+      window.location.reload();
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <Flex minHeight="80vh" align="center" width="full" justifyContent="center">
@@ -192,6 +250,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
       >
         <LoginHeader />
         <LoginForm onLoginSuccess={handleLoginSuccess} />
+        <GoogleOuath></GoogleOuath>
       </Box>
     </Flex>
   );

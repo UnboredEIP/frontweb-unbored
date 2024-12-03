@@ -1,5 +1,5 @@
 {
-    "links": [
+    "navbar_links_not_connected": [
         {
             "label": "S'inscrire",
             "href": "/register"
@@ -9,8 +9,14 @@
             "href": "/login"
         },
         {
-            "label": "Overview",
-            "href": "/overview"
+            "label": "Unbored Pro",
+            "href": "/Pro-login"
+        }
+    ],
+    "navbar_links_connected": [
+        {
+            "label": "Se déconnecter",
+            "href": "/"
         }
     ]
 }

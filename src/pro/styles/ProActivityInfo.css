@@ -1,0 +1,572 @@
+.ActivityInfo-form-container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 198px 79px rgba(0, 0, 0, 0.01), 0px 112px 67px rgba(0, 0, 0, 0.03), 0px 50px 50px rgba(0, 0, 0, 0.04), 0px 12px 27px rgba(0, 0, 0, 0.05);
+
+}
+
+.ActivityInfo-form-title {
+  text-align: center;
+  background-color: red;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: white;
+}
+
+.ActivityInfo-container {
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ActivityInfo-label {
+  color: red;
+}
+
+.ActivityInfo-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.ActivityInfo-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ActivityInfo-back-button button:hover {
+  background-color: #D15040;
+}
+
+.ActivityInfo-editable-field {
+  border-radius: 15px;
+  padding: 10px;
+  width: 100%;
+  border: 5px solid blue;
+  /* Style par défaut pour readonly */
+  outline: none;
+  font-size: 16px;
+}
+
+.ActivityInfo-editable-field:focus {
+  border-color: blue;
+  /* Style pour l'édition */
+}
+
+.ActivityInfo-text-red {
+  border: 2px solid red;
+  border-radius: 20px;
+  padding: 8px;
+  width: 100%;
+}
+
+.ActivityInfo-label-red {
+  font-weight: bold;
+  color: #E1604D;
+  margin-right: 50px;
+}
+
+.ActivityInfo-textarea {
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 8px;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 14px;
+  color: black;
+  /* Texte en noir */
+}
+
+.ActivityInfo-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ActivityInfo-center-button .ActivityInfo-button[type="submit"] {
+  background-color: red;
+  /* Autres styles optionnels */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  /* ... */
+}
+
+
+
+.ActivityInfo-center-button {
+  display: flex;
+  justify-content: center;
+}
+
+.ActivityInfo-separator {
+  border-bottom: 2px solid gray;
+  margin: 20px 0;
+}
+
+.ActivityInfo-image-upload {
+  display: flex;
+  align-items: center;
+}
+
+.ActivityInfo-image-upload input[type="file"] {
+  display: none;
+}
+
+.ActivityInfo-image-upload label {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.ActivityInfo-column_5 {
+  flex: 0 0 5%;
+  max-width: 5%;
+}
+
+.ActivityInfo-column_10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.ActivityInfo-column_15 {
+  font-weight: bold;
+  color: #E1604D;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+
+.ActivityInfo-column_20 {
+  color: #E1604D;
+  flex: 0 0 20%;
+  max-width: 20%;
+  font-weight: bold;
+  display: flex;
+  /* Utilise Flexbox */
+  justify-content: center;
+  /* Centre horizontalement */
+  align-items: center;
+  /* Centre verticalement */
+}
+
+
+
+.ActivityInfo-column_25 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.ActivityInfo-column_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.ActivityInfo-column_75 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.ActivityInfo-image {
+  display: flex;
+  width: 40%;
+  margin: 1%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* Ajoute une ombre avec une légère transparence */
+}
+
+
+.ActivityInfo-image-conteneur {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ActivityInfo-image img {
+  width: 100%;
+  height: auto;
+}
+
+.ActivityInfo-input {
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 6px;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  /* Texte en gras */
+}
+
+.ActivityInfo-edit-button {
+  margin-left: 10px;
+  /* Ajoute un espace entre le bouton Retour et le bouton Modifier */
+}
+
+.ActivityInfo-edit-button button,
+.ActivityInfo-delete-button button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  /* Couleur pour le bouton Modifier */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ActivityInfo-edit-button button:hover,
+.ActivityInfo-delete-button button:hover {
+  background-color: #45A049;
+  /* Couleur au survol pour le bouton Modifier */
+}
+
+.ActivityInfo-delete-button {
+  margin-left: 10px;
+  /* Ajoute un espace entre le bouton Modifier et le bouton Supprimer */
+}
+
+.ActivityInfo-delete-button button {
+  padding: 5px 10px;
+  background-color: #F44336;
+  /* Couleur pour le bouton Supprimer */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ActivityInfo-delete-button button:hover {
+  background-color: #D32F2F;
+  /* Couleur au survol pour le bouton Supprimer */
+}
+
+.ActivityInfo-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  /* Espacement entre le bouton Retour et les boutons Modifier/Supprimer */
+}
+
+.ActivityInfo-buttons {
+  display: flex;
+  gap: 10px;
+  /* Espacement horizontal entre les boutons Modifier et Supprimer */
+}
+
+.ActivityInfo-buttons button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  /* Couleur pour les boutons Modifier/Supprimer */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ActivityInfo-buttons button:hover {
+  background-color: #45A049;
+  /* Couleur au survol pour les boutons Modifier/Supprimer */
+}
+
+.ActivityInfo-buttons button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 100px;
+  /* Ajustez la largeur selon vos besoins */
+}
+
+.ActivityInfo-buttons button:first-child {
+  background-color: #E1604D;
+  /* Couleur pour le bouton Retour */
+  color: white;
+}
+
+.ActivityInfo-buttons button:nth-child(2) {
+  background-color: red;
+  /* Couleur pour le bouton Modifier */
+  color: white;
+}
+
+.ActivityInfo-Button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  background-color: #E1604D;
+  /* Couleur pour le bouton Retour */
+  color: white;
+}
+
+
+/*BELOW EST LE CODE VRAIMENT UTILEEeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee*/
+
+.ActivityInfo-left-side {
+  /* margin-lef */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ActivityInfo-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* columns: 6rem; */
+}
+
+.ActivityInfo-big-title {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Centre le contenu à l'intérieur du bouton */
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #E1604D;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  width: 50%;
+  /* Définissez une largeur fixe ou un pourcentage selon vos besoins */
+  margin: 0 auto;
+  /* Centre le bouton lui-même */
+}
+
+.ActivityInfo-small-title {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #E1604D;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  justify-content: center;
+}
+
+.ActivityInfo-container-details {
+  padding: 3%;
+  background: #FFFFFF;
+  box-shadow: 0px 188px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}
+
+.ActivityInfo-container-stats {
+  /* Neutral / White */
+  padding: 3%;
+  margin: 5%;
+  background: #FFFFFF;
+  box-shadow: 0px 63px 25px rgba(0, 0, 0, 0.01), 0px 35px 21px rgba(0, 0, 0, 0.05), 0px 16px 16px rgba(0, 0, 0, 0.09), 0px 4px 9px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+
+}
+
+.ActivityInfo-label-full-new {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  color: #E1604D;
+  margin: 1%;
+  width: 12%;
+
+}
+
+.ActivityInfo-label-half-new {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  color: #E1604D;
+  margin: 1%;
+  width: 12%;
+
+}
+
+.ActivityInfo-input-new {
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 2px solid #EB4335;
+  border-radius: 100px;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: flex-end;
+  color: #000000;
+  padding: 1%;
+  margin: 1%;
+  width: 76%;
+}
+
+.ActivityInfo-input-half-new {
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 2px solid #EB4335;
+  border-radius: 100px;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: flex-end;
+  color: #000000;
+  padding: 1%;
+  margin: 1%;
+  width: 30%;
+}
+
+.ActivityInfo-typetag {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Centrer le contenu à l'intérieur du tag */
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #5DD362;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  padding: 5px 10px;
+  /* Ajouter un padding si nécessaire */
+}
+
+.ActivityInfo-typetag_container {
+  display: flex;
+  justify-content: center;
+  /* Centrer les tags dans le conteneur */
+  align-items: center;
+  gap: 10px;
+  /* Espace entre chaque tag, ajustez selon vos besoins */
+  margin-top: 10px;
+  /* Marge en haut */
+  margin-bottom: 10px;
+  /* Marge en bas */
+  width: 100%;
+}
+
+.ActivityInfo-blank {
+  visibility: hidden;
+  height: auto;
+  width: 20%;
+}
+
+.ActivityInfo-form-row {
+  display: flex;
+  margin: 1%
+}
+
+/* Radio Activité payante */
+.ActivityInfo-input-radio-new {
+  width: 30%;
+  padding: 1%;
+  margin: 1%;
+}
+
+.ActivityInfo-label-price-new {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  color: #E1604D;
+  margin: 1%;
+  width: 27%;
+
+}
+
+.ActivityInfo-input-price-new {
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 2px solid #EB4335;
+  border-radius: 100px;
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: flex-end;
+  color: #000000;
+  padding: 2%;
+  margin: 1%;
+  width: 61%;
+}
+
+.ActivityInfo-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
+
+.ActivityInfo-breadcrumb a {/* Noir pour Home et Pro */
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.ActivityInfo-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
+
+.ActivityInfo-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
+}

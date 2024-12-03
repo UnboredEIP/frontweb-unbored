@@ -1,0 +1,107 @@
+/* Container principal */
+.proProfile-container {
+  display: flex;
+  justify-content: center; /* Centre horizontalement le conteneur */
+  align-items: center; /* Centre verticalement le conteneur */
+  padding: 1%;
+  width: 86%;
+  margin-left: auto; /* Centrer horizontalement le conteneur dans la page */
+  box-sizing: border-box; /* Assure que padding soit pris en compte dans la largeur */
+}
+
+/* Centrer la box */
+.proProfile-centered-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 2;
+  margin-left: 20px; /* Ajouter de l'espace à gauche de la box */
+}
+
+/* Style de la bannière */
+.proProfile-banner {
+  background-color: #E1604D;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  max-width: 30%;
+  font-size: 24px;
+  font-weight: bold;
+  width: 250px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+/* Box pour afficher le contenu */
+.proProfile-content-box {
+  border-radius: 15px;
+  width: 100%;
+  min-height: 900px;
+}
+
+/* Boutons alignés en colonne sur la gauche */
+.proProfile-button-container-left {
+  display: flex;
+  flex-direction: column; /* Aligner en colonne */
+  justify-content: flex-start;
+  align-items: flex-start; /* Aligner les boutons à gauche */
+  gap: 15px; /* Espacement entre les boutons */
+  margin-right: 20px;
+}
+
+/* Style des boutons */
+.proProfile-button {
+  width: 150px;
+  height: 50px;
+  background-color: #E1604D;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.proProfile-button:hover {
+  background-color: #D15040;
+}
+
+/* Bouton retour */
+.proProfile-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.proProfile-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.proProfile-back-button button:hover {
+  background-color: #D15040;
+}
+
+/* Style du bouton sélectionné */
+.proProfile-button-selected {
+  background-color: #E9AD8C; /* Couleur différente pour le bouton sélectionné */
+  color: #881100;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.proProfile-button-selected:hover {
+  background-color: #C17F6D; /* Couleur plus foncée ou différente au survol */
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.5); /* Ombrage plus prononcé au survol */
+}

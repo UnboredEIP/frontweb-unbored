@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.MyContract-body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  font-size: 16px;
+}
+
+.MyContract-form-container {
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.MyContract-form-title {
+  text-align: center;
+  background-color: red;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  max-width: 200px;
+  width: 100%;
+  margin: 0 auto; /* Ajouter cette ligne pour centrer horizontalement */
+}
+
+
+.MyContract-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.MyContract-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyContract-back-button button:hover {
+  background-color: #D15040;
+}
+
+.MyContract-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.MyContract-h2 {
+  font-size: 24px;
+  color: #ff5722;
+  margin-bottom: 20px;
+}
+
+.MyContract-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold; /* Ajouter cette ligne pour mettre le texte en gras */
+  color: #333;
+}
+
+.MyContract-button {
+  background-color: #ff5722;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.MyContract-button:hover {
+  background-color: #f44336;
+}
+
+.MyContract-center-button {
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  padding: 5px 10px; /* Ajuster la taille du padding pour le rendre plus petit */
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 auto; /* Centrer horizontalement */
+  width: fit-content; /* Ajuster la largeur en fonction du contenu */
+  cursor: pointer;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyContract-form-container p {
+  margin-bottom: 10px;
+}
+
+.MyContract-column_5 {
+  flex: 0 0 5%;
+  max-width: 5%;
+}
+
+.MyContract-column_10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.MyContract-column_15 {
+  color: #E1604D;;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+
+.MyContract-column_20 {
+  color: #E1604D;
+  flex: 0 0 20%;
+  max-width: 20%;
+  font-weight: bold; 
+}
+
+.MyContract-column_25 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.MyContract-column_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.MyContract-column_50 {
+  width: 50%;
+  font-weight: bold; 
+}
+
+.MyContract-column_75 {
+  flex: 0 0 75%;
+  max-width: 75%;
+  width: 75%;
+}
+
+.MyContract-column_100 {
+  width: 100%;
+}
+
+.MyContract-form-row {
+  display: flex;
+  flex-direction: column; /* Aligner les éléments en colonne */
+  justify-content: center; /* Centrer verticalement les éléments */
+  align-items: center; /* Centrer horizontalement les éléments */
+  margin-bottom: 10px;
+}
+
+.MyContract-text-orange,
+.MyContract-textarea {
+  border: 2px solid orange;
+  border-radius: 20px;
+  padding: 8px;
+  background-color: white;
+  margin: 0 auto; /* Centrer l'élément horizontalement */
+  display: block; /* Pour que la marge automatique (margin: 0 auto) fonctionne */
+  width: calc(100% - 16px); /* Soustraire la valeur du padding * 2 pour conserver la largeur actuelle */
+}
+
+.MyContract-text-orange {
+  text-align: center; /* Centrer le contenu des input */
+}
+
+/* Ne pas centrer le contenu des textarea */
+.MyContract-textarea {
+  text-align: left;
+}

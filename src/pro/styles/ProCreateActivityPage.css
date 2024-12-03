@@ -1,0 +1,361 @@
+.CreateActivity-form-container {
+  width: 60%;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.CreateActivity-form-title {
+  text-align: center;
+  justify-content: center;
+  background-color: red;
+  padding: 10px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 25px;
+  width: 300px;
+  /* Increase width */
+  height: 50px;
+  /* Increase height */
+  font-size: 20px;
+  /* Increase text size */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  /* Add shadow to text */
+}
+
+.CreateActivity-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.CreateActivity-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CreateActivity-label {
+  color: var(--mainColor);
+}
+
+.CreateActivity-editable-field {
+  border-radius: 15px;
+  padding: 10px;
+  max-width: 80%;
+  width: 100%;
+  border: 5px solid blue;
+  /* Style par défaut pour readonly */
+  outline: none;
+  font-size: 16px;
+}
+
+.CreateActivity-editable-field:focus {
+  border-color: blue;
+  /* Style pour l'édition */
+}
+
+.css-3w2yfm-ValueContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.CreateActivity-input {
+  border: 2px solid var(--mainColor);
+  border-radius: 20px;
+  padding: 6px;
+  width: 100%;
+  /* margin-top: 8px; */
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  /* Texte en gras */
+}
+
+.selectYes {
+  width: 75% !important;
+  border-radius: 100px;
+}
+
+.css-13cymwt-control .css-t3ipsp-control {
+  border-color: var(--mainColor) !important;
+  border-radius: 20px !important;
+  border-width: 2px !important;
+}
+
+.css-13cymwt-control:hover {
+  border-color: var(--mainColor) !important;
+  border-radius: 20px;
+  border-width: 2px !important;
+}
+
+.CreateActivity-text-orange {
+  border: 2px solid var(--mainColor);
+  border-radius: 20px;
+  padding: 8px;
+  width: 100%;
+}
+
+.CreateActivity-label-orange {
+  color: var(--mainColor);
+}
+
+.CreateActivity-form-container textarea {
+  height: 150px;
+}
+
+.CreateActivity-form-button {
+  background-color: var(--mainColor);
+  color: white;
+  border: none;
+  width: 200px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.CreateActivity-center-button button[type="submit"] {
+  background-color: var(--mainColor);
+  /* Autres styles optionnels */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  /* ... */
+}
+
+.CreateActivity-form-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.CreateActivity-center-button {
+  display: flex;
+  justify-content: center;
+}
+
+.CreateActivity-separator {
+  border-bottom: 2px solid gray;
+  margin: 20px 0;
+}
+
+.CreateActivity-separator-vertical {
+  border-left: 2px solid gray;
+  margin: 20px 0;
+  height: 100%;
+  /* Set the height to your desired value */
+}
+
+
+
+.CreateActivity-column_10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.CreateActivity-column_15 {
+  color: var(--mainColor);
+  flex: 0 0 15%;
+  max-width: 15%;
+  text-align: center;
+
+}
+
+.CreateActivity-column_20 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+/* UTILE  */
+
+.CreateActivity-column_25 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.CreateActivity-column_75 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.CreateActivity-column_100 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.CreateActivity-label-column_25 {
+  color: var(--mainColor);
+  text-align: left;
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.CreateActivity-label-column_75 {
+  color: var(--mainColor);
+  text-align: left;
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.CreateActivity-label-column_100 {
+  color: var(--mainColor);
+  text-align: left;
+  /* flex: 0 0 100%; */
+  max-width: 100%;
+  position: relative;
+}
+
+.CreateActivity-label-column {
+  color: var(--mainColor);
+  text-align: left;
+}
+
+/* UTILE */
+
+.CreateActivity-column_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+
+
+
+.CreateActivity-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* Align items at the top */
+}
+
+.CreateActivity-left-side {
+  /* margin-lef */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.CreateActivity-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* columns: 6rem; */
+}
+
+.CreateActivity-left-side .CreateActivity-column_20 {
+  color: var(--mainColor);
+  text-align: center;
+  width: 100% !important;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.CreateActivity-left-side .CreateActivity-column_50 {
+  max-width: 100% !important;
+  width: 50% !important;
+}
+
+.CreateActivity-right-side .CreateActivity-column_20 {
+  color: var(--mainColor);
+  text-align: center;
+  width: 100% !important;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.CreateActivity-right-side .CreateActivity-column_50 {
+  max-width: 100% !important;
+  width: 50% !important;
+}
+
+
+.CreateActivity-photo-uploader {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.CreateActivity-photo-uploader .CreateActivity-column_20 {
+  width: 100%;
+  max-width: 100%;
+}
+
+.CreateActivity-image-upload {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  /* margin-left: 10%; */
+  align-self: center;
+  align-items: center;
+}
+
+.CreateActivity-image-upload input[type="file"] {
+  display: none;
+}
+
+.CreateActivity-image-upload label {
+  background-color: var(--mainColor);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.CreateActivity-price-empty {
+  margin-bottom: 53%;
+}
+
+.CreateActivity-price-show {
+  margin-top: 28%;
+}
+
+.CreateActivity-price-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* color: var(--mainColor); */
+  /* text-align: left; */
+  /* flex: 0 0 25%; */
+  /* max-width: 25%; */
+}
+
+/* 
+.CreateActivity-form-row-price {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 11px;  
+} */
+
+.CreateActivity-myButton {
+  width: 200px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

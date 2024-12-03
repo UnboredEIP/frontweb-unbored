@@ -1,0 +1,316 @@
+.Params-page {
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0px 198px 79px rgba(0, 0, 0, 0.01), 0px 112px 67px rgba(0, 0, 0, 0.03), 0px 50px 50px rgba(0, 0, 0, 0.04), 0px 12px 27px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.Params-banner {
+  color: #E1604D;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.Params-edit-all-button {
+  padding: 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  margin: 1%
+}
+
+.Params-edit-all-button:hover {
+  background-color: #D15040;
+}
+
+.Params-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+}
+
+.Params-row-center {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+}
+
+.Params-label-50 {
+  font-weight: bold;
+  width: 50%;
+  margin: 1%;
+}
+
+.Params-label-100 {
+  font-weight: bold;
+  width: 100%;
+  margin: 1%;
+}
+
+.Params-input-50 {
+  width: 50%;
+  padding: 10px;
+  border: 2px solid #E1604D;
+  border-radius: 20px;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
+}
+
+.Params-input-100 {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #E1604D;
+  border-radius: 20px;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
+}
+
+.Params-edit-input-50 {
+  width: 50%;
+  padding: 10px;
+  border: 2px solid Orange;
+  border-radius: 20px;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
+}
+
+.Params-edit-input-100 {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid Orange;
+  border-radius: 20px;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+  margin: 1%;
+}
+
+.Params-box {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Params-scroll-box {
+  width: 100%;
+  overflow-y: auto; /* Activer la barre de défilement verticale */
+  max-height: 700px; /* Définir une hauteur maximale avec défilement */
+  scrollbar-width: auto; /* Largeur de la barre de défilement (peut varier selon le navigateur) */
+  scrollbar-color: #E1604D orange; /* Couleur de la barre de défilement */
+}
+
+/* Stylisation spécifique pour Chrome, Edge et Safari */
+.Params-scroll-box::-webkit-scrollbar {
+  width: 10px; /* Largeur de la barre de défilement */
+}
+
+.Params-scroll-box::-webkit-scrollbar-track {
+  background: orange; /* Couleur de fond de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis de la barre de défilement */
+}
+
+.Params-scroll-box::-webkit-scrollbar-thumb {
+  background-color: #E1604D; /* Couleur du bouton de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis du bouton de la barre de défilement */
+}
+
+.Params-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
+
+.Params-breadcrumb a {
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.Params-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
+
+.Params-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
+}
+
+.Params-box-avatar {
+  background-color: white;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre portée très légère */
+}
+
+.Params-section-divider {
+  border: none;
+  height: 2px;
+  background-color: #e0e0e0;
+  margin: 20px 0;
+}
+
+.Params-DarkModeToggle-section {
+  display: flex;
+  align-items: center;
+}
+
+.Params-DarkModeToggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.Params-DarkModeToggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.Params-DarkModeToggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.Params-DarkModeToggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.Params-DarkModeToggle-switch input:checked + .Params-DarkModeToggle-slider {
+  background-color: #2196F3;
+}
+
+.Params-DarkModeToggle-switch input:checked + .Params-DarkModeToggle-slider::before {
+  transform: translateX(26px);
+}
+
+.Params-link {
+  color: orange;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.Params-link:hover {
+  text-decoration: none;
+}
+
+.Params-button-orange {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Params-button-orange:hover {
+  background-color: darkorange;
+}
+
+.Params-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  z-index: 1000;
+  width: 300px;
+}
+
+.Params-popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.Params-button {
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.Params-button-deactivate {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Params-button-delete {
+  color: black;
+  border: none;
+  padding: 5px; /* Réduction du padding */
+  font-size: 12px; /* Réduction de la taille de la police */
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: underline; /* Ajout du surlignage */
+}
+
+.Params-button-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  color: black;
+  font-size: 14px; /* Légère augmentation de la taille de la police */
+  cursor: pointer;
+  padding: 8px 16px; /* Ajout de padding pour agrandir le bouton */
+}
+
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark {
+  background-color: #2c2929;
+  color: #ffffff;
+}

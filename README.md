@@ -17,7 +17,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [https://x2025unbored786979363000.francecentral.cloudapp.azure.com](https://x2025unbored786979363000.francecentral.cloudapp.azure.com) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
@@ -60,3 +60,39 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 2. Use this code for the value of the TXT record: 93beb62d1b91d0848e78d8ca43d761
 3. Wait until your DNS configuration changes. This could take up to 24 hours to propagate.
   
+
+
+
+NOTION OU CONFLUENCE
+
+
+
+1. Introduction
+Cette documentation technique est destiné aux developpeur assignés sur la partie front Web de l'application UnBored
+
+2. Objectifs du Projet
+
+3. Architecture Globale
+Décrivez brièvement l'architecture générale du projet, y compris ses composants majeurs, leurs interactions et leur rôle dans le système. Utilisez des schémas ou des diagrammes si nécessaire pour faciliter la compréhension.
+
+4. Technologies Utilisées
+TypeScript / React (+ versions)
+
+5. Configuration Requise
+Linux / windows / Mac OS
+
+6. Installation
+voir plus haut
+
+7. Utilisation (TUTO)
+
+
+8. Fonctionnalités
+Décrivez les principales fonctionnalités du projet de manière détaillée. Divisez-les en sections distinctes et fournissez des informations sur la façon de les utiliser.
+
+9. Documentation API
+(Voir avec l'équipe backend)
+
+10. Support et Contact
+
+Ce document est conçu comme un guide de référence complet pour le projet [Nom du Projet]. Si vous avez des questions ou des commentaires, n'hésitez pas à nous contacter à [adresse e-mail] ou via [site web du projet].

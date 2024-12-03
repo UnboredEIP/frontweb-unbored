@@ -1,0 +1,72 @@
+.LogoUnbored {
+    width: 350px;
+    height: auto; 
+    animation: fadeIn 0.5s forwards; 
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ShowcaseTitle {
+    font-size: 2.5rem;
+    font-family: "Poetsen One", sans-serif;
+    color: #e1604d;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards; 
+}
+
+.ShowcaseText {
+    font-size: 1.5rem;
+    font-family: "Poetsen One", sans-serif;
+    animation: fadeIn 0.5s forwards;
+}
+
+.ShowcaseBody {
+    height: 70vh;
+}
+
+
+.ShowcaseBodyMid {
+    height: 120vh;
+}
+
+
+.ShowcaseBodyBig {
+    height: 150vh;
+}
+
+.carousel {
+    width:35%;
+    height: auto;
+    margin: auto;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.ShowcasePresCard {
+    /* height: 80%; */
+    background-color: white;
+    box-shadow: 0 2px 2px lightgray;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.ShowcasePresCard.clicked {
+    transform: scale(1.05);
+    box-shadow: 0 4px 4px lightgray;
+}

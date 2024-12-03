@@ -1,0 +1,239 @@
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+
+.manageAvatar-tab {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #E1604D;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 10%;
+  justify-content: center;
+}
+
+.manageAvatar-active {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #5A42BC;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 10%;
+  justify-content: center;
+}
+
+.manageAvatar-casesSvg {
+  /* Couleur de fond */
+  display: flex;
+  justify-content: center;
+  /* Centrer horizontalement */
+}
+
+.manageAvatar-svgbox {
+  display: flex;
+  flex-direction: column;
+  /* Centre les éléments horizontalement */
+  align-items: center;
+  /* Centre les éléments verticalement */
+
+  box-shadow: -228px 0px 91px rgba(0, 0, 0, 0.01), -128px 0px 77px rgba(0, 0, 0, 0.03), -57px 0px 57px rgba(0, 0, 0, 0.04), -14px 0px 31px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+
+  overflow-x: auto;
+  /* Ajoute une barre de défilement horizontale */
+  overflow-y: auto;
+  /* Masque la barre de défilement verticale */
+  width: 100%;
+  /* Assure que l'élément prend toute la largeur disponible */
+  white-space: nowrap;
+  /* Empêche le contenu de passer à la ligne */
+
+  max-height: 600px;
+  /* Limite la hauteur maximale à 300px */
+
+  scrollbar-width: auto;
+  /* Largeur de la barre de défilement (peut varier selon le navigateur) */
+  scrollbar-color: #E1604D orange;
+
+}
+
+.manageAvatar-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  gap: 2%;
+  /* Ajoute un espacement de 10px entre les éléments */
+}
+
+.manageAvatar-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.manageAvatar-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.manageAvatar-back-button button:hover {
+  background-color: #D15040;
+}
+
+.manageAvatar-form-title {
+  background: #E1604D;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 10px 20px 10px 20px;
+}
+
+.manageAvatar-container {
+  display: flex;
+  justify-content: center;
+  /* Centre le contenu horizontalement */
+  align-items: center;
+  /* Centre le contenu verticalement */
+}
+
+.manageAvatar-boxshadow-left-side {
+  display: flex;
+  flex-direction: column;
+  width: 23%;
+  height: 450px;
+  margin-top: 15%;
+  margin-right: 5%;
+  box-shadow: 0px 198px 79px rgba(0, 0, 0, 0.01), 0px 112px 67px rgba(0, 0, 0, 0.03), 0px 50px 50px rgba(0, 0, 0, 0.04), 0px 12px 27px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+}
+
+.manageAvatar-boxshadow-svg,
+.manageAvatar-boxshadow-right-side {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  width: 70%;
+
+  box-shadow: 0px 198px 79px rgba(0, 0, 0, 0.01), 0px 112px 67px rgba(0, 0, 0, 0.03), 0px 50px 50px rgba(0, 0, 0, 0.04), 0px 12px 27px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  max-height: 660px;
+}
+
+/* .manageAvatar-colorbox {
+
+} */
+
+.color-cases {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  box-shadow: -228px 0px 91px rgba(0, 0, 0, 0.01), -128px 0px 77px rgba(0, 0, 0, 0.03), -57px 0px 57px rgba(0, 0, 0, 0.04), -14px 0px 31px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+}
+
+.color-case {
+  width: 50px;
+  height: 50px;
+  border: 0.1px solid black;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+
+.manageAvatar-boxshadow-svg {
+  justify-content: center;
+  /* Centrer horizontalement */
+  align-items: center;
+  /* Centrer verticalement */
+}
+
+.manageAvatar-form-container {
+  /* width: 70%; */
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.manageAvatar-rm-button {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #FD9841;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
+}
+
+.manageAvatar-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
+
+.manageAvatar-breadcrumb a {
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.manageAvatar-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
+
+.manageAvatar-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
+}

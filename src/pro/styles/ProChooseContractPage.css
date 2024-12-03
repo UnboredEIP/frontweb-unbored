@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.ChooseContract-body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  font-size: 16px;
+}
+
+.ChooseContract-form-container {
+  /* width: 60%; */
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.ChooseContract-separator {
+  border-bottom: 2px solid gray;
+  margin: 20px 0;
+}
+
+.ChooseContract-form-title {
+  text-align: center;
+  justify-content: center;
+  background-color: red;
+  padding: 10px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 25px;
+  width: 300px;
+  /* Increase width */
+  height: 50px;
+  /* Increase height */
+  font-size: 20px;
+  /* Increase text size */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  /* Add shadow to text */
+}
+
+.ChooseContract-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.ChooseContract-h2 {
+  font-size: 24px;
+  color: #ff5722;
+  margin-bottom: 20px;
+}
+
+/* .ChooseContract-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+} */
+
+.ChooseContract-button {
+  background-color: #ff5722;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ChooseContract-button:hover {
+  background-color: #f44336;
+}
+
+.ChooseContract-center-button .ChooseContract-button[type="submit"] {
+  background-color: red;
+  /* Autres styles optionnels */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  /* ... */
+}
+
+.ChooseContract-form-container p {
+  margin-bottom: 10px;
+}
+
+.ChooseContract-column_5 {
+  flex: 0 0 5%;
+  max-width: 5%;
+}
+
+.ChooseContract-column_10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.ChooseContract-column_15 {
+  color: red;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+
+.ChooseContract-column_20 {
+  color: red;
+  flex: 0 0 20%;
+  max-width: 20%;
+  display: flex; /* Add this line */
+  justify-content: center; /* Add this line */
+  align-items: center; /* Add this line */
+  align-self: center;
+ }
+
+ .ChooseContract-label-column_20 {
+  color: red;
+  flex: 0 0 20%;
+  max-width: 20%;
+  display: flex;
+  align-self: center;
+  text-align: left;
+}
+
+.ChooseContract-label-column_50 {
+  color: red;
+  flex: 0 0 50%;
+  max-width: 50%;
+  display: flex;
+  align-self: center;
+  text-align: left;
+}
+
+.ChooseContract-label-column_40 {
+  color: red;
+  flex: 0 0 40%;
+  max-width: 40%;
+  display: flex;
+  align-self: center;
+  text-align: left;
+}
+
+.ChooseContract-label-right-column_40 {
+  color: red;
+  flex: 0 0 40%;
+  max-width: 40%;
+  align-self: center;
+  text-align: center;
+}
+ 
+
+.ChooseContract-column_25 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.ChooseContract-column_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.ChooseContract-column_75 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.ChooseContract-column_50 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.ChooseContract-text-red {
+  border: 2px solid red;
+  border-radius: 20px;
+  padding: 8px;
+  background-color: white;
+  width: 100%;
+}
+
+.ChooseContract-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 1%;
+  /* Align items at the top */
+}
+
+.ChooseContract-centered-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 1%;
+  justify-content: center;
+  /* Align items at the top */
+}
+
+.ChooseContract-form-container button {
+  background-color: var(--mainColor);
+  color: white;
+  border: none;
+  width: 200px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+

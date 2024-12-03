@@ -1,0 +1,316 @@
+.ModifyActivity-form-container {
+  width: 60%;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.ModifyActivity-form-title {
+  text-align: center;
+  background-color: red;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: white;
+}
+
+.ModifyActivity-container {
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ModifyActivity-label {
+  color: orange;
+}
+
+.ModifyActivity-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.ModifyActivity-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ModifyActivity-back-button button:hover {
+  background-color: #D15040;
+}
+
+.ModifyActivity-editable-field {
+  border-radius: 15px;
+  padding: 10px;
+  width: 100%;
+  border: 5px solid blue; /* Style par défaut pour readonly */
+  outline: none;
+  font-size: 16px;
+}
+
+.ModifyActivity-editable-field:focus {
+  border-color: blue; /* Style pour l'édition */
+}
+
+.ModifyActivity-text-orange {
+  border: 2px solid orange;
+  border-radius: 20px;
+  padding: 8px;
+  width: 100%;
+}
+
+.ModifyActivity-label-orange {
+  font-weight: bold;
+  color: #E1604D;
+  margin-right: 50px;
+}
+
+.ModifyActivity-textarea {
+  border: 2px solid orange;
+  border-radius: 10px;
+  padding: 8px;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 14px;
+  color: black; /* Texte en noir */
+}
+
+.ModifyActivity-button {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ModifyActivity-center-button .ModifyActivity-button[type="submit"] {
+  background-color: orange;
+  /* Autres styles optionnels */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  /* ... */
+}
+
+.ModifyActivity-form-row {
+  display: flex;
+  margin-right: 50px;
+  width: 100%;
+  margin-top: 1%;
+}
+
+.ModifyActivity-center-button {
+  display: flex;
+  justify-content: center;
+}
+
+.ModifyActivity-separator {
+  border-bottom: 2px solid gray;
+  margin: 20px 0;
+}
+
+.ModifyActivity-image-upload {
+  display: flex;
+  align-items: center;
+}
+
+.ModifyActivity-image-upload input[type="file"] {
+  display: none;
+}
+
+.ModifyActivity-image-upload label {
+  background-color: orange;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.ModifyActivity-column_5 {
+  flex: 0 0 5%;
+  max-width: 5%;
+}
+
+.ModifyActivity-column_10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.ModifyActivity-column_15 {
+  font-weight: bold;
+  color: #E1604D;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+
+.ModifyActivity-column_20 {
+  color: #E1604D;
+  flex: 0 0 20%;
+  max-width: 20%;
+  font-weight: bold;
+  display: flex; /* Ajout de flexbox */
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+}
+
+.ModifyActivity-column_25 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.ModifyActivity-column_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.ModifyActivity-column_75 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.ModifyActivity-image {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.ModifyActivity-image img {
+  width: 100%;
+  height: auto;
+}
+
+.ModifyActivity-input {
+  border: 2px solid blue;
+  border-radius: 10px;
+  padding: 6px;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold; /* Texte en gras */
+}
+
+.ModifyActivity-edit-button {
+  margin-left: 10px; /* Ajoute un espace entre le bouton Retour et le bouton Modifier */
+}
+
+.ModifyActivity-edit-button button,
+.ModifyActivity-delete-button button {
+  padding: 5px 10px;
+  background-color: #4CAF50; /* Couleur pour le bouton Modifier */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ModifyActivity-edit-button button:hover,
+.ModifyActivity-delete-button button:hover {
+  background-color: #45A049; /* Couleur au survol pour le bouton Modifier */
+}
+
+.ModifyActivity-delete-button {
+  margin-left: 10px; /* Ajoute un espace entre le bouton Modifier et le bouton Supprimer */
+}
+
+.ModifyActivity-delete-button button {
+  padding: 5px 10px;
+  background-color: #F44336; /* Couleur pour le bouton Supprimer */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ModifyActivity-delete-button button:hover {
+  background-color: #D32F2F; /* Couleur au survol pour le bouton Supprimer */
+}
+
+.ModifyActivity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* Espacement entre le bouton Retour et les boutons Modifier/Supprimer */
+}
+
+.ModifyActivity-buttons {
+  display: flex;
+  gap: 10px; /* Espacement horizontal entre les boutons Modifier et Supprimer */
+}
+
+.ModifyActivity-buttons button {
+  padding: 5px 10px;
+  background-color: #4CAF50; /* Couleur pour les boutons Modifier/Supprimer */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ModifyActivity-buttons button:hover {
+  background-color: #45A049; /* Couleur au survol pour les boutons Modifier/Supprimer */
+}
+
+.ModifyActivity-buttons button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  width: 100px; /* Ajustez la largeur selon vos besoins */
+}
+
+.ModifyActivity-buttons button:first-child {
+  background-color: #E1604D; /* Couleur pour le bouton Retour */
+  color: white;
+}
+
+.ModifyActivity-buttons button:nth-child(2) {
+  background-color: red; /* Couleur pour le bouton Modifier */
+  color: white;
+}
+
+.ModifyActivity-header button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  background-color: #E1604D; /* Couleur pour le bouton Retour */
+  color: white;
+}
+
+.ModifyActivity-left-side {
+  /* margin-lef */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ModifyActivity-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* columns: 6rem; */
+}

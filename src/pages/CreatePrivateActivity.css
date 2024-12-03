@@ -1,0 +1,183 @@
+/* General container styling */
+.CreateActivity-form-container {
+  width: 60%;
+  margin: 0 auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.CreateActivity-back-button {
+  margin-bottom: 20px;
+}
+
+.CreateActivity-back-button button {
+  background-color: #ff5e5e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.CreateActivity-back-button button:hover {
+  background-color: #e04c4c;
+}
+
+.CreateActivity-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.CreateActivity-form-title {
+  font-size: 24px;
+  color: #333;
+}
+
+.CreateActivity-form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.CreateActivity-label-column_100 {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.CreateActivity-input-text-column_100, 
+.CreateActivity-input-text-column_50, 
+.CreateActivity-input-text-column_25,
+.CreateActivity-input-text-column_33,
+.CreateActivity-textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.CreateActivity-input-text-column_100 {
+  width: 100%;
+}
+
+.CreateActivity-input-text-column_50 {
+  width: 48%;
+}
+
+.CreateActivity-input-text-column_25 {
+  width: 23%;
+}
+
+.CreateActivity-input-text-column_33 {
+  width: 32%;
+}
+
+/* Select Dropdown Styling */
+.selectYes {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.CreateActivity-right-side,
+.CreateActivity-left-side {
+  width: 48%;
+}
+
+.CreateActivity-left-side {
+  padding-right: 10px;
+  border-right: 2px solid #ddd;
+}
+
+.CreateActivity-right-side {
+  padding-left: 10px;
+}
+
+/* For Rows and Columns */
+.CreateActivity-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.CreateActivity-submit-button {
+  background-color: #28a745;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.CreateActivity-submit-button:hover {
+  background-color: #218838;
+}
+
+/* Image Preview Styling */
+.CreateActivity-image {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+img {
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Ensure Responsiveness */
+@media (max-width: 768px) {
+  .CreateActivity-left-side, 
+  .CreateActivity-right-side {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .CreateActivity-row {
+    flex-direction: column;
+  }
+
+  .CreateActivity-input-text-column_50,
+  .CreateActivity-input-text-column_25,
+  .CreateActivity-input-text-column_33 {
+    width: 100%;
+  }
+
+  .CreateActivity-submit-button {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* Button styling for Retour */
+button {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+}
+
+input, select, textarea {
+  font-family: 'Arial', sans-serif;
+}
+
+/* For error/success messages */
+.toast {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.toast-success {
+  background-color: #28a745;
+}

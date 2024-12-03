@@ -28,7 +28,7 @@
 }
 
 .logo-container{
-    margin-left: 40px;
+  align-items: flex-start;
 }
 
 .logo-container span{
@@ -41,6 +41,7 @@
 
 .nav-logo {
     height: 5vmin;
+    align-items: center;
     pointer-events: none;
   }
   

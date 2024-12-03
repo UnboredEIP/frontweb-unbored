@@ -1,0 +1,483 @@
+.ProActivitySubscribers-form-container {
+  width: 60%;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.ProActivitySubscribers-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.ProActivitySubscribers-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.ProActivitySubscribers-back-button button:hover {
+  background-color: #D15040;
+}
+
+.ProActivitySubscribers-form-title {
+  text-align: center;
+  justify-content: center;
+  background-color: red;
+  padding: 10px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 25px;
+  width: 300px;
+  /* Increase width */
+  height: 50px;
+  /* Increase height */
+  font-size: 20px;
+  /* Increase text size */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  /* Add shadow to text */
+}
+
+.ProActivitySubscribers-form-nobox-title {
+  text-align: left;
+  justify-content: center;
+  padding: 10px;
+  font-weight: bold;
+  color: red;
+  width: 200px;
+  /* Increase width */
+  height: 50px;
+  /* Increase height */
+  font-size: 20px;
+  /* Increase text size */
+  /* Add shadow to text */
+}
+
+.ProActivitySubscribers-redbar {
+  border-bottom: 5px solid red;
+  /* Add this line */
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.ProActivitySubscribers-note {
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  border-radius: 20px;
+  width: 70px;
+  height: 40px;
+  font-size: 20px;
+  margin: auto auto auto auto;
+}
+
+.ProActivitySubscribers-note-globale {
+  text-align: center;
+  justify-content: center;
+  padding: 10px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  border-radius: 20px;
+  width: 100px;
+  height: 60px;
+  font-size: 40px;
+  display: flex;
+  align-content: center;
+}
+
+
+.ProActivitySubscribers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ProActivitySubscribers-label {
+  color: var(--mainColor);
+}
+
+.ProActivitySubscribers-editable-field {
+  border-radius: 15px;
+  padding: 10px;
+  max-width: 80%;
+  width: 100%;
+  border: 5px solid blue;
+  /* Style par défaut pour readonly */
+  outline: none;
+  font-size: 16px;
+}
+
+.ProActivitySubscribers-editable-field:focus {
+  border-color: blue;
+  /* Style pour l'édition */
+}
+
+.css-3w2yfm-ValueContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.ProActivitySubscribers-input {
+  border: 2px solid var(--mainColor);
+  border-radius: 20px;
+  padding: 6px;
+  width: 100%;
+  /* margin-top: 8px; */
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  /* Texte en gras */
+}
+
+.selectYes {
+  width: 75% !important;
+  border-radius: 100px;
+}
+
+.css-13cymwt-control .css-t3ipsp-control {
+  border-color: var(--mainColor) !important;
+  border-radius: 20px !important;
+  border-width: 2px !important;
+}
+
+.css-13cymwt-control:hover {
+  border-color: var(--mainColor) !important;
+  border-radius: 20px;
+  border-width: 2px !important;
+}
+
+.ProActivitySubscribers-text-orange {
+  border: 2px solid var(--mainColor);
+  border-radius: 20px;
+  padding: 8px;
+  width: 100%;
+}
+
+.ProActivitySubscribers-label-orange {
+  color: var(--mainColor);
+}
+
+.ProActivitySubscribers-form-container textarea {
+  height: 150px;
+}
+
+
+.ProActivitySubscribers-center-button button[type="submit"] {
+  background-color: var(--mainColor);
+  /* Autres styles optionnels */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  /* ... */
+}
+
+.ProActivitySubscribers-form-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.ProActivitySubscribers-center-button {
+  display: flex;
+  justify-content: center;
+}
+
+.ProActivitySubscribers-separator {
+  border-bottom: 2px solid gray;
+  margin: 20px 0;
+}
+
+.ProActivitySubscribers-separator-vertical {
+  border-left: 2px solid gray;
+  margin: 20px 0;
+  height: 100%;
+  /* Set the height to your desired value */
+}
+
+
+
+.ProActivitySubscribers-column_10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.ProActivitySubscribers-column_15 {
+  color: var(--mainColor);
+  flex: 0 0 15%;
+  max-width: 15%;
+  text-align: center;
+
+}
+
+.ProActivitySubscribers-column_20 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+/* UTILE  */
+
+.ProActivitySubscribers-column_25 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.ProActivitySubscribers-column_50 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 50%;
+  max-width: 50%;
+  width: 50%
+}
+
+.ProActivitySubscribers-column_75 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 75%;
+  max-width: 75%;
+  margin: auto 0 auto 0;
+}
+
+.ProActivitySubscribers-column_100 {
+  color: var(--mainColor);
+  text-align: center;
+  flex: 0 0 100%;
+  max-width: 100%;
+  width: 100%
+}
+
+.ProActivitySubscribers-label-column_25 {
+  color: var(--mainColor);
+  text-align: left;
+  flex: 0 0 25%;
+  max-width: 25%;
+  width: 25%
+}
+
+.ProActivitySubscribers-label-column_15 {
+  color: var(--mainColor);
+  text-align: left;
+  flex: 0 0 15%;
+  max-width: 15%;
+  width: 15%;
+  margin: auto auto auto auto;
+}
+
+.ProActivitySubscribers-label-column_50 {
+  color: var(--mainColor);
+  text-align: left;
+  flex: 0 0 50%;
+  max-width: 50%;
+  width: 50%
+}
+
+.ProActivitySubscribers-label-column_75 {
+  color: var(--mainColor);
+  text-align: left;
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.ProActivitySubscribers-label-column_100 {
+  color: var(--mainColor);
+  text-align: left;
+  /* flex: 0 0 100%; */
+  max-width: 100%;
+  position: relative;
+}
+
+.ProActivitySubscribers-label-column {
+  color: var(--mainColor);
+  text-align: left;
+}
+
+/* UTILE */
+
+.ProActivitySubscribers-column_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.ProActivitySubscribers-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  /* Align items at the top */
+}
+
+.ProActivitySubscribers-boxshadow-left-side {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-right: 1%;
+  padding: 1% 1% 1% 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.ProActivitySubscribers-boxshadow-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-left: 1%;
+  padding: 1% 1% 1% 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.ProActivitySubscribers-left-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1% 1% 1% 1%;
+}
+
+.ProActivitySubscribers-right-side {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1% 1% 1% 1%;
+}
+
+.ProActivitySubscribers-left-side .ProActivitySubscribers-column_20 {
+  color: var(--mainColor);
+  text-align: center;
+  width: 100% !important;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.ProActivitySubscribers-left-side .ProActivitySubscribers-column_50 {
+  max-width: 100% !important;
+  width: 50% !important;
+}
+
+.ProActivitySubscribers-right-side .ProActivitySubscribers-column_20 {
+  color: var(--mainColor);
+  text-align: center;
+  width: 100% !important;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.ProActivitySubscribers-right-side .ProActivitySubscribers-column_50 {
+  max-width: 100% !important;
+  width: 50% !important;
+}
+
+
+.ProActivitySubscribers-photo-uploader {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ProActivitySubscribers-photo-uploader .ProActivitySubscribers-column_20 {
+  width: 100%;
+  max-width: 100%;
+}
+
+.ProActivitySubscribers-image-upload {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  /* margin-left: 10%; */
+  align-self: center;
+  align-items: center;
+}
+
+.ProActivitySubscribers-image-upload input[type="file"] {
+  display: none;
+}
+
+.ProActivitySubscribers-image-upload label {
+  background-color: var(--mainColor);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.ProActivitySubscribers-price-empty {
+  margin-bottom: 53%;
+}
+
+.ProActivitySubscribers-price-show {
+  margin-top: 28%;
+}
+
+.ProActivitySubscribers-price-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* color: var(--mainColor); */
+  /* text-align: left; */
+  /* flex: 0 0 25%; */
+  /* max-width: 25%; */
+}
+
+/* 
+.ProActivitySubscribers-form-row-price {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 11px;  
+} */
+
+.ProActivitySubscribers-myButton {
+  width: 200px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ProActivitySubscribers-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
+
+.ProActivitySubscribers-breadcrumb a {
+  color: black; /* Noir pour Home et Pro */
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.ProActivitySubscribers-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
+
+.ProActivitySubscribers-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
+}

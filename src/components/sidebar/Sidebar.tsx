@@ -19,24 +19,17 @@ const Nav = styled.div`
 `;
 
 const SidebarNav = styled.div<{ sidebar: boolean }>`
-  // background-color: var(--mainColor);
   width: 250px;
-  height: 100vh;
+  min-height: 100vh; /* Adjusted */
   position: fixed;
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
-  background-color: rgba(225, 96, 77, ${({ sidebar }) => (sidebar ? "0.8" : "0")});
+  background-color: rgba(225, 96, 77, ${({ sidebar }) => (sidebar ? "1" : "0")});
   transition: 400ms;
+  overflow-y: auto; /* Added */
 `;
 
 const BackgroundCover = styled.div<{ sidebar: boolean }>`
-  position: fixed;
-  top: 0;
-  left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, ${({ sidebar }) => (sidebar ? "0.5" : "0")});
-  z-index: 999;
 `;
 
 const NavIcon = styled(Link)`
@@ -49,35 +42,23 @@ const NavIcon = styled(Link)`
 `;
 
 const SidebarWrap = styled.div`
-  // display: flex;
-  // justify-content: flex-start;
-  align-items: center;
-  height: 6.2rem;
-  // background-color: var(--mainColor);
-  // padding-left: 75px;
+  height: 100%;
 `;
 
 const Sidebar: React.FC<{}> = () => {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+  const [sidebar, setSidebar] = useState(true); // Set sidebar to true by default
+
   return (
     <IconContext.Provider value={{ color: "whitesmoke" }}>
       <Nav>
-        <NavIcon to="#" onClick={showSidebar}>
-          <HiMenu />
-        </NavIcon>
+        {/* Remove the button and directly set the sidebar state to true */}
       </Nav>
       <BackgroundCover sidebar={sidebar}>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-            <NavIcon to="#" onClick={showSidebar}>
-              <IoCloseSharp />
-            </NavIcon>
-            {/* <div className={styles["sidebar-text"]}> */}
             {SidebarData.map((item, index) => {
               return <Submenu item={item} key={index} />;
             })}
-            {/* </div> */}
           </SidebarWrap>
         </SidebarNav>
       </BackgroundCover>

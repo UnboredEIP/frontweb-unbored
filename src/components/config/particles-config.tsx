@@ -11,7 +11,7 @@ const ParticlesItem: ISourceOptions = {
     position: "",
     repeat: "",
     size: "",
-    opacity: 1,
+    opacity: 0,
   },
   backgroundMask: {
     composite: "destination-out",
@@ -184,7 +184,7 @@ const ParticlesItem: ISourceOptions = {
       },
     },
     color: {
-      value: "#E1604D",
+      value: "#E3604D",
       animation: {
         h: {
           count: 0,
@@ -304,16 +304,16 @@ const ParticlesItem: ISourceOptions = {
     },
     shape: {
       options: {},
-      type: ["circle"],
+      type: ["square"],
     },
     size: {
       random: {
         enable: true,
-        minimumValue: 20,
+        minimumValue: 0,
       },
       value: {
-        min: 5,
-        max: 20,
+        min: 0,
+        max: 0,
       },
       animation: {
         count: 0,

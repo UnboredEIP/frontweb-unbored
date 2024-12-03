@@ -1,0 +1,258 @@
+/* ../styles/pages/ProProfile.MyActivities-css */
+
+.MyActivities-button-box {
+  padding: 20px;
+  /* width: 70%; */
+  height: 900px;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.MyActivities-banner {
+  background-color: #E1604D;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 25px;
+  max-width: 30%;
+  width: 250px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MyActivities-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.MyActivities-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 50px;
+  margin: 15px;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  position: relative; /* Pour le label sur l'image */
+}
+
+.My-activities-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.MyActivities-image-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 15px;
+}
+
+.MyActivities-button-label {
+  position: absolute;
+  bottom: 0;
+  left: 0; /* Prendre toute la largeur */
+  right: 0; /* Prendre toute la largeur */
+  font-weight: bold;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)); /* Dégradé du haut vers le bas */
+  color: white;
+  border-radius: 0 0 15px 15px; /* Coins arrondis en bas seulement */
+  height: 50px;
+  display: flex;
+  justify-content: flex-start; /* Aligner à gauche */
+  align-items: center;
+  text-align: left; /* Aligner le texte à gauche */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding-left: 10px; /* Ajouter de l'espace à gauche */
+  margin-bottom: 0; /* Ajuster selon vos besoins */
+}
+
+.MyActivities-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.label-column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 5px;
+  width: 50px;
+}
+
+.MyActivities-input-column {
+  flex: 2;
+  margin-right: 100px;
+}
+
+.MyActivities-input-wrapper label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.MyActivities-input-wrapper input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.MyActivities-edit-button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.MyActivities-edit-button:hover {
+  background-color: #D15040;
+}
+
+.MyActivities-edit-all-button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyActivities-edit-all-button:hover {
+  background-color: #D15040;
+}
+
+.MyActivities-back-button {
+  align-self: flex-start;
+  margin: 10px;
+}
+
+
+/* ../styles/pages/ProProfile.MyActivities-css */
+
+.MyActivities-scroll-box {
+  margin-top: 20px;
+  justify-content: center; /* Centrer verticalement */
+  width: 100%;
+  overflow-y: auto; /* Activer la barre de défilement verticale */
+  max-height: 600px; /* Définir une hauteur maximale avec défilement */
+  scrollbar-width: auto; /* Largeur de la barre de défilement (peut varier selon le navigateur) */
+  scrollbar-color: #E1604D orange; /* Couleur de la barre de défilement */
+}
+
+/* Stylisation spécifique pour Chrome, Edge et Safari */
+.MyActivities-scroll-box::-webkit-scrollbar {
+  width: 10px; /* Largeur de la barre de défilement */
+}
+
+.MyActivities-scroll-box::-webkit-scrollbar-track {
+  background: orange; /* Couleur de fond de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis de la barre de défilement */
+}
+
+.MyActivities-scroll-box::-webkit-scrollbar-thumb {
+  background-color: #E1604D; /* Couleur du bouton de la barre de défilement */
+  border-radius: 5px; /* Coins arrondis du bouton de la barre de défilement */
+}
+
+
+.MyActivities-back-button button {
+  padding: 5px 10px;
+  background-color: #E1604D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.MyActivities-back-button button:hover {
+  background-color: #D15040;
+}
+
+.MyActivities-searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.MyActivities-search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  width: 300px;
+  font-size: 16px;
+}
+
+.MyActivities-breadcrumb {
+  font-size: 24px; /* Augmente la taille */
+  font-weight: bold; /* En gras */
+  margin-bottom: 20px;
+}
+
+.MyActivities-breadcrumb a {
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.MyActivities-breadcrumb a.active {
+  color: #E1604D; /* Orange pour Profil */
+  text-decoration: underline;
+}
+
+.MyActivities-breadcrumb a:hover {
+  text-decoration: underline; /* Souligne sur hover */
+}
+
+.MyActivities-activity-toggle {
+  margin-top: 1%;
+  color: #ff7f50; /* Couleur orange */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.MyActivities-activity-toggle:hover {
+  text-decoration: underline; /* Soulignement au survol */
+  color: #e67340; /* Couleur orange plus foncée au survol */
+}
+
+.MyActivities-activity-toggle:active {
+  color: #cc5e33; /* Couleur plus foncée lors du clic */
+}
+
