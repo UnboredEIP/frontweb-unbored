@@ -3,6 +3,7 @@ import ProMyAccount from './ProMyAccount';
 import ProMyActivites from './ProMyActivites';
 import ProMyContract from './ProMyContract';
 import ManageAvatar from '../../pages/ManageAvatar';
+import ProParams from './ProParams';
 import { useLocation } from 'react-router-dom';
 import '../styles/ProProfile.css';
 
@@ -50,7 +51,7 @@ function ProProfile() {
       case 'Avatar':
         return <ManageAvatar />;
       case 'Parametres':
-        return <div>Bientôt</div>;
+        return <ProParams />;
       default:
         return <div>Page non trouvée</div>;
     }

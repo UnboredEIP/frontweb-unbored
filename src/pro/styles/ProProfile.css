@@ -39,7 +39,6 @@
 
 /* Box pour afficher le contenu */
 .proProfile-content-box {
-  background-color: white;
   border-radius: 15px;
   width: 100%;
   min-height: 900px;

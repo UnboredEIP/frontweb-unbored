@@ -145,7 +145,7 @@ const ProMenuPage: React.FC = () => {
                         </div>
                         <div className="ProMenu-right-side">
                             <div className="ProMenu-red_values">
-                                {nearestActivity ? `${parseFloat(nearestActivity.price).toFixed(2)} €` : '-'}
+                                {nearestActivity ? `${(nearestActivity.participents.length * parseFloat(nearestActivity.price)).toFixed(2)} €` : '-'}
                             </div>
                         </div>
                     </div>

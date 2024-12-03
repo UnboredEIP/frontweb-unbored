@@ -60,17 +60,15 @@ const RegisterForm: React.FC<{}> = () => {
   }, [confirmPassword, password]);
 
   const checkPassword = useCallback(() => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
     if (!regex.test(password)) {
-      setPasswordError('Le mot de passe doit contenir au moins 8 caractères, y compris des lettres majuscules et minuscules, des chiffres et des symboles spéciaux.');
+      setPasswordError('Le mot de passe doit contenir au moins 8 caractères, avec des majuscules, minuscules, chiffres et symboles spéciaux.');
       setIsPasswordGood(false);
     } else {
       setIsPasswordGood(true);
       setPasswordError('');
     }
-    console.log(password); // Affiche la valeur actuelle du mot de passe
-    console.log(isPasswordGood); // Affiche l'état actuel de isPasswordGood
-  }, [password]);
+  }, [password]);  
 
   const isFormValid =
     username !== "" &&

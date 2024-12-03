@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/pages/manageAvatar.css';
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import avatar from "../assets/avatars/body.svg";
 import { ReactSVG } from 'react-svg';
 import { useToast } from "@chakra-ui/react";
@@ -161,6 +161,56 @@ const AvisActivityPage: React.FC = () => {
     }
   };
 
+  const getProfile = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile`;
+      const response = await axios.get(url, config);
+      const profileDetails = response.data.user;
+
+      const eyeImage = eyesImages[profileDetails.style.eyes.id - 1];
+      const bodyImage = bodyImages[profileDetails.style.clothes.id - 1];
+      const hairImage = hairImages[profileDetails.style.hair.id - 1];
+      const beardImage = beardImages[profileDetails.style.beard.id - 1];
+      const eyebrowsImage = eyebrowsImages[profileDetails.style.eyebrows.id - 1];
+      const mouthImage = mouthImages[profileDetails.style.mouth.id - 1];
+
+      setSelectedPrincipColorSkin(profileDetails.style.head.color)
+
+      setSelectedEyes(eyeImage)
+      setSelectedPrincipColorEyes(profileDetails.style.eyes.color)
+      setIndexSelectedEyes(profileDetails.style.eyes.id)
+
+      setSelectedBody(bodyImage)
+      setSelectedPrincipColorBody(profileDetails.style.clothes.color)
+      setIndexSelectedBody(profileDetails.style.clothes.id)
+
+      setSelectedHair(hairImage)
+      setSelectedPrincipColorHair(profileDetails.style.hair.color)
+      setIndexSelectedHair(profileDetails.style.hair.id)
+
+      setSelectedBeard(beardImage)
+      setSelectedPrincipColorBeard(profileDetails.style.beard.color)
+      setIndexSelectedBeard(profileDetails.style.beard.id)
+
+      setSelectedEyebrows(eyebrowsImage)
+      setSelectedPrincipColorEyebrows(profileDetails.style.eyebrows.color)
+      setIndexSelectedEyebrows(profileDetails.style.eyebrows.id)
+
+      setSelectedMouth(mouthImage)
+      setSelectedPrincipColorMouth(profileDetails.style.mouth.color)
+      setIndexSelectedMouth(profileDetails.style.mouth.id)
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleColorClick = (color: string, type: string) => {
     switch (activeTab) {
       case "Peau":
@@ -301,7 +351,6 @@ const AvisActivityPage: React.FC = () => {
 
   const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "beige", "wheat", "brown", "white", "black"];
   const skinColors = ["#ffdbac", "#f1c27d", "#e0ac69", "#c68642", "#8d5524", "#ffcc99", "#ffbb88", "#ffaa77", "#ff9966", "#ff8844", "#ff7733", "#ff6622"];
-
 
   const tabs = ["Barbe", "Vêtement", "Sourcils", "Yeux", "Cheveux", "Chapeau", "Bouche", "Peau"];
   const tabImageMap: { [key: string]: string } = {
@@ -524,6 +573,10 @@ const AvisActivityPage: React.FC = () => {
   };
 
   useEffect(() => {
+    getProfile();
+  }, []);
+
+  useEffect(() => {
     const merged = mergeSVGs();
     setMergedSVG(merged);
   }, [selectedBody, selectedHair, selectedBeard, selectedEyebrows, selectedEyes, selectedHat, selectedMouth, selectedPrincipColorSkin]);
@@ -533,7 +586,11 @@ const AvisActivityPage: React.FC = () => {
   return (
     <div className="manageAvatar-form-container">
       <div className="manageAvatar-back-button">
-        <button onClick={() => navigate(-1)}>Retour</button>
+        <nav className="manageAvatar-breadcrumb">
+          <Link to="/">Home</Link>/
+          <Link to="/Pro-menu">Pro</Link>/
+          <Link to="" className="active">Avatar</Link>
+        </nav>
       </div>
       <div className="manageAvatar-row" style={{ position: "relative" }}>
         {/* GAUCHE*/}

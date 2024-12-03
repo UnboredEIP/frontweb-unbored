@@ -191,6 +191,8 @@ const CreateActivityPage: React.FC = () => {
         console.error('Aucun fichier sélectionné.');
       }
 
+      navigate(-1);
+
       toast({
         title: "Succès !",
         description: "Votre activité à bien été crée",
@@ -198,6 +200,7 @@ const CreateActivityPage: React.FC = () => {
         duration: 3000,
         isClosable: true,
       });
+
 
     } catch (error) {
       toast({
