@@ -32,7 +32,7 @@ const DMPage = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [userId, setUserId] = useState(null);
-  const [friendId, setFriendId] = useState(null); // State for friend ID
+  const [friendId, setFriendId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,26 +41,12 @@ const DMPage = () => {
       if (id) {
         setUserId(id);
       } else {
-        //console.log("User ID not found. Redirecting to home.");
         navigate('/');
       }
     };
 
     fetchUserId();
   }, [navigate]);
-
-  useEffect(() => {
-    if (userId && friendId) {
-      const fetchMessages = async () => {
-        const messagesData = await handleMessagesFetch(userId, friendId);
-        if (messagesData) {
-          setMessages(messagesData);
-        }
-      };
-
-      fetchMessages();
-    }
-  }, [userId, friendId]);
 
   useEffect(() => {
     // Extract friendId from the current URL
@@ -70,6 +56,46 @@ const DMPage = () => {
       setFriendId(urlParts[1].split('&')[0]);
     }
   }, []);
+
+  // Fetch messages and refresh every 10 seconds
+  useEffect(() => {
+    let intervalId;
+
+    const fetchMessages = async () => {
+      if (userId && friendId) {
+        try {
+          const authToken = localStorage.getItem('token');
+          const response = await fetch(
+            `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/chat/conversation?id1=${userId}&id2=${friendId}`,
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${authToken}`,
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const messagesData = await response.json();
+          setMessages(messagesData);
+        } catch (error) {
+          console.error('Error fetching messages:', error);
+        }
+      }
+    };
+
+    fetchMessages(); // Fetch immediately on component mount
+
+    intervalId = setInterval(fetchMessages, 10000); // Fetch every 10 seconds
+
+    return () => {
+      clearInterval(intervalId); // Clear interval on component unmount
+    };
+  }, [userId, friendId]);
 
   const handleSendMessage = async () => {
     if (message.trim().length > 0) {
@@ -94,9 +120,6 @@ const DMPage = () => {
         }
 
         const responseData = await response.json();
-        //console.log('Message sent:', responseData);
-
-        // Add the new message to the UI
         setMessages((prevMessages) => [...prevMessages, responseData]);
         setMessage('');
       } catch (error) {
@@ -105,54 +128,20 @@ const DMPage = () => {
     }
   };
 
-  const handleMessagesFetch = async (userId, friendId) => {
-    try {
-      const authToken = localStorage.getItem('token');
-
-      const response = await fetch(
-        `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/chat/conversation?id1=${userId}&id2=${friendId}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const messagesData = await response.json();
-      //console.log('Fetched Messages Data:', messagesData);
-      return messagesData;
-    } catch (error) {
-      console.error('Error fetching messages:', error);
-      return null;
-    }
-  };
-
-  const lastMessage = messages[messages.length - 1];
-
   return (
-    <Box p={4} ml={80}> {/* Add padding to the left to avoid overlap with the sidebar */}
-      {/* <Text fontSize="xl" mb={4}>
-        DM with Friend ID: {friendId}
-      </Text> */}
-
-      {/* {lastMessage && (
-        // <Text fontSize="md" mb={4}>
-        //   Last message: {lastMessage.content}
-        // </Text>
-      )} */}
-
+    <Box p={4} ml={80}>
       <Box display="flex" flexDirection="column" gap={4} mt={4}>
         {messages.length === 0 ? (
           <Text>No messages yet. Start the conversation!</Text>
         ) : (
           messages.map((msg, index) => (
-            <Box key={index} display="flex" flexDirection="column" alignItems={msg.senderId === userId ? 'flex-start' : 'flex-end'} mb={2}>
+            <Box
+              key={index}
+              display="flex"
+              flexDirection="column"
+              alignItems={msg.senderId === userId ? 'flex-start' : 'flex-end'}
+              mb={2}
+            >
               <Box
                 bg={msg.senderId === userId ? 'blue.500' : 'gray.300'}
                 color={msg.senderId === userId ? 'white' : 'black'}

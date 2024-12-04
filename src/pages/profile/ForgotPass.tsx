@@ -11,6 +11,7 @@ import {
   Link,  // Add Link component
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 interface ForgetPassProps {
   onUpdateSuccess: () => void;
@@ -39,6 +40,19 @@ async function makePasswordResetRequest(email: string) {
 }
 
 const ForgetPass: React.FC<ForgetPassProps> = ({ onUpdateSuccess }) => {
+
+  const toast = useToast();
+
+  const showToast = () => {
+    toast({
+      title: "Login",
+      description: "Regarder votre boite mail",
+      duration: 5000,
+      isClosable: true,
+      colorScheme: "green",
+    });
+  };
+  
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
@@ -50,6 +64,7 @@ const ForgetPass: React.FC<ForgetPassProps> = ({ onUpdateSuccess }) => {
 
   const handleSubmit = async () => {
     // Validate email
+    showToast()
     if (!email) {
       setEmailError("Email is required");
       return;
