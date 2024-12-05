@@ -17,7 +17,7 @@ const DctivityPage: React.FC = () => {
       try {
         const token = localStorage.getItem('token');
         if (token === null) {
-          //console.log("caca null")
+          ////console.log("caca null")
           navigate("/");
         }
 
@@ -42,8 +42,8 @@ const DctivityPage: React.FC = () => {
     fetchActivity();
   }, [id]);
 
-  //console.log("toto");
-  //console.log(activity);
+  ////console.log("toto");
+  ////console.log(activity);
   
   const toast = useToast();
 
@@ -122,7 +122,7 @@ const DctivityPage: React.FC = () => {
   
       // Check if the event is already in the timeline
       const isEventAlreadyAdded = timelineArray.some((event) => event._id === eventData._id);
-      console.log("toto wait");
+      //console.log("toto wait");
       if (!isEventAlreadyAdded) {
         // Add the new event data to the timeline
         timelineArray.push(eventData);
@@ -131,9 +131,9 @@ const DctivityPage: React.FC = () => {
         localStorage.setItem('timelineData', JSON.stringify(timelineArray));
         AddedInCalendar();
         //localStorage.removeItem('timelineData');
-        //console.log('Event added to timeline successfully!');
+        ////console.log('Event added to timeline successfully!');
       } else {
-        //console.log('Event is already in the timeline.');
+        ////console.log('Event is already in the timeline.');
         AlreadyInCalendar();
       }
     } catch (error) {
@@ -144,8 +144,8 @@ const DctivityPage: React.FC = () => {
   
   const addToCalendar = async () => {
     try {
-      console.log("id activity");
-      console.log(activity.event._id);
+      //console.log("id activity");
+      //console.log(activity.event._id);
       const toti = [activity.event._id]; // Corrected the property name from "activity.event_.id" to "activity.event._id"
       const token = localStorage.getItem('token');
       const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/event/add', {
@@ -166,7 +166,7 @@ const DctivityPage: React.FC = () => {
     
       //addToTimeline(activity.event);
       // if (response.ok) {
-      //   //console.log('Event added to the calendar successfully!');
+      //   ////console.log('Event added to the calendar successfully!');
       //   // Optionally, you can provide feedback to the user
       // } else {
       //   //console.error('Failed to add the event to the calendar. Status:', response.status);
@@ -202,10 +202,10 @@ const DctivityPage: React.FC = () => {
           comments: userComment,
         }),
       });
-      console.log(activity.rate);
+      //console.log(activity.rate);
       if (response.ok) {
         // Handle success, maybe show a success message
-        console.log('User rated the event successfully!');
+        //console.log('User rated the event successfully!');
         GoodRate();
         // Optionally, you can update the UI to reflect the new rating immediately
       } else {
@@ -243,8 +243,8 @@ const DctivityPage: React.FC = () => {
     return stars;
   };
 
-  //console.log("Les activités");
-  //console.log(activity);
+  ////console.log("Les activités");
+  ////console.log(activity);
   if (!activity) {
     // Handle the case where activity information is not available
     return <div>Activity information not available.</div>;

@@ -49,7 +49,7 @@ async function makeRegisterRequest(
       }),
     });
     if (response.status === 201) {
-      console.log("User created");
+      //console.log("User created");
       return true;
     } else {
       const data = await response.json();
@@ -130,13 +130,14 @@ const RegisterForm: React.FC<{ onRegisterSuccess: () => void }> = ({
 
   const handleBirthdateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const dateValue = event.target.value;
-    const formattedDate = new Date(dateValue).toLocaleDateString('fr-FR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    });
+    const date = new Date(dateValue);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
     setBirthdate(formattedDate);
-  };
+};
+
 
   const handleGenderChange = (value: string) => {
     setGender(value);
@@ -265,7 +266,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegisterSuccess }) => {
       >
         <RegisterHeader />
         <RegisterForm onRegisterSuccess={HandleLoginSuccess} />
-        <GoogleOuath />
+        {/* <GoogleOuath /> */}
       </Box>
     </Flex>
   );

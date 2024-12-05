@@ -6,7 +6,6 @@ import axios from 'axios';
 import { Icon } from "@chakra-ui/react";
 import { FaUser } from 'react-icons/fa'; // Import the person icon from Font Awesome
 
-
 const ActivityPage: React.FC = () => {
   const location = useLocation();
   const { id } = useParams<{ id: string }>();
@@ -39,7 +38,9 @@ const ActivityPage: React.FC = () => {
           setActivity(data);
 
           // Calculate unique participants length
-          const uniqueIds = new Set(data.event.participents.map((participant: any) => participant.id));
+          //console.log("Data info " , data)
+          const uniqueIds = new Set(data.event.participents.map((participant: any) => participant.user));
+          ////console.log("Id des mecs " , uniqueIds)
           setUniqueParticipantsLength(uniqueIds.size);
         } else {
           console.error('Failed to fetch activity details. Status:', response.status);
@@ -64,6 +65,8 @@ const ActivityPage: React.FC = () => {
   if (!activity) {
     return <div>Loading...</div>;
   }
+
+  const isActivityOver = new Date(activity.event.end_date) < new Date();
 
   const addToTimeline = (eventData: any) => {
     try {
@@ -95,9 +98,9 @@ const ActivityPage: React.FC = () => {
         },
         body: JSON.stringify({ events: [activity.event._id] }),
       });
-      console.log("Data: ", activity);
+      //console.log("Data: ", activity);
       if (response.ok) {
-        console.log('Event added to the calendar successfully!');
+        //console.log('Event added to the calendar successfully!');
         AddedInCalendar();
       } else {
         console.error('Failed to add the event to the calendar. Status:', response.status);
@@ -119,7 +122,7 @@ const ActivityPage: React.FC = () => {
       return;
     }
 
-    console.log("Data: ", activity);
+    //console.log("Data: ", activity);
 
     try {
       const token = localStorage.getItem('token');
@@ -135,7 +138,7 @@ const ActivityPage: React.FC = () => {
         }),
       });
       if (response.ok) {
-        console.log('User rated the event successfully!');
+        //console.log('User rated the event successfully!');
         GoodRate();
       } else {
         if (userComment.length === 0) {
@@ -183,10 +186,10 @@ const ActivityPage: React.FC = () => {
         if (!isActivityAlreadyAdded) {
           favoriteActivitiesArray.push(activity.event);
           localStorage.setItem('favoriteActivities', JSON.stringify(favoriteActivitiesArray));
-          console.log('Activity added to favorites successfully!');
+          //console.log('Activity added to favorites successfully!');
           ActivityFav();
         } else {
-          console.log('Activity is already in favorites.');
+          //console.log('Activity is already in favorites.');
           ActivityAlreadyFav();
         }
       } else {
@@ -233,11 +236,12 @@ const ActivityPage: React.FC = () => {
 
       for (let participant of activity.event.participents) {
         try {
-          const response = await axios.get(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${participant}`, config);
+          ////console.log("ERRRURURE E E E " , participant)
+          const response = await axios.get(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile/get?id=${participant.user}`, config);
           const profile = await response.data.user;
 
-          if (!uniqueIds.has(participant) && profile) {
-            uniqueIds.add(participant);
+          if (!uniqueIds.has(participant.user) && profile) {
+            uniqueIds.add(participant.user);
             participantsWithProfiles.push({ participant, profileDetails: profile });
           }
         } catch (error) {
@@ -247,7 +251,7 @@ const ActivityPage: React.FC = () => {
       }
 
       setParticipantsWithProfiles(participantsWithProfiles);
-      console.log('Participants with profiles:', participantsWithProfiles);
+      //console.log('Participants with profiles:', participantsWithProfiles);
     }
   };
 
@@ -260,16 +264,8 @@ const ActivityPage: React.FC = () => {
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Début: {current_start_date + " à " + activity.event.start_date.split("T")[1].substring(0, 8)}</p>
         <p style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px' }}>Fin: {current_start_date + " à " + activity.event.end_date.split("T")[1].substring(0, 8)}</p>
 
-        {/* <p 
-          style={{ fontWeight: 'bold', margin: '20px 0', fontSize: '18px', cursor: 'pointer', color: 'blue', textDecoration: 'underline' }} 
-          onClick={handleToggleParticipants}
-        >
-          Nombre de participants: {participantsWithProfiles.length}
-        </p> */}
-
         <div className="flex items-center space-x-2">
           <Icon as={FaUser} boxSize={10} color="gray.500"  style={{ position: 'relative', top: '-280px', right: '-400px' }} onClick={handleToggleParticipants}/> {/* Person icon */}
-          {/* <span style={{ position: 'relative', top: '-280px', right: '-400px' }}>{uniqueParticipantsLength}</span> */}
         </div>
 
         {showParticipants && (
@@ -286,7 +282,7 @@ const ActivityPage: React.FC = () => {
             </ul>
           </div>
         )}
-        
+
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           {activity.event.pictures && activity.event.pictures.length > 0 ? (
             <img
@@ -299,29 +295,35 @@ const ActivityPage: React.FC = () => {
           )}
         </div>
 
-        <div>
-          <p style={{ margin: '20px 0' }}>Note moyenne: {renderStars(averageRating)}</p>
-        </div>
+        {isActivityOver && (
+          <>
+            <div>
+              <p style={{ margin: '20px 0' }}>Note moyenne: {renderStars(averageRating)}</p>
+            </div>
 
-        <div>
-          <label htmlFor="userRating" style={{ margin: '20px 0' }}>Ta note: </label>
-          {renderStars(userRating || 0)}
-        </div>
-        <div>
-          <p style={{ margin: '20px 0' }}> </p>
-          <label htmlFor="userComment" style={{ margin: '20px 0' }}>Ton commentaire:</label>
-          <textarea
-            id="userComment"
-            value={userComment}
-            placeholder='Ajoute un commentaire'
-            onChange={(e) => setUserComment(e.target.value)}
-            style={{ width: '100%', minHeight: '100px', padding: '8px', fontSize: '16px' }}
-          />
-        </div>
-        <button onClick={handleUserRatingSubmit}>Envoie ta note</button>
+            <div>
+              <label htmlFor="userRating" style={{ margin: '20px 0' }}>Ta note: </label>
+              {renderStars(userRating || 0)}
+            </div>
+            <div>
+              <p style={{ margin: '20px 0' }}> </p>
+              <label htmlFor="userComment" style={{ margin: '20px 0' }}>Ton commentaire:</label>
+              <textarea
+                id="userComment"
+                value={userComment}
+                placeholder='Ajoute un commentaire'
+                onChange={(e) => setUserComment(e.target.value)}
+                style={{ width: '100%', minHeight: '100px', padding: '8px', fontSize: '16px' }}
+              />
+            </div>
+            <button onClick={handleUserRatingSubmit}>Envoie ta note</button>
+          </>
+        )}
 
         <div style={{ marginTop: '20px' }}>
-          <button onClick={addToCalendar}>Ajoute cette activité à ton calendrier</button>
+          <button onClick={addToCalendar} disabled={isActivityOver}>
+            {isActivityOver ? "L'activité est terminée" : "Ajoute cette activité à ton calendrier"}
+          </button>
         </div>
 
         <div style={{ marginTop: '20px' }}>

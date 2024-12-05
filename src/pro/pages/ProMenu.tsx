@@ -43,48 +43,61 @@ const ProMenuPage: React.FC = () => {
             if (!token) {
                 throw new Error('Token is missing');
             }
-
+    
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             };
-
+    
             const url = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/lists`;
             const response = await axios.get(url, config);
             const activities = response.data.events;
-
+    
+            const profileUrl = `https://x2025unbored786979363000.francecentral.cloudapp.azure.com/profile`;
+            const profileResponse = await axios.get(profileUrl, config);
+            const profileDetails = profileResponse.data.user;
+    
             if (!activities || activities.length === 0) {
                 throw new Error('No activities found');
             }
-
+    
             // Get today's date
             const today = new Date();
-
+    
+            // Filter activities to only include those created by the current user
+            const userActivities = activities.filter(activity => activity.creator === profileDetails._id);
+    
+            if (userActivities.length === 0) {
+                console.log("No activities found for this user.");
+                return;
+            }
+    
             // Find the activity with the closest end_date to today
-            const closestActivity = activities.reduce((closest, current) => {
+            const closestActivity = userActivities.reduce((closest, current) => {
                 const currentEndDate = new Date(current.end_date);
                 const closestEndDate = new Date(closest.end_date);
-
+    
                 return Math.abs(currentEndDate.getTime() - today.getTime()) <
                     Math.abs(closestEndDate.getTime() - today.getTime())
                     ? current
                     : closest;
-            }, activities[0]);
-
+            });
+    
+            console.log("profileDetails: ", profileDetails._id);
+            console.log("closestActivity: ", closestActivity.creator);
+    
             setNearestActivity(closestActivity);
-            if (closestActivity != null) {
-                // setNearestActivity(activities[0]);
-
+            if (closestActivity) {
                 setAverageStars(calculateAverageStars(closestActivity));
             }
-
         } catch (error) {
             setError(error.message || 'An error occurred');
         } finally {
             setLoading(false);
         }
     };
+    
 
     // Function to calculate average stars
     const calculateAverageStars = (activity: any) => {

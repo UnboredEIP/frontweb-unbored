@@ -13,6 +13,8 @@ type Event = {
   categories: string[];
   creator: string;
   participents: string[];
+  end_date: string; // Ajouté pour gérer les dates
+  start_date: string; // Ajouté pour gérer les dates
 };
 
 const HomeHeader: React.FC<{}> = () => {
@@ -22,6 +24,7 @@ const HomeHeader: React.FC<{}> = () => {
   const [eventToDisplay, setEventToDisplay] = useState("Sport");
   const [searchQuery, setSearchQuery] = useState("");
   const [showAllEvents, setShowAllEvents] = useState(true);
+  const [filter, setFilter] = useState("all"); // Nouvel état pour le filtre
 
   const [userData, setUserData] = useState({
     name: '',
@@ -41,22 +44,22 @@ const HomeHeader: React.FC<{}> = () => {
             'Content-Type': 'application/json',
           },
         };
-  
+
         const response = await fetch('https://x2025unbored786979363000.francecentral.cloudapp.azure.com/events/lists', config);
-  
+
         if (response.status === 401) {
           console.error('Unauthorized access');
           return;
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         setEvents(data.events);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-  
+
     fetchData();
     getProfileInfo();
   }, []);
@@ -77,7 +80,7 @@ const HomeHeader: React.FC<{}> = () => {
       const response = await axios.get(url, config);
       const profileDetails = response.data.user;
 
-      console.log("Profile Infos ", profileDetails);
+      //console.log("Profile Infos ", profileDetails);
 
       if (profileDetails.profilePhoto) {
         const firstPictureId = profileDetails.profilePhoto;
@@ -91,14 +94,14 @@ const HomeHeader: React.FC<{}> = () => {
         name: profileDetails.username,
       });
 
-      console.log("Toooooto " , profileDetails.username);
+      //console.log("Toooooto " , profileDetails.username);
     } catch (error) {
       const token = localStorage.getItem("token");
       console.error("Token value: ", token);
       console.error(error);
     }
   };
-  
+
   const previousCategory = () => {
     if (currentCategoryIndex > 0) {
       setCurrentCategoryIndex(currentCategoryIndex - 1);
@@ -141,6 +144,22 @@ const HomeHeader: React.FC<{}> = () => {
     navigate("/activity-favorite");
   };
 
+  const handleFilterChange = (filter: string) => {
+    setFilter(filter);
+  };
+
+  const filteredByCompletion = filteredEvents.filter((event) => {
+    const currentDate = new Date();
+    const endDate = new Date(event.end_date);
+
+    if (filter === "completed") {
+      return currentDate > endDate;
+    } else if (filter === "notCompleted") {
+      return currentDate <= endDate;
+    }
+    return true;
+  });
+
   return (
     <Flex direction="column">
       <Input
@@ -163,7 +182,7 @@ const HomeHeader: React.FC<{}> = () => {
       >
         Tout les thémes
       </Button>
-      
+
       <br />
       <Flex align="center" justifyContent="space-between">
         <Button
@@ -202,8 +221,42 @@ const HomeHeader: React.FC<{}> = () => {
       <br />
       <br />
 
+      <Flex justify="center" align="center" marginLeft="400px"> {/* Ajout de marginLeft pour déplacer les boutons vers la droite */}
+        <Button
+          onClick={() => handleFilterChange("all")}
+          style={{ margin: "0 10px", fontSize: "36px" }}
+          variant={filter === "all" ? "solid" : "outline"}
+          bg="#e1604d"
+          color="white"
+        >
+          Toutes les activités
+        </Button>
+        <Button
+          onClick={() => handleFilterChange("completed")}
+          style={{ margin: "0 10px", fontSize: "36px" }}
+          variant={filter === "completed" ? "solid" : "outline"}
+          bg="#e1604d"
+          color="white"
+        >
+          Activités terminées
+        </Button>
+        <Button
+          onClick={() => handleFilterChange("notCompleted")}
+          style={{ margin: "0 10px", fontSize: "36px" }}
+          variant={filter === "notCompleted" ? "solid" : "outline"}
+          bg="#e1604d"
+          color="white"
+        >
+          Activités non terminées
+        </Button>
+      </Flex>
+
+      <br />
+      <br />
+      <br />
+
       <Box style={{ position: "relative" }}>
-        <Timeline items={filteredEvents} />
+        <Timeline items={filteredByCompletion} />
       </Box>
 
       <br />

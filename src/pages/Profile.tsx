@@ -25,6 +25,7 @@ const ProfilePage = () => {
     following: 0,
     description: '',
     interests: [],
+    userId: ''
   });
 
   const [friendRequests, setFriendRequests] = useState<{ senderId: string; senderUsername: string }[]>([]);
@@ -65,6 +66,7 @@ const ProfilePage = () => {
         setUserData((prevState) => ({
           ...prevState,
           name: profileDetails.username,
+          userId: profileDetails._id,  // Set the current user's ID
           profilePicture: profileDetails.profilePhoto,
           following: profileDetails.reservations.length,
           description: '',
@@ -162,7 +164,7 @@ const ProfilePage = () => {
           const senderUsername = profileResponse.data.user.username;
   
           // Log the friend's ID and the username
-          console.log(`Friend ID: ${friend._id}, Username: ${senderUsername}`);
+          //console.log(`Friend ID: ${friend._id}, Username: ${senderUsername}`);
   
           // Return the friend object with id and username
           return {
@@ -201,7 +203,7 @@ const ProfilePage = () => {
       });
 
       const responseData = await response.json();
-      console.log(responseData);
+      ////console.log(responseData);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -216,6 +218,14 @@ const ProfilePage = () => {
     }
   };
 
+  const handleMessageClick = (friendId) => {
+    // Navigate to the private message page for the friend with the given ID
+    //navigate(`/messages/${friendId}`);
+    //navigate(`https://x2025unbored786979363000.francecentral.cloudapp.azure.com/chat/conversation?id1=${userData.userId}&id2=${friendId}`);
+    const userId = userData.userId;
+    navigate(`/chat/conversation?id1=${userId}&id2=${friendId}`);
+  };
+  
   const handleAvatarClick = () => {
     document.getElementById('avatarInput')?.click();
   };
@@ -252,7 +262,7 @@ const ProfilePage = () => {
 
   const handleRejectFriendRequest = (senderId: string) => {
     // Do nothing for now when "Supprimer" is clicked.
-    console.log('Supprimer clicked for senderId:', senderId);
+    //console.log('Supprimer clicked for senderId:', senderId);
   };
 
   return (
@@ -349,29 +359,32 @@ const ProfilePage = () => {
         </ModalContent>
       </Modal>
 
-      {/* Modal for showing friends list */}
+      {/* ADD YOUR CODE HERE*/}
+
       <Modal isOpen={isFriendsListOpen} onClose={onFriendsListClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Liste d'amis</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {friendsList.length > 0 ? (
-              <Stack>
-                {friendsList.map((friend, index) => (
-                  <Box key={index} p={4} borderWidth="1px" borderRadius="md">
-                    <Link to={`/userprofil/${friend.id}`}>
-                      <Text>{friend.username}</Text>
-                    </Link>
-                  </Box>
-                ))}
-              </Stack>
-            ) : (
-              <Text>Aucun ami dans la liste.</Text>
-            )}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Liste d'amis</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          {friendsList.length > 0 ? (
+            <Stack>
+              {friendsList.map((friend, index) => (
+                <Box key={index} p={4} borderWidth="1px" borderRadius="md" display="flex" justifyContent="space-between">
+                  <Link to={`/userprofil/${friend.id}`}>
+                    <Text>{friend.username}</Text>
+                  </Link>
+                  <Button colorScheme="blue" size="sm" onClick={() => handleMessageClick(friend.id)}>Message</Button>
+                </Box>
+              ))}
+            </Stack>
+          ) : (
+            <Text>Aucun ami dans la liste.</Text>
+          )}
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+    
     </Box>
   );
 };

@@ -44,6 +44,8 @@ import ProActivitySubscribers from "./pro/pages/ProActivitySubscribers"
 import Sidebar2 from "./components/sidebartwo/Sidebar";
 import Navbar from "./components/navbar/Navbar";
 import Vitrine from "./pages/vitrine/Vitrine";
+import DMPage from "./pages/PrivateMessage";
+
 //import CreatePrivateActivityPage from "./pages/CreatePriveActivity";
 
 
@@ -234,7 +236,8 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/EventSwipe" element={<EventSwipe />} />
           <Route path="/userprofil/:username" element={<UserProfile />} />
-          
+          <Route path="/chat/conversation" element={<DMPage />} />
+
         </Routes>
       </Router>
     </>

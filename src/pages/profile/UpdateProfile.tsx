@@ -52,10 +52,10 @@ async function makeUpdateProfileRequest(
     });
 
     if (response.status === 200) {
-      console.log("USER UPDATED");
+      //console.log("USER UPDATED");
       return true;
     } else {
-      console.log("oooooo");
+      //console.log("oooooo");
       console.error("toto , " , response , " tata");
       console.error("UPDoiojiojATE ERROR");
       return false;
@@ -116,8 +116,8 @@ const UpdateProfileForm: React.FC<{ onUpdateSuccess: () => void }> = ({
         const response = await axios.get(url, config);
         const profileDetails = response.data.user;
         const birthdate = profileDetails.birthdate?.toString().substring(0, 10);
-        console.log("Info Profil");
-        console.log(profileDetails);
+        //console.log("Info Profil");
+        //console.log(profileDetails);
         setUsername(profileDetails.username);
         setEmail(profileDetails.email);
         setGender(profileDetails.gender);
@@ -176,10 +176,10 @@ const UpdateProfileForm: React.FC<{ onUpdateSuccess: () => void }> = ({
       preferences
     );
     if (success) {
-      console.log("Update success");
+      //console.log("Update success");
       onUpdateSuccess();
     } else {
-      console.log("error");
+      //console.log("error");
     }
   };
 
