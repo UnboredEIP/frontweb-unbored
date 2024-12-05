@@ -143,7 +143,7 @@ const EventSwipe: React.FC = () => {
   if (error) return <p>Error: {error}</p>;
   if (filteredData.length === 0) return <p>No events available</p>;
 
-  const currentEvent = filteredData[currentIndex];
+  const currentEvent = filteredData.length > 0 ? filteredData[currentIndex] : null;
 
   const createEvent = async (currentIndex: number) => {
     const currentEvent = filteredData[currentIndex];
@@ -237,24 +237,28 @@ const EventSwipe: React.FC = () => {
         ))}
       </div>
 
-      <div
-        style={{
-          ...styles.content,
-          backgroundColor: animationClass === 'like' ? '#DFF2BF' : animationClass === 'dislike' ? '#FFBABA' : '#fff',
-          transform: animationClass ? 'scale(0.9)' : 'scale(1)',
-        }}
-      >
-        <div style={styles.event}>
-          <h3>{currentEvent.title}</h3>
-        </div>
+      {currentEvent ? (
+        <div
+          style={{
+            ...styles.content,
+            backgroundColor: animationClass === 'like' ? '#DFF2BF' : animationClass === 'dislike' ? '#FFBABA' : '#fff',
+            transform: animationClass ? 'scale(0.9)' : 'scale(1)',
+          }}
+        >
+          <div style={styles.event}>
+            <h3>{currentEvent.title}</h3>
+          </div>
 
-        <img
-          style={styles.image}
-          src={currentEvent.cover_url}
-          alt={currentEvent.title}
-          onClick={handleLike}
-        />
-      </div>
+          <img
+            style={styles.image}
+            src={currentEvent.cover_url}
+            alt={currentEvent.title}
+            onClick={handleLike}
+          />
+        </div>
+      ) : (
+        <p>Pas d'activité disponible </p>
+      )}
 
       <div style={styles.navigation}>
         <button
